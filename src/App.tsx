@@ -1,10 +1,15 @@
-import { Toaster } from "./components/ui/Toaster"
+import { Toaster } from "@/components/ui/Toaster";
+import { ProSidebarProvider } from 'react-pro-sidebar';
+import Sidebar from "./components/shared/Sidebar";
 
 function App() {
 
   return (
-    <div>
-      <Toaster />
+    <div className="h-screen">
+      <ProSidebarProvider>
+        <Sidebar />
+        <Toaster />
+      </ProSidebarProvider>
     </div>
   )
 }
