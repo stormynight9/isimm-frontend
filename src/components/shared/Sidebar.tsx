@@ -32,6 +32,7 @@ import {
 } from 'react-pro-sidebar';
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
 import { Button } from '@/components/ui/Button';
+import { Link } from 'react-router-dom';
 
 
 const Sidebar = () => {
@@ -42,47 +43,66 @@ const Sidebar = () => {
                     Tableau de bord
                 </div>
                 <Separator />
-                <Menu className=''>
-                    <SubMenu label="Surveillance" icon={<CalendarDaysIcon size={20} strokeWidth={2.4} />} className="text-slate-700 text-sm font-semibold rounded-full">
-                        <MenuItem icon={<CalendarIcon size={20} strokeWidth={2.4} />}> Calendrier </MenuItem>
-                        <MenuItem icon={<CalendarCheckIcon size={20} strokeWidth={2.4} />}> Créer Calendrier </MenuItem>
-                        <MenuItem icon={<SaveIcon size={20} strokeWidth={2.4} />}> Calendrier sauvegardées </MenuItem>
-                        <MenuItem icon={<MessageCircleIcon size={20} strokeWidth={2.4} />}> Réclamations </MenuItem>
-                    </SubMenu>
-                    <Separator />
-                </Menu>
                 <Menu>
+                    {/* Surveillance => /surveillance/esm-route */}
+                    <SubMenu label="Surveillance" icon={<CalendarDaysIcon size={20} strokeWidth={2.4} />} className="text-slate-700 text-sm font-semibold rounded-full">
+                        <MenuItem icon={<CalendarIcon size={20} strokeWidth={2.4} />} component={<Link to='/surveillance/calendrier' />}> Calendrier </MenuItem>
+                        <MenuItem icon={<CalendarCheckIcon size={20} strokeWidth={2.4} />} component={<Link to={'/surveillance/creer-calendrier'} />}> Créer Calendrier </MenuItem>
+                        <MenuItem icon={<SaveIcon size={20} strokeWidth={2.4} />} component={<Link to={'/surveillance/calendriers-sauvegardes'} />}> Calendrier sauvegardées </MenuItem>
+                        <MenuItem icon={<MessageCircleIcon size={20} strokeWidth={2.4} />} component={<Link to={'/surveillance/reclamations'} />}> Réclamations </MenuItem>
+                    </SubMenu>
+                    {/* Surveillance */}
+                    <Separator />
+                    {/* Notes => /notes/esm-route */}
                     <SubMenu label="Notes" icon={<BinaryIcon size={20} strokeWidth={2.4} />} className="text-slate-700 text-sm font-semibold rounded-full">
-                        <MenuItem icon={<CalendarCheckIcon size={20} strokeWidth={2.4} />}> Semestre 1 </MenuItem>
-                        <MenuItem icon={<CalendarCheckIcon size={20} strokeWidth={2.4} />}> Semestre 2 </MenuItem>
-                        <MenuItem icon={<SettingsIcon size={20} strokeWidth={2.4} />}> Réclamation </MenuItem>
-                        <MenuItem icon={<MessageSquareIcon size={20} strokeWidth={2.4} />}> Section </MenuItem>
+                        <MenuItem icon={<CalendarCheckIcon size={20} strokeWidth={2.4} />} component={<Link to={''} />}> Semestre 1 </MenuItem>
+                        <MenuItem icon={<CalendarCheckIcon size={20} strokeWidth={2.4} />} component={<Link to={''} />}> Semestre 2 </MenuItem>
+                        <MenuItem icon={<SettingsIcon size={20} strokeWidth={2.4} />} component={<Link to={''} />}> Réclamation </MenuItem>
+                        <MenuItem icon={<MessageSquareIcon size={20} strokeWidth={2.4} />} component={<Link to={''} />}> Section </MenuItem>
                     </SubMenu>
+                    {/* Notes */}
                     <Separator />
+                    {/* Magasin */}
                     <SubMenu label="Magasin" icon={<ShoppingCartIcon size={20} strokeWidth={2.4} />} className="text-slate-700 text-sm font-semibold rounded-full">
-                        <MenuItem icon={<CalendarSearchIcon size={20} strokeWidth={2.4} />}> Consulter demandes </MenuItem>
-                        <MenuItem icon={<ClipboardCheckIcon size={20} strokeWidth={2.4} />}> Ajouter produit (service) </MenuItem>
-                        <MenuItem icon={<PlusCircleIcon size={20} strokeWidth={2.4} />}> Demande produit </MenuItem>
-                        <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />}> Consulter produit </MenuItem>
-                        <MenuItem icon={<ClipboardListIcon size={20} strokeWidth={2.4} />}> Factures </MenuItem>
-                        <MenuItem icon={<BoxIcon size={20} strokeWidth={2.4} />}> Produits </MenuItem>
-                        <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />}> Fournisseurs </MenuItem>
+                        {/* Enseigant & Service => /enseigant/esm-route & /service/esm-route */}
+                        <MenuItem icon={<CalendarSearchIcon size={20} strokeWidth={2.4} />} component={<Link to={''} />}> Consulter demandes </MenuItem>
+                        <MenuItem icon={<ClipboardCheckIcon size={20} strokeWidth={2.4} />} component={<Link to={''} />}> Ajouter produit (service) </MenuItem>
+                        <MenuItem icon={<PlusCircleIcon size={20} strokeWidth={2.4} />} component={<Link to={''} />}> Demande produit </MenuItem>
+                        <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />} component={<Link to={''} />}> Consulter produit </MenuItem>
+                        {/* Enseigant & Service */}
+                        <Separator />
+                        {/* magasinier => /magasin/magasinier/esm-route */}
+                        <MenuItem icon={<CalendarSearchIcon size={20} strokeWidth={2.4} />} component={<Link to={''} />}> Demandes </MenuItem>
+                        <MenuItem icon={<ClipboardListIcon size={20} strokeWidth={2.4} />} component={<Link to={''} />}> Factures </MenuItem>
+                        <MenuItem icon={<BoxIcon size={20} strokeWidth={2.4} />} component={<Link to={''} />}> Produits </MenuItem>
+                        <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />} component={<Link to={''} />}> Fournisseurs </MenuItem>
+                        {/* magasinier */}
                     </SubMenu>
+                    {/* Magasin */}
                     <Separator />
+                    {/* Charge => /charge/esm-route */}
                     <SubMenu label="Charge" icon={<SheetIcon size={20} strokeWidth={2.4} />} className="text-slate-700 text-sm font-semibold rounded-full">
-                        <MenuItem icon={<CalendarDaysIcon size={20} strokeWidth={2.4} />}> Gestion diplomes </MenuItem>
-                        <MenuItem icon={<FileSpreadsheetIcon size={20} strokeWidth={2.4} />}> Consultation voeux </MenuItem>
-                        <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />}> Consultation enseignant </MenuItem>
-                        <MenuItem icon={<UserIcon size={20} strokeWidth={2.4} />}> Profile information </MenuItem>
-                        <MenuItem icon={<FilePlus2Icon size={20} strokeWidth={2.4} />}> Soumettre voeux </MenuItem>
+                        <MenuItem icon={<CalendarDaysIcon size={20} strokeWidth={2.4} />} component={<Link to={''} />}> Gestion diplomes </MenuItem>
+                        <MenuItem icon={<FileSpreadsheetIcon size={20} strokeWidth={2.4} />} component={<Link to={''} />}> Consultation voeux </MenuItem>
+                        <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />} component={<Link to={''} />}> Consultation enseignant </MenuItem>
+                        <MenuItem icon={<UserIcon size={20} strokeWidth={2.4} />} component={<Link to={''} />}> Profile information </MenuItem>
+                        <MenuItem icon={<FilePlus2Icon size={20} strokeWidth={2.4} />} component={<Link to={''} />}> Soumettre voeux </MenuItem>
                     </SubMenu>
+                    {/* Charge */}
                     <Separator />
+                    {/* Congé */}
                     <SubMenu label="Congé" icon={<PalmtreeIcon size={20} strokeWidth={2.4} />} className="text-slate-700 text-sm font-semibold rounded-full">
-                        <MenuItem icon={<MailQuestionIcon size={20} strokeWidth={2.4} />}> Demande un congé </MenuItem>
-                        <MenuItem icon={<ClipboardIcon size={20} strokeWidth={2.4} />}> Mes demandes </MenuItem>
-                        <MenuItem icon={<ClipboardListIcon size={20} strokeWidth={2.4} />}> Les demandes </MenuItem>
-                        <MenuItem icon={<BarChart3Icon size={20} strokeWidth={2.4} />}> Statistiques </MenuItem>
+                        {/* Enseigant => /conge/enseignant/esm-route */}
+                        <MenuItem icon={<MailQuestionIcon size={20} strokeWidth={2.4} />} component={<Link to={''} />}> Demande un congé </MenuItem>
+                        <MenuItem icon={<ClipboardIcon size={20} strokeWidth={2.4} />} component={<Link to={''} />}> Mes demandes </MenuItem>
+                        {/* Enseigant */}
+                        <Separator />
+                        {/* Admin => /congé/admin/esm-route */}
+                        <MenuItem icon={<ClipboardListIcon size={20} strokeWidth={2.4} />} component={<Link to={''} />}> Les demandes </MenuItem>
+                        <MenuItem icon={<BarChart3Icon size={20} strokeWidth={2.4} />} component={<Link to={''} />}> Statistiques </MenuItem>
+                        {/* Admin */}
                     </SubMenu>
+                    {/* Congé */}
                 </Menu>
             </RPSidebar>
             <div className='mt-auto w-64 border-r'>
