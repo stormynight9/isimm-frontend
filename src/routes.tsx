@@ -21,7 +21,6 @@ const router = createBrowserRouter([
                         element: <Home />,
                     },
                     {
-                        // surveillance
                         path: "surveillance",
                         children: [
                             {
