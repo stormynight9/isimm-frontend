@@ -9,7 +9,7 @@ function App() {
             <ProSidebarProvider>
                 <Sidebar />
             </ProSidebarProvider>
-            <div className="container p-2">
+            <div className="p-2">
                 <Outlet />
             </div>
             <Toaster />
