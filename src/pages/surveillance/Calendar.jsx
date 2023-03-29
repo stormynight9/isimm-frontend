@@ -1,5 +1,9 @@
 const Calendar = () => {
-    return <div>Calendar</div>
+    return (
+        <div>
+            <h1>Calendar for fun</h1>
+        </div>
+    )
 }
 
 export default Calendar
