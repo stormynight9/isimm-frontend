@@ -6,7 +6,6 @@ interface BadgeProps {
 }
 
 const Badge = ({ status, children }: BadgeProps) => {
-
     const BadgeClassName = cn({
         "inline-block px-4 rounded-full font-medium capitalize": true,
         "bg-[#fae9c2] text-[#542b14]": status === "yellow",
@@ -14,9 +13,7 @@ const Badge = ({ status, children }: BadgeProps) => {
         "bg-[#f4d7d7] text-[#5d1f1f]": status === "red",
     })
 
-    return (
-        <div className={BadgeClassName}>{children}</div>
-    )
+    return <div className={BadgeClassName}>{children}</div>
 }
 
 export default Badge

@@ -1,11 +1,11 @@
-import { createBrowserRouter } from 'react-router-dom';
-import App from './App';
-import ErrorPage from './pages/ErrorPage';
-import Home from './pages/Home';
-import Calendar from './pages/surveillance/Calendar';
-import Complaints from './pages/surveillance/Complaints';
-import CreateCalendar from './pages/surveillance/CreateCalendar';
-import SavedCalendars from './pages/surveillance/SavedCalendars';
+import { createBrowserRouter } from "react-router-dom"
+import App from "./App"
+import ErrorPage from "./pages/ErrorPage"
+import Home from "./pages/Home"
+import Calendar from "./pages/surveillance/Calendar"
+import Complaints from "./pages/surveillance/Complaints"
+import CreateCalendar from "./pages/surveillance/CreateCalendar"
+import SavedCalendars from "./pages/surveillance/SavedCalendars"
 
 const router = createBrowserRouter([
     {
@@ -20,7 +20,8 @@ const router = createBrowserRouter([
                         index: true,
                         element: <Home />,
                     },
-                    { // surveillance
+                    {
+                        // surveillance
                         path: "surveillance",
                         children: [
                             {
@@ -38,65 +39,51 @@ const router = createBrowserRouter([
                             {
                                 path: "reclamations",
                                 element: <Complaints />,
-                            }
-                        ]
+                            },
+                        ],
                     },
-                    { // notes
+                    {
                         path: "notes",
-                        children: [
-
-                        ]
+                        children: [],
                     },
-                    { // magasin
+                    {
                         path: "magasin",
                         children: [
-                            { // magasinier
+                            {
                                 path: "magasinier",
-                                children: [
-
-                                ]
+                                children: [],
                             },
-                            { // enseignant
+                            {
                                 path: "enseignant",
-                                children: [
-
-                                ]
+                                children: [],
                             },
-                            { // service
+                            {
                                 path: "service",
-                                children: [
-
-                                ]
-                            }
-                        ]
+                                children: [],
+                            },
+                        ],
                     },
-                    { // charge
+                    {
                         path: "charge",
-                        children: [
-
-                        ]
+                        children: [],
                     },
-                    { // conge
+                    {
                         path: "conge",
                         children: [
-                            { // admin
+                            {
                                 path: "admin",
-                                children: [
-
-                                ]
+                                children: [],
                             },
-                            { // enseignant
+                            {
                                 path: "enseignant",
-                                children: [
-
-                                ]
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]
+                                children: [],
+                            },
+                        ],
+                    },
+                ],
+            },
+        ],
     },
-]);
+])
 
 export default router
