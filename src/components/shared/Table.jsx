@@ -6,12 +6,12 @@ const Table = ({ columns, data }) => {
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = tableInstance
     return (
         <div className="p-4 ">
-            <table {...getTableProps()} className="w-full rounded-md shadow-md [&>tbody>*:nth-child(even)]:bg-[#f4f6fa]">
+            <table {...getTableProps()} className="w-full rounded-md shadow-md [&>tbody>*:nth-child(even)]:bg-[#f7f7f7]">
                 <thead>
                     {headerGroups.map((headerGroup) => (
                         <tr {...headerGroup.getHeaderGroupProps()}>
                             {headerGroup.headers.map((column) => (
-                                <th {...column.getHeaderProps()} className="bg-[#f4f6fa] p-4 text-left uppercase text-[#58595f]">
+                                <th {...column.getHeaderProps()} className="bg-[#f7f7f7] p-4 text-left uppercase text-[#4F5459]">
                                     {column.render("Header")}
                                 </th>
                             ))}
