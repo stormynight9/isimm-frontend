@@ -1,4 +1,4 @@
-const Calendar = () => {
+const Calendars = () => {
     return <div>Calendar</div>
 }
 
