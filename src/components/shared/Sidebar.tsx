@@ -103,7 +103,7 @@ const Sidebar = () => {
                     {/* Congé */}
                     <SubMenu label="Congé" icon={<PalmtreeIcon size={20} strokeWidth={2.4} />} className="rounded-full text-sm font-semibold text-slate-700">
                         {/* Enseigant => /conge/enseignant/esm-route */}
-                        <MenuItem icon={<MailQuestionIcon size={20} strokeWidth={2.4} />} component={<Link to={"conge/enseignant/DemandeConge"} />}>
+                        <MenuItem icon={<MailQuestionIcon size={20} strokeWidth={2.4} />} component={<Link to={"conge/enseignant/demande-conge"} />}>
                             Demande un congé
                         </MenuItem>
                         <MenuItem icon={<ClipboardIcon size={20} strokeWidth={2.4} />} component={<Link to={"conge/enseignant/mes-demandes"} />}>
@@ -112,10 +112,10 @@ const Sidebar = () => {
                         {/* Enseigant */}
                         <Separator />
                         {/* Admin => /congé/admin/esm-route */}
-                        <MenuItem icon={<ClipboardListIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                        <MenuItem icon={<ClipboardListIcon size={20} strokeWidth={2.4} />} component={<Link to={"/conge/admin/les-demandes"} />}>
                             Les demandes
                         </MenuItem>
-                        <MenuItem icon={<BarChart3Icon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                        <MenuItem icon={<BarChart3Icon size={20} strokeWidth={2.4} />} component={<Link to={"/conge/admin/statistiques"} />}>
                             Statistiques
                         </MenuItem>
                         {/* Admin */}
