@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom"
 import App from "./App"
 import ErrorPage from "./pages/ErrorPage"
 import Home from "./pages/Home"
+import Section from "./pages/notes/Section"
 import Calendar from "./pages/surveillance/Calendar"
 import Complaints from "./pages/surveillance/Complaints"
 import CreateCalendar from "./pages/surveillance/CreateCalendar"
@@ -43,7 +44,12 @@ const router = createBrowserRouter([
                     },
                     {
                         path: "notes",
-                        children: [],
+                        children: [
+                            {
+                                path: "section",
+                                element: <Section />,
+                            },
+                        ],
                     },
                     {
                         path: "magasin",

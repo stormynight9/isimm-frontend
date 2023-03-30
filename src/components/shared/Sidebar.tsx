@@ -40,7 +40,7 @@ const Sidebar = () => {
                         <MenuItem icon={<SettingsIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
                             Réclamation
                         </MenuItem>
-                        <MenuItem icon={<MessageSquareIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                        <MenuItem icon={<MessageSquareIcon size={20} strokeWidth={2.4} />} component={<Link to={"/notes/section"} />}>
                             Section
                         </MenuItem>
                     </SubMenu>
