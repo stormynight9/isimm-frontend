@@ -4,6 +4,7 @@ import { Outlet } from "react-router-dom"
 import Sidebar from "./components/shared/Sidebar"
 
 function App() {
+    console.log(import.meta.env.VITE_API_URL)
     return (
         <div className="flex h-screen">
             <ProSidebarProvider>

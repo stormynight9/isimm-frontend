@@ -112,10 +112,10 @@ const Sidebar = () => {
                         {/* Enseigant */}
                         <Separator />
                         {/* Admin => /congé/admin/esm-route */}
-                        <MenuItem icon={<ClipboardListIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                        <MenuItem icon={<ClipboardListIcon size={20} strokeWidth={2.4} />} component={<Link to={"/conge/admin/lesdemandes"} />}>
                             Les demandes
                         </MenuItem>
-                        <MenuItem icon={<BarChart3Icon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                        <MenuItem icon={<BarChart3Icon size={20} strokeWidth={2.4} />} component={<Link to={"/conge/admin/statistiques"} />}>
                             Statistiques
                         </MenuItem>
                         {/* Admin */}
