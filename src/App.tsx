@@ -9,7 +9,7 @@ function App() {
             <ProSidebarProvider>
                 <Sidebar />
             </ProSidebarProvider>
-            <main className="ml-64 p-2">
+            <main className="p-2 lg:ml-64">
                 <Outlet />
             </main>
             <Toaster />
