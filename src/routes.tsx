@@ -16,122 +16,128 @@ import ConsultationEnseignant from "./pages/charge/chef-departement/Consultation
 import SoumettreVoeux from "./pages/charge/enseignant/SoumettreVoeux"
 import ProfileInformation from "./pages/charge/enseignant/ProfileInformation"
 
-const router = createBrowserRouter([
-    {
-        path: "/",
-        element: <App />,
-        errorElement: <ErrorPage />,
-        children: [
-            {
-                errorElement: <ErrorPage />,
-                children: [
-                    {
-                        index: true,
-                        element: <Home />,
-                    },
-                    {
-                        path: "surveillance",
-                        children: [
-                            {
-                                path: "calendrier",
-                                element: <Calendar />,
-                            },
-                            {
-                                path: "creer-calendrier",
-                                element: <CreateCalendar />,
-                            },
-                            {
-                                path: "calendriers-sauvegardes",
-                                element: <SavedCalendars />,
-                            },
-                            {
-                                path: "reclamations",
-                                element: <Complaints />,
-                            },
-                        ],
-                    },
-                    {
-                        path: "notes",
-                        children: [],
-                    },
-                    {
-                        path: "magasin",
-                        children: [
-                            {
-                                path: "magasinier",
-                                children: [],
-                            },
-                            {
-                                path: "enseignant",
-                                children: [],
-                            },
-                            {
-                                path: "service",
-                                children: [],
-                            },
-                        ],
-                    },
-                    {
-                        path: "charge",
-                        children: [
-                            {
-                                path: "gestion-diplomes",
-                                element: <GestionDiplomes />,
-                            },
-                            {
-                                path: "consultation-voeux",
-                                element: <ConsultationVoeux />,
-                            },
-                            {
-                                path: "consultation-enseignant",
-                                element: <ConsultationEnseignant />,
-                            },
-                            {
-                                path: "profile-information",
-                                element: <ProfileInformation />,
-                            },
-                            {
-                                path: "soumettre-voeux",
-                                element: <SoumettreVoeux />,
-                            },
-                        ],
-                    },
-                    {
-                        path: "conge",
-                        children: [
-                            {
-                                path: "admin",
-                                children: [
-                                    {
-                                        path: "les-demandes",
-                                        element: <Lesdemandes />,
-                                    },
+const router = createBrowserRouter(
+    [
+        {
+            path: "/",
+            element: <App />,
+            errorElement: <ErrorPage />,
+            children: [
+                {
+                    errorElement: <ErrorPage />,
+                    children: [
+                        {
+                            index: true,
+                            element: <Home />,
+                        },
+                        {
+                            path: "surveillance",
+                            children: [
+                                {
+                                    path: "calendrier",
+                                    element: <Calendar />,
+                                },
+                                {
+                                    path: "creer-calendrier",
+                                    element: <CreateCalendar />,
+                                },
+                                {
+                                    path: "calendriers-sauvegardes",
+                                    element: <SavedCalendars />,
+                                },
+                                {
+                                    path: "reclamations",
+                                    element: <Complaints />,
+                                },
+                            ],
+                        },
+                        {
+                            path: "notes",
+                            children: [],
+                        },
+                        {
+                            path: "magasin",
+                            children: [
+                                {
+                                    path: "magasinier",
+                                    children: [],
+                                },
+                                {
+                                    path: "enseignant",
+                                    children: [],
+                                },
+                                {
+                                    path: "service",
+                                    children: [],
+                                },
+                            ],
+                        },
+                        {
+                            path: "charge",
+                            children: [
+                                {
+                                    path: "gestion-diplomes",
+                                    element: <GestionDiplomes />,
+                                },
+                                {
+                                    path: "consultation-voeux",
+                                    element: <ConsultationVoeux />,
+                                },
+                                {
+                                    path: "consultation-enseignant",
+                                    element: <ConsultationEnseignant />,
+                                },
+                                {
+                                    path: "profile-information",
+                                    element: <ProfileInformation />,
+                                },
+                                {
+                                    path: "soumettre-voeux",
+                                    element: <SoumettreVoeux />,
+                                },
+                            ],
+                        },
+                        {
+                            path: "conge",
+                            children: [
+                                {
+                                    path: "admin",
+                                    children: [
+                                        {
+                                            path: "les-demandes",
+                                            element: <Lesdemandes />,
+                                        },
 
-                                    {
-                                        path: "statistiques",
-                                        element: <Statistiques />,
-                                    },
-                                ],
-                            },
-                            {
-                                path: "enseignant",
-                                children: [
-                                    {
-                                        path: "demande-conge",
-                                        element: <DemandeConge />,
-                                    },
-                                    {
-                                        path: "mes-demandes",
-                                        element: <MesDemandes />,
-                                    },
-                                ],
-                            },
-                        ],
-                    },
-                ],
-            },
-        ],
-    },
-])
+                                        {
+                                            path: "statistiques",
+                                            element: <Statistiques />,
+                                        },
+                                    ],
+                                },
+                                {
+                                    path: "enseignant",
+                                    children: [
+                                        {
+                                            path: "demande-conge",
+                                            element: <DemandeConge />,
+                                        },
+                                        {
+                                            path: "mes-demandes",
+                                            element: <MesDemandes />,
+                                        },
+                                    ],
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+    ],
+    {
+        // Todo: remove this when ready to deploy to production
+        basename: "/isimm-frontend",
+    }
+)
 
 export default router
