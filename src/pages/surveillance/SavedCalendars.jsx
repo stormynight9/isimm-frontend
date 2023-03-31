@@ -1,7 +1,10 @@
+import Header from "./components/Header"
 
 const SavedCalendars = () => {
     return (
-        <div>SavedCalendars</div>
+        <main className="pt-6 pl-16">
+            <Header title="Calendriers sauvegardés">Voici la liste de tous les calendriers sauvegardés.</Header>
+        </main>
     )
 }
 
