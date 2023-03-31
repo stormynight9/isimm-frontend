@@ -1,7 +1,7 @@
 import { Menubar, MenubarMenu, MenubarTrigger } from "@/components/ui/Menubar"
 
 import { NavigationMenu } from "@/components/ui/NavigationMenu"
-import ListItem from "./ListItem"
+import ListItem from "../components/ListItem"
 
 const groups = [
     {
@@ -47,11 +47,11 @@ const sections = [
 
 const Section = () => {
     return (
-        <div className="section">
-            <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">Notes - Sections</h3>
+        <div className="section m-10">
+            <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">Notes > Sections</h3>
             <br></br>
             <div className="sections">
-                <Menubar className="max-w-md">
+                <Menubar className="max-w-fit">
                     {sections.map((section) => (
                         <MenubarMenu>
                             <MenubarTrigger className=" hover:bg-slate-300">{section.title}</MenubarTrigger>
@@ -59,9 +59,9 @@ const Section = () => {
                     ))}
                 </Menubar>
             </div>
-            <div className="classgroup">
+            <div className="classgroup mt-5">
                 <NavigationMenu>
-                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                    <ul className="grid w-[400px] gap-7 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                         {groups.map((component) => (
                             <ListItem key={component.title} title={component.title} href={component.href}>
                                 {component.description}
