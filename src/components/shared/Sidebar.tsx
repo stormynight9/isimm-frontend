@@ -103,10 +103,10 @@ const Sidebar = () => {
                     {/* Congé */}
                     <SubMenu label="Congé" icon={<PalmtreeIcon size={20} strokeWidth={2.4} />} className="rounded-full text-sm font-semibold text-slate-700">
                         {/* Enseigant => /conge/enseignant/esm-route */}
-                        <MenuItem icon={<MailQuestionIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                        <MenuItem icon={<MailQuestionIcon size={20} strokeWidth={2.4} />} component={<Link to={"conge/enseignant/demande-conge"} />}>
                             Demande un congé
                         </MenuItem>
-                        <MenuItem icon={<ClipboardIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                        <MenuItem icon={<ClipboardIcon size={20} strokeWidth={2.4} />} component={<Link to={"conge/enseignant/mes-demandes"} />}>
                             Mes demandes
                         </MenuItem>
                         {/* Enseigant */}

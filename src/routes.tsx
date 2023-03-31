@@ -1,5 +1,7 @@
 import { createBrowserRouter } from "react-router-dom"
 import App from "./App"
+import DemandeConge from "./pages/conge/enseignant/DemandeConge"
+import MesDemandes from "./pages/conge/enseignant/MesDemandes"
 import Lesdemandes from "./pages/conge/admin/Lesdemandes"
 import Statistiques from "./pages/conge/admin/Statistiques"
 import ErrorPage from "./pages/ErrorPage"
@@ -79,15 +81,24 @@ const router = createBrowserRouter([
                                         element: <Lesdemandes />,
                                     },
 
-                                    { 
+                                    {
                                         path: "statistiques",
-                                        element: <Statistiques />
+                                        element: <Statistiques />,
                                     },
                                 ],
                             },
                             {
                                 path: "enseignant",
-                                children: [],
+                                children: [
+                                    {
+                                        path: "demande-conge",
+                                        element: <DemandeConge />,
+                                    },
+                                    {
+                                        path: "mes-demandes",
+                                        element: <MesDemandes />,
+                                    },
+                                ],
                             },
                         ],
                     },
