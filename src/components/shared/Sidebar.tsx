@@ -116,19 +116,19 @@ const Sidebar = () => {
                             <Separator />
                             {/* Charge => /charge/esm-route */}
                             <SubMenu label="Charge" icon={<SheetIcon size={20} strokeWidth={2.4} />} className="rounded-full text-sm font-semibold text-slate-700">
-                                <MenuItem icon={<CalendarDaysIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                                <MenuItem icon={<CalendarDaysIcon size={20} strokeWidth={2.4} />} component={<Link to={"/charge/gestion-diplomes/"} />}>
                                     Gestion diplomes
                                 </MenuItem>
-                                <MenuItem icon={<FileSpreadsheetIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                                <MenuItem icon={<FileSpreadsheetIcon size={20} strokeWidth={2.4} />} component={<Link to={"/charge/consultation-voeux/"} />}>
                                     Consultation voeux
                                 </MenuItem>
-                                <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                                <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />} component={<Link to={"/charge/consultation-enseignant/"} />}>
                                     Consultation enseignant
                                 </MenuItem>
-                                <MenuItem icon={<UserIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                                <MenuItem icon={<UserIcon size={20} strokeWidth={2.4} />} component={<Link to={"/charge/profile-information/"} />}>
                                     Profile information
                                 </MenuItem>
-                                <MenuItem icon={<FilePlus2Icon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                                <MenuItem icon={<FilePlus2Icon size={20} strokeWidth={2.4} />} component={<Link to={"/charge/soumettre-voeux/"} />}>
                                     Soumettre voeux
                                 </MenuItem>
                             </SubMenu>
