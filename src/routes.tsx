@@ -75,11 +75,7 @@ const router = createBrowserRouter([
                                 path: "admin",
                                 children: [
                                     {
-<<<<<<< HEAD
                                         path: "les-demandes",
-=======
-                                        path: "lesdemandes",
->>>>>>> 98055512131dd7a924b9e77e65facccc3542e76b
                                         element: <Lesdemandes />,
                                     },
 
