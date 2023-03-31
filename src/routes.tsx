@@ -10,6 +10,11 @@ import Calendar from "./pages/surveillance/Calendar"
 import Complaints from "./pages/surveillance/Complaints"
 import CreateCalendar from "./pages/surveillance/CreateCalendar"
 import SavedCalendars from "./pages/surveillance/SavedCalendars"
+import GestionDiplomes from "./pages/charge/chef-departement/GestionDiplomes"
+import ConsultationVoeux from "./pages/charge/chef-departement/ConsultationVoeux"
+import ConsultationEnseignant from "./pages/charge/chef-departement/ConsultationEnseignant"
+import SoumettreVoeux from "./pages/charge/enseignant/SoumettreVoeux"
+import ProfileInformation from "./pages/charge/enseignant/ProfileInformation"
 
 const router = createBrowserRouter([
     {
@@ -68,7 +73,28 @@ const router = createBrowserRouter([
                     },
                     {
                         path: "charge",
-                        children: [],
+                        children: [
+                            {
+                                path: "gestion-diplomes",
+                                element: <GestionDiplomes />,
+                            },
+                            {
+                                path: "consultation-voeux",
+                                element: <ConsultationVoeux />,
+                            },
+                            {
+                                path: "consultation-enseignant",
+                                element: <ConsultationEnseignant />,
+                            },
+                            {
+                                path: "profile-information",
+                                element: <ProfileInformation />,
+                            },
+                            {
+                                path: "soumettre-voeux",
+                                element: <SoumettreVoeux />,
+                            },
+                        ],
                     },
                     {
                         path: "conge",
