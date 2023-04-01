@@ -9,6 +9,7 @@ import Calendar from "./pages/surveillance/Calendar"
 import Complaints from "./pages/surveillance/Complaints"
 import CreateCalendar from "./pages/surveillance/CreateCalendar"
 import SavedCalendars from "./pages/surveillance/SavedCalendars"
+import ChargeNote from "./pages/notes/chargeNote/ChargeNote"
 
 const router = createBrowserRouter([
     {
@@ -51,6 +52,18 @@ const router = createBrowserRouter([
                                 path: "section",
                                 element: <Section />,
                             },
+                            {
+                                path: ":section/:td/:tp/:idMatiere",
+                                element: <ChargeNote />,
+                            },
+                            {
+                                path: ":section/:td/:idMatiere",
+                                element: <ChargeNote />,
+                            },
+                            {
+                                path: ":section/:idMatiere",
+                                element: <ChargeNote />,
+                            },
                         ],
                     },
                     {
@@ -85,9 +98,9 @@ const router = createBrowserRouter([
                                         element: <Lesdemandes />,
                                     },
 
-                                    { 
+                                    {
                                         path: "statistiques",
-                                        element: <Statistiques />
+                                        element: <Statistiques />,
                                     },
                                 ],
                             },

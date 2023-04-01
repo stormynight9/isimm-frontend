@@ -6,27 +6,27 @@ import ListItem from "../components/ListItem"
 const groups = [
     {
         title: "CPI1 - TD1",
-        href: "/notes/CPI1/TD1",
+        href: "/notes/CPI1/TD1/1",
         description: "Optimisation Combinatoire",
     },
     {
         title: "CPI1 - TD2",
-        href: "/notes/CPI1/TD2",
+        href: "/notes/CPI1/TD2/2",
         description: "Optimisation Combinatoire",
     },
     {
         title: "CPI1 - TD1 - TP1",
-        href: "/notes/CPI1/TD1/TP2",
+        href: "/notes/CPI1/TD1/TP1/3",
         description: "Optimisation Combinatoire",
     },
     {
         title: "CPI1 - TD1 - TP2",
-        href: "/notes/CPI1/TD1/TP2",
+        href: "/notes/CPI1/TD1/TP2/4",
         description: "Optimisation Combinatoire",
     },
     {
         title: "CPI1 - TD2 - TP3",
-        href: "/notes/CPI1/TD2/TP3",
+        href: "/notes/CPI1/TD2/TP3/5",
         description: "Optimisation Combinatoire",
     },
 ]
