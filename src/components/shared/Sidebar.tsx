@@ -11,7 +11,7 @@ const Sidebar = () => {
 
     return (
         <>
-            <div className="flex items-center justify-between border-b bg-white p-2 lg:hidden">
+            <div className="sticky top-0 flex items-center justify-between border-b bg-white p-2 lg:hidden">
                 <Button onClick={() => toggleSidebar()} variant="outline" className="h-10 w-10 p-0">
                     <MenuIcon size={24} />
                 </Button>
