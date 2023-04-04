@@ -3,6 +3,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 
 import { NavigationMenu } from "@/components/ui/NavigationMenu"
 import ListItem from "../components/ListItem"
+import { useEffect, useState } from "react"
 
 const groups = [
     {
@@ -31,54 +32,109 @@ const groups = [
         description: "Optimisation Combinatoire",
     },
 ]
-const sections = [
-    {
-        title: "CPI1",
-    },
-    {
-        title: "CPI2",
-    },
-    {
-        title: "ING1 Info",
-    },
-    {
-        title: "Master",
-    },
-]
+// const sections = [
+//     {
+//         title: "CPI1",
+//     },
+//     {
+//         title: "CPI2",
+//     },
+//     {
+//         title: "ING1 Info",
+//     },
+//     {
+//         title: "Master",
+//     },
+// ]
 
 const Section = () => {
+    const [responseJson, setResponseJson] = useState([])
+    const [sections, setSections] = useState([])
+    const [selectedSection, setSelectedSection] = useState(null)
+    const [selectedSemestre, setSelectedSemestre] = useState('')
+
+    useEffect(() => {
+        chargeSections()
+    }, [])
+
+    const chargeSections = async () => {
+        try {
+            const response = await fetch("http://localhost:8090/api/isimm/chargeNote/EnseignantSection/1", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            if (!response.ok) {
+                throw new Error(response.statusText)
+            }
+            const json = await response.json()
+            setResponseJson(json)
+            const sections = [...new Set(json.map((item) => item.nameSection))]
+            setSections(sections)
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    const filterResults = () => {
+        if (selectedSection && selectedSemestre) {
+            const filteredData = responseJson.filter((item) => item.nameSection === selectedSection && item.nameSemestre === selectedSemestre)
+            console.log(filteredData);
+            return filteredData
+        } else {
+            return responseJson
+        }
+    }
+
+    const handleSectionSelect = (section) => {
+        console.log(section)
+        setSelectedSection(section)
+    }
+
+    const handleSemestreSelect = (semestre) => {
+        console.log(semestre)
+        setSelectedSemestre(semestre)
+    }
+
     return (
         <div className="section m-10">
             <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">Notes > Sections</h3>
             <br></br>
-            <div className="semestres">
-                <Select>
-                    <SelectTrigger className="w-[125px]">
-                        <SelectValue placeholder="Semsetre" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="sem1">Semestre 1</SelectItem>
-                        <SelectItem value="sem2">Semestre 2</SelectItem>
-                    </SelectContent>
-                </Select>
+            <div className="flex">
+                <div className="w-1/2">
+                    <div className="semestres">
+                        <Select onChange={(selectedOption) => {console.log(selectedOption.value);}}>
+                            <SelectTrigger className="w-[125px]">
+                                <SelectValue placeholder="Semsetre"/>
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="Semestre 1">Semestre 1</SelectItem>
+                                <SelectItem value="Semestre 2">Semestre 2</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                </div>
+                <div className="w-1/2">
+                    <div className="sections">
+                        <Menubar className="max-w-fit">
+                            {sections.map((section) => (
+                                <MenubarMenu key={section}>
+                                    <MenubarTrigger className="hover:bg-slate-300" onClick={() => {handleSectionSelect(section);console.log(section);}}>
+                                        {section}
+                                    </MenubarTrigger>
+                                </MenubarMenu>
+                            ))}
+                        </Menubar>
+                    </div>
+                </div>
             </div>
-            <br></br>
-            <div className="sections">
-                <Menubar className="max-w-fit">
-                    {sections.map((section) => (
-                        <MenubarMenu>
-                            <MenubarTrigger className=" hover:bg-slate-300">{section.title}</MenubarTrigger>
-                        </MenubarMenu>
-                    ))}
-                </Menubar>
-            </div>
+
             <div className="classgroup mt-5">
                 <NavigationMenu>
                     <ul className="grid w-[400px] gap-7 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                        {groups.map((component) => (
-                            <ListItem key={component.title} title={component.title} href={component.href}>
-                                {component.description}
-                            </ListItem>
+                        {filterResults().map((item, index) => (
+                            <ListItem key={index} title={item.title} href={item.href} description={item.description} />
                         ))}
                     </ul>
                 </NavigationMenu>
