@@ -1,4 +1,5 @@
 import { Menubar, MenubarMenu, MenubarTrigger } from "@/components/ui/Menubar"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select"
 
 import { NavigationMenu } from "@/components/ui/NavigationMenu"
 import ListItem from "../components/ListItem"
@@ -49,6 +50,18 @@ const Section = () => {
     return (
         <div className="section m-10">
             <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">Notes > Sections</h3>
+            <br></br>
+            <div className="semestres">
+                <Select>
+                    <SelectTrigger className="w-[125px]">
+                        <SelectValue placeholder="Semsetre" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="sem1">Semestre 1</SelectItem>
+                        <SelectItem value="sem2">Semestre 2</SelectItem>
+                    </SelectContent>
+                </Select>
+            </div>
             <br></br>
             <div className="sections">
                 <Menubar className="max-w-fit">
