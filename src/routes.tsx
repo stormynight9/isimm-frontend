@@ -10,6 +10,7 @@ import Complaints from "./pages/surveillance/Complaints"
 import CreateCalendar from "./pages/surveillance/CreateCalendar"
 import SavedCalendars from "./pages/surveillance/SavedCalendars"
 import ChargeNote from "./pages/notes/chargeNote/ChargeNote"
+import ReclamationNote from "./pages/notes/reclamation/Reclamation"
 
 const router = createBrowserRouter([
     {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
                             {
                                 path: ":section/:idMatiere",
                                 element: <ChargeNote />,
+                            },
+                            {
+                                path: "reclamation",
+                                element: <ReclamationNote />,
                             },
                         ],
                     },
