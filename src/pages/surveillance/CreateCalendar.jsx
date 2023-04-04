@@ -2,6 +2,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Label } from "@radix-ui/react-dropdown-menu"
 import Header from "./components/Header"
 import CreateCalendarForm from "./components/CreateCalendarForm"
+import { sectionList } from "./data/section-list"
 
 const CreateCalendar = () => {
     return (
@@ -16,21 +17,11 @@ const CreateCalendar = () => {
                             <SelectValue placeholder="Choisir une section" />
                         </SelectTrigger>
                         <SelectContent>
-                            <SelectItem value="CPI-1">CPI-1</SelectItem>
-                            <SelectItem value="CPI-2">CPI-2</SelectItem>
-                            <SelectItem value="ING-1-INFO">ING-1-INFO</SelectItem>
-                            <SelectItem value="ING-2-EL">ING-2-EL</SelectItem>
-                            <SelectItem value="ING-3-EL">ING-3-EL</SelectItem>
-                            <SelectItem value="L1-EEA">L1-EEA</SelectItem>
-                            <SelectItem value="L1-INFO">L1-INFO</SelectItem>
-                            <SelectItem value="L1-MATH">L1-MATH</SelectItem>
-                            <SelectItem value="LA-TIC">LA-TIC</SelectItem>
-                            <SelectItem value="L2-INFO">L2-INFO</SelectItem>
-                            <SelectItem value="LE-MATH">LE-MATH</SelectItem>
-                            <SelectItem value="LE-SE">LE-SE</SelectItem>
-                            <SelectItem value="L2-TIC">L2-TIC</SelectItem>
-                            <SelectItem value="L3-INFO">L3-INFO</SelectItem>
-                            <SelectItem value="L3-MATH">L3-MATH</SelectItem>
+                            {sectionList.map((section) => (
+                                <SelectItem key={section.id} value={section.name}>
+                                    {section.name}
+                                </SelectItem>
+                            ))}
                         </SelectContent>
                     </Select>
                 </div>
