@@ -4,6 +4,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { NavigationMenu } from "@/components/ui/NavigationMenu"
 import ListItem from "../components/ListItem"
 import { useEffect, useState } from "react"
+import { Link } from "react-router-dom"
 
 const groups = [
     {
@@ -51,7 +52,7 @@ const Section = () => {
     const [responseJson, setResponseJson] = useState([])
     const [sections, setSections] = useState([])
     const [selectedSection, setSelectedSection] = useState(null)
-    const [selectedSemestre, setSelectedSemestre] = useState('')
+    const [selectedSemestre, setSelectedSemestre] = useState("")
 
     useEffect(() => {
         chargeSections()
@@ -80,7 +81,7 @@ const Section = () => {
     const filterResults = () => {
         if (selectedSection && selectedSemestre) {
             const filteredData = responseJson.filter((item) => item.nameSection === selectedSection && item.nameSemestre === selectedSemestre)
-            console.log(filteredData);
+            console.log(filteredData)
             return filteredData
         } else {
             return responseJson
@@ -102,39 +103,49 @@ const Section = () => {
             <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">Notes > Sections</h3>
             <br></br>
             <div className="flex">
-                <div className="w-1/2">
-                    <div className="semestres">
-                        <Select onChange={(selectedOption) => {console.log(selectedOption.value);}}>
-                            <SelectTrigger className="w-[125px]">
-                                <SelectValue placeholder="Semsetre"/>
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="Semestre 1">Semestre 1</SelectItem>
-                                <SelectItem value="Semestre 2">Semestre 2</SelectItem>
-                            </SelectContent>
-                        </Select>
-                    </div>
+                <div className="semestres pr-4">
+                    <Select
+                        onValueChange={(selectedOption) => {
+                            handleSemestreSelect(selectedOption.valueOf())
+                        }}
+                    >
+                        <SelectTrigger className="w-[125px]">
+                            <SelectValue placeholder="Semsetre" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="Semestre 1">Semestre 1</SelectItem>
+                            <SelectItem value="Semestre 2">Semestre 2</SelectItem>
+                        </SelectContent>
+                    </Select>
                 </div>
-                <div className="w-1/2">
-                    <div className="sections">
-                        <Menubar className="max-w-fit">
-                            {sections.map((section) => (
-                                <MenubarMenu key={section}>
-                                    <MenubarTrigger className="hover:bg-slate-300" onClick={() => {handleSectionSelect(section);console.log(section);}}>
-                                        {section}
-                                    </MenubarTrigger>
-                                </MenubarMenu>
-                            ))}
-                        </Menubar>
-                    </div>
+                <div className="sections">
+                    <Menubar className="max-w-fit">
+                        {sections.map((section) => (
+                            <MenubarMenu key={section}>
+                                <MenubarTrigger
+                                    className="hover:bg-slate-300"
+                                    onClick={() => {
+                                        handleSectionSelect(section)
+                                        console.log(section)
+                                    }}
+                                >
+                                    {section}
+                                </MenubarTrigger>
+                            </MenubarMenu>
+                        ))}
+                    </Menubar>
                 </div>
             </div>
 
             <div className="classgroup mt-5">
-                <NavigationMenu>
+                <NavigationMenu className="justify-start">
                     <ul className="grid w-[400px] gap-7 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                         {filterResults().map((item, index) => (
-                            <ListItem key={index} title={item.title} href={item.href} description={item.description} />
+                            <Link to={"/notes/" + item.nameSection + "/" + item.groupType + "/" + item.idMatiere}>
+                                <ListItem key={index} title={item.nameSection + " - " + item.groupType + item.groupId} href={item.href}>
+                                    {item.nameMatiere}
+                                </ListItem>
+                            </Link>
                         ))}
                     </ul>
                 </NavigationMenu>

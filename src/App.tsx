@@ -5,13 +5,13 @@ import Sidebar from "./components/shared/Sidebar"
 
 function App() {
     return (
-        <div className="flex h-screen">
+        <div>
             <ProSidebarProvider>
                 <Sidebar />
             </ProSidebarProvider>
-            <div className="p-2">
+            <main className="w-full p-2 lg:pl-[16.5rem]">
                 <Outlet />
-            </div>
+            </main>
             <Toaster />
         </div>
     )

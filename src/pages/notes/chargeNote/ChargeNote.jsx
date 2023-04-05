@@ -13,7 +13,7 @@ const ChargeNote = () => {
             </h3>
             <br></br>
             <div className="btnUploads">
-                <Button variant="outline" className="bg-gray-800 py-2 px-4 text-white hover:bg-gray-700">
+                <Button variant="outline" className="bg-gray-800 py-2 px-4 mr-6 text-white hover:bg-gray-700">
                     Télécharger Liste (.CSV) <DownloadIcon className="w-[20px] pl-[5px]" />
                 </Button>
                 <Button variant="outline">Upload Liste (.CSV)</Button>
