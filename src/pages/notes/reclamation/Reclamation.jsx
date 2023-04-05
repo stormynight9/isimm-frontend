@@ -18,7 +18,7 @@ const ReclamationNote = () => {
         <div className=".block mx-auto  justify-center p-9">
             <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">Notes {`>`} Reclamation</h3>
             <br></br>
-            <Dialog className="z-[101]">
+            <Dialog>
                 <DialogTrigger asChild>
                     <Button onClick={handleClick} className="mb-6 ">
                         Créer une Réclamation
