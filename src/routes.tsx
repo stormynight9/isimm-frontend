@@ -17,6 +17,7 @@ import ConsultationEnseignant from "./pages/charge/chef-departement/Consultation
 import SoumettreVoeux from "./pages/charge/enseignant/SoumettreVoeux"
 import ProfileInformation from "./pages/charge/enseignant/ProfileInformation"
 import ChargeNote from "./pages/notes/chargeNote/ChargeNote"
+import ReclamationNote from "./pages/notes/reclamation/Reclamation"
 
 const router = createBrowserRouter(
     [
@@ -71,6 +72,10 @@ const router = createBrowserRouter(
                                 {
                                     path: ":section/:idMatiere",
                                     element: <ChargeNote />,
+                                },
+                                {
+                                    path: "reclamation",
+                                    element: <ReclamationNote />,
                                 },
                             ],
                         },
