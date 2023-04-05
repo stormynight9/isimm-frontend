@@ -2,12 +2,13 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
 import { Button } from "@/components/ui/Button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/DropdownMenu"
 import { Separator } from "@/components/ui/Separator"
+import { useWindowSize, Size } from "@/hooks/useWindowSize"
 import { cn } from "@/lib/utils"
 import { ArrowLeftIcon, ArrowRightIcon, BarChart3Icon, BinaryIcon, BoxIcon, CalendarCheckIcon, CalendarDaysIcon, CalendarIcon, CalendarSearchIcon, ChevronDownIcon, ClipboardCheckIcon, ClipboardIcon, ClipboardListIcon, FilePlus2Icon, FileSpreadsheetIcon, LogOutIcon, MailQuestionIcon, MenuIcon, MessageCircleIcon, MessageSquareIcon, PalmtreeIcon, PlusCircleIcon, SaveIcon, SearchIcon, SettingsIcon, SheetIcon, ShoppingCartIcon, UserIcon } from "lucide-react"
+import { useEffect } from "react"
 import { createPortal } from "react-dom"
 import { Menu, MenuItem, Sidebar as RPSidebar, SubMenu, useProSidebar } from "react-pro-sidebar"
 import { Link } from "react-router-dom"
-
 interface SidebarProps {
     isCollapsed: boolean
     CollapseSidebar: (isCollapsed: boolean) => void
@@ -15,6 +16,13 @@ interface SidebarProps {
 
 const Sidebar = ({ isCollapsed, CollapseSidebar }: SidebarProps) => {
     const { toggleSidebar } = useProSidebar()
+    const size: Size = useWindowSize()
+
+    useEffect(() => {
+        if (size.width && size.width <= 1024) {
+            CollapseSidebar(false)
+        }
+    }, [size.width, CollapseSidebar])
 
     return (
         <>
@@ -52,13 +60,13 @@ const Sidebar = ({ isCollapsed, CollapseSidebar }: SidebarProps) => {
                     <RPSidebar width="256px" className="h-full bg-white" customBreakPoint="1024px" defaultCollapsed={isCollapsed}>
                         <div className="flex justify-center px-3 py-4 text-sm font-semibold text-slate-700 dark:text-slate-50">
                             {isCollapsed ? (
-                                <Button variant="subtle" className="h-10 w-10 p-0" onClick={() => CollapseSidebar(false)}>
+                                <Button variant="subtle" className="invisible h-10 w-10 p-0 lg:visible" onClick={() => CollapseSidebar(false)}>
                                     <ArrowRightIcon size={24} />
                                 </Button>
                             ) : (
                                 <div className="flex w-full items-center justify-between transition-all duration-200">
                                     <span>Tableau de bord</span>
-                                    <Button variant="subtle" className="h-10 w-10 p-0" onClick={() => CollapseSidebar(true)}>
+                                    <Button variant="subtle" className="invisible h-10 w-10 p-0 lg:visible" onClick={() => CollapseSidebar(true)}>
                                         <ArrowLeftIcon size={24} />
                                     </Button>
                                 </div>
