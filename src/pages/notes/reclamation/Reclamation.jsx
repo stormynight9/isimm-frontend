@@ -15,15 +15,16 @@ const ReclamationNote = () => {
     }
 
     return (
-        <div class=".block mx-auto  justify-center p-9">
-            <h3 class="mt-8 ml-14 scroll-m-20 pb-14 text-2xl font-semibold tracking-tight">{"Notes > Reclamation"}</h3>
-            <Dialog>
-                <DialogTrigger>
-                    <Button onClick={handleClick} className="mb-6 bg-[#334155]">
+        <div className=".block mx-auto  justify-center p-9">
+            <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">Notes {`>`} Reclamation</h3>
+            <br></br>
+            <Dialog className="z-[101]">
+                <DialogTrigger asChild>
+                    <Button onClick={handleClick} className="mb-6 ">
                         Créer une Réclamation
                     </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px]">
+                <DialogContent className="sm:max-w-[425px] ">
                     <DialogHeader>
                         <DialogTitle>Créer Réclamation</DialogTitle>
                         <DialogDescription>Make changes to your profile here. Click save when you're done.</DialogDescription>
@@ -40,7 +41,7 @@ const ReclamationNote = () => {
                                 Type Devoir
                             </Label>
                             <div className="whitespace-nowrap">
-                                <input className="mr-2" type="radio" value={"tp"} name="R1" checked />
+                                <input className="mr-2" type="radio" value={"tp"} name="R1" />
                                 TP
                                 <input className="mr-2 ml-9" type="radio" value={"ds"} name="R1" />
                                 DS
@@ -53,19 +54,19 @@ const ReclamationNote = () => {
                             <Label htmlFor="codeMatiere" className="whitespace-nowrap text-right">
                                 Mot de Passe
                             </Label>
-                            <Input type="password" id="name" placeholder="***********" className="col-span-3" />
+                            <Input type="password" id="password" placeholder="***********" className="col-span-3" />
                         </div>
 
                         <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="codeMatiere" className="whitespace-nowrap text-right">
                                 Message
                             </Label>
-                            <Textarea type="text" id="name" placeholder="Type Your Message Here" className="col-span-3" />
+                            <Textarea type="text" id="msg" placeholder="Type Your Message Here" className="col-span-3" />
                         </div>
                     </div>
-                    <div class="mb-4 flex items-center">
-                        <input id="default-checkbox" type="checkbox" value="" class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600" />
-                        <label for="default-checkbox" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                    <div className="mb-4 flex items-center">
+                        <input id="default-checkbox" type="checkbox" value="" className="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600" />
+                        <label htmlFor="default-checkbox" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                             Accept terms and conditions
                         </label>
                     </div>

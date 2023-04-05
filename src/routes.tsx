@@ -16,7 +16,7 @@ import ConsultationVoeux from "./pages/charge/chef-departement/ConsultationVoeux
 import ConsultationEnseignant from "./pages/charge/chef-departement/ConsultationEnseignant"
 import SoumettreVoeux from "./pages/charge/enseignant/SoumettreVoeux"
 import ProfileInformation from "./pages/charge/enseignant/ProfileInformation"
-import ChargeNote from "./pages/notes/chargeNote/ChargeNote"
+import ChargeNote from "./pages/notes/charge-note/ChargeNote"
 import ReclamationNote from "./pages/notes/reclamation/Reclamation"
 
 const router = createBrowserRouter(

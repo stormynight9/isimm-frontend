@@ -40,7 +40,7 @@ const Sidebar = () => {
                     </DropdownMenu>
                 </div>
             </div>
-            <div className="fixed top-0 h-full max-h-screen flex-col justify-between">
+            <div className="fixed top-0  z-[100] h-full max-h-screen flex-col justify-between">
                 <RPSidebar width="256px" className="h-full bg-white" customBreakPoint="1024px">
                     <div className="px-3 py-4 text-sm font-semibold text-slate-700 dark:text-slate-50">Tableau de bord</div>
                     <Separator />

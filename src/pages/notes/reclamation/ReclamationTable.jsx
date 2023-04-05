@@ -1,5 +1,5 @@
 import { useMemo } from "react"
-import TablePagination from "./components/TablePaginationReclamation"
+import TablePagination from "../components/TablePaginationReclamation"
 import { Button } from "@/components/ui/Button"
 import Badge from "@/components/ui/Badge"
 
