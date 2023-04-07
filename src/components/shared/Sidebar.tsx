@@ -83,16 +83,16 @@ const Sidebar = () => {
                             {/* Magasin */}
                             <SubMenu label="Magasin" icon={<ShoppingCartIcon size={20} strokeWidth={2.4} />} className="rounded-full text-sm font-semibold text-slate-700">
                                 {/* Enseigant & Service => /enseigant/esm-route & /service/esm-route */}
-                                <MenuItem icon={<CalendarSearchIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                                <MenuItem icon={<CalendarSearchIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/enseignant/Consulter-demandes"} />}>
                                     Consulter demandes
                                 </MenuItem>
-                                <MenuItem icon={<ClipboardCheckIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                                <MenuItem icon={<ClipboardCheckIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/service/Ajouter-produit(service)"} />}>
                                     Ajouter produit (service)
                                 </MenuItem>
-                                <MenuItem icon={<PlusCircleIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                                <MenuItem icon={<PlusCircleIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/enseignant/Demande-produit"} />}>
                                     Demande produit
                                 </MenuItem>
-                                <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                                <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/service/Consulter-produits"} />}>
                                     Consulter produit
                                 </MenuItem>
                                 {/* Enseigant & Service */}

@@ -15,6 +15,11 @@ import ConsultationVoeux from "./pages/charge/chef-departement/ConsultationVoeux
 import ConsultationEnseignant from "./pages/charge/chef-departement/ConsultationEnseignant"
 import SoumettreVoeux from "./pages/charge/enseignant/SoumettreVoeux"
 import ProfileInformation from "./pages/charge/enseignant/ProfileInformation"
+import path from "path"
+import DemandeProduit from "./pages/magasin/ensignant/DemandeProduit"
+import ConsulterDemandes from "./pages/magasin/ensignant/ConsulterDemandes"
+import AjouterProduit from "./pages/magasin/service/AjouterProduit"
+import ConsulterProduits from "./pages/magasin/service/ConsulterProduits"
 
 const router = createBrowserRouter(
     [
@@ -64,11 +69,29 @@ const router = createBrowserRouter(
                                 },
                                 {
                                     path: "enseignant",
-                                    children: [],
+                                    children: [
+                                        {
+                                            path: "Demande-Produit",
+                                            element: <DemandeProduit />,
+                                        },
+                                        {
+                                            path: "Consulter-demandes",
+                                            element: <ConsulterDemandes />,
+                                        },
+                                    ],
                                 },
                                 {
                                     path: "service",
-                                    children: [],
+                                    children: [
+                                        {
+                                            path: "Ajouter-produit(service)",
+                                            element: <AjouterProduit />,
+                                        },
+                                        {
+                                            path: "Consulter-produits",
+                                            element: <ConsulterProduits />,
+                                        },
+                                    ],
                                 },
                             ],
                         },
