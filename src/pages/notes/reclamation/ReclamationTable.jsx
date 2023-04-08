@@ -17,6 +17,7 @@ const ReclamationTable = ({ responseJson, changeDialogVisibility, setDetailsJson
                 throw new Error(response.statusText)
             }
             const json = await response.json()
+            setDetailsJson(json)
             console.log(json)
         } catch (error) {
             console.error(error)
@@ -78,7 +79,7 @@ const ReclamationTable = ({ responseJson, changeDialogVisibility, setDetailsJson
                     <Button
                         onClick={() => {
                             const id = row.original.idReclamation
-                            getReclamationDetails(id).then((json) => setDetailsJson(json))
+                            getReclamationDetails(id)
                             changeDialogVisibility()
                         }}
                     >

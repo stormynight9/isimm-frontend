@@ -184,7 +184,7 @@ const ReclamationNote = () => {
                     {detailsJson &&
                         detailsJson.map((item, index) => (
                             <div>
-                                <div className="grid grid-cols-4 items-center gap-4">{item.idEtudiant}</div>
+                                {item.nomEtudiant}
                             </div>
                         ))}
                     <DialogFooter>
