@@ -25,9 +25,8 @@ const ReclamationTable = ({ responseJson, changeDialogVisibility, setDetailsJson
     const columns = useMemo(
         () => [
             {
-                Header: "ID",
-                accessor: "idReclamation",
-                Cell: ({ value }) => <span className="font-bold">{value}</span>,
+                Header: "N°",
+                accessor: (row, index) => index + 1,
             },
             {
                 Header: "Date",
