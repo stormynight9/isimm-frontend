@@ -75,7 +75,7 @@ const Section = () => {
                     </Select>
                 </div>
                 <div className="sections">
-                    <Tabs defaultValue="" className="w-[400px]">
+                    <Tabs className="w-[400px]">
                         {sections.map((section, index) => (
                             <TabsList key={index}>
                                 <TabsTrigger
@@ -85,7 +85,7 @@ const Section = () => {
                                         console.log(section)
                                     }}
                                 >
-                                    {section}
+                                    {section.replace(/_/g, " ")}
                                 </TabsTrigger>
                             </TabsList>
                         ))}
@@ -96,10 +96,8 @@ const Section = () => {
             <div className="classgroup mt-5">
                 <ul className="grid w-[400px] gap-7 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                     {filterResults().map((item, index) => (
-                        <Link key={index} to={"/notes/" + item.nameSection + "/" + item.groupType + "/" + item.idMatiere}>
-                            <ListItem title={item.nameSection + " - " + item.groupType + item.groupId} href={item.href}>
-                                {item.nameMatiere}
-                            </ListItem>
+                        <Link key={index} to={"/notes/" + item.nameSection + "/" + (item.groupType === "SECTION" ? "SEC" : item.groupType === "TD" ? item.nameTD : item.nameTP) + "/" + (item.groupType === "SECTION" ? "0" : item.groupType === "TD" ? "1" : "2") + "/1/" + item.groupId + "/" + item.idSemestre + "/" + item.idMatiere+ "/" + item.codeMatiere}>
+                            <ListItem title={item.nameSection.replace(/_/g, " ") + (item.groupType === "SECTION" ? "" : item.groupType === "TD" ? " - " + item.nameTD : " - " + item.nameTP) + " (" + item.session + ")"}>{item.nameMatiere}</ListItem>
                         </Link>
                     ))}
                 </ul>
@@ -107,5 +105,6 @@ const Section = () => {
         </div>
     )
 }
+// /note/:section/:name/:idEnseignant/:idGroup/:idSemestre/:idMatiere
 
 export default Section

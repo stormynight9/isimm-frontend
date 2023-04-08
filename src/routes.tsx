@@ -62,17 +62,9 @@ const router = createBrowserRouter(
                                     element: <Section />,
                                 },
                                 {
-                                    path: ":section/:td/:tp/:idMatiere",
+                                    path: ":section/:name/:groupType/:idEnseignant/:idGroup/:idSemestre/:idMatiere/:codeMatiere",
                                     element: <ChargeNote />,
-                                },
-                                {
-                                    path: ":section/:td/:idMatiere",
-                                    element: <ChargeNote />,
-                                },
-                                {
-                                    path: ":section/:idMatiere",
-                                    element: <ChargeNote />,
-                                },
+                                }, //{group_type}/{id_enseignant}/{group_id}/{id_semestre}/{id_matiere}/{codeMatiere}
                                 {
                                     path: "reclamation",
                                     element: <ReclamationNote />,
