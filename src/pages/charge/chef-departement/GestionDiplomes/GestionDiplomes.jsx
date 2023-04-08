@@ -2,6 +2,7 @@ import React, { useMemo, useEffect, useState } from "react"
 import Table from "@/pages/charge/components/DiplomeTable"
 import "./GestionDiplomes.css"
 import { ChevronRight } from "lucide-react"
+import SelectEnseignant from "../../components/SelectEnseignant"
 const GestionDiplomes = () => {
     const columns = useMemo(
         () => [
@@ -81,9 +82,7 @@ const GestionDiplomes = () => {
     )
     const [uniteArray, setUniteArray] = useState([])
     const [semstre, setSemestre] = useState("")
-    useEffect(() => {
-        console.log("Changed", uniteArray)
-    }, [uniteArray])
+
     useEffect(() => {
         const getSemestre = async () => {
             const response = await fetch("http://localhost:8090/api/isimm/distributionCharge/semestre", {
@@ -93,7 +92,7 @@ const GestionDiplomes = () => {
                 },
             })
             const responseJson = await response.json()
-            console.log(responseJson)
+
             const uniteArrayFunc = []
 
             responseJson[0].unites.forEach((unite) => {
@@ -105,13 +104,13 @@ const GestionDiplomes = () => {
                         module: matiere.name,
                         tot: matiere.nbHCr + matiere.nbHTd + matiere.nbHTp + matiere.nbHCri + matiere.nbHNp,
                         cr: matiere.nbHCr,
-                        enseignant_cr: "select",
+                        enseignant_cr: <SelectEnseignant />,
                         td: matiere.nbHTd,
-                        enseignant_td: "select",
+                        enseignant_td: <SelectEnseignant />,
                         tp: matiere.nbHTp,
-                        enseignant_tp: "select",
+                        enseignant_tp: <SelectEnseignant />,
                         ci: matiere.nbHCri,
-                        enseignant_ci: "select",
+                        enseignant_ci: <SelectEnseignant />,
                         cc: matiere.regime.name === "RM" ? false : true,
                         rm: matiere.regime.name === "RM" ? true : false,
                     })),
