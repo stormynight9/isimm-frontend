@@ -61,7 +61,7 @@ const ChargeNote = () => {
                     Télécharger Liste (.CSV) <DownloadIcon className="w-[20px] pl-[5px]" />
                 </Button>
                 <Button variant="outline">Upload Liste (.CSV)</Button>
-                {groupType === "0" ? <TableChargeSec setListData={setResponseJson} code={codeMatiere} listData={responseJson} /> : groupType === "1" ? <TableChargeTd code={codeMatiere} listData={responseJson} /> : <TableChargeTp code={codeMatiere} listData={responseJson} />}
+                {groupType === "0" ? <TableChargeSec idEnseignant={idEnseignant} idMatiere={idMatiere} setListData={setResponseJson} code={codeMatiere} listData={responseJson} /> : groupType === "1" ? <TableChargeTd code={codeMatiere} listData={responseJson} /> : <TableChargeTp code={codeMatiere} listData={responseJson} />}
                 
             </div>
         </div>

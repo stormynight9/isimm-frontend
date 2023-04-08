@@ -4,7 +4,7 @@ import TablePagination from "./TablePagination"
 import PropTypes from "prop-types"
 import { Button } from "@/components/ui/Button"
 
-const TableChargeSec = ({ listData, code, setListData }) => {
+const TableChargeSec = ({ listData, code, setListData,idEnseignant,idMatiere }) => {
     const [updatedData, setUpdatedData] = useState([])
 
     useEffect(() => {
@@ -29,7 +29,27 @@ const TableChargeSec = ({ listData, code, setListData }) => {
         }))
         setListData(updatedListData)
         console.log(updatedListData)
+        valider()
     }
+{/*[idEtudiant,noteDs,noteExam],idEnseignant,idMatiere,typeGroup,*/}
+    const valider = async (e) => {
+        e.preventDefault()
+        const data = {
+            list: listData, 
+            idEnseignant: idEnseignant,
+            idMatiere:idMatiere,
+            typeGroup:0
+        };
+        const response=await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/`, {
+            method: 'POST',
+            headers: {
+                'accept': '*/*',
+                'Content-Type':'multipart/form-data; boundary=--------------------------499310528544182401120976',
+            },
+            body:JSON.stringify(data) 
+        })
+        const responseJson=await response.json();
+    }; 
 
     const columns = useMemo(
         () => [
