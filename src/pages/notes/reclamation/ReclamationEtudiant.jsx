@@ -13,7 +13,6 @@ const ReclamationNote = () => {
     const [responseJson, setResponseJson] = useState([])
     const [refreshing, setRefreshing] = useState(true)
     const [deatilsVisible, setDetailsVisible] = useState(false)
-    const [reclamationDetailId, setReclamationDetailId] = useState(0)
 
     const [agreement, setAgreement] = useState(false)
 
@@ -121,7 +120,7 @@ const ReclamationNote = () => {
                             <Label htmlFor="codeMatiere" className="whitespace-nowrap text-right">
                                 Code Matiére
                             </Label>
-                            <Input id="name" placeholder="0000" className="col-span-3" />
+                            <Input id="name" pattern="[0-9]{4}" placeholder="0000" className="col-span-3" />
                         </div>
                         <div className="grid grid-cols-4 items-center gap-4">
                             <Label htmlFor="username" className="whitespace-nowrap text-right">
@@ -183,9 +182,50 @@ const ReclamationNote = () => {
                     </DialogHeader>
                     {detailsJson &&
                         detailsJson.map((item, index) => (
-                            <div>
-                                {item.nomEtudiant}
-                            </div>
+                            <table className="w-full table-fixed">
+                                <tbody className="divide-y divide-gray-200">
+                                    <tr>
+                                        <td className="bg-gray-200 px-4 py-2 font-bold">ID Reclamation:</td>
+                                        <td className="px-4 py-2">{item.idReclamation}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="bg-gray-200 px-4 py-2 font-bold">Nom Etudiant:</td>
+                                        <td className="px-4 py-2">
+                                            {item.prenomEtudiant} {item.nomEtudiant}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className="bg-gray-200 px-4 py-2 font-bold">Code Matiere</td>
+                                        <td className="px-4 py-2">{item.codeMatiere}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="bg-gray-200 px-4 py-2 font-bold">Nom Enseignant</td>
+                                        <td className="px-4 py-2">
+                                            {item.prenomEnseignant} {item.nomEnseignant}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className="whitespace-no-wrap w-full bg-gray-200 px-4 py-2 font-bold">Nom Matiere:</td>
+                                        <td className="px-4 py-2">{item.nomMatiere}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="bg-gray-200 px-4 py-2 font-bold">Email etudiant:</td>
+                                        <td className="px-4 py-2">{item.emailEtudiant}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="bg-gray-200 px-4 py-2 font-bold">Type devoir:</td>
+                                        <td className="px-4 py-2">{item.typeNote}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="bg-gray-200 px-4 py-2 font-bold">Date Reclamation:</td>
+                                        <td className="px-4 py-2">{item.dateCreation.slice(0, 10)}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="bg-gray-200 px-4 py-2 font-bold">Statut</td>
+                                        <td className="px-4 py-2">{item.statut === "Acceptée" ? <span className="rounded-full bg-green-500 px-2 py-1 text-white">{item.statut}</span> : item.statut === "Refusée" ? <span className="rounded-full bg-red-500 px-2 py-1 text-white">{item.statut}</span> : <span className="rounded-full bg-yellow-500 px-2 py-1 text-white">{item.statut}</span>}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         ))}
                     <DialogFooter>
                         <Button

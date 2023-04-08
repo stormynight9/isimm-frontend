@@ -17,7 +17,7 @@ import ConsultationEnseignant from "./pages/charge/chef-departement/Consultation
 import SoumettreVoeux from "./pages/charge/enseignant/SoumettreVoeux"
 import ProfileInformation from "./pages/charge/enseignant/ProfileInformation"
 import ChargeNote from "./pages/notes/charge-note/ChargeNote"
-import ReclamationNote from "./pages/notes/reclamation/Reclamation"
+import ReclamationNote from "./pages/notes/reclamation/ReclamationEtudiant"
 
 const router = createBrowserRouter(
     [
@@ -67,7 +67,7 @@ const router = createBrowserRouter(
                                 }, //{group_type}/{id_enseignant}/{group_id}/{id_semestre}/{id_matiere}/{codeMatiere}
                                 {
                                     path: "reclamation",
-                                    element: <ReclamationNote />,
+                                    element: <ReclamationNote />, //Changer <ReclamationEnseignant /> pour l'interface de l'enseignant
                                 },
                             ],
                         },
