@@ -1,8 +1,8 @@
 import { useMemo } from "react"
-import { InputNote } from "./InputNot"
+import { InputNote } from "./InputNote"
 import TablePagination from "./TablePagination"
 import PropTypes from "prop-types"
-const TableChargeNote = ({ listData }) => {
+const TableChargeTp = ({ listData, code }) => {
     const columns = useMemo(
         () => [
             {
@@ -22,19 +22,8 @@ const TableChargeNote = ({ listData }) => {
                 accessor: "prenomEtudiant",
             },
             {
-                Header: "OR_511",
-                accessor: "noteOr",
-                Cell: <InputNote></InputNote>,
-            },
-            {
-                Header: "DS_511",
-                accessor: "noteDs",
-                Cell: <InputNote></InputNote>,
-            },
-            {
-                Header: "EX_511",
-                accessor: "noteEx",
-                Cell: <InputNote></InputNote>,
+                Header: `TP_${code}`,
+                accessor: (row) => <InputNote value={row.noteTp} />,
             },
         ],
         []
@@ -42,7 +31,7 @@ const TableChargeNote = ({ listData }) => {
 
     return <TablePagination columns={columns} data={listData} />
 }
-TableChargeNote.propTypes = {
+TableChargeTp.propTypes = {
     listData: PropTypes.isRequired,
 }
-export default TableChargeNote
+export default TableChargeTp
