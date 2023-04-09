@@ -18,6 +18,7 @@ import SoumettreVoeux from "./pages/charge/enseignant/SoumettreVoeux"
 import ProfileInformation from "./pages/charge/enseignant/ProfileInformation"
 import ChargeNote from "./pages/notes/charge-note/ChargeNote"
 import ReclamationNote from "./pages/notes/reclamation/ReclamationEtudiant"
+import Semester from "./pages/notes/semester/Semester"
 
 
 const router = createBrowserRouter(
@@ -63,20 +64,20 @@ const router = createBrowserRouter(
                                     element: <Section />,
                                 },
                                 {
-                                    path: ":section/:td/:tp/:idMatiere",
+                                    path: ":section/:name/:groupType/:idEnseignant/:idGroup/:idSemestre/:idMatiere/:codeMatiere",
                                     element: <ChargeNote />,
-                                },
-                                {
-                                    path: ":section/:td/:idMatiere",
-                                    element: <ChargeNote />,
-                                },
-                                {
-                                    path: ":section/:idMatiere",
-                                    element: <ChargeNote />,
-                                },
+                                }, //{group_type}/{id_enseignant}/{group_id}/{id_semestre}/{id_matiere}/{codeMatiere}
                                 {
                                     path: "reclamation",
                                     element: <ReclamationNote />, //Changer <ReclamationEnseignant /> pour l'interface de l'enseignant
+                                },
+                                {
+                                    path: "semester1",
+                                    element: <Semester sem="1"/>,
+                                },
+                                {
+                                    path: "semester2",
+                                    element: <Semester sem="2"/>,
                                 },
                             ],
                         },
