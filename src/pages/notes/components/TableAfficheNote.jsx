@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-import { InputNote } from "./InputNote";
 import TableNoteSemester from "./TableNoteSemester";
-import { uniqBy } from "lodash";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 

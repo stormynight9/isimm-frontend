@@ -94,10 +94,10 @@ const Sidebar = ({ isCollapsed, CollapseSidebar }: SidebarProps) => {
                                 <Separator />
                                 {/* Notes => /notes/esm-route */}
                                 <SubMenu label="Notes" icon={<BinaryIcon size={20} strokeWidth={2.4} />} className="rounded-full text-sm font-semibold text-slate-700">
-                                    <MenuItem icon={<CalendarCheckIcon size={20} strokeWidth={2.4} />} component={<Link to={"/notes/semester"} />}>
+                                    <MenuItem icon={<CalendarCheckIcon size={20} strokeWidth={2.4} />} component={<Link to={"/notes/semester1"} />}>
                                         Semestre 1
                                     </MenuItem>
-                                    <MenuItem icon={<CalendarCheckIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                                    <MenuItem icon={<CalendarCheckIcon size={20} strokeWidth={2.4} />} component={<Link to={"/notes/semester2"} />}>
                                         Semestre 2
                                     </MenuItem>
                                     <MenuItem icon={<SettingsIcon size={20} strokeWidth={2.4} />} component={<Link to={"/notes/reclamation"} />}>
