@@ -18,6 +18,8 @@ import SoumettreVoeux from "./pages/charge/enseignant/SoumettreVoeux"
 import ProfileInformation from "./pages/charge/enseignant/ProfileInformation"
 import ChargeNote from "./pages/notes/charge-note/ChargeNote"
 import ReclamationNote from "./pages/notes/reclamation/Reclamation"
+import TableChargeNote from "./pages/notes/components/TableChargeNote"
+import Semester from "./pages/notes/semester/Semester"
 
 const router = createBrowserRouter(
     [
@@ -62,8 +64,8 @@ const router = createBrowserRouter(
                                     element: <Section />,
                                 },
                                 {
-                                    path: ":section/:td/:tp/:idMatiere",
-                                    element: <ChargeNote />,
+                                    path: ":semester",
+                                    element: <Semester sem="1"/>,
                                 },
                                 {
                                     path: ":section/:td/:idMatiere",
