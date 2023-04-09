@@ -1,0 +1,11 @@
+.ButtonValidVoeux{
+    background-color: #16A34A;
+}
+.ButtonRejectVoeux{
+    background-color: #DC2626;
+}
+.ButtonVoeuxContainner{
+    display: flex;
+    justify-content: flex-end;
+    gap :10px ;
+}
