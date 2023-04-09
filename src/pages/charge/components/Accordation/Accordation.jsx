@@ -10,6 +10,8 @@ import {
 const Voeux =[
     {NomEnseignant:' Hamel Lazhar', NomMatiere:'Analyseur syntaxique' , desc :'Nothing to say'},
     {NomEnseignant:' Gzara meriem', NomMatiere:'Machine Learning' ,desc : 'Hellllo'}, 
+    {NomEnseignant:' Manel sekma ', NomMatiere:'Analyse de données ' ,desc : 'gzregzg'}, 
+
 
   ]
 function AccordationCharge() {
@@ -21,7 +23,7 @@ function AccordationCharge() {
                               return (
 <Accordion type="single" collapsible>
   <AccordionItem value="item-1">
-    <AccordionTrigger> Voeux d'enseignant {voeux.NomEnseignant} </AccordionTrigger>
+    <AccordionTrigger> Voeux d'enseignant  : {voeux.NomEnseignant} </AccordionTrigger>
     <AccordionContent>
       <p>
       Matiere : {voeux.NomMatiere}

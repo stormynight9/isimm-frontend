@@ -1,0 +1,46 @@
+.Consultation_Enseignant {
+    position: absolute;
+    width: 1000px;
+    height: 700px;
+    left: 300px;
+}
+.Consultation_Enseignant .Enseignant_Avatar {
+    display: flex;
+}
+.Avatar {
+    width: 60px;
+    height: 60px;
+}
+.Consultation_Enseignant .Enseignant_Account {
+    border: 5px solid #f1f5f9;
+    padding: 5px;
+    margin: 7px;
+}
+h4 {
+    font-weight: bold;
+    padding: 5%;
+}
+.Consultation_Enseignant .Enseignant_Coordonnees_Border {
+    display: inline-flex;
+    width: 400px;
+    margin-left: 7%;
+    border: 1px solid #e9eef4;
+}
+.Consultation_Enseignant .Enseignant_Coordonnees_Border .Enseignant_Coordonnees {
+    margin-left: 10%;
+    margin-top: 5%;
+    margin-bottom: 6%;
+    width: 300px;
+}
+.Consultation_Enseignant .Enseignant_Coordonnees_Border .Enseignant_Coordonnees p {
+    border: 1.5px solid #f1f5f9;
+    border-radius: 5px;
+    background-color: #d3dadd;
+    padding: 5px 5px 5px 5px;
+}
+.Consultation_Enseignant .Enseignant_Coordonnees_Border .Enseignant_Coordonnees h6 {
+    font-weight: bold;
+    font-size: small;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px 5px 5px 5px;
+}

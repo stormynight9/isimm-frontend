@@ -1,0 +1,29 @@
+.Diplome_Table {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+.Diplome_Table .DiplomeTitle {
+    display: flex;
+}
+.Diplome_Table .DiplomeTitle p {
+    font-size: 1.2rem;
+}
+.Diplome_Table table {
+    border-spacing: 0;
+    border: 1px solid black;
+}
+.Diplome_Table table tr td {
+    border-bottom: 0;
+    border-bottom: 1px solid black;
+}
+
+.Diplome_Table table th,
+td {
+    margin: 0;
+    padding: 0.3rem;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    text-align: center;
+}

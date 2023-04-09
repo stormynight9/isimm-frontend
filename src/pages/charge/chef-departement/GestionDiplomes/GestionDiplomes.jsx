@@ -1,8 +1,8 @@
-import React, { useMemo } from "react"
+import React, { useMemo, useEffect, useState } from "react"
 import Table from "@/pages/charge/components/DiplomeTable"
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectSeparator, SelectTrigger, SelectValue } from "@/components/ui/Select"
 import "./GestionDiplomes.css"
 import { ChevronRight } from "lucide-react"
+import SelectEnseignant from "../../components/SelectEnseignant"
 const GestionDiplomes = () => {
     const columns = useMemo(
         () => [
@@ -80,386 +80,55 @@ const GestionDiplomes = () => {
         ],
         []
     )
+    const [uniteArray, setUniteArray] = useState([])
+    const [semstre, setSemestre] = useState("")
 
-    const data = useMemo(
-        () => [
-            {
-                ue: "511",
-                unite: "Analyse Descriptive 1",
-                modules: [
-                    {
-                        ec: "5111",
-                        module: "Analyse de données",
-                        tot: "45",
-                        cr: "22.5",
-                        enseignant_cr: (
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select enseignant" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Enseignant_Cours</SelectLabel>
-                                        <SelectItem value="1">Sekma manel</SelectItem>
-                                        <SelectItem value="2">Ilhem Blel</SelectItem>
-                                        <SelectItem value="3">Babba Raja</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        ),
-                        td: "",
-                        enseignant_td: (
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select enseignant" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Enseignant_Cours</SelectLabel>
-                                        <SelectItem value="1">Sekma manel</SelectItem>
-                                        <SelectItem value="2">Ilhem Blel</SelectItem>
-                                        <SelectItem value="3">Babba Raja</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        ),
-                        tp: "22.5",
-                        enseignant_tp: (
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select enseignant" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Enseignant_Cours</SelectLabel>
-                                        <SelectItem value="1">Sekma manel</SelectItem>
-                                        <SelectItem value="2">Ilhem Blel</SelectItem>
-                                        <SelectItem value="3">Babba Raja</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        ),
-                        ci: "",
-                        enseignant_ci: (
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select enseignant" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Enseignant_Cours</SelectLabel>
-                                        <SelectItem value="1">Sekma manel</SelectItem>
-                                        <SelectItem value="2">Ilhem Blel</SelectItem>
-                                        <SelectItem value="3">Babba Raja</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        ),
-                        cc: true,
-                        rm: false,
-                    },
-                    {
-                        ec: "5112",
-                        module: "mathématique des reseaux de neurones",
-                        tot: "45",
-                        cr: "22.5",
-                        enseignant_cr: (
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select enseignant" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Enseignant_Cours</SelectLabel>
-                                        <SelectItem value="1">Sekma manel</SelectItem>
-                                        <SelectItem value="2">Ilhem Blel</SelectItem>
-                                        <SelectItem value="3">Babba Raja</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        ),
-                        td: "",
-                        enseignant_td: (
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select enseignant" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Enseignant_Cours</SelectLabel>
-                                        <SelectItem value="1">Sekma manel</SelectItem>
-                                        <SelectItem value="2">Ilhem Blel</SelectItem>
-                                        <SelectItem value="3">Babba Raja</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        ),
-                        tp: "22.5",
-                        enseignant_tp: (
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select enseignant" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Enseignant_Cours</SelectLabel>
-                                        <SelectItem value="1">Sekma manel</SelectItem>
-                                        <SelectItem value="2">Ilhem Blel</SelectItem>
-                                        <SelectItem value="3">Babba Raja</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        ),
-                        ci: "",
-                        enseignant_ci: (
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select enseignant" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Enseignant_Cours</SelectLabel>
-                                        <SelectItem value="1">Sekma manel</SelectItem>
-                                        <SelectItem value="2">Ilhem Blel</SelectItem>
-                                        <SelectItem value="3">Babba Raja</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        ),
-                        cc: false,
-                        rm: true,
-                    },
-                ],
-            },
-            {
-                ue: "515",
-                unite: "Transversale 5",
-                modules: [
-                    {
-                        ec: "5151",
-                        module: "Anglais",
-                        tot: "45",
-                        cr: "22.5",
-                        enseignant_cr: (
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select enseignant" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Enseignant_Cours</SelectLabel>
-                                        <SelectItem value="1">Sekma manel</SelectItem>
-                                        <SelectItem value="2">Ilhem Blel</SelectItem>
-                                        <SelectItem value="3">Babba Raja</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        ),
-                        td: "",
-                        enseignant_td: (
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select enseignant" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Enseignant_Cours</SelectLabel>
-                                        <SelectItem value="1">Sekma manel</SelectItem>
-                                        <SelectItem value="2">Ilhem Blel</SelectItem>
-                                        <SelectItem value="3">Babba Raja</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        ),
-                        tp: "22.5",
-                        enseignant_tp: (
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select enseignant" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Enseignant_Cours</SelectLabel>
-                                        <SelectItem value="1">Sekma manel</SelectItem>
-                                        <SelectItem value="2">Ilhem Blel</SelectItem>
-                                        <SelectItem value="3">Babba Raja</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        ),
-                        ci: "",
-                        enseignant_ci: (
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select enseignant" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Enseignant_Cours</SelectLabel>
-                                        <SelectItem value="1">Sekma manel</SelectItem>
-                                        <SelectItem value="2">Ilhem Blel</SelectItem>
-                                        <SelectItem value="3">Babba Raja</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        ),
-                        cc: false,
-                        rm: true,
-                    },
-                    {
-                        ec: "5152",
-                        module: "Francais",
-                        tot: "45",
-                        cr: "22.5",
-                        enseignant_cr: (
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select enseignant" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Enseignant_Cours</SelectLabel>
-                                        <SelectItem value="1">Sekma manel</SelectItem>
-                                        <SelectItem value="2">Ilhem Blel</SelectItem>
-                                        <SelectItem value="3">Babba Raja</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        ),
-                        td: "",
-                        enseignant_td: (
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select enseignant" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Enseignant_Cours</SelectLabel>
-                                        <SelectItem value="1">Sekma manel</SelectItem>
-                                        <SelectItem value="2">Ilhem Blel</SelectItem>
-                                        <SelectItem value="3">Babba Raja</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        ),
-                        tp: "22.5",
-                        enseignant_tp: (
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select enseignant" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Enseignant_Cours</SelectLabel>
-                                        <SelectItem value="1">Sekma manel</SelectItem>
-                                        <SelectItem value="2">Ilhem Blel</SelectItem>
-                                        <SelectItem value="3">Babba Raja</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        ),
-                        ci: "",
-                        enseignant_ci: (
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select enseignant" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Enseignant_Cours</SelectLabel>
-                                        <SelectItem value="1">Sekma manel</SelectItem>
-                                        <SelectItem value="2">Ilhem Blel</SelectItem>
-                                        <SelectItem value="3">Babba Raja</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        ),
-                        cc: false,
-                        rm: true,
-                    },
-                    {
-                        ec: "5153",
-                        module: "Techniques de communication",
-                        tot: "45",
-                        cr: "22.5",
-                        enseignant_cr: (
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select enseignant" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Enseignant_Cours</SelectLabel>
-                                        <SelectItem value="1">Sekma manel</SelectItem>
-                                        <SelectItem value="2">Ilhem Blel</SelectItem>
-                                        <SelectItem value="3">Babba Raja</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        ),
-                        td: "",
-                        enseignant_td: (
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select enseignant" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Enseignant_Cours</SelectLabel>
-                                        <SelectItem value="1">Sekma manel</SelectItem>
-                                        <SelectItem value="2">Ilhem Blel</SelectItem>
-                                        <SelectItem value="3">Babba Raja</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        ),
-                        tp: "22.5",
-                        enseignant_tp: (
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select enseignant" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Enseignant_Cours</SelectLabel>
-                                        <SelectItem value="1">Sekma manel</SelectItem>
-                                        <SelectItem value="2">Ilhem Blel</SelectItem>
-                                        <SelectItem value="3">Babba Raja</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        ),
-                        ci: "",
-                        enseignant_ci: (
-                            <Select>
-                                <SelectTrigger className="w-[180px]">
-                                    <SelectValue placeholder="Select enseignant" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                    <SelectGroup>
-                                        <SelectLabel>Enseignant_Cours</SelectLabel>
-                                        <SelectItem value="1">Sekma manel</SelectItem>
-                                        <SelectItem value="2">Ilhem Blel</SelectItem>
-                                        <SelectItem value="3">Babba Raja</SelectItem>
-                                    </SelectGroup>
-                                </SelectContent>
-                            </Select>
-                        ),
-                        cc: false,
-                        rm: true,
-                    },
-                ],
-            },
-        ],
-        []
-    )
+    useEffect(() => {
+        const getSemestre = async () => {
+            const response = await fetch("http://localhost:8090/api/isimm/distributionCharge/semestre", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            const responseJson = await response.json()
+
+            const uniteArrayFunc = []
+
+            responseJson[0].unites.forEach((unite) => {
+                uniteArrayFunc.push({
+                    ue: unite.codeUnite,
+                    unite: unite.name,
+                    modules: unite.matieres.map((matiere) => ({
+                        ec: matiere.code,
+                        module: matiere.name,
+                        tot: matiere.nbHCr + matiere.nbHTd + matiere.nbHTp + matiere.nbHCri + matiere.nbHNp,
+                        cr: matiere.nbHCr,
+                        enseignant_cr: <SelectEnseignant />,
+                        td: matiere.nbHTd,
+                        enseignant_td: <SelectEnseignant />,
+                        tp: matiere.nbHTp,
+                        enseignant_tp: <SelectEnseignant />,
+                        ci: matiere.nbHCri,
+                        enseignant_ci: <SelectEnseignant />,
+                        cc: matiere.regime.name === "RM" ? false : true,
+                        rm: matiere.regime.name === "RM" ? true : false,
+                    })),
+                })
+            })
+
+            setUniteArray(uniteArrayFunc)
+            setSemestre(responseJson[0].name)
+        }
+        getSemestre()
+    }, [])
     return (
         <div className="Diplome_Table">
             <div className="DiplomeTitle">
-                <p>Diplome ING_INF </p> <ChevronRight /> <p>Semestre 1</p>
+                <p>Diplome ING_INF </p> <ChevronRight /> <p>{semstre}</p>
             </div>
 
-            <Table columns={columns} data={data} />
+            <Table columns={columns} data={uniteArray} />
         </div>
     )
 }
