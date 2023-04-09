@@ -36,10 +36,10 @@ const TableAfficheNote = () => {
   const generatePDF = () => {
     const doc = new jsPDF();
     const tableColumn = [
-      "Unite ID",
-      "Unite Name",
+      "UE",
+      "Unité",
       "EC",
-      "Matiere",
+      "Module",
       "TP",
       "ORAL",
       "DS",
@@ -67,10 +67,10 @@ const TableAfficheNote = () => {
   };
 
   const columns = [
-    { Header: 'Unite ID', accessor: 'code_unite' },
-    { Header: 'Unite Name', accessor: 'unite_name' },
+    { Header: 'UE', accessor: 'code_unite' },
+    { Header: 'Unité', accessor: 'unite_name' },
     { Header: 'EC', accessor: 'id_matiere' },
-    { Header: 'Matiere', accessor: 'matiere' },
+    { Header: 'Module', accessor: 'matiere' },
     { Header: "TP", accessor: "TP" },  
     { Header: "ORAL", accessor: "ORAL" }, 
     { Header: "DS", accessor: "DS" }, 
