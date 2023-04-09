@@ -1,5 +1,5 @@
 import "./Accordation.css"
-import { useState } from 'react';
+import { useState , useEffect } from 'react';
 import { Button } from "@/components/ui/Button";
 import {
     Accordion,
@@ -7,29 +7,38 @@ import {
     AccordionItem,
     AccordionTrigger,
   } from "@/components/ui/Accordion"
-const Voeux =[
-    {NomEnseignant:' Hamel Lazhar', NomMatiere:'Analyseur syntaxique' , desc :'Nothing to say'},
-    {NomEnseignant:' Gzara meriem', NomMatiere:'Machine Learning' ,desc : 'Hellllo'}, 
-    {NomEnseignant:' Manel sekma ', NomMatiere:'Analyse de données ' ,desc : 'gzregzg'}, 
 
-
-  ]
 function AccordationCharge() {
-    const [voeux,setVoeux]=useState(Voeux)
+    const [voeux,setVoeux]=useState([])
 
-    return (
+    /*Consommation API */
+useEffect(() => {
+  const getVoeux = async () => {
+      const response = await fetch("http://localhost:8090/api/isimm/distributionCharge/enseignantVoeux", {
+          method: "GET",
+          headers: {
+              "Content-Type": "application/json",
+          },
+      })
+      const responseJson = await response.json()
+      console.log(responseJson[0].matiere.name)
+      setVoeux(responseJson)
+        }
+        getVoeux()
+      }, [])
+   return (
       <div>
-{ Voeux.map((voeux,i)=>{
+{ voeux.map((v,i)=>{
                               return (
 <Accordion type="single" collapsible>
   <AccordionItem value="item-1">
-    <AccordionTrigger> Voeux d'enseignant  : {voeux.NomEnseignant} </AccordionTrigger>
+    <AccordionTrigger> Voeux d'enseignant  : {v.enseignant.nom} </AccordionTrigger>
     <AccordionContent>
       <p>
-      Matiere : {voeux.NomMatiere}
+      Matiere : {v.matiere.name}
       </p>
       <p><br/>
-      Description : {voeux.desc}
+      Description : {v.voeux.message}
       </p><br/>
       <div className="ButtonVoeuxContainner">
       <Button variant="default" className="ButtonValidVoeux">Valider</Button>
