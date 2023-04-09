@@ -44,6 +44,7 @@
     "jspdf-autotable": "^3.5.28",
     "lodash": "^4.17.21",
     "lucide-react": "^0.128.0",
+    "papaparse": "^5.4.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-pdf": "^6.2.2",
@@ -51,6 +52,7 @@
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.9.0",
     "react-table": "^7.8.0",
+    "react-toastify": "^9.1.2",
     "tailwind-merge": "^1.10.0",
     "tailwindcss-animate": "^1.0.5",
     "yup": "^1.0.2"

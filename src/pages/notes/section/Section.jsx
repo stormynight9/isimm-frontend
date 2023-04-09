@@ -37,7 +37,6 @@ const Section = () => {
     const filterResults = () => {
         if (selectedSection && selectedSemestre) {
             const filteredData = responseJson.filter((item) => item.nameSection === selectedSection && item.nameSemestre === selectedSemestre)
-            console.log(filteredData)
             return filteredData
         } else {
             return responseJson
@@ -45,12 +44,10 @@ const Section = () => {
     }
 
     const handleSectionSelect = (section) => {
-        console.log(section)
         setSelectedSection(section)
     }
 
     const handleSemestreSelect = (semestre) => {
-        console.log(semestre)
         setSelectedSemestre(semestre)
     }
 
@@ -82,7 +79,6 @@ const Section = () => {
                                     className="hover:bg-slate-300"
                                     onClick={() => {
                                         handleSectionSelect(section)
-                                        console.log(section)
                                     }}
                                 >
                                     {section.replace(/_/g, " ")}
