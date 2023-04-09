@@ -12,15 +12,9 @@ import Complaints from "./pages/surveillance/Complaints"
 import CreateCalendar from "./pages/surveillance/CreateCalendar"
 import SavedCalendars from "./pages/surveillance/SavedCalendars"
 import GestionDiplomes from "./pages/charge/chef-departement/GestionDiplomes/GestionDiplomes"
-<<<<<<< HEAD
 import ConsultationVoeux from "./pages/charge/chef-departement/GestionVoeux/ConsultationVoeux"
-import ConsultationEnseignant from "./pages/charge/chef-departement/ConsultationEnseignant"
-import SoumettreVoeux from "./pages/charge/enseignant/SoumettreVoeux"
-=======
-import ConsultationVoeux from "./pages/charge/chef-departement/ConsultationVoeux"
 import ConsultationEnseignant from "./pages/charge/chef-departement/ConsultationEnseignant/ConsultationEnseignant"
 import SoumettreVoeux from "./pages/charge/enseignant/SoumettreVoeux/SoumettreVoeux"
->>>>>>> 6476694603a0d1b1df8fff8e809654c3b89de457
 import ProfileInformation from "./pages/charge/enseignant/ProfileInformation"
 import ChargeNote from "./pages/notes/charge-note/ChargeNote"
 import ReclamationNote from "./pages/notes/reclamation/Reclamation"
