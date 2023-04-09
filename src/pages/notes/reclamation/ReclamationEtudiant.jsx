@@ -96,8 +96,21 @@ const ReclamationNote = () => {
     }
 
     const addReclamation = () => {
-        if (document.getElementById("name").value === "" || document.querySelector('input[name="R1"]:checked') === null || document.getElementById("msg").value === "" || agreement === false) showToast("Tous les champs sonts obligatoires")
-        else handleSave(document.getElementById("name").value, document.querySelector('input[name="R1"]:checked').value, document.getElementById("msg").value)
+        const code = document.getElementById("name").value
+        const typeNote = document.querySelector('input[name="R1"]:checked')
+        const message = document.getElementById("msg").value
+
+        try {
+            if (code === "") throw Error("Code Matiére est Obligatoire !")
+            if (isNaN(code) || code.length !== 4) throw Error("Code Matiére doit être numérique et du taille 4 !")
+            if (typeNote === null) throw Error("Choisir le type Note SVP !")
+            if (message.length === "") throw Error("Ecrire un message !")
+            if (!agreement) throw Error("Accepter les terms et les conditions !")
+        } catch (error) {
+            showToast(error.message)
+        }
+
+        handleSave(code, typeNote.value, message)
     }
 
     return (
