@@ -96,8 +96,20 @@ const ReclamationNote = () => {
     }
 
     const addReclamation = () => {
-        if (document.getElementById("name").value === "" || document.querySelector('input[name="R1"]:checked') === null || document.getElementById("msg").value === "" || agreement === false) showToast("Tous les champs sonts obligatoires")
-        else handleSave(document.getElementById("name").value, document.querySelector('input[name="R1"]:checked').value, document.getElementById("msg").value)
+        const code = document.getElementById("name").value
+        const typeNote = document.querySelector('input[name="R1"]:checked')
+        const message = document.getElementById("msg").value
+
+        try {
+            if (code === "") throw Error("Code Matiére est Obligatoire !")
+            if (isNaN(code) || code.length !== 4) throw Error("Code Matiére doit être numérique et du taille 4 !")
+            if (typeNote === null) throw Error("Choisir le type Note SVP !")
+            if (!agreement) throw Error("Accepter les terms et les conditions !")
+        } catch (error) {
+            showToast(error.message)
+        }
+
+        handleSave(code, typeNote.value, message)
     }
 
     return (
@@ -176,7 +188,7 @@ const ReclamationNote = () => {
             {/* details Dialog */}
             <Dialog open={deatilsVisible}>
                 <DialogTrigger></DialogTrigger>
-                <DialogContent className="sm:max-w-[425px] ">
+                <DialogContent className="sm:max-w-[800px] ">
                     <DialogHeader>
                         <DialogTitle>Détails Reclamation</DialogTitle>
                     </DialogHeader>
@@ -215,6 +227,10 @@ const ReclamationNote = () => {
                                     <tr>
                                         <td className="bg-gray-200 px-4 py-2 font-bold">Type devoir:</td>
                                         <td className="px-4 py-2">{item.typeNote}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="bg-gray-200 px-4 py-2 font-bold">Message:</td>
+                                        <td className="px-4 py-2">{item.message}</td>
                                     </tr>
                                     <tr>
                                         <td className="bg-gray-200 px-4 py-2 font-bold">Date Reclamation:</td>
