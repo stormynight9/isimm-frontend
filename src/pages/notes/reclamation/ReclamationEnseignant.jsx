@@ -51,7 +51,6 @@ const ReclamationEnseignant = () => {
             }
             const json = await response.json()
             setResponseJson(json)
-            console.log(json)
         } catch (error) {
             console.error(error)
         }

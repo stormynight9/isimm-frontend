@@ -116,16 +116,20 @@ const TableChargeTd = ({ listData, code, setListData, idEnseignant, idMatiere, i
             typeGroup: 1,
             idSemestre: idSemestre,
         }
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/addNotesTd`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/addNotesTd`, {
             method: "POST",
             headers: {
                 accept: "*/*",
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(data),
+        }).then((response) => {
+            if (response.status === 200) {
+                console.log("Success")
+            } else {
+                console.log(response.data)
+            }
         })
-        const responseJson = await response.json()
-        console.log(responseJson)
     }
 
     const columns = useMemo(

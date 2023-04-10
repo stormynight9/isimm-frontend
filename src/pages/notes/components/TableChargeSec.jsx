@@ -119,7 +119,6 @@ const TableChargeSec = ({ listData, code, setListData, idEnseignant, idMatiere, 
             typeGroup: 0,
             idSemestre: idSemestre,
         }
-        console.log(data)
         await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/addNotesSection`, {
             method: "POST",
             headers: {

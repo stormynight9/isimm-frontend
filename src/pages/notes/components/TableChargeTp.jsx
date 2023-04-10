@@ -100,7 +100,6 @@ const TableChargeTp = ({ listData, code, setListData, idEnseignant, idMatiere, i
     }
 
     const valider = async () => {
-        console.log(updatedData)
         const final = []
         for (let i = 0; i < updatedData.length; i++) {
             final[i] = {
@@ -109,9 +108,6 @@ const TableChargeTp = ({ listData, code, setListData, idEnseignant, idMatiere, i
                 idEtudiant: updatedData.at(i).idEtudiant,
             }
         }
-
-        console.log("final = ")
-        console.log(final)
 
         await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/addNotesTp`, {
             method: "POST",
