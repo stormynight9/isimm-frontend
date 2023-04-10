@@ -100,8 +100,17 @@ const TableChargeTd = ({ listData, code, setListData, idEnseignant, idMatiere, i
         valider()
     }
     const valider = async () => {
+        const final = []
+        for (let i = 0; i < updatedData.length; i++) {
+            final[i] = {
+                noteOral: updatedData.at(i).noteOral,
+                idNote: updatedData.at(i).idNote,
+                idEtudiant: updatedData.at(i).idEtudiant,
+            }
+        }
+
         const data = {
-            list: updatedData,
+            list: final,
             idEnseignant: idEnseignant,
             idMatiere: idMatiere,
             typeGroup: 1,
@@ -111,7 +120,7 @@ const TableChargeTd = ({ listData, code, setListData, idEnseignant, idMatiere, i
             method: "POST",
             headers: {
                 accept: "*/*",
-                "Content-Type": "multipart/form-data; boundary=--------------------------499310528544182401120976",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(data),
         })

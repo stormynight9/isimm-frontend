@@ -93,28 +93,39 @@ const TableChargeTp = ({ listData, code, setListData, idEnseignant, idMatiere, i
         // Update the listData with the new values from updatedData
         const updatedListData = updatedData.map((row) => ({
             ...row,
-            noteOral: row.noteTp || null,
+            noteTp: row.noteTp || null,
         }))
         setListData(updatedListData)
         valider()
     }
+
     const valider = async () => {
-        const data = {
-            list: listData,
-            idEnseignant: 1,
-            idMatiere: idMatiere,
-            typeGroup: 2,
-            idSemestre: idSemestre,
+        console.log(updatedData)
+        const final = []
+        for (let i = 0; i < updatedData.length; i++) {
+            final[i] = {
+                noteTp: updatedData.at(i).noteTp,
+                idNote: updatedData.at(i).idNote,
+                idEtudiant: updatedData.at(i).idEtudiant,
+            }
         }
-        console.log(data)
-        console.log(typeof listData)
+
+        console.log("final = ")
+        console.log(final)
+
         await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/addNotesTp`, {
             method: "POST",
             headers: {
                 accept: "*/*",
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify({
+                idEnseignant: 1,
+                idMatiere: idMatiere,
+                typeGroup: 2,
+                idSemestre: idSemestre,
+                list: final,
+            }),
         }).then((response) => {
             if (response.status === 200) {
                 console.log("Success")
