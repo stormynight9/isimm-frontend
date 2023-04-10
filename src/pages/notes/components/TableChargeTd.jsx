@@ -20,6 +20,7 @@ const TableChargeTd = ({ listData, code, setListData, idEnseignant, idMatiere })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const handleInputChange = (event, rowIndex, colAccessor) => {
+        event.preventDefault();
         try{
             if(!(event.target.value>=0&&event.target.value<=20))
                 throw Error("Note Invalide")
@@ -106,7 +107,7 @@ const TableChargeTd = ({ listData, code, setListData, idEnseignant, idMatiere })
             idMatiere: idMatiere,
             typeGroup: 1,
         }
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/addNotesTd`, {
             method: "POST",
             headers: {
                 accept: "*/*",
@@ -115,6 +116,7 @@ const TableChargeTd = ({ listData, code, setListData, idEnseignant, idMatiere })
             body: JSON.stringify(data),
         })
         const responseJson = await response.json()
+        console.log(responseJson);
     }
 
     const columns = useMemo(

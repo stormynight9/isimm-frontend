@@ -64,9 +64,9 @@ const router = createBrowserRouter(
                                     element: <Section />,
                                 },
                                 {
-                                    path: ":section/:name/:groupType/:idEnseignant/:idGroup/:idSemestre/:idMatiere/:codeMatiere",
+                                    path: "chargeNote",
                                     element: <ChargeNote />,
-                                }, //{group_type}/{id_enseignant}/{group_id}/{id_semestre}/{id_matiere}/{codeMatiere}
+                                }, 
                                 {
                                     path: "reclamation",
                                     element: <ReclamationNote />, //Changer <ReclamationEnseignant /> pour l'interface de l'enseignant

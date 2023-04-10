@@ -106,15 +106,17 @@ const TableChargeTp = ({ listData, code, setListData, idEnseignant, idMatiere })
             idMatiere: idMatiere,
             typeGroup: 2,
         }
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/`, {
+        console.log(data);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/addNotesTp`, {
             method: "POST",
             headers: {
                 accept: "*/*",
-                "Content-Type": "multipart/form-data; boundary=--------------------------499310528544182401120976",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(data),
         })
         const responseJson = await response.json()
+        console.log(responseJson);
     }
 
     const columns = useMemo(

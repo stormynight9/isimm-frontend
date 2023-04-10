@@ -20,12 +20,12 @@ const TableChargeSec = ({ listData, code, setListData, idEnseignant, idMatiere }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const handleInputChange = (event, rowIndex, colAccessor) => {
-        try{
-            if(!(event.target.value>=0&&event.target.value<=20))
-                throw Error("Note Invalide")
-        }catch(error){
+        event.preventDefault()
+        try {
+            if (!(event.target.value >= 0 && event.target.value <= 20)) throw Error("Note Invalide")
+        } catch (error) {
             showToast(error.message)
-            event.target.value=null
+            event.target.value = null
         }
         const updatedRow = { ...updatedData[rowIndex] }
         updatedRow[colAccessor] = event.target.value
@@ -108,7 +108,7 @@ const TableChargeSec = ({ listData, code, setListData, idEnseignant, idMatiere }
             idMatiere: idMatiere,
             typeGroup: 0,
         }
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/addNotesSection`, {
             method: "POST",
             headers: {
                 accept: "*/*",
@@ -165,7 +165,6 @@ const TableChargeSec = ({ listData, code, setListData, idEnseignant, idMatiere }
             <Button variant="outline" className="bg-gray-800 py-2 px-4 text-white hover:bg-gray-700" onClick={handleValidation}>
                 Valider
             </Button>
-            {/*[idEtudiant,noteDs,noteExam],idEnseignant,idMatiere,typeGroup,*/}
         </>
     )
 }

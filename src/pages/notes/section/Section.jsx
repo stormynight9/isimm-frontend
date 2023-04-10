@@ -3,12 +3,17 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/Tabs"
 import ListItem from "../components/ListItem"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import { useDispatch } from "react-redux";
+
+import { setDataUrl } from "@/redux/features/notes/noteSlice"
 
 const Section = () => {
     const [responseJson, setResponseJson] = useState([])
     const [sections, setSections] = useState([])
     const [selectedSection, setSelectedSection] = useState(null)
     const [selectedSemestre, setSelectedSemestre] = useState("")
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         chargeSections()
@@ -49,6 +54,21 @@ const Section = () => {
 
     const handleSemestreSelect = (semestre) => {
         setSelectedSemestre(semestre)
+    }
+    
+    const handleClick = (item) => {
+        const payload = {
+            section: item.nameSection,
+            name: item.groupType === "SECTION" ? "SEC" : item.groupType === "TD" ? item.nameTD : item.nameTP,
+            groupType: item.groupType === "SECTION" ? "0" : item.groupType === "TD" ? "1" : "2",
+            idEnseignant: "1",
+            idGroup: item.groupId,
+            idSemestre: item.idSemestre,
+            idMatiere: item.idMatiere,
+            codeMatiere: item.codeMatiere,
+            nameMatiere: item.nameMatiere
+        }
+        dispatch(setDataUrl(payload))
     }
 
     return (
@@ -92,8 +112,8 @@ const Section = () => {
             <div className="classgroup mt-5">
                 <ul className="grid w-[400px] gap-7 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                     {filterResults().map((item, index) => (
-                        <Link key={index} to={"/notes/" + item.nameSection + "/" + (item.groupType === "SECTION" ? "SEC" : item.groupType === "TD" ? item.nameTD : item.nameTP) + "/" + (item.groupType === "SECTION" ? "0" : item.groupType === "TD" ? "1" : "2") + "/1/" + item.groupId + "/" + item.idSemestre + "/" + item.idMatiere+ "/" + item.codeMatiere}>
-                            <ListItem title={item.nameSection.replace(/_/g, " ") + (item.groupType === "SECTION" ? "" : item.groupType === "TD" ? " - " + item.nameTD : " - " + item.nameTP) + " (" + item.session + ")"}>{item.nameMatiere}</ListItem>
+                        <Link key={index} to={"/notes/chargeNote" }>
+                            <ListItem onClick={()=>handleClick(item)} title={item.nameSection.replace(/_/g, " ") + (item.groupType === "SECTION" ? "" : item.groupType === "TD" ? " - " + item.nameTD : " - " + item.nameTP) + " (" + item.session + ")"}>{item.nameMatiere}</ListItem>
                         </Link>
                     ))}
                 </ul>

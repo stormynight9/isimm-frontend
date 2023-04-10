@@ -1,14 +1,13 @@
 import { Button } from "@/components/ui/Button"
 import { DownloadIcon } from "lucide-react"
-import { useParams } from "react-router-dom"
 import { useEffect, useState } from "react"
 import TableChargeSec from "../components/TableChargeSec"
 import TableChargeTd from "../components/TableChargeTd"
 import TableChargeTp from "../components/TableChargeTp"
 import { saveAs } from "file-saver"
+import { useSelector } from "react-redux"
 const ChargeNote = () => {
-    let { section, name, groupType, idEnseignant, idGroup, idSemestre, idMatiere, codeMatiere } = useParams()
-    //:section/:name/{group_type}/{id_enseignant}/{group_id}/{id_semestre}/{id_matiere}
+    let { section, name, groupType, idEnseignant, idGroup, idSemestre, idMatiere, codeMatiere, nameMatiere } = useSelector((state) => state.note)
 
     const [responseJson, setResponseJson] = useState([])
     useEffect(() => {
@@ -53,7 +52,7 @@ const ChargeNote = () => {
             <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
                 Notes {`>`} {section.replace(/_/g, " ")} {name && `${name === "SEC" ? "" : "- " + name}`}
             </h3>
-            <br></br>
+            <p className="leading-7 [&:not(:first-child)]:mt-3 mb-3">{nameMatiere}</p>
             <div className="btnUploads">
                 <Button variant="outline" onClick={handleDownloadCsv} className="mr-6 bg-gray-800 py-2 px-4 text-white hover:bg-gray-700">
                     Télécharger Liste (.CSV) <DownloadIcon className="w-[20px] pl-[5px]" />
