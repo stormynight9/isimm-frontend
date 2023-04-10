@@ -116,7 +116,7 @@ const TableChargeTp = ({ listData, code, setListData, idEnseignant, idMatiere, i
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                idEnseignant: 1,
+                idEnseignant: idEnseignant,
                 idMatiere: idMatiere,
                 typeGroup: 2,
                 idSemestre: idSemestre,
