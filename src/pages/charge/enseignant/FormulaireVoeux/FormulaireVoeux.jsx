@@ -26,7 +26,7 @@ const FormulaireVoeux = () => {
         <Label className="mess">Message : </Label>
         </div>
         <div className="row5">
-        <Textarea type="text"  placeholder="laissez votre messzge ici ..." />
+        <Textarea type="text"  placeholder="laissez votre message ici ..." />
         </div>
 
         
