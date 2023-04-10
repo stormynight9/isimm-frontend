@@ -20,12 +20,11 @@ const TableChargeTp = ({ listData, code, setListData, idEnseignant, idMatiere })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const handleInputChange = (event, rowIndex, colAccessor) => {
-        try{
-            if(!(event.target.value>=0&&event.target.value<=20))
-                throw Error("Note Invalide")
-        }catch(error){
+        try {
+            if (!(event.target.value >= 0 && event.target.value <= 20)) throw Error("Note Invalide")
+        } catch (error) {
             showToast(error.message)
-            event.target.value=null
+            event.target.value = null
         }
         const updatedRow = { ...updatedData[rowIndex] }
         updatedRow[colAccessor] = event.target.value
@@ -106,17 +105,21 @@ const TableChargeTp = ({ listData, code, setListData, idEnseignant, idMatiere })
             idMatiere: idMatiere,
             typeGroup: 2,
         }
-        console.log(data);
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/addNotesTp`, {
+        console.log(data)
+        await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/addNotesTp`, {
             method: "POST",
             headers: {
                 accept: "*/*",
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(data),
+        }).then((response) => {
+            if (response.status === 200) {
+                console.log("Success")
+            } else {
+                console.log(response.error.message)
+            }
         })
-        const responseJson = await response.json()
-        console.log(responseJson);
     }
 
     const columns = useMemo(
