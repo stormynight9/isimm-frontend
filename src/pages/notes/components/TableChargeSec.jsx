@@ -128,8 +128,10 @@ const TableChargeSec = ({ listData, code, setListData, idEnseignant, idMatiere, 
             body: JSON.stringify(data),
         }).then((response) => {
             if (response.status === 200) {
+                showToast("Les notes ont été chargées et validées avec succès.")
                 console.log("success")
             } else {
+                showToast("Une erreur s'est produite lors du chargement des notes.")
                 console.log(response.error.message)
             }
         })

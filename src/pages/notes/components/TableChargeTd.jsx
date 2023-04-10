@@ -125,9 +125,11 @@ const TableChargeTd = ({ listData, code, setListData, idEnseignant, idMatiere, i
             body: JSON.stringify(data),
         }).then((response) => {
             if (response.status === 200) {
-                console.log("Success")
+                showToast("Les notes ont été chargées et validées avec succès.")
+                console.log("success")
             } else {
-                console.log(response.data)
+                showToast("Une erreur s'est produite lors du chargement des notes.")
+                console.log(response.error.message)
             }
         })
     }
