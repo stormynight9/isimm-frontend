@@ -19,7 +19,7 @@ import ProfileInformation from "./pages/charge/enseignant/ProfileInformation"
 import ChargeNote from "./pages/notes/charge-note/ChargeNote"
 import ReclamationNote from "./pages/notes/reclamation/ReclamationEtudiant"
 import Semester from "./pages/notes/semester/Semester"
-
+import ReclamationEnseignant from "./pages/notes/reclamation/ReclamationEnseignant"
 
 const router = createBrowserRouter(
     [
@@ -72,12 +72,17 @@ const router = createBrowserRouter(
                                     element: <ReclamationNote />, //Changer <ReclamationEnseignant /> pour l'interface de l'enseignant
                                 },
                                 {
+                                    path: "reclamationEnseignant",
+                                    element: <ReclamationEnseignant />, //Changer <ReclamationEnseignant /> pour l'interface de l'enseignant
+                                },
+
+                                {
                                     path: "semester1",
-                                    element: <Semester sem="1"/>,
+                                    element: <Semester sem="1" />,
                                 },
                                 {
                                     path: "semester2",
-                                    element: <Semester sem="2"/>,
+                                    element: <Semester sem="2" />,
                                 },
                             ],
                         },
