@@ -22,7 +22,7 @@ const ButtonVoeux = (props) => {
                     </DialogHeader>
                     <FormulaireVoeux/>
                     <DialogFooter>
-                        <Button type="submit">Valider</Button>
+                        <Button type="submit">Envoyer</Button>
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
