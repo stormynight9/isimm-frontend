@@ -103,6 +103,9 @@ const Sidebar = ({ isCollapsed, CollapseSidebar }: SidebarProps) => {
                                     <MenuItem icon={<SettingsIcon size={20} strokeWidth={2.4} />} component={<Link to={"/notes/reclamation"} />}>
                                         Réclamation
                                     </MenuItem>
+                                    <MenuItem icon={<SettingsIcon size={20} strokeWidth={2.4} />} component={<Link to={"/notes/reclamationEnseignant"} />}>
+                                        Réclamation Enseignant
+                                    </MenuItem>
                                     <MenuItem icon={<MessageSquareIcon size={20} strokeWidth={2.4} />} component={<Link to={"/notes/section"} />}>
                                         Section
                                     </MenuItem>

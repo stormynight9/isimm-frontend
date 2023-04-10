@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/Button"
 import { useToast } from "@/hooks/useToast"
 import { ToastAction } from "@radix-ui/react-toast"
 import { useEffect, useState } from "react"
+import nothing from "../images/nothing.png"
 
 const ReclamationEnseignant = () => {
     const [responseJson, setResponseJson] = useState([])
@@ -39,7 +40,7 @@ const ReclamationEnseignant = () => {
 
     const chargeReclamations = async () => {
         try {
-            const response = await fetch(import.meta.env.VITE_API_URL + "/api/isimm/chargeNote/EnseignantReclamation/enseignant/12", {
+            const response = await fetch(import.meta.env.VITE_API_URL + "/api/isimm/chargeNote/EnseignantReclamation/enseignant/1", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -50,7 +51,6 @@ const ReclamationEnseignant = () => {
             }
             const json = await response.json()
             setResponseJson(json)
-            console.log(json)
         } catch (error) {
             console.error(error)
         }
@@ -62,41 +62,50 @@ const ReclamationEnseignant = () => {
     return (
         <div className=".block mx-auto justify-center p-9">
             <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">Notes {`>`} Reclamation</h3>
-            <Accordion type="single" collapsible className="mt-14 w-full pl-48 pr-48">
-                {responseJson.map((item, index) => (
-                    <AccordionItem value={"item-" + index} className="mb-2 rounded-lg bg-[#E2E8F0] pl-5 pr-1">
-                        <AccordionTrigger>Reclamation N° {index + 1}</AccordionTrigger>
-                        <AccordionContent>
-                            <span className="font-bold">Nom Etudiant :</span>
-                            <span> Belhassen Tayari</span>
-                            <br></br>
-                            <span className="font-bold">Nom Matiére :</span>
-                            <span> {item.nomMatiere} </span>
-                            <br></br>
-                            <span className="font-bold">Type Devoir :</span>
-                            <span> {item.typeNote} </span>
-                            <br></br>
-                            <span className="font-bold">Date Reclamation :</span>
-                            <span> {item.dateCreation.slice(0, 10)} </span>
-                            <br></br>
-                            <br></br>
+            {responseJson.length === 0 ? (
+                <div className="w-full text-center">
+                    <img src={nothing} alt="" srcset="" className="mx-auto mb-4 mt-44 h-20 w-20" />
+                    <span className="mx-auto">Oups</span>
+                    <br></br>
+                    <span className="mx-auto">Vous n'avez pas du reclamations</span>
+                </div>
+            ) : (
+                <Accordion type="single" collapsible className="mt-14 w-full pl-48 pr-48">
+                    {responseJson.map((item, index) => (
+                        <AccordionItem value={"item-" + index} className="mb-2 rounded-lg bg-[#E2E8F0] pl-5 pr-1">
+                            <AccordionTrigger>Reclamation N° {index + 1}</AccordionTrigger>
+                            <AccordionContent>
+                                <span className="font-bold">Nom Etudiant :</span>
+                                <span> Belhassen Tayari</span>
+                                <br></br>
+                                <span className="font-bold">Nom Matiére :</span>
+                                <span> {item.nomMatiere} </span>
+                                <br></br>
+                                <span className="font-bold">Type Devoir :</span>
+                                <span> {item.typeNote} </span>
+                                <br></br>
+                                <span className="font-bold">Date Reclamation :</span>
+                                <span> {item.dateCreation.slice(0, 10)} </span>
+                                <br></br>
+                                <br></br>
 
-                            <span className="font-bold">Message :</span>
-                            <br></br>
-                            <span> {item.message} </span>
-                            <br></br>
-                            <div className="flex justify-end">
-                                <Button onClick={() => changerStatut(item.idReclamation, "Refusée")} className="mr-3 bg-red-500">
-                                    Réfuser
-                                </Button>
-                                <Button onClick={() => changerStatut(item.idReclamation, "Acceptée")} className="mr-3 bg-green-500 ">
-                                    Accepter
-                                </Button>
-                            </div>
-                        </AccordionContent>
-                    </AccordionItem>
-                ))}
-            </Accordion>
+                                <span className="font-bold">Message :</span>
+                                <br></br>
+                                <span> {item.message} </span>
+                                <br></br>
+                                <div className="flex justify-end">
+                                    <Button onClick={() => changerStatut(item.idReclamation, "Refusée")} className="mr-3 bg-red-500">
+                                        Réfuser
+                                    </Button>
+                                    <Button onClick={() => changerStatut(item.idReclamation, "Acceptée")} className="mr-3 bg-green-500 ">
+                                        Accepter
+                                    </Button>
+                                </div>
+                            </AccordionContent>
+                        </AccordionItem>
+                    ))}
+                </Accordion>
+            )}
         </div>
     )
 }

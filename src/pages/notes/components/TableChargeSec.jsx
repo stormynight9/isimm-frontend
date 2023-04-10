@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button"
 import Papa from "papaparse"
 import { useToast } from "@/hooks/useToast"
 import { ToastAction } from "@/components/ui/Toast"
-const TableChargeSec = ({ listData, code, setListData, idEnseignant, idMatiere }) => {
+const TableChargeSec = ({ listData, code, setListData, idEnseignant, idMatiere, idSemestre }) => {
     const [updatedData, setUpdatedData] = useState([])
 
     useEffect(() => {
@@ -20,12 +20,12 @@ const TableChargeSec = ({ listData, code, setListData, idEnseignant, idMatiere }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const handleInputChange = (event, rowIndex, colAccessor) => {
-        try{
-            if(!(event.target.value>=0&&event.target.value<=20))
-                throw Error("Note Invalide")
-        }catch(error){
+        event.preventDefault()
+        try {
+            if (!(event.target.value >= 0 && event.target.value <= 20)) throw Error("Note Invalide")
+        } catch (error) {
             showToast(error.message)
-            event.target.value=null
+            event.target.value = null
         }
         const updatedRow = { ...updatedData[rowIndex] }
         updatedRow[colAccessor] = event.target.value
@@ -102,21 +102,39 @@ const TableChargeSec = ({ listData, code, setListData, idEnseignant, idMatiere }
         valider()
     }
     const valider = async () => {
+        const final = []
+        for (let i = 0; i < updatedData.length; i++) {
+            final[i] = {
+                noteDs: updatedData.at(i).noteDs,
+                noteExam: updatedData.at(i).noteExam,
+                idNoteDs: updatedData.at(i).idNoteDs,
+                idNoteExam: updatedData.at(i).idNoteExam,
+                idEtudiant: updatedData.at(i).idEtudiant,
+            }
+        }
         const data = {
-            list: updatedData,
+            list: final,
             idEnseignant: idEnseignant,
             idMatiere: idMatiere,
             typeGroup: 0,
+            idSemestre: idSemestre,
         }
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/addNotesSection`, {
             method: "POST",
             headers: {
                 accept: "*/*",
-                "Content-Type": "multipart/form-data; boundary=--------------------------499310528544182401120976",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(data),
+        }).then((response) => {
+            if (response.status === 200) {
+                showToast("Les notes ont été chargées et validées avec succès.")
+                console.log("success")
+            } else {
+                showToast("Une erreur s'est produite lors du chargement des notes.")
+                console.log(response.error.message)
+            }
         })
-        const responseJson = await response.json()
     }
 
     const columns = useMemo(
@@ -165,7 +183,6 @@ const TableChargeSec = ({ listData, code, setListData, idEnseignant, idMatiere }
             <Button variant="outline" className="bg-gray-800 py-2 px-4 text-white hover:bg-gray-700" onClick={handleValidation}>
                 Valider
             </Button>
-            {/*[idEtudiant,noteDs,noteExam],idEnseignant,idMatiere,typeGroup,*/}
         </>
     )
 }

@@ -18,7 +18,6 @@ const ReclamationTable = ({ responseJson, changeDialogVisibility, setDetailsJson
             }
             const json = await response.json()
             setDetailsJson(json)
-            console.log(json)
         } catch (error) {
             console.error(error)
         }

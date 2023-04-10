@@ -23,7 +23,6 @@ const ReclamationNote = () => {
     }
 
     const changeDialogVisibility = () => {
-        console.log(detailsJson)
         setDetailsVisible(true)
     }
 
@@ -59,7 +58,6 @@ const ReclamationNote = () => {
             const json = await response.json()
             setResponseJson(json)
             setRefreshing(false)
-            console.log(json)
         } catch (error) {
             console.error(error)
         }
