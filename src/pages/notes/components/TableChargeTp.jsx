@@ -107,7 +107,6 @@ const TableChargeTp = ({ listData, code, setListData, idEnseignant, idMatiere, i
             idSemestre: idSemestre,
         }
         console.log(data)
-        console.log(typeof listData)
         await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/addNotesTp`, {
             method: "POST",
             headers: {
