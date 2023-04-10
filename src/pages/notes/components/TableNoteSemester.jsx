@@ -5,10 +5,16 @@ import React from "react"
 import { Switch } from "@/components/ui/Switch"
 import { Toast } from "@/components/ui/Toast"
 import { toast } from "@/hooks/useToast"
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+  } from "@/components/ui/Tooltip"
 const TablePagination = ({ columns, data }) => {
     const [pageIndex, setPageIndex] = useState(0) // initialize pageIndex state
 
-    const [isColorEnabled, setIsColorEnabled] = useState(true); // initialize isColorEnabled state
+    const [isColorEnabled, setIsColorEnabled] = useState(false); // initialize isColorEnabled state
 
     // Define a function to calculate the cell color based on the note
     const calculateNoteColor = (note, rowColor) => {
@@ -31,7 +37,40 @@ const TablePagination = ({ columns, data }) => {
       };
 
        
-  
+      const fireworkStyle = {
+        position: "absolute",
+        width: "10px",
+        height: "10px",
+        borderRadius: "50%",
+        backgroundColor: "#fbc531",
+        zIndex: "1",
+        animation: "firework 1s infinite",
+      };
+      
+      const keyframes = `
+        @keyframes firework {
+          0% {
+            transform: scale(0);
+            opacity: 0.5;
+          }
+          25% {
+            transform: scale(1);
+            opacity: 1;
+          }
+          50% {
+            transform: scale(1.5);
+            opacity: 0.5;
+          }
+          75% {
+            transform: scale(2);
+            opacity: 0;
+          }
+          100% {
+            transform: scale(0);
+            opacity: 0;
+          }
+        }
+      `;
 
     // Add a new function to get the rowspan for the 'Unite' column
     const getUniteRowSpan = (rowIndex) => {
@@ -71,7 +110,28 @@ const TablePagination = ({ columns, data }) => {
       },
       usePagination
     );
-  
+    const konamiCode = ["g", "e", "n", "t", "a"];
+    let konamiCodeIndex = 0;
+    
+    (function() {
+      document.addEventListener("g", (event) => {
+        if (event.key === konamiCode[konamiCodeIndex]) {
+          konamiCodeIndex++;
+          if (konamiCodeIndex === konamiCode.length) {
+              toast({
+                  title: "He is the boss",
+                  description: "don't tell any one you are not supposed to be here",
+                  status: "success",
+                  duration: 1000,
+                  isClosable: true,
+                  
+                });
+          }
+        } else {
+          konamiCodeIndex = 0;
+        }
+      });
+    })();
     const handleToggleColor = () => {
         setIsColorEnabled(!isColorEnabled);
         if (isColorEnabled) {
@@ -94,16 +154,23 @@ const TablePagination = ({ columns, data }) => {
       };
   
     return (
+        
       <div className="p-4 ">
        
         <div className="flex justify-end mb-4"> 
-        
-        <Switch onClick={() => {
-  handleToggleColor();
-  
-}}>
-</Switch>
+     
+     <TooltipProvider >
+      <Tooltip>
+        <TooltipTrigger > 
+        <Switch onClick={() => { handleToggleColor(); }}  >
+        </Switch>
 
+</TooltipTrigger >
+        <TooltipContent >
+          <p>Activate color indicator</p>
+        </TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
         </div>
         <table
   {...getTableProps()}
@@ -207,6 +274,13 @@ const TablePagination = ({ columns, data }) => {
               position: "relative", // add this style for absolute position of the dot
   };
 
+  if (index ===6 && cell.value === 20 && isColorEnabled) {
+    cellStyle = {
+        ...cellStyle,
+        animation: "firework 2s ease-in-out",
+        animationIterationCount: "infinite",
+      };
+  }
   if (index === 6 && isColorEnabled) { // apply color to moyenne cell icon
     const iconColor = calculateNoteColor(cell.value);
     content = (
@@ -275,10 +349,10 @@ const TablePagination = ({ columns, data }) => {
 
 </table>
 
-   <div className="flex justify-between bg-gray-100 p-4 mx-auto" style={{ margin: '0 auto', maxWidth: '200px' }}>
+   <div className="flex justify-between bg-gray-100 p-4" style={{ margin: '0 auto', maxWidth: '170px' }}>
   <div className="flex items-center">
     <button
-      className={`rounded items-center px-2 py-1 ${
+      className={`rounded px-2 py-1 ${
         canPreviousPage
           ? "cursor-pointer bg-gray-800 text-white hover:bg-gray-700"
           : "cursor-not-allowed bg-gray-300 text-gray-500"
@@ -318,5 +392,6 @@ const TablePagination = ({ columns, data }) => {
         </div>
     )
 }
+
 
 export default TablePagination

@@ -73,11 +73,11 @@ const router = createBrowserRouter(
                                 },
                                 {
                                     path: "semester1",
-                                    element: <Semester sem="1"/>,
+                                    element: <Semester sem="1" idEtd="15"/>,
                                 },
                                 {
                                     path: "semester2",
-                                    element: <Semester sem="2"/>,
+                                    element: <Semester sem="2"idEtd="17"/>,
                                 },
                             ],
                         },

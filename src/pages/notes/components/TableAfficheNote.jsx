@@ -2,25 +2,31 @@ import { useState, useEffect } from "react";
 import TableNoteSemester from "./TableNoteSemester";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import { Button } from "@/components/ui/Button"
 
-const TableAfficheNote = () => {
+const TableAfficheNote = (props) => {
+  const { sem , idEtd  } = props;
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
   useEffect(() => {
     const chargeSections = async () => {
       try {
-        const response = await fetch(import.meta.env.VITE_API_URL + "/etudiant-moyenne/notes/17/1", {
+        if (!sem) {
+          return;
+        }
+        
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EtudiantMoyenne/notes/${idEtd}/${sem}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
           },
         });
-
+  
         if (!response.ok) {
           throw new Error(response.statusText);
         }
-
+  
         const json = await response.json();
         console.log("Data type:", typeof data);
         setData(json);
@@ -29,9 +35,10 @@ const TableAfficheNote = () => {
         console.error(error);
       }
     };
-
+  
     chargeSections();
-  }, []);
+  }, [sem]);
+  
 
   const generatePDF = () => {
     const doc = new jsPDF();
@@ -79,17 +86,23 @@ const TableAfficheNote = () => {
   ];
 
   return (
-    <div>
-      {loading ? (
-        <p>Loading data...</p>
-      ) : (
-        <>
-          <TableNoteSemester columns={columns} data={data} />
-          <button onClick={generatePDF}>Download PDF</button>
-        </>
-      )}
-    </div>
-  );
+  <div >
+    {loading ? (
+      <p>Loading data...</p>
+    ) : (
+      <>
+        {data.length === 0 ? (
+          <p className=" flex items-center justify-center h-screen text-lg text-center">There is nothing to display</p>
+        ) : (
+          <>
+            <TableNoteSemester columns={columns} data={data} />
+            <Button className="mt-4" onClick={generatePDF}>Download PDF</Button>
+          </>
+        )}
+      </>
+    )}
+  </div>
+);
 };
 
 export default TableAfficheNote;
