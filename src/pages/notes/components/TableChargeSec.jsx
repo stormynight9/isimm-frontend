@@ -102,23 +102,38 @@ const TableChargeSec = ({ listData, code, setListData, idEnseignant, idMatiere, 
         valider()
     }
     const valider = async () => {
+        const final = []
+        for (let i = 0; i < updatedData.length; i++) {
+            final[i] = {
+                noteDs: updatedData.at(i).noteDs,
+                noteExam: updatedData.at(i).noteExam,
+                idNoteDs: updatedData.at(i).idNoteDs,
+                idNoteExam: updatedData.at(i).idNoteExam,
+                idEtudiant: updatedData.at(i).idEtudiant,
+            }
+        }
         const data = {
-            list: updatedData,
+            list: final,
             idEnseignant: idEnseignant,
             idMatiere: idMatiere,
             typeGroup: 0,
             idSemestre: idSemestre,
         }
         console.log(data)
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/addNotesSection`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/addNotesSection`, {
             method: "POST",
             headers: {
                 accept: "*/*",
-                "Content-Type": "multipart/form-data; boundary=--------------------------499310528544182401120976",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(data),
+        }).then((response) => {
+            if (response.status === 200) {
+                console.log("success")
+            } else {
+                console.log(response.error.message)
+            }
         })
-        const responseJson = await response.json()
     }
 
     const columns = useMemo(
