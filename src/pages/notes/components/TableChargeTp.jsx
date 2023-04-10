@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button"
 import Papa from "papaparse"
 import { useToast } from "@/hooks/useToast"
 import { ToastAction } from "@/components/ui/Toast"
-const TableChargeTp = ({ listData, code, setListData, idEnseignant, idMatiere }) => {
+const TableChargeTp = ({ listData, code, setListData, idEnseignant, idMatiere, idSemestre }) => {
     const [updatedData, setUpdatedData] = useState([])
 
     useEffect(() => {
@@ -100,12 +100,14 @@ const TableChargeTp = ({ listData, code, setListData, idEnseignant, idMatiere })
     }
     const valider = async () => {
         const data = {
-            list: updatedData,
-            idEnseignant: idEnseignant,
+            list: listData,
+            idEnseignant: 1,
             idMatiere: idMatiere,
             typeGroup: 2,
+            idSemestre: idSemestre,
         }
         console.log(data)
+        console.log(typeof listData)
         await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/addNotesTp`, {
             method: "POST",
             headers: {
@@ -117,7 +119,7 @@ const TableChargeTp = ({ listData, code, setListData, idEnseignant, idMatiere })
             if (response.status === 200) {
                 console.log("Success")
             } else {
-                console.log(response.error.message)
+                console.log(response.data)
             }
         })
     }

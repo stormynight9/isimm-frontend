@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button"
 import Papa from "papaparse"
 import { useToast } from "@/hooks/useToast"
 import { ToastAction } from "@/components/ui/Toast"
-const TableChargeTd = ({ listData, code, setListData, idEnseignant, idMatiere }) => {
+const TableChargeTd = ({ listData, code, setListData, idEnseignant, idMatiere, idSemestre }) => {
     const [updatedData, setUpdatedData] = useState([])
 
     useEffect(() => {
@@ -20,13 +20,12 @@ const TableChargeTd = ({ listData, code, setListData, idEnseignant, idMatiere })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const handleInputChange = (event, rowIndex, colAccessor) => {
-        event.preventDefault();
-        try{
-            if(!(event.target.value>=0&&event.target.value<=20))
-                throw Error("Note Invalide")
-        }catch(error){
+        event.preventDefault()
+        try {
+            if (!(event.target.value >= 0 && event.target.value <= 20)) throw Error("Note Invalide")
+        } catch (error) {
             showToast(error.message)
-            event.target.value=null
+            event.target.value = null
         }
         const updatedRow = { ...updatedData[rowIndex] }
         updatedRow[colAccessor] = event.target.value
@@ -106,6 +105,7 @@ const TableChargeTd = ({ listData, code, setListData, idEnseignant, idMatiere })
             idEnseignant: idEnseignant,
             idMatiere: idMatiere,
             typeGroup: 1,
+            idSemestre: idSemestre,
         }
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/addNotesTd`, {
             method: "POST",
@@ -116,7 +116,7 @@ const TableChargeTd = ({ listData, code, setListData, idEnseignant, idMatiere })
             body: JSON.stringify(data),
         })
         const responseJson = await response.json()
-        console.log(responseJson);
+        console.log(responseJson)
     }
 
     const columns = useMemo(
@@ -140,7 +140,7 @@ const TableChargeTd = ({ listData, code, setListData, idEnseignant, idMatiere })
             {
                 Header: `OR_${code}`,
                 accessor: "noteOral",
-                Cell: ({row}) => <InputNote type="number" min="0" step="0.25" max="20" pattern="[0-20]" title="Please enter a number between 0 and 20." defaultValue={row.original.noteOral} onBlur={(event) => handleInputChange(event, row.index, "noteOral")}/>,
+                Cell: ({ row }) => <InputNote type="number" min="0" step="0.25" max="20" pattern="[0-20]" title="Please enter a number between 0 and 20." defaultValue={row.original.noteOral} onBlur={(event) => handleInputChange(event, row.index, "noteOral")} />,
             },
         ],
         [code, handleInputChange]

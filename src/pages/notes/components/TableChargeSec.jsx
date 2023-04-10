@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button"
 import Papa from "papaparse"
 import { useToast } from "@/hooks/useToast"
 import { ToastAction } from "@/components/ui/Toast"
-const TableChargeSec = ({ listData, code, setListData, idEnseignant, idMatiere }) => {
+const TableChargeSec = ({ listData, code, setListData, idEnseignant, idMatiere, idSemestre }) => {
     const [updatedData, setUpdatedData] = useState([])
 
     useEffect(() => {
@@ -107,7 +107,9 @@ const TableChargeSec = ({ listData, code, setListData, idEnseignant, idMatiere }
             idEnseignant: idEnseignant,
             idMatiere: idMatiere,
             typeGroup: 0,
+            idSemestre: idSemestre,
         }
+        console.log(data)
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EnseignantNote/addNotesSection`, {
             method: "POST",
             headers: {

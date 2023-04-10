@@ -52,12 +52,18 @@ const ChargeNote = () => {
             <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
                 Notes {`>`} {section.replace(/_/g, " ")} {name && `${name === "SEC" ? "" : "- " + name}`}
             </h3>
-            <p className="leading-7 [&:not(:first-child)]:mt-3 mb-3">{nameMatiere}</p>
+            <p className="mb-3 leading-7 [&:not(:first-child)]:mt-3">{nameMatiere}</p>
             <div className="btnUploads">
                 <Button variant="outline" onClick={handleDownloadCsv} className="mr-6 bg-gray-800 py-2 px-4 text-white hover:bg-gray-700">
                     Télécharger Liste (.CSV) <DownloadIcon className="w-[20px] pl-[5px]" />
                 </Button>
-                {groupType === "0" ? <TableChargeSec idEnseignant={idEnseignant} idMatiere={idMatiere} setListData={setResponseJson} code={codeMatiere} listData={responseJson} /> : groupType === "1" ? <TableChargeTd idEnseignant={idEnseignant} idMatiere={idMatiere} setListData={setResponseJson} code={codeMatiere} listData={responseJson} /> : <TableChargeTp idEnseignant={idEnseignant} idMatiere={idMatiere} setListData={setResponseJson} code={codeMatiere} listData={responseJson} />}
+                {groupType === "0" ? (
+                    <TableChargeSec idEnseignant={idEnseignant} idMatiere={idMatiere} setListData={setResponseJson} code={codeMatiere} listData={responseJson} idSemestre={idSemestre} />
+                ) : groupType === "1" ? (
+                    <TableChargeTd idEnseignant={idEnseignant} idSemestre={idSemestre} idMatiere={idMatiere} setListData={setResponseJson} code={codeMatiere} listData={responseJson} />
+                ) : (
+                    <TableChargeTp idEnseignant={idEnseignant} idSemestre={idSemestre} idMatiere={idMatiere} setListData={setResponseJson} code={codeMatiere} listData={responseJson} />
+                )}
             </div>
         </div>
     )
