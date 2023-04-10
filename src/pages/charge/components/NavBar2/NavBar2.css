@@ -1,0 +1,25 @@
+.ChargeNavBarInputStyle{
+    display: flex;
+    width: 20%;
+    background-color: white;
+    align-items: center;
+}
+.ChargeNavBarContainerStyle{
+    background-color:#6C737F;
+     display: flex; 
+     justify-content: center; 
+     height: 100%;
+     padding-top: 5px;
+     padding-bottom: 5px;
+}
+
+.switch{
+    margin-left: 100px;
+    margin-top: 7px;
+
+}
+
+.avatar{
+    margin-left: 100px;
+    margin-top: 7px;
+}

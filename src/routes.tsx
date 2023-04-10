@@ -15,7 +15,7 @@ import GestionDiplomes from "./pages/charge/chef-departement/GestionDiplomes/Ges
 import ConsultationVoeux from "./pages/charge/chef-departement/GestionVoeux/ConsultationVoeux"
 import ConsultationEnseignant from "./pages/charge/chef-departement/ConsultationEnseignant/ConsultationEnseignant"
 import SoumettreVoeux from "./pages/charge/enseignant/SoumettreVoeux/SoumettreVoeux"
-import ProfileInformation from "./pages/charge/enseignant/ProfileInformation"
+import ProfileInformation from "./pages/charge/enseignant/ProfileInformation/ProfileInformation"
 import ChargeNote from "./pages/notes/charge-note/ChargeNote"
 import ReclamationNote from "./pages/notes/reclamation/Reclamation"
 
