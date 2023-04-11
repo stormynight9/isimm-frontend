@@ -6,27 +6,27 @@ import { useState } from "react"
 
 const ButtonVoeux = (props) => {
     const [isVoeuxDialogVisible, setVoeuxDialogVisible] = useState(false)
-
+    const { matiere, matiereType } = props
     const handleClick = () => {
         setVoeuxDialogVisible(!isVoeuxDialogVisible)
     }
     return (
         <Dialog className="z-[101]">
-                <DialogTrigger asChild>
-                    <Button {...props} variant="default" onClick={handleClick} >Voeux</Button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px] ">
-                    <DialogHeader>
-                        <DialogTitle>Demande Voeux :</DialogTitle>
-                        
-                    </DialogHeader>
-                    <FormulaireVoeux/>
-                    <DialogFooter>
-                        <Button type="submit">Envoyer</Button>
-                    </DialogFooter>
-                </DialogContent>
-            </Dialog>
-        
+            <DialogTrigger asChild>
+                <Button {...props} variant="default" onClick={handleClick}>
+                    Voeux
+                </Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px] ">
+                <DialogHeader>
+                    <DialogTitle>Demande Voeux :</DialogTitle>
+                </DialogHeader>
+                <FormulaireVoeux matiereName={matiere.name} matiereType={matiereType} />
+                <DialogFooter>
+                    <Button type="submit">Envoyer</Button>
+                </DialogFooter>
+            </DialogContent>
+        </Dialog>
     )
 }
 
