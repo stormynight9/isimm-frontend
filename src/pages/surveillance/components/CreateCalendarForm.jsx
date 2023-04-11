@@ -5,7 +5,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik"
 import { ArrowRightIcon } from "lucide-react"
 import { CreateCalendarSchema } from "../schemas"
 
-const CreateCalendarForm = () => {
+const CreateCalendarForm = ({ setShowSections }) => {
     return (
         <Formik
             initialValues={{
@@ -16,7 +16,10 @@ const CreateCalendarForm = () => {
             }}
             validationSchema={CreateCalendarSchema}
             onSubmit={async (values) => {
-                console.log(values)
+                setShowSections({
+                    isShowing: true,
+                    ...values,
+                })
             }}
         >
             {() => {
