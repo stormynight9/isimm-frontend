@@ -3,9 +3,8 @@
     flex-direction: column;
     justify-content: center;
 }
-.FrameTitle {
-    display: flex;
-    padding-left: 25px;
+.FrameTitle{
+    display: flex ; 
 }
 .AccordationChargeContainner {
     display: flex;
