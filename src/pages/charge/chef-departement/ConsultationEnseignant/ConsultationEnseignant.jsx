@@ -3,7 +3,6 @@ import React from "react"
 import { useMemo } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
 import "./ConsultationEnseignant.css"
-import NavBar from "../../components/NavBar/NavBar"
 
 const ConsultationEnseignant = () => {
     const columns = useMemo(
@@ -31,28 +30,28 @@ const ConsultationEnseignant = () => {
         ],
         []
     )
-    
+
     const data = useMemo(
         () => [
             {
                 Matter: "UML/OCL",
                 TP: "-",
                 TD: "29",
-                Cours:"-",
+                Cours: "-",
                 HourlyLoad: "29",
             },
             {
                 Matter: "Projet Web/Mobile",
                 TP: "-",
                 TD: "30",
-                Cours:"-",
+                Cours: "-",
                 HourlyLoad: 30,
             },
             {
                 Matter: "Total:",
                 TP: "-",
                 TD: "-",
-                Cours:"-",
+                Cours: "-",
                 HourlyLoad: "Application de la formule de charge",
             },
         ],
@@ -61,7 +60,6 @@ const ConsultationEnseignant = () => {
 
     return (
         <div>
-            <NavBar/>
             <div className="Consultation_Enseignant">
                 <h4 className="h4-Enseignant">Enseignant X</h4>
                 <div className="Enseignant_Avatar">

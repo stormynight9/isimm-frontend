@@ -1,33 +1,20 @@
-.Rechercher-Enseignant{
-    display: block;
-    position: absolute;
-    top: 30%;
-    left: 60%;
-    right: 50%;
-    transform: translate(-50%, -50%);
+.Rechercher-Enseignant-Container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.Rechercher-Enseignant {
+    display: flex;
+    flex-direction: column;
+    min-width: 35vw;
     border: 5px solid #f1f5f9;
-    margin-top: 10%;
-    width:400px;
-    height:200px
+    border-radius: 15px;
+    padding: 25px 15px;
+    align-items: center;
+    gap: 40px;
 }
-.Rechercher-Enseignant .Label-Enseignant{
-   padding-top: 20px;
-   margin-top: 20px;
-   margin-bottom: 20px;
-   font-weight: bold;
-   font-size:18px;
-}
-.Rechercher-Enseignant .Input-Enseignant{
-    padding: 20px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-}
-.Rechercher-Enseignant .Button-Enseignant{
-    position: absolute;
-    left: 30%;
-    right: 70%;
-    width: 150px;
-    padding: 20px;
-    margin-top: 10px;
-    margin-bottom: 20px;
+.Rechercher-Enseignant .Label-Enseignant {
+    font-weight: bold;
+    font-size: 18px;
 }

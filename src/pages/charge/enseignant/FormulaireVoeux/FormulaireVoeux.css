@@ -1,66 +1,37 @@
-
-.row1{
+.row {
     display: flex;
-    flex-direction: row ;
+    flex-direction: row;
     margin-bottom: 10px;
 }
-.row2{
+.ens,
+.mat {
     display: flex;
-    flex-direction: row ;
-    margin-bottom: 10px;
+    margin-left: 10px;
 }
-.row3{
-    display: flex;
-    flex-direction: row ;
-    margin-bottom: 10px;
-}
-.row4{
-    display: flex;
-    flex-direction: row ;
-    margin-bottom: 10px;
-}
-
-.row5{
-    display: flex;
-    flex-direction: row ;
-    margin-bottom: 10px;
-}
-.ens{
-    display: flex;
-    margin-left: 10px ;
-
-}
-.ens1{
+.ens1,
+.mat1 {
     font-weight: bold;
     display: flex;
-    margin-left: 10px ;
+    margin-left: 10px;
 }
-.mat1{
+
+.type1 {
     font-weight: bold;
     display: flex;
-    margin-left: 10px ;
-
+    margin-left: 10px;
 }
-.mat{
+.type {
     display: flex;
-    margin-left: 10px ;
+    margin-left: 10px;
 }
-
-.type1{
+.mess {
+    margin-top: 20px;
     font-weight: bold;
     display: flex;
-    margin-left: 10px ;
-
+    margin-left: 10px;
 }
-.type{
+.FormulaireContainer {
     display: flex;
-    margin-left: 10px ;
+    flex-direction: column;
+    gap: 15px;
 }
-.mess{
-    margin-top: 10px;
-    font-weight: bold;
-    display: flex;
-    margin-left: 10px ;
-
-}
-

@@ -1,18 +1,19 @@
-.col{
+.form {
+    display: flex;
+    justify-content: center;
+}
+.col {
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    gap: 25px;
 }
 
-.row{
+.row {
     display: flex;
     flex-direction: row;
-    
+    gap: 20px;
 }
-
-
-
 
 .Consultation_Enseignant {
     position: absolute;
@@ -25,8 +26,3 @@
     width: 70px;
     height: 70px;
 }
-
-.tableau{
-    width: 1000px;
-}
-
