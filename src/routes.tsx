@@ -66,7 +66,7 @@ const router = createBrowserRouter(
                                 {
                                     path: "chargeNote",
                                     element: <ChargeNote />,
-                                }, 
+                                },
                                 {
                                     path: "reclamation",
                                     element: <ReclamationNote />, //Changer <ReclamationEnseignant /> pour l'interface de l'enseignant
@@ -78,11 +78,11 @@ const router = createBrowserRouter(
 
                                 {
                                     path: "semester1",
-                                    element: <Semester sem="1" idEtd="15"/>,
+                                    element: <Semester sem="1" idEtd="15" />,
                                 },
                                 {
                                     path: "semester2",
-                                    element: <Semester sem="2"idEtd="17"/>,
+                                    element: <Semester sem="2" idEtd="15" />,
                                 },
                             ],
                         },

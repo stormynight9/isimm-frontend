@@ -46,7 +46,7 @@ const ReclamationNote = () => {
 
     const chargeReclamations = async () => {
         try {
-            const response = await fetch(import.meta.env.VITE_API_URL + "/api/isimm/chargeNote/EtudiantReclamation/etudiant/37", {
+            const response = await fetch(import.meta.env.VITE_API_URL + "/api/isimm/chargeNote/EtudiantReclamation/etudiant/15", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -74,7 +74,7 @@ const ReclamationNote = () => {
                 typeNote: typeDevoir,
                 message: message,
                 statut: "Envoyée",
-                idEtudiant: "37",
+                idEtudiant: "15",
             }),
         })
             .then((response) => {
@@ -98,14 +98,10 @@ const ReclamationNote = () => {
         const typeNote = document.querySelector('input[name="R1"]:checked')
         const message = document.getElementById("msg").value
 
-        try {
-            if (code === "") throw Error("Code Matiére est Obligatoire !")
-            if (isNaN(code) || code.length !== 4) throw Error("Code Matiére doit être numérique et du taille 4 !")
-            if (typeNote === null) throw Error("Choisir le type Note SVP !")
-            if (!agreement) throw Error("Accepter les terms et les conditions !")
-        } catch (error) {
-            showToast(error.message)
-        }
+        if (code === "") showToast("Code Matiére est Obligatoire !")
+        else if (isNaN(code) || code.length !== 4) showToast("Code Matiére doit être numérique et du taille 4 !")
+        else if (typeNote === null) showToast("Choisir le type Note SVP !")
+        else if (!agreement) showToast("Accepter les terms et les conditions !")
 
         handleSave(code, typeNote.value, message)
     }

@@ -3,7 +3,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/Tabs"
 import ListItem from "../components/ListItem"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux"
 
 import { setDataUrl } from "@/redux/features/notes/noteSlice"
 
@@ -13,7 +13,7 @@ const Section = () => {
     const [selectedSection, setSelectedSection] = useState(null)
     const [selectedSemestre, setSelectedSemestre] = useState("")
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
     useEffect(() => {
         chargeSections()
@@ -55,7 +55,7 @@ const Section = () => {
     const handleSemestreSelect = (semestre) => {
         setSelectedSemestre(semestre)
     }
-    
+
     const handleClick = (item) => {
         const payload = {
             section: item.nameSection,
@@ -66,7 +66,7 @@ const Section = () => {
             idSemestre: item.idSemestre,
             idMatiere: item.idMatiere,
             codeMatiere: item.codeMatiere,
-            nameMatiere: item.nameMatiere
+            nameMatiere: item.nameMatiere,
         }
         dispatch(setDataUrl(payload))
     }
@@ -91,12 +91,12 @@ const Section = () => {
                         </SelectContent>
                     </Select>
                 </div>
-                <div className="sections">
-                    <Tabs className="w-[400px]">
+                <div className="sections ">
+                    <Tabs className="rounded-3xl bg-gray-200 ">
                         {sections.map((section, index) => (
-                            <TabsList key={index}>
+                            <TabsList key={index} className="rounded-3xl bg-gray-200">
                                 <TabsTrigger
-                                    className="hover:bg-slate-300"
+                                    className={selectedSection === section ? "rounded-3xl bg-white" : "rounded-3xl hover:bg-slate-300"}
                                     onClick={() => {
                                         handleSectionSelect(section)
                                     }}
@@ -112,8 +112,10 @@ const Section = () => {
             <div className="classgroup mt-5">
                 <ul className="grid w-[400px] gap-7 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                     {filterResults().map((item, index) => (
-                        <Link key={index} to={"/notes/chargeNote" }>
-                            <ListItem onClick={()=>handleClick(item)} title={item.nameSection.replace(/_/g, " ") + (item.groupType === "SECTION" ? "" : item.groupType === "TD" ? " - " + item.nameTD : " - " + item.nameTP) + " (" + item.session + ")"}>{item.nameMatiere}</ListItem>
+                        <Link key={index} to={"/notes/chargeNote"}>
+                            <ListItem onClick={() => handleClick(item)} title={item.nameSection.replace(/_/g, " ") + (item.groupType === "SECTION" ? "" : item.groupType === "TD" ? " - " + item.nameTD : " - " + item.nameTP) + " (" + item.session + ")"}>
+                                {item.nameMatiere}
+                            </ListItem>
                         </Link>
                     ))}
                 </ul>
