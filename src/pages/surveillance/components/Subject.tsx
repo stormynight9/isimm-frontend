@@ -44,7 +44,7 @@ const Subject = ({ label, numberOfSessions }: SubjectProps) => {
                     <Input type="date" id="date" placeholder="Date" disabled={!areInputsEnabled} />
                 </div>
                 <div className="grid w-full items-center gap-1.5">
-                    <Label htmlFor="session" className={!areInputsEnabled ? "text-slate-500" : ""}>
+                    <Label htmlFor="session" className={!areInputsEnabled ? "text-slate-400" : ""}>
                         Séance
                     </Label>
                     <Select disabled={!areInputsEnabled}>
