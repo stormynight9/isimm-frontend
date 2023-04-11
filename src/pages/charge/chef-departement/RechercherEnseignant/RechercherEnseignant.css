@@ -1,0 +1,33 @@
+.Rechercher-Enseignant{
+    display: block;
+    position: absolute;
+    top: 30%;
+    left: 60%;
+    right: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid #f1f5f9;
+    margin-top: 10%;
+    width:400px;
+    height:200px
+}
+.Rechercher-Enseignant .Label-Enseignant{
+   padding-top: 20px;
+   margin-top: 20px;
+   margin-bottom: 20px;
+   font-weight: bold;
+   font-size:18px;
+}
+.Rechercher-Enseignant .Input-Enseignant{
+    padding: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.Rechercher-Enseignant .Button-Enseignant{
+    position: absolute;
+    left: 30%;
+    right: 70%;
+    width: 150px;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}

@@ -13,6 +13,7 @@ import CreateCalendar from "./pages/surveillance/CreateCalendar"
 import SavedCalendars from "./pages/surveillance/SavedCalendars"
 import GestionDiplomes from "./pages/charge/chef-departement/GestionDiplomes/GestionDiplomes"
 import ConsultationVoeux from "./pages/charge/chef-departement/GestionVoeux/ConsultationVoeux"
+import RechercherEnseignant from "./pages/charge/chef-departement/RechercherEnseignant/RechercherEnseignant"
 import ConsultationEnseignant from "./pages/charge/chef-departement/ConsultationEnseignant/ConsultationEnseignant"
 import SoumettreVoeux from "./pages/charge/enseignant/SoumettreVoeux/SoumettreVoeux"
 import ProfileInformation from "./pages/charge/enseignant/ProfileInformation/ProfileInformation"
@@ -106,6 +107,10 @@ const router = createBrowserRouter(
                                 {
                                     path: "consultation-voeux",
                                     element: <ConsultationVoeux />,
+                                },
+                                {
+                                    path: "rechercher-enseignant",
+                                    element: <RechercherEnseignant />,
                                 },
                                 {
                                     path: "consultation-enseignant",
