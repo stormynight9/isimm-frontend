@@ -1,12 +1,12 @@
-.ConsultationVeuxContainner{
+.ConsultationVeuxContainner {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
-.FrameTitle{
-    display: flex ; 
+.FrameTitle {
+    display: flex;
 }
-.AccordationChargeContainner{
+.AccordationChargeContainner {
     display: flex;
     justify-content: center;
     padding-top: 20px;

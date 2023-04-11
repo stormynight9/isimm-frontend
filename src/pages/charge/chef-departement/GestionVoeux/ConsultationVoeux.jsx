@@ -1,4 +1,3 @@
-import React, { useMemo } from "react"
 import NavBar from "@/pages/charge/components/NavBar/NavBar"
 import AccordationCharge from "@/pages/charge/components/Accordation/Accordation"
 import "./ConsultationVoeux.css"
