@@ -1,0 +1,8 @@
+.pen{
+    display: flex;
+    flex-direction: row;
+}
+
+.BoutonEdit{
+  margin-left: 400px;  
+}

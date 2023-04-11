@@ -1,0 +1,32 @@
+.col{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.row{
+    display: flex;
+    flex-direction: row;
+    
+}
+
+
+
+
+.Consultation_Enseignant {
+    position: absolute;
+    width: 1000px;
+    height: 700px;
+    left: 300px;
+}
+
+.Avatar {
+    width: 70px;
+    height: 70px;
+}
+
+.tableau{
+    width: 1000px;
+}
+

@@ -3,11 +3,12 @@
     flex-direction: column;
     justify-content: center;
 }
-.FrameTitle {
-    display: flex;
+.FrameTitle{
+    display: flex ; 
 }
 .AccordationChargeContainner {
     display: flex;
     justify-content: center;
     padding-top: 20px;
+    gap: 15px;
 }

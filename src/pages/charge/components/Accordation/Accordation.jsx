@@ -22,6 +22,7 @@ function AccordationCharge() {
         getVoeux()
     }, [])
     return (
+<<<<<<< HEAD
         <div>
             {voeux.map((v, i) => {
                 return (
@@ -33,6 +34,23 @@ function AccordationCharge() {
                                 <p>
                                     <br />
                                     Description : {v.voeux.message}
+=======
+        <div className="Accordions">
+            {voeux.map((v, i) => {
+                return (
+                    <Accordion className="Accordion" type="single" collapsible>
+                        <AccordionItem value="item-1">
+                            <AccordionTrigger> Voeux d'enseignant : {v.enseignant.nom} </AccordionTrigger>
+                            <AccordionContent>
+                                <p>
+                                    <span className="bold">Matiere : </span>
+                                    {v.matiere.name}
+                                </p>
+                                <br />
+                                <p>
+                                    <span className="bold">Description : </span>
+                                    {v.voeux.message}
+>>>>>>> 69229e287e296b9665922b85b3455b81b3f72c05
                                 </p>
                                 <br />
                                 <div className="ButtonVoeuxContainner">

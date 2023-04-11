@@ -1,11 +1,16 @@
-import Table from "@/components/shared/Table"
 import React from "react"
-import { useMemo } from "react"
+import NavBar2 from "../../components/NavBar2/NavBar2"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
-import "./ConsultationEnseignant.css"
-import NavBar from "../../components/NavBar/NavBar"
+import Tab from "../../components/Tab/Tab"
+import "./ProfileInformation.css"
+import { useMemo } from "react"
+import Table from "@/components/shared/Table"
 
-const ConsultationEnseignant = () => {
+
+
+
+
+const ProfileInformation = () => {
     const columns = useMemo(
         () => [
             {
@@ -58,33 +63,30 @@ const ConsultationEnseignant = () => {
         ],
         []
     )
+    return <div className="form">
+                <NavBar2/>
 
-    return (
-        <div>
-            <NavBar/>
-            <div className="Consultation_Enseignant">
-                <h4 className="h4-Enseignant">Enseignant X</h4>
-                <div className="Enseignant_Avatar">
-                    <Avatar className="Avatar">
-                        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                <div className="col">
+                    <h1>Profile enseignant</h1>
+                    
+                    <div className="row">
+                    
+                        <Avatar className="Avatar">
+                        <AvatarImage src="https://github.com/shadcn.png" />
                         <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
-                    <h5 className="Enseignant_Account">Account</h5>
-                </div>
-                <div className="Enseignant_Coordonnees_Border">
-                    <div className="Enseignant_Coordonnees">
-                        <h6>Name</h6>
-                        <p>Pietro Scielhh</p>
-                        <h6>CIN</h6>
-                        <p>11156754</p>
-                        <h6>Rapport de charge horaire</h6>
-                        <p>18h</p>
+                        </Avatar>
+
+                        <Tab></Tab>
                     </div>
+                    
+                    <div className="tableau">
+                    <Table columns={columns} data={data} />
+                    </div>
+                    
                 </div>
-                <Table columns={columns} data={data} />
-            </div>
+
+             
         </div>
-    )
 }
 
-export default ConsultationEnseignant
+export default ProfileInformation
