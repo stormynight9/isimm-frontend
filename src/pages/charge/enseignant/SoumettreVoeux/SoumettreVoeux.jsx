@@ -3,8 +3,7 @@ import Table from "@/pages/charge/components/DiplomeTable"
 import "./SoumettreVoeux.css"
 import { ChevronRight } from "lucide-react"
 import ButtonVoeux from "@/pages/charge/components/ButtonVoeux.jsx"
-import { useGetSemestreQuery } from "@/redux/features/charge/DiplomeApiSlice"
-const SoumettreVoeux = () => {
+const SoumettreVoeux = (props) => {
     const columns = useMemo(
         () => [
             {
@@ -81,82 +80,38 @@ const SoumettreVoeux = () => {
         ],
         []
     )
-
-    const { data, error, isLoading } = useGetSemestreQuery()
-
-    const clickHandle = (matiereID, type) => {
-        console.log("Clicked ", matiereID, type)
-    }
-
+    const { semestre } = props
     return (
-        <Fragment>
-            {isLoading ? (
-                <h1>...Loading</h1>
-            ) : (
-                <div className="Diplome_Table">
-                    <div className="DiplomeTitle">
-                        <p>Diplome ING_INF </p> <ChevronRight /> <p>Semestre 5</p>
-                    </div>
+        <div className="Diplome_Table">
+            <div className="DiplomeTitle">
+                <p>Diplome ING_INF </p> <ChevronRight /> <p>Semestre 5</p>
+            </div>
 
-                    <Table
-                        columns={columns}
-                        data={data[0].unites.map((unite) => {
-                            return {
-                                ue: unite.codeUnite,
-                                unite: unite.name,
-                                modules: unite.matieres.map((matiere) => ({
-                                    ec: matiere.code,
-                                    module: matiere.name,
-                                    tot: matiere.nbHCr + matiere.nbHTd + matiere.nbHTp + matiere.nbHCri + matiere.nbHNp,
-                                    cr: matiere.nbHCr,
-                                    enseignant_cr: (
-                                        <ButtonVoeux
-                                            matiere={matiere}
-                                            matiereType="CR"
-                                            onClick={() => {
-                                                clickHandle(matiere.matiereId, "CR")
-                                            }}
-                                        />
-                                    ),
-                                    td: matiere.nbHTd,
-                                    enseignant_td: (
-                                        <ButtonVoeux
-                                            matiere={matiere}
-                                            matiereType="TD"
-                                            onClick={() => {
-                                                clickHandle(matiere.matiereId, "TD")
-                                            }}
-                                        />
-                                    ),
-                                    tp: matiere.nbHTp,
-                                    enseignant_tp: (
-                                        <ButtonVoeux
-                                            matiere={matiere}
-                                            matiereType="TP"
-                                            onClick={() => {
-                                                clickHandle(matiere.matiereId, "TP")
-                                            }}
-                                        />
-                                    ),
-                                    ci: matiere.nbHCri,
-                                    enseignant_ci: (
-                                        <ButtonVoeux
-                                            matiere={matiere}
-                                            matiereType="CI"
-                                            onClick={() => {
-                                                clickHandle(matiere.matiereId, "CI")
-                                            }}
-                                        />
-                                    ),
-                                    cc: matiere.regime.name === "RM" ? false : true,
-                                    rm: matiere.regime.name === "RM" ? true : false,
-                                })),
-                            }
-                        })}
-                    />
-                </div>
-            )}
-        </Fragment>
+            <Table
+                columns={columns}
+                data={semestre.unites.map((unite) => {
+                    return {
+                        ue: unite.codeUnite,
+                        unite: unite.name,
+                        modules: unite.matieres.map((matiere) => ({
+                            ec: matiere.code,
+                            module: matiere.name,
+                            tot: matiere.nbHCr + matiere.nbHTd + matiere.nbHTp + matiere.nbHCri + matiere.nbHNp,
+                            cr: matiere.nbHCr,
+                            enseignant_cr: <ButtonVoeux matiere={matiere} matiereType="CR" />,
+                            td: matiere.nbHTd,
+                            enseignant_td: <ButtonVoeux matiere={matiere} matiereType="TD" />,
+                            tp: matiere.nbHTp,
+                            enseignant_tp: <ButtonVoeux matiere={matiere} matiereType="TP" />,
+                            ci: matiere.nbHCri,
+                            enseignant_ci: <ButtonVoeux matiere={matiere} matiereType="CI" />,
+                            cc: matiere.regime.name === "RM" ? false : true,
+                            rm: matiere.regime.name === "RM" ? true : false,
+                        })),
+                    }
+                })}
+            />
+        </div>
     )
 }
 

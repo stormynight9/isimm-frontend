@@ -11,7 +11,7 @@ import Calendar from "./pages/surveillance/Calendar"
 import Complaints from "./pages/surveillance/Complaints"
 import CreateCalendar from "./pages/surveillance/CreateCalendar"
 import SavedCalendars from "./pages/surveillance/SavedCalendars"
-import GestionDiplomes from "./pages/charge/chef-departement/GestionDiplomes/GestionDiplomes"
+import ConsultationDiplome from "./pages/charge/chef-departement/GestionDiplomes/ConsultationDiplome/ConsultationDiplome"
 import ConsultationVoeux from "./pages/charge/chef-departement/GestionVoeux/ConsultationVoeux"
 import RechercherEnseignant from "./pages/charge/chef-departement/RechercherEnseignant/RechercherEnseignant"
 import ConsultationEnseignant from "./pages/charge/chef-departement/ConsultationEnseignant/ConsultationEnseignant"
@@ -19,6 +19,7 @@ import SoumettreVoeux from "./pages/charge/enseignant/SoumettreVoeux/SoumettreVo
 import ProfileInformation from "./pages/charge/enseignant/ProfileInformation/ProfileInformation"
 import ChargeNote from "./pages/notes/charge-note/ChargeNote"
 import ReclamationNote from "./pages/notes/reclamation/Reclamation"
+import DiplomePathing from "./pages/charge/chef-departement/GestionDiplomes/DiplomePathing/DiplomePathing"
 
 const router = createBrowserRouter(
     [
@@ -102,7 +103,7 @@ const router = createBrowserRouter(
                             children: [
                                 {
                                     path: "gestion-diplomes",
-                                    element: <GestionDiplomes />,
+                                    element: <DiplomePathing />,
                                 },
                                 {
                                     path: "consultation-voeux",
@@ -122,7 +123,7 @@ const router = createBrowserRouter(
                                 },
                                 {
                                     path: "soumettre-voeux",
-                                    element: <SoumettreVoeux />,
+                                    element: <DiplomePathing />,
                                 },
                             ],
                         },
