@@ -6,6 +6,7 @@ import Lesdemandes from "./pages/conge/admin/Lesdemandes"
 import Statistiques from "./pages/conge/admin/Statistiques"
 import ErrorPage from "./pages/ErrorPage"
 import Home from "./pages/Home"
+import Section from "./pages/notes/section/Section"
 import Calendar from "./pages/surveillance/Calendar"
 import Complaints from "./pages/surveillance/Complaints"
 import CreateCalendar from "./pages/surveillance/CreateCalendar"
@@ -15,11 +16,8 @@ import ConsultationVoeux from "./pages/charge/chef-departement/ConsultationVoeux
 import ConsultationEnseignant from "./pages/charge/chef-departement/ConsultationEnseignant"
 import SoumettreVoeux from "./pages/charge/enseignant/SoumettreVoeux"
 import ProfileInformation from "./pages/charge/enseignant/ProfileInformation"
-import path from "path"
-import DemandeProduit from "./pages/magasin/ensignant/DemandeProduit"
-import ConsulterDemandes from "./pages/magasin/ensignant/ConsulterDemandes"
-import AjouterProduit from "./pages/magasin/service/AjouterProduit"
-import ConsulterProduits from "./pages/magasin/service/ConsulterProduits"
+import ChargeNote from "./pages/notes/charge-note/ChargeNote"
+import ReclamationNote from "./pages/notes/reclamation/Reclamation"
 
 const router = createBrowserRouter(
     [
@@ -58,7 +56,28 @@ const router = createBrowserRouter(
                         },
                         {
                             path: "notes",
-                            children: [],
+                            children: [
+                                {
+                                    path: "section",
+                                    element: <Section />,
+                                },
+                                {
+                                    path: ":section/:td/:tp/:idMatiere",
+                                    element: <ChargeNote />,
+                                },
+                                {
+                                    path: ":section/:td/:idMatiere",
+                                    element: <ChargeNote />,
+                                },
+                                {
+                                    path: ":section/:idMatiere",
+                                    element: <ChargeNote />,
+                                },
+                                {
+                                    path: "reclamation",
+                                    element: <ReclamationNote />,
+                                },
+                            ],
                         },
                         {
                             path: "magasin",
@@ -69,29 +88,11 @@ const router = createBrowserRouter(
                                 },
                                 {
                                     path: "enseignant",
-                                    children: [
-                                        {
-                                            path: "Demande-Produit",
-                                            element: <DemandeProduit />,
-                                        },
-                                        {
-                                            path: "Consulter-demandes",
-                                            element: <ConsulterDemandes />,
-                                        },
-                                    ],
+                                    children: [],
                                 },
                                 {
                                     path: "service",
-                                    children: [
-                                        {
-                                            path: "Ajouter-produit(service)",
-                                            element: <AjouterProduit />,
-                                        },
-                                        {
-                                            path: "Consulter-produits",
-                                            element: <ConsulterProduits />,
-                                        },
-                                    ],
+                                    children: [],
                                 },
                             ],
                         },
