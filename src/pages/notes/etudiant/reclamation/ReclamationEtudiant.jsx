@@ -1,4 +1,4 @@
-import ReclamationTable from "./ReclamationTable"
+import ReclamationTable from "../components/ReclamationTable"
 import { Button } from "@/components/ui/Button"
 import { useEffect, useState } from "react"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/Dialog"

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import TableNoteSemester from "./TableNoteSemester"
 import jsPDF from "jspdf"
 import "jspdf-autotable"
+import { DownloadIcon } from "lucide-react"
 import { Button } from "@/components/ui/Button"
 
 const TableAfficheNote = (props) => {
@@ -10,39 +11,36 @@ const TableAfficheNote = (props) => {
     const [data, setData] = useState([])
 
     useEffect(() => {
-        const chargeSections = async () => {
-            try {
-                if (!sem) {
-                    return
-                }
-
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EtudiantMoyenne/notes/${idEtd}/${sem}`, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                })
-
-                if (!response.ok) {
-                    throw new Error(response.statusText)
-                }
-
-                const json = await response.json()
-                console.log("Data type:", typeof data)
-                setData(json)
-                setLoading(false)
-            } catch (error) {
-                console.error(error)
-            }
-        }
-
         chargeSections()
     }, [sem])
+    const chargeSections = async () => {
+        try {
+            if (!sem) {
+                return
+            }
 
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/chargeNote/EtudiantMoyenne/notes/${idEtd}/${sem}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+
+            if (!response.ok) {
+                throw new Error(response.statusText)
+            }
+
+            const json = await response.json()
+            setData(json)
+            setLoading(false)
+        } catch (error) {
+            console.error(error)
+        }
+    }
     const generatePDF = async () => {
         const doc = new jsPDF()
         const tableColumn = ["UE", "Unité", "EC", "Module", "TP", "ORAL", "DS", "EXAM", "Moyenne"]
-        const tableRows = data.map((item) => [item.code_unite, item.unite_name, item.id_matiere, item.matiere, item.TP, item.ORAL, item.DS, item.EXAM, item.moyenne])
+        const tableRows = data.map((item) => [item.code_unite, item.unite_name, item.id_matiere, item.matiere, item.TP === "null" ? "-" : item.TP === "NA" ? "/" : item.TP, item.ORAL === "null" ? "-" : item.ORAL === "NA" ? "/" : item.ORAL, item.DS === "null" ? "-" : item.DS === "NA" ? "/" : item.DS, item.EXAM === "null" ? "-" : item.EXAM === "NA" ? "/" : item.EXAM, item.moyenne])
 
         // set font family and font size
         doc.setFont("Helvetica", "normal")
@@ -64,7 +62,7 @@ const TableAfficheNote = (props) => {
 
         doc.setFontSize(24)
         doc.setTextColor(73, 79, 95)
-        doc.text("Bulletin", doc.internal.pageSize.width / 2, 20, { align: "center" })
+        doc.text("RELEVE DE NOTES", doc.internal.pageSize.width / 2, 20, { align: "center" })
 
         // set font size for student information
         doc.setFontSize(12)
@@ -80,20 +78,22 @@ const TableAfficheNote = (props) => {
         doc.text(`Filiere: ${studentJson[0].filiere}`, 125, 50)
         doc.text(`Niveau: ${studentJson[0].niveau}`, 125, 60)
 
-        // add table header to PDF
         doc.setDrawColor(226, 226, 226)
         doc.setFontSize(14)
+
+        // Combine the header row and body rows into a single array
+        const tableData = [tableColumn, ...tableRows]
+
         doc.autoTable({
-            head: [tableColumn],
-            body: [],
+            body: tableData,
             startY: 80,
             headStyles: {
                 fillColor: [232, 232, 232],
                 textColor: [38, 38, 38],
-                fontStyle: "bold",
+                fontWeight: "bold",
             },
             bodyStyles: {
-                cellPadding: { top: 10, bottom: 10 },
+                cellPadding: { top: 4, bottom: 4, left: 1, right: 1 },
             },
             willDrawCell: function (data) {
                 // Set padding for cells in the body of the table
@@ -101,25 +101,16 @@ const TableAfficheNote = (props) => {
                     data.cell.styles.cellPadding = 8
                 }
             },
-        })
-
-        // set font size and styling for table rows
-        doc.setFontSize(12)
-        doc.autoTable({
-            startY: doc.autoTable.previous.finalY,
-            head: [],
-            body: tableRows,
-            theme: "striped",
             columnStyles: {
-                0: { cellWidth: 10 },
-                1: { cellWidth: 40 },
-                2: { cellWidth: 28 },
-                3: { cellWidth: 30 },
-                4: { cellWidth: 15 },
-                5: { cellWidth: 15 },
-                6: { cellWidth: 15 },
-                7: { cellWidth: 15 },
-                8: { cellWidth: 15 },
+                0: { cellWidth: "auto" },
+                1: { cellWidth: 50 },
+                2: { cellWidth: "auto" },
+                3: { cellWidth: 50 },
+                4: { cellWidth: "auto" },
+                5: { cellWidth: "auto" },
+                6: { cellWidth: "auto" },
+                7: { cellWidth: "auto" },
+                8: { cellWidth: "auto" },
             },
             styles: {
                 cellPadding: 2,
@@ -147,7 +138,7 @@ const TableAfficheNote = (props) => {
             doc.text(`Page ${i} of ${pageCount}`, 15, doc.internal.pageSize.height - 10)
         }
 
-        doc.save("my_document.pdf")
+        doc.save(`ReleveDeNote_${studentJson[0].nom}.pdf`)
     }
 
     const columns = [
@@ -169,13 +160,14 @@ const TableAfficheNote = (props) => {
             ) : (
                 <>
                     {data.length === 0 ? (
-                        <p className=" mt-56 flex items-center justify-center text-center text-lg">There is nothing to display</p>
+                        <p className=" mt-56 flex items-center justify-center text-center text-lg">Il n'y a rien à afficher</p>
                     ) : (
                         <>
-                            <TableNoteSemester columns={columns} data={data} />
                             <Button className="mt-4" onClick={generatePDF}>
-                                Download PDF
+                                Telecharger PDF
+                                <DownloadIcon className="w-[20px] pl-[5px]" />
                             </Button>
+                            <TableNoteSemester columns={columns} data={data} />
                         </>
                     )}
                 </>

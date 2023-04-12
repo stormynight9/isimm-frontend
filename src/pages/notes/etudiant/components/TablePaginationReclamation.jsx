@@ -12,7 +12,7 @@ const TablePagination = ({ columns, data, dialogVisible }) => {
         {
             columns,
             data,
-            initialState: { pageIndex: 0, pageSize: 10 },
+            initialState: { pageIndex: pageIndex, pageSize: 10 },
         },
         usePagination
     )

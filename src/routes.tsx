@@ -6,7 +6,7 @@ import Lesdemandes from "./pages/conge/admin/Lesdemandes"
 import Statistiques from "./pages/conge/admin/Statistiques"
 import ErrorPage from "./pages/ErrorPage"
 import Home from "./pages/Home"
-import Section from "./pages/notes/section/Section"
+import Section from "./pages/notes/enseignant/section/Section"
 import Calendar from "./pages/surveillance/Calendar"
 import Complaints from "./pages/surveillance/Complaints"
 import CreateCalendar from "./pages/surveillance/CreateCalendar"
@@ -16,10 +16,10 @@ import ConsultationVoeux from "./pages/charge/chef-departement/ConsultationVoeux
 import ConsultationEnseignant from "./pages/charge/chef-departement/ConsultationEnseignant"
 import SoumettreVoeux from "./pages/charge/enseignant/SoumettreVoeux"
 import ProfileInformation from "./pages/charge/enseignant/ProfileInformation"
-import ChargeNote from "./pages/notes/charge-note/ChargeNote"
-import ReclamationNote from "./pages/notes/reclamation/ReclamationEtudiant"
-import Semester from "./pages/notes/semester/Semester"
-import ReclamationEnseignant from "./pages/notes/reclamation/ReclamationEnseignant"
+import ChargeNote from "./pages/notes/enseignant/charge-note/ChargeNote"
+import ReclamationNote from "./pages/notes/etudiant/reclamation/ReclamationEtudiant"
+import Semester from "./pages/notes/etudiant/semester/Semester"
+import ReclamationEnseignant from "./pages/notes/enseignant/reclamation/ReclamationEnseignant"
 
 const router = createBrowserRouter(
     [

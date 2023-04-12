@@ -92,11 +92,11 @@ const Section = () => {
                     </Select>
                 </div>
                 <div className="sections ">
-                    <Tabs className="rounded-3xl bg-gray-200 ">
+                    <Tabs className="rounded-2xl bg-slate-100 ">
                         {sections.map((section, index) => (
-                            <TabsList key={index} className="rounded-3xl bg-gray-200">
+                            <TabsList key={index} className="rounded-2xl bg-slate-100">
                                 <TabsTrigger
-                                    className={selectedSection === section ? "rounded-3xl bg-white" : "rounded-3xl hover:bg-slate-300"}
+                                    className={selectedSection === section ? "rounded-2xl bg-white" : "rounded-2xl hover:bg-slate-300"}
                                     onClick={() => {
                                         handleSectionSelect(section)
                                     }}
