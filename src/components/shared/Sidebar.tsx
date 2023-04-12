@@ -111,21 +111,6 @@ const Sidebar = ({ isCollapsed, CollapseSidebar }: SidebarProps) => {
                                 <Separator />
                                 {/* Magasin */}
                                 <SubMenu label="Magasin" icon={<ShoppingCartIcon size={20} strokeWidth={2.4} />} className="rounded-full text-sm font-semibold text-slate-700">
-                                    {/* Enseigant & Service => /enseigant/esm-route & /service/esm-route */}
-                                    <MenuItem icon={<CalendarSearchIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
-                                        Consulter demandes
-                                    </MenuItem>
-                                    <MenuItem icon={<ClipboardCheckIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
-                                        Ajouter produit (service)
-                                    </MenuItem>
-                                    <MenuItem icon={<PlusCircleIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
-                                        Demande produit
-                                    </MenuItem>
-                                    <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
-                                        Consulter produit
-                                    </MenuItem>
-                                    {/* Enseigant & Service */}
-                                    <Separator />
                                     {/* magasinier => /magasin/magasinier/esm-route */}
                                     <MenuItem icon={<CalendarSearchIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
                                         Demandes
@@ -140,6 +125,26 @@ const Sidebar = ({ isCollapsed, CollapseSidebar }: SidebarProps) => {
                                         Fournisseurs
                                     </MenuItem>
                                     {/* magasinier */}
+                                </SubMenu>
+                                {/* Magasin */}
+                                <Separator />
+                                {/* Service */}
+                                <SubMenu label="Service" icon={<ShoppingCartIcon size={20} strokeWidth={2.4} />} className="rounded-full text-sm font-semibold text-slate-700">
+                                    {/* Enseigant & Service => /enseigant/esm-route & /service/esm-route */}
+                                    <MenuItem icon={<CalendarSearchIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                                        Consulter demandes
+                                    </MenuItem>
+                                    <MenuItem icon={<ClipboardCheckIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                                        Ajouter produit
+                                    </MenuItem>
+                                    <MenuItem icon={<PlusCircleIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                                        Demande produit
+                                    </MenuItem>
+                                    <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                                        Consulter produit
+                                    </MenuItem>
+                                    {/* Enseigant & Service */}
+                                    {/* Service */}
                                 </SubMenu>
                                 {/* Magasin */}
                                 <Separator />
