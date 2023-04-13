@@ -18,6 +18,10 @@ import SoumettreVoeux from "./pages/charge/enseignant/SoumettreVoeux"
 import ProfileInformation from "./pages/charge/enseignant/ProfileInformation"
 import ChargeNote from "./pages/notes/charge-note/ChargeNote"
 import ReclamationNote from "./pages/notes/reclamation/Reclamation"
+import DemandeProduit from "./pages/magasin/ensignant/DemandeProduit"
+import ConsulterDemandes from "./pages/magasin/ensignant/ConsulterDemandes"
+import AjouterProduit from "./pages/magasin/service/AjouterProduit"
+import ConsulterProduits from "./pages/magasin/service/ConsulterProduits"
 
 const router = createBrowserRouter(
     [
@@ -88,11 +92,29 @@ const router = createBrowserRouter(
                                 },
                                 {
                                     path: "enseignant",
-                                    children: [],
+                                    children: [
+                                        {
+                                            path: "Demande-Produit",
+                                            element: <DemandeProduit />,
+                                        },
+                                        {
+                                            path: "Consulter-demandes",
+                                            element: <ConsulterDemandes />,
+                                        },
+                                    ],
                                 },
                                 {
                                     path: "service",
-                                    children: [],
+                                    children: [
+                                        {
+                                            path: "Ajouter-produit",
+                                            element: <AjouterProduit />,
+                                        },
+                                        {
+                                            path: "Consulter-produits",
+                                            element: <ConsulterProduits />,
+                                        },
+                                    ],
                                 },
                             ],
                         },
