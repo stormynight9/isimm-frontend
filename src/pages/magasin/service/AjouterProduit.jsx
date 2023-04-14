@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/Label"
 
 const AjouterProduit = () => {
     return (
-        <div style={{ margin: "150px" }}>
+        <div style={{ margin: "120px" }}>
             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">Ajouter produit au service</h1>
             <h2 className="mt-10 scroll-m-20 border-b border-b-slate-200 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 dark:border-b-slate-700">Ici, vous pouvez demander un produit du magasin de l'université</h2>
             <div className="font max-w-md scroll-m-20 text-4xl">
@@ -16,7 +16,7 @@ const AjouterProduit = () => {
                 <Label>Commentaires</Label>
                 <Textarea placeholder="Votre commentaire ici" />
 
-                <Button>Demander produit</Button>
+                <Button>Ajouter produit</Button>
             </div>
         </div>
     )
