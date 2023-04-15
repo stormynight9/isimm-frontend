@@ -2,9 +2,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
 import { Button } from "@/components/ui/Button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/DropdownMenu"
 import { Separator } from "@/components/ui/Separator"
-import { useWindowSize, Size } from "@/hooks/useWindowSize"
+import { Size, useWindowSize } from "@/hooks/useWindowSize"
 import { cn } from "@/lib/utils"
-import { ArrowLeftIcon, ArrowRightIcon, BarChart3Icon, BinaryIcon, BoxIcon, CalendarCheckIcon, CalendarDaysIcon, CalendarIcon, CalendarSearchIcon, ChevronDownIcon, ClipboardCheckIcon, ClipboardIcon, ClipboardListIcon, FilePlus2Icon, FileSpreadsheetIcon, LogOutIcon, MailQuestionIcon, MenuIcon, MessageCircleIcon, MessageSquareIcon, PalmtreeIcon, PlusCircleIcon, SaveIcon, SearchIcon, SettingsIcon, SheetIcon, ShoppingCartIcon, UserIcon } from "lucide-react"
+import { ArrowLeftIcon, ArrowRightIcon, BarChart3Icon, BinaryIcon, BoxIcon, CalendarCheckIcon, CalendarDaysIcon, CalendarIcon, CalendarSearchIcon, ChevronDownIcon, ClipboardCheckIcon, ClipboardIcon, ClipboardListIcon, FilePlus2Icon, FileSpreadsheetIcon, LogOutIcon, MailQuestionIcon, MenuIcon, MessageCircleIcon, MessageSquareIcon, PackageSearchIcon, PalmtreeIcon, PlusCircleIcon, SaveIcon, SearchIcon, SettingsIcon, SheetIcon, ShoppingCartIcon, UserIcon } from "lucide-react"
 import { useEffect } from "react"
 import { createPortal } from "react-dom"
 import { Menu, MenuItem, Sidebar as RPSidebar, SubMenu, useProSidebar } from "react-pro-sidebar"
@@ -129,7 +129,7 @@ const Sidebar = ({ isCollapsed, CollapseSidebar }: SidebarProps) => {
                                 {/* Magasin */}
                                 <Separator />
                                 {/* Service */}
-                                <SubMenu label="Service" icon={<ShoppingCartIcon size={20} strokeWidth={2.4} />} className="rounded-full text-sm font-semibold text-slate-700">
+                                <SubMenu label="Service" icon={<PackageSearchIcon size={20} strokeWidth={2.4} />} className="rounded-full text-sm font-semibold text-slate-700">
                                     {/* Enseigant & Service => /enseigant/esm-route & /service/esm-route */}
                                     <MenuItem icon={<CalendarSearchIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/enseignant/Consulter-demandes"} />}>
                                         Consulter demandes
