@@ -12,17 +12,15 @@ const DiplomePathing = () => {
     const [selectedNiveau, setSelectedNiveau] = useState(null)
     const [selectedSemestre, setSelectedSemestre] = useState(null)
     const location = useLocation()
-    console.log(location.pathname.split("/"))
     useEffect(() => {
         const getDiplomes = async () => {
-            const response = await fetch(import.meta.env.VITE_API_URL + "/diplome", {
+            const response = await fetch("http://localhost:8090/api/isimm/distributionCharge/diplome", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
                 },
             })
             const responseJson = await response.json()
-            console.log(responseJson)
             setDiplomes(responseJson)
         }
         getDiplomes()
@@ -31,7 +29,6 @@ const DiplomePathing = () => {
     const handleDiplomeSelect = (eventValue) => {
         const selectedDiplomeId = eventValue
         const selectedDiplome = diplomes.find((diplome) => diplome.diplomeId == selectedDiplomeId)
-        console.log("selected", selectedDiplome)
         setSelectedDiplome(selectedDiplome)
         setSelectedSection(null)
         setSelectedNiveau(null)

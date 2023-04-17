@@ -1,17 +1,31 @@
-import React from "react"
+import React, { Fragment } from "react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select"
-const SelectEnseignant = () => {
+import { useGetMatiereQuery } from "@/redux/features/charge/MatiereApiSlice"
+const SelectEnseignant = ({ matiereId, type }) => {
+    const { data, isLoading } = useGetMatiereQuery(matiereId)
     return (
-        <Select>
-            <SelectTrigger>
-                <SelectValue placeholder="Enseignat" />
-            </SelectTrigger>
-            <SelectContent>
-                <SelectItem value="Manel Sekma">Manel Sekma</SelectItem>
-                <SelectItem value="Mohamed Graiet">Mohamed Graiet</SelectItem>
-                <SelectItem value="Imed Abbassi">Imed Abbassi</SelectItem>
-            </SelectContent>
-        </Select>
+        <Fragment>
+            {isLoading ? (
+                <h1>...Loading</h1>
+            ) : (
+                <Select>
+                    <SelectTrigger>
+                        <SelectValue placeholder="Enseignat" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        {data.enseignantVoeux.map((enseignantV, index) => {
+                            return (
+                                enseignantV.type == type && (
+                                    <SelectItem key={index} value={enseignantV.enseignantVoeuxId}>
+                                        {enseignantV.enseignant.nom + " " + enseignantV.enseignant.prenom}
+                                    </SelectItem>
+                                )
+                            )
+                        })}
+                    </SelectContent>
+                </Select>
+            )}
+        </Fragment>
     )
 }
 
