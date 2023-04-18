@@ -2,7 +2,7 @@ import React, { useMemo, Fragment } from "react"
 import Table from "@/pages/charge/components/DiplomeTable"
 import "./ConsultationDiplome.css"
 
-import SelectEnseignant from "../../../components/SelectEnseignant"
+import SelectEnseignant from "../../../components/SelectEnseignant/SelectEnseignant"
 const ConsultationDiplome = (props) => {
     const columns = useMemo(
         () => [
