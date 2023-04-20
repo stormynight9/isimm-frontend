@@ -11,6 +11,7 @@ import "./ButtonVoeux.css"
 const ButtonVoeux = (props) => {
     const [isVoeuxDialogVisible, setVoeuxDialogVisible] = useState(false)
     const [voeuxMsg, setVoeuxMsg] = useState("")
+    const [disabled, setDisabled] = useState(false)
     const { matiere, matiereType } = props
     const navigate = useNavigate()
     const { toast } = useToast()
@@ -56,14 +57,15 @@ const ButtonVoeux = (props) => {
             if (response.ok) {
                 setVoeuxDialogVisible(!isVoeuxDialogVisible)
                 showToast("Voeux Sent Successfully")
-                navigate(0)
+                setDisabled(true)
+                // navigate(0)
             }
         }
     }
     return (
         <Dialog className="z-[101]">
             <DialogTrigger asChild>
-                <Button {...props} variant="default" onClick={handleClick}>
+                <Button disabled={disabled} {...props} variant="default" onClick={handleClick}>
                     Voeux
                 </Button>
             </DialogTrigger>
