@@ -1,5 +1,7 @@
 import Table from "@/components/shared/Table"
 import React from "react"
+import qs from "qs";
+import { useLocation } from "react-router-dom";
 import { useMemo } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
 import "./ConsultationEnseignant.css"
@@ -57,6 +59,11 @@ const ConsultationEnseignant = () => {
         ],
         []
     )
+    const id=localStorage.getItem("id")
+    const nom=localStorage.getItem("nom")
+    const prenom=localStorage.getItem("prenom")
+    const cin=localStorage.getItem("cin")
+    const nombreHeures=localStorage.getItem("nombreHeures")
 
     return (
         <div className="Consultation_Enseignant_Container">
@@ -73,11 +80,11 @@ const ConsultationEnseignant = () => {
             <div className="Enseignant_CoordonneesContainer" >
                 <div className="Enseignant_Coordonnees">
                         <h6>Name</h6>
-                        <p>Pietro Scielhh</p>
+                        <p>{nom} {prenom}</p>
                         <h6>CIN</h6>
-                        <p>11156754</p>
+                        <p>{cin}</p>
                         <h6>Rapport de charge horaire</h6>
-                        <p>18h</p>
+                        <p>{nombreHeures}</p>
                 </div>
             </div>
                 <Table columns={columns} data={data} />
