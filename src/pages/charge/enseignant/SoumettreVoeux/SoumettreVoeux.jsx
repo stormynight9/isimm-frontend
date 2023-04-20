@@ -2,7 +2,7 @@ import React, { useMemo, Fragment } from "react"
 import Table from "@/pages/charge/components/DiplomeTable"
 import "./SoumettreVoeux.css"
 import { ChevronRight } from "lucide-react"
-import ButtonVoeux from "@/pages/charge/components/ButtonVoeux.jsx"
+import ButtonVoeux from "@/pages/charge/components/ButtonVoeux/ButtonVoeux.jsx"
 const SoumettreVoeux = (props) => {
     const columns = useMemo(
         () => [
