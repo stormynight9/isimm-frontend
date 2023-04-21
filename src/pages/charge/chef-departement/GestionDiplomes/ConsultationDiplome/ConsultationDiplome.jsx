@@ -82,7 +82,7 @@ const ConsultationDiplome = (props) => {
     )
     const { semestre } = props
     return (
-        <div className="Diplome_Table">
+        <div className="Diplome_Table" id="TableCnt">
             <div className="Table">
                 <Table
                     columns={columns}
@@ -95,13 +95,13 @@ const ConsultationDiplome = (props) => {
                                 module: matiere.name,
                                 tot: matiere.nbHCr + matiere.nbHTd + matiere.nbHTp + matiere.nbHCri + matiere.nbHNp,
                                 cr: matiere.nbHCr,
-                                enseignant_cr: <SelectEnseignant matiereId={matiere.matiereId} type="CR"/>,
+                                enseignant_cr: <SelectEnseignant matiereId={matiere.matiereId} type="CR" />,
                                 td: matiere.nbHTd,
-                                enseignant_td: <SelectEnseignant matiereId={matiere.matiereId} type="TD"/>,
+                                enseignant_td: <SelectEnseignant matiereId={matiere.matiereId} type="TD" />,
                                 tp: matiere.nbHTp,
-                                enseignant_tp: <SelectEnseignant matiereId={matiere.matiereId} type="TP"/>,
+                                enseignant_tp: <SelectEnseignant matiereId={matiere.matiereId} type="TP" />,
                                 ci: matiere.nbHCri,
-                                enseignant_ci: <SelectEnseignant matiereId={matiere.matiereId} type="CI"/>,
+                                enseignant_ci: <SelectEnseignant matiereId={matiere.matiereId} type="CI" />,
                                 cc: matiere.regime.name === "RM" ? false : true,
                                 rm: matiere.regime.name === "RM" ? true : false,
                             })),

@@ -4,6 +4,7 @@ import SoumettreVoeux from "@/pages/charge/enseignant/SoumettreVoeux/SoumettreVo
 import { ChevronRight } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select"
 import { useLocation } from "react-router-dom"
+import JoyRide from "react-joyride"
 import "./DiplomePathing.css"
 const DiplomePathing = () => {
     const [diplomes, setDiplomes] = useState([])
@@ -55,11 +56,42 @@ const DiplomePathing = () => {
         const selectedSemestre = selectedNiveau.semestres.find((semestre) => semestre.semestreId == selectedSemestreId)
         setSelectedSemestre(selectedSemestre)
     }
-
+    const steps = [
+        {
+            title: "Select Diplome",
+            content: "Choose The Diploma you want to consult",
+            target: "#SelectDiplome",
+            placement: "bottom-end",
+        },
+        {
+            title: "Select Section",
+            content: "Choose The Section of The Diploma you want to consult",
+            target: "#SelectSection",
+            placement: "left-start",
+        },
+        {
+            title: "Select Niveau",
+            content: "Choose The Niveau of The Diploma you want to consult",
+            target: "#SelectNiveau",
+            placement: "left-start",
+        },
+        {
+            title: "Select Semestre",
+            content: "Finally Choose a Semestre",
+            target: "#SelectSemestre",
+            placement: "bottom-end",
+        },
+        {
+            title: "Plan d'etude",
+            content: location.pathname.split("/")[2] === "soumettre-voeux" ? "Now you can consult the chosen plan d'etude and submit a voeux for the subject you want to teach" : "Now you can consult the chosen plan d'etude and modify/assign professors to each subject",
+            target: "#TableCnt",
+            placement: "top-start",
+        },
+    ]
     return (
         <div className="DiplomePathing">
             <div className="SelectRow">
-                <div className="SelectRow">
+                <div className="SelectRow" id="SelectDiplome">
                     <Select
                         onValueChange={(selectedOption) => {
                             handleDiplomeSelect(selectedOption.valueOf())
@@ -81,7 +113,7 @@ const DiplomePathing = () => {
                 </div>
 
                 {selectedDiplome && (
-                    <div className="SelectRow">
+                    <div className="SelectRow" id="SelectSection">
                         <Select
                             onValueChange={(selectedOption) => {
                                 handleSectionSelect(selectedOption.valueOf())
@@ -100,7 +132,7 @@ const DiplomePathing = () => {
                         </Select>
                         <ChevronRight size={48} />
                         {selectedSection && (
-                            <div className="SelectRow">
+                            <div className="SelectRow" id="SelectNiveau">
                                 <Select
                                     onValueChange={(selectedOption) => {
                                         handleNiveauSelect(selectedOption.valueOf())
@@ -119,7 +151,7 @@ const DiplomePathing = () => {
                                 </Select>
                                 <ChevronRight size={48} />
                                 {selectedNiveau && (
-                                    <div className="SelectRow">
+                                    <div className="SelectRow" id="SelectSemestre">
                                         <Select
                                             onValueChange={(selectedOption) => {
                                                 handleSemestreSelect(selectedOption.valueOf())
@@ -143,7 +175,12 @@ const DiplomePathing = () => {
                     </div>
                 )}
             </div>
-            {selectedSemestre && <div>{location.pathname.split("/")[2] === "soumettre-voeux" ? <SoumettreVoeux semestre={selectedSemestre} /> : <ConsultationDiplome semestre={selectedSemestre} />}</div>}
+            {selectedSemestre && (
+                <div>
+                    <JoyRide continuous hideCloseButton scrollToFirstStep showProgress showSkipButton steps={steps} />
+                    {location.pathname.split("/")[2] === "soumettre-voeux" ? <SoumettreVoeux semestre={selectedSemestre} /> : <ConsultationDiplome semestre={selectedSemestre} />}
+                </div>
+            )}
         </div>
     )
 }

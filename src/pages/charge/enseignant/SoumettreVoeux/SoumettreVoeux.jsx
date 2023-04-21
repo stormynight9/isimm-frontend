@@ -82,7 +82,7 @@ const SoumettreVoeux = (props) => {
     )
     const { semestre } = props
     return (
-        <div className="Diplome_Table">
+        <div className="Diplome_Table" id="TableCnt">
             <div className="DiplomeTitle">
                 <p>Diplome ING_INF </p> <ChevronRight /> <p>Semestre 5</p>
             </div>
