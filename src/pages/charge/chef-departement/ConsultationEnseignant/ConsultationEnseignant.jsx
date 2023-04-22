@@ -1,5 +1,5 @@
 import Table from "@/components/shared/Table"
-import React , { useState, useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { useMemo } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
 import { useSelector } from "react-redux"
@@ -7,7 +7,7 @@ import "./ConsultationEnseignant.css"
 
 const ConsultationEnseignant = () => {
     const { enseignantId, cin, nom, prenom, nombreHeures } = useSelector((state) => state.ConsultingEnseignant)
-    const [matieres, setMatieres] = useState([])
+    const [enseignantMatieres, setEnseignantMatieres] = useState([])
     const columns = useMemo(
         () => [
             {
@@ -70,11 +70,12 @@ const ConsultationEnseignant = () => {
                 },
             })
             const responseJson = await response.json()
-            setMatieres(responseJson)
+            console.log(responseJson)
+            //calculate nombreHeures
+            setEnseignantMatieres(responseJson)
         }
         getMatieres()
     }, [])
-
 
     return (
         <div className="Consultation_Enseignant_Container">
@@ -100,7 +101,18 @@ const ConsultationEnseignant = () => {
                     <p>{nombreHeures}</p>
                 </div>
             </div>
-            <Table columns={columns} data={data} />
+            <Table
+                columns={columns}
+                data={enseignantMatieres.map((ensMat) => {
+                    return {
+                        Matter: ensMat.matiere.name,
+                        TP: ensMat.matiere.nbHTp,
+                        TD: ensMat.matiere.nbHTd,
+                        Cours: ensMat.matiere.nbHCr,
+                        HourlyLoad: ensMat.matiere.nbHTp + ensMat.matiere.nbHTd + ensMat.matiere.nbHCr,
+                    }
+                })}
+            />
         </div>
     )
 }
