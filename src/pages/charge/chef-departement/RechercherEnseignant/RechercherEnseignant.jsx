@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 import axios from "axios"
 import "./RechercherEnseignant.css"
 import { Button } from "@/components/ui/Button"
@@ -12,7 +12,6 @@ import { useToast } from "@/hooks/useToast"
 import JoyRide from "react-joyride"
 const RechercherEnseignant = () => {
     const [inputValue, setInputValue] = useState("")
-    const [Enseignant, setEnseignant] = useState("")
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { toast } = useToast()
