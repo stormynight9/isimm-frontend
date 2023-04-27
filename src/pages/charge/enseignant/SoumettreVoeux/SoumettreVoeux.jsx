@@ -2,7 +2,7 @@ import React, { useMemo, Fragment } from "react"
 import Table from "@/pages/charge/components/DiplomeTable"
 import "./SoumettreVoeux.css"
 import { ChevronRight } from "lucide-react"
-import ButtonVoeux from "@/pages/charge/components/ButtonVoeux.jsx"
+import ButtonVoeux from "@/pages/charge/components/ButtonVoeux/ButtonVoeux.jsx"
 const SoumettreVoeux = (props) => {
     const columns = useMemo(
         () => [
@@ -82,7 +82,7 @@ const SoumettreVoeux = (props) => {
     )
     const { semestre } = props
     return (
-        <div className="Diplome_Table">
+        <div className="Diplome_Table" id="TableCnt">
             <div className="DiplomeTitle">
                 <p>Diplome ING_INF </p> <ChevronRight /> <p>Semestre 5</p>
             </div>
