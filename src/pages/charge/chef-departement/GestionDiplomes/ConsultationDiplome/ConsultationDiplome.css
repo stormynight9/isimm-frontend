@@ -27,3 +27,6 @@ td {
     border-right: 1px solid black;
     text-align: center;
 }
+.Diplome_Table .Table {
+    display: flex;
+}

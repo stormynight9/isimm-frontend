@@ -1,8 +1,12 @@
-.pen{
+.pen {
     display: flex;
     flex-direction: row;
 }
-
-.BoutonEdit{
-  margin-left: 400px;  
+.button {
+    flex-direction: row-reverse;
+}
+.TabsContent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }

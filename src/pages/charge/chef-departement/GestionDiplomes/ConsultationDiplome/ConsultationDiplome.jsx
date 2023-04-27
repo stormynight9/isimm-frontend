@@ -1,9 +1,9 @@
-import React, { useMemo, useEffect, useState } from "react"
+import React, { useMemo, Fragment } from "react"
 import Table from "@/pages/charge/components/DiplomeTable"
-import "./GestionDiplomes.css"
-import { ChevronRight } from "lucide-react"
-import SelectEnseignant from "../../components/SelectEnseignant"
-const GestionDiplomes = () => {
+import "./ConsultationDiplome.css"
+
+import SelectEnseignant from "../../../components/SelectEnseignant"
+const ConsultationDiplome = (props) => {
     const columns = useMemo(
         () => [
             {
@@ -80,57 +80,38 @@ const GestionDiplomes = () => {
         ],
         []
     )
-    const [uniteArray, setUniteArray] = useState([])
-    const [semstre, setSemestre] = useState("")
 
-    useEffect(() => {
-        const getSemestre = async () => {
-            const response = await fetch("http://localhost:8090/api/isimm/distributionCharge/semestre", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            })
-            const responseJson = await response.json()
-
-            const uniteArrayFunc = []
-
-            responseJson[0].unites.forEach((unite) => {
-                uniteArrayFunc.push({
-                    ue: unite.codeUnite,
-                    unite: unite.name,
-                    modules: unite.matieres.map((matiere) => ({
-                        ec: matiere.code,
-                        module: matiere.name,
-                        tot: matiere.nbHCr + matiere.nbHTd + matiere.nbHTp + matiere.nbHCri + matiere.nbHNp,
-                        cr: matiere.nbHCr,
-                        enseignant_cr: <SelectEnseignant />,
-                        td: matiere.nbHTd,
-                        enseignant_td: <SelectEnseignant />,
-                        tp: matiere.nbHTp,
-                        enseignant_tp: <SelectEnseignant />,
-                        ci: matiere.nbHCri,
-                        enseignant_ci: <SelectEnseignant />,
-                        cc: matiere.regime.name === "RM" ? false : true,
-                        rm: matiere.regime.name === "RM" ? true : false,
-                    })),
-                })
-            })
-
-            setUniteArray(uniteArrayFunc)
-            setSemestre(responseJson[0].name)
-        }
-        getSemestre()
-    }, [])
+    const { semestre } = props
     return (
         <div className="Diplome_Table">
-            <div className="DiplomeTitle">
-                <p>Diplome ING_INF </p> <ChevronRight /> <p>{semstre}</p>
+            <div className="Table">
+                <Table
+                    columns={columns}
+                    data={semestre.unites.map((unite) => {
+                        return {
+                            ue: unite.codeUnite,
+                            unite: unite.name,
+                            modules: unite.matieres.map((matiere) => ({
+                                ec: matiere.code,
+                                module: matiere.name,
+                                tot: matiere.nbHCr + matiere.nbHTd + matiere.nbHTp + matiere.nbHCri + matiere.nbHNp,
+                                cr: matiere.nbHCr,
+                                enseignant_cr: <SelectEnseignant />,
+                                td: matiere.nbHTd,
+                                enseignant_td: <SelectEnseignant />,
+                                tp: matiere.nbHTp,
+                                enseignant_tp: <SelectEnseignant />,
+                                ci: matiere.nbHCri,
+                                enseignant_ci: <SelectEnseignant />,
+                                cc: matiere.regime.name === "RM" ? false : true,
+                                rm: matiere.regime.name === "RM" ? true : false,
+                            })),
+                        }
+                    })}
+                />
             </div>
-
-            <Table columns={columns} data={uniteArray} />
         </div>
     )
 }
 
-export default GestionDiplomes
+export default ConsultationDiplome

@@ -30,28 +30,28 @@ const ConsultationEnseignant = () => {
         ],
         []
     )
-    
+
     const data = useMemo(
         () => [
             {
                 Matter: "UML/OCL",
                 TP: "-",
                 TD: "29",
-                Cours:"-",
+                Cours: "-",
                 HourlyLoad: "29",
             },
             {
                 Matter: "Projet Web/Mobile",
                 TP: "-",
                 TD: "30",
-                Cours:"-",
+                Cours: "-",
                 HourlyLoad: 30,
             },
             {
                 Matter: "Total:",
                 TP: "-",
                 TD: "-",
-                Cours:"-",
+                Cours: "-",
                 HourlyLoad: "Application de la formule de charge",
             },
         ],
@@ -59,27 +59,30 @@ const ConsultationEnseignant = () => {
     )
 
     return (
-        <div className="Consultation_Enseignant">
-            <h4>Enseignant X</h4>
-            <div className="Enseignant_Avatar">
-                <Avatar className="Avatar">
-                    <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-                    <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-                <h5 className="Enseignant_Account">Account</h5>
+        <div className="Consultation_Enseignant_Container">
+            <div className="Consultation_Enseignant_Tiltle">
+                <h4 className="h4-Enseignant">Enseignant X</h4>
             </div>
-            <div className="Enseignant_Coordonnees_Border">
+            <div className="Enseignant_Avatar">
+                    <Avatar className="AvatarConsulterEnseignant">
+                        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+                        <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                    <h5 className="Enseignant_Account">Account</h5>
+            </div>
+            <div className="Enseignant_CoordonneesContainer" >
                 <div className="Enseignant_Coordonnees">
-                    <h6>Name</h6>
-                    <p>Pietro Scielhh</p>
-                    <h6>CIN</h6>
-                    <p>11156754</p>
-                    <h6>Rapport de charge horaire</h6>
-                    <p>18h</p>
+                        <h6>Name</h6>
+                        <p>Pietro Scielhh</p>
+                        <h6>CIN</h6>
+                        <p>11156754</p>
+                        <h6>Rapport de charge horaire</h6>
+                        <p>18h</p>
                 </div>
             </div>
-            <Table columns={columns} data={data} />
+                <Table columns={columns} data={data} />
         </div>
+    
     )
 }
 
