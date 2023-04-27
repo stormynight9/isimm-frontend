@@ -94,59 +94,45 @@ const router = createBrowserRouter(
                                     path: "magasinier",
                                     children: [
                                         {
-                                            path: "magasinier",
+                                            path: "facture",
                                             children: [
                                                 {
-                                                    path: "facture",
-                                                    children: [
-                                                        {
-                                                            path: "ajouter",
-                                                            element: <AjouterFacture />
-                                                        },
-                                                        {
-                                                            path: "modifier/:id",
-                                                            element: <ModifierFacture />
-                                                        }
-                                                    ],
+                                                    path: "ajouter",
+                                                    element: <AjouterFacture />
                                                 },
                                                 {
-                                                    path: "produit",
-                                                    children: [
-                                                        {
-                                                            path: "ajouter",
-                                                            element: <AjouterProduit />
-                                                        },
-                                                        {
-                                                            path: "modifier/:id",
-                                                            element: <ModifierFacture />
-                                                        }
-                                                    ],
-                                                },
-                                                {
-                                                    // TODO: should have other location
-                                                    path: "demande",
-                                                    children: [
-                                                        {
-                                                            path: "ajouter",
-                                                            element: <AjouterDemande />
-                                                        },
-                                                        {
-                                                            path: 'list',
-                                                            element: <ListeDemandeService />,
-                                                        }
-                                                    ],
-                                                    // element: <ListeDemandeService />,
-                                                },
+                                                    path: "modifier/:id",
+                                                    element: <ModifierFacture />
+                                                }
                                             ],
                                         },
                                         {
-                                            // TODO: should be changed to employee
-                                            path: "enseignant",
-                                            children: [],
+                                            path: "produit",
+                                            children: [
+                                                {
+                                                    path: "ajouter",
+                                                    element: <AjouterProduit />
+                                                },
+                                                {
+                                                    path: "modifier/:id",
+                                                    element: <ModifierFacture />
+                                                }
+                                            ],
                                         },
                                         {
-                                            path: "service",
-                                            children: [],
+                                            // TODO: should have other location
+                                            path: "demande",
+                                            children: [
+                                                {
+                                                    path: "ajouter",
+                                                    element: <AjouterDemande />
+                                                },
+                                                {
+                                                    path: 'list',
+                                                    element: <ListeDemandeService />,
+                                                }
+                                            ],
+                                            // element: <ListeDemandeService />,
                                         },
                                     ],
                                 },
