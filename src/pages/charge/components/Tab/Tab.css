@@ -1,6 +1,7 @@
 .pen {
     display: flex;
     flex-direction: row;
+    gap: 5px;
 }
 .button {
     flex-direction: row-reverse;
@@ -11,3 +12,17 @@
     gap: 10px;
 }
 
+.icon {
+    cursor: pointer;
+    border-radius: 50%;
+    border-color: red;
+    border: 1px solid;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon:hover{
+    background-color: red;
+}

@@ -3,12 +3,12 @@ import { Input } from "@/components/ui/Input"
 import "./Tab.css"
 import { Button } from "@/components/ui/Button"
 import EditIcon from "../EditIcon/EditIcon"
-import React from 'react';
-
-
-
+import React, { useState } from "react"
 
 const Tab = () => {
+    const [nom, setNom] = useState({ value: "hfhf", disabled: true })
+    const [prenom, setPrenom] = useState({ value: "hfjyfj", disabled: true })
+    const [email, setEmail] = useState({ value: "jfjyfjyf", disabled: true })
     return (
         <Tabs defaultValue="account" className="w-[400px]">
             <TabsList>
@@ -23,21 +23,68 @@ const Tab = () => {
                     <h1>Nom</h1>
 
                     <div className="pen">
-                        <Input type="String" placeholder="Nom" />
-                        <EditIcon />
-               
+                        <Input
+                            type="String"
+                            placeholder="Nom"
+                            onChange={(evt) => {
+                                setNom({ value: evt.target.value, disabled: nom.disabled })
+                            }}
+                            value={nom.value}
+                            disabled={nom.disabled}
+                        />
+                        <div
+                            className="icon"
+                            onClick={() => {
+                                console.log("ajfnlakfn")
+                                setNom({ value: nom.value, disabled: false })
+                            }}
+                        >
+                            <EditIcon />
+                        </div>
                     </div>
 
                     <h1>Prenom</h1>
                     <div className="pen">
-                        <Input type="String" placeholder="Prenom" />
-                        <EditIcon />
+                        <Input
+                            type="String"
+                            placeholder="Prenom"
+                            onChange={(evt) => {
+                                setPrenom({ value: evt.target.value, disabled: prenom.disabled })
+                            }}
+                            value={prenom.value}
+                            disabled={prenom.disabled}
+                        />
+                        <div
+                            className="icon"
+                            onClick={() => {
+                                console.log("ajfnlakfn")
+                                setPrenom({ value: prenom.value, disabled: false })
+                            }}
+                        >
+                            <EditIcon />
+                        </div>
                     </div>
 
                     <h1>Email</h1>
                     <div className="pen">
-                        <Input type="email" placeholder="Email" />
-                        <EditIcon />
+                        <Input
+                            type="email"
+                            placeholder="Email"
+                            onChange={(evt) => {
+                                setEmail({ value: evt.target.value, disabled: email.disabled })
+                            }}
+                            value={email.value}
+                            disabled={email.disabled}
+                        />
+                        <div
+                            className="icon"
+                            onClick={() => {
+                                console.log("ajfnlakfn")
+                                setEmail({ value: email.value, disabled: false })
+                            }}
+                        >
+                            <EditIcon />
+                        </div>
                     </div>
                     <div className="pen button">
                         <Button className="BoutonEdit">Edit</Button>
@@ -66,8 +113,5 @@ const Tab = () => {
             </TabsContent>
         </Tabs>
     )
-
-
-    
 }
 export default Tab
