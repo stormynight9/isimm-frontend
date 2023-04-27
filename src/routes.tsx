@@ -2,6 +2,11 @@ import { createBrowserRouter } from "react-router-dom"
 import App from "./App"
 import ErrorPage from "./pages/ErrorPage"
 import Home from "./pages/Home"
+import AjouterDemande from "./pages/magasin/admin/demande/AjouterDemande"
+import ListeDemandeService from "./pages/magasin/admin/demande/ListeDemandeService"
+import AjouterFacture from "./pages/magasin/admin/facture/AjouterFacture"
+import ModifierFacture from "./pages/magasin/admin/facture/ModifierFacture"
+import AjouterProduit from "./pages/magasin/admin/produit/AjouterProduit"
 import Calendar from "./pages/surveillance/Calendar"
 import Complaints from "./pages/surveillance/Complaints"
 import CreateCalendar from "./pages/surveillance/CreateCalendar"
@@ -50,9 +55,52 @@ const router = createBrowserRouter([
                         children: [
                             {
                                 path: "magasinier",
-                                children: [],
+                                children: [
+                                    {
+                                        path: "facture",
+                                        children: [
+                                            {
+                                                path: "ajouter",
+                                                element: <AjouterFacture />
+                                            },
+                                            {
+                                                path: "modifier/:id",
+                                                element: <ModifierFacture />
+                                            }
+                                        ],
+                                    },
+                                    {
+                                        path: "produit",
+                                        children: [
+                                            {
+                                                path: "ajouter",
+                                                element: <AjouterProduit />
+                                            },
+                                            {
+                                                path: "modifier/:id",
+                                                element: <ModifierFacture />
+                                            }
+                                        ],
+                                    },
+                                    {
+                                        // TODO: should have other location
+                                        path: "demande",
+                                        children: [
+                                            {
+                                                path: "ajouter",
+                                                element: <AjouterDemande />
+                                            },
+                                            {
+                                                path: 'list',
+                                                element: <ListeDemandeService />,
+                                            }
+                                        ],
+                                        // element: <ListeDemandeService />,
+                                    },
+                                ],
                             },
                             {
+                                // TODO: should be changed to employee
                                 path: "enseignant",
                                 children: [],
                             },

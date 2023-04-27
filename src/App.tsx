@@ -9,6 +9,7 @@ function App() {
             <ProSidebarProvider>
                 <Sidebar />
             </ProSidebarProvider>
+            {/* <div className="p-2 w-full"> */}
             <div className="p-2">
                 <Outlet />
             </div>
