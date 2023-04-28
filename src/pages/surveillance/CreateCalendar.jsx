@@ -14,7 +14,14 @@ const CreateCalendar = () => {
     const [subjects, setSubjects] = useState([])
     const [showSections, setShowSections] = useState({ isShowing: false })
 
-    const [object, setObject] = useState({})
+    const [object, setObject] = useState({
+        title: "",
+        numberOfSessions: 0,
+        startDate: "",
+        endDate: "",
+        section: "",
+        sessions: [],
+    })
 
     useEffect(() => {
         if (selectedSection) setSubjects(sectionList.find((section) => section.id === selectedSection).subjects)
@@ -25,9 +32,9 @@ const CreateCalendar = () => {
         setObject({ ...object, section: value, sessions: [] })
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         console.log(object)
-    },[object])
+    }, [object])
 
     return (
         <div className="mb-20 lg:pl-4 lg:pt-4">
@@ -55,7 +62,7 @@ const CreateCalendar = () => {
                     <div className="mt-5 flex w-full flex-col gap-5 md:max-w-3xl">
                         {subjects.map((subject) => (
                             <React.Fragment key={subject.id}>
-                                <Subject label={subject.name} numberOfSessions={showSections.numberOfSessions} setObject={setObject} object={object} />
+                                <Subject label={subject.name} numberOfSessions={object.numberOfSessions} setObject={setObject} objectData={object} />
                                 <Separator />
                             </React.Fragment>
                         ))}

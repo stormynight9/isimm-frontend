@@ -11,22 +11,41 @@ interface SubjectProps {
     label: string
     numberOfSessions: number
     setObject: Function
-    object: Object
+    objectData: {
+        sessions: Session[]
+    }
 }
 
-const Subject = ({ label, numberOfSessions, setObject, object }: SubjectProps) => {
+interface Session {
+    name: String
+    date: Date
+    session: String
+    state: Boolean
+}
+const Subject = ({ label, numberOfSessions, setObject, objectData }: SubjectProps) => {
     const [areInputsEnabled, setAreInputsEnabled] = useState(true)
     const [sub, setSub] = useState<any>({
         name: label,
         date: new Date(),
         session: "",
+        state: true,
     })
 
     useEffect(() => {
-        if (sub.date !== null && sub.session !== "") {
+        console.log(areInputsEnabled)
+        const objectIncludes = objectData.sessions.some((obj: any) => obj.name === sub.name)
+        if (sub.date !== null && sub.session !== "" && !objectIncludes) {
             setObject((current: any) => ({ ...current, sessions: [...current.sessions, sub] }))
+        } else {
+            const objectIndex = objectData.sessions.findIndex((obj: Session) => obj.name === sub.name)
+            if (objectIndex !== -1) {
+                const updatedSessions = [...objectData.sessions]
+                updatedSessions[objectIndex] = sub
+                console.log("eeeee", sub)
+                setObject((current: any) => ({ ...current, sessions: updatedSessions }))
+            }
         }
-    }, [sub])
+    }, [sub, areInputsEnabled])
 
     return (
         <div>
@@ -34,7 +53,14 @@ const Subject = ({ label, numberOfSessions, setObject, object }: SubjectProps) =
                 <div className="text-base font-semibold text-slate-900 dark:text-slate-50 md:text-lg">{label}</div>
                 <div className="flex items-center space-x-2">
                     <div className="flex items-center justify-center">
-                        <Switch id="airplane-mode" checked={areInputsEnabled} onCheckedChange={() => setAreInputsEnabled(!areInputsEnabled)} />
+                        <Switch
+                            id="airplane-mode"
+                            checked={areInputsEnabled}
+                            onCheckedChange={() => {
+                                setAreInputsEnabled(!areInputsEnabled)
+                                setSub({ ...sub, state: !sub.state })
+                            }}
+                        />
                         {/* <Label htmlFor="airplane-mode">L'inclure?</Label> */}
                         <Popover>
                             <PopoverTrigger asChild>
