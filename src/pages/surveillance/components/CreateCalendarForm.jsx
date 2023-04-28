@@ -5,7 +5,7 @@ import { ErrorMessage, Field, Form, Formik } from "formik"
 import { ArrowRightIcon } from "lucide-react"
 import { CreateCalendarSchema } from "../schemas"
 
-const CreateCalendarForm = ({ setShowSections }) => {
+const CreateCalendarForm = ({ setShowSections, setObject }) => {
     return (
         <Formik
             initialValues={{
@@ -18,14 +18,15 @@ const CreateCalendarForm = ({ setShowSections }) => {
             onSubmit={async (values) => {
                 setShowSections({
                     isShowing: true,
-                    ...values,
                 })
+
+                setObject({ ...values })
             }}
         >
             {() => {
                 return (
                     <Form className="mt-8 flex max-w-3xl flex-col space-y-6">
-                        <div className="flex flex-col items-baseline justify-center space-y-4 md:flex-row md:space-y-0 md:space-x-4">
+                        <div className="flex flex-col items-baseline justify-center space-y-4 md:flex-row md:space-x-4 md:space-y-0">
                             <div className="grid w-full items-center gap-1.5 md:max-w-sm">
                                 <Label htmlFor="title">
                                     Titre<span className="text-red-600">*</span>
@@ -41,7 +42,7 @@ const CreateCalendarForm = ({ setShowSections }) => {
                                 <ErrorMessage name="numberOfSessions" component="div" className="text-sm text-red-600" />
                             </div>
                         </div>
-                        <div className="flex flex-col items-baseline justify-center space-y-4 md:flex-row md:space-y-0 md:space-x-4">
+                        <div className="flex flex-col items-baseline justify-center space-y-4 md:flex-row md:space-x-4 md:space-y-0">
                             <div className="grid w-full items-center gap-1.5 md:max-w-sm">
                                 <Label htmlFor="start-date">
                                     Date de début<span className="text-red-600">*</span>
