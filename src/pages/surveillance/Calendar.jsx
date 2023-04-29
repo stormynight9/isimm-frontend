@@ -25,7 +25,7 @@ const Calendar = () => {
                 ))}
             </div>
             <div className="m-2 flex w-full justify-end xl:max-w-5xl">
-                <Button variant={"outline"} className="flex gap-2">
+                <Button variant="subtle" className="flex gap-2">
                     <DownloadIcon className="mr-2 h-4 w-4" /> Télécharger pdf
                 </Button>
             </div>

@@ -38,7 +38,7 @@ export const savedCalendars = [
 ]
 
 // object example
-const object = {
+export const object = {
     title: "Examen Semestre 2 - 2022/2023",
     startDate: "21 avril 2023",
     endDate: "29 avril 2023",
