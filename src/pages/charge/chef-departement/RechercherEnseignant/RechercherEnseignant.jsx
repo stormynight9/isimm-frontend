@@ -49,7 +49,7 @@ const RechercherEnseignant = () => {
     ]
     return (
         <div className="Rechercher-Enseignant-Container">
-            <JoyRide scrollToFirstStep showSkipButton steps={steps} />
+            <JoyRide continuous scrollToFirstStep showSkipButton steps={steps} />
             <div className="Rechercher-Enseignant">
                 <Label className="Label-Enseignant">Nom Enseignant :</Label>
                 <Input type="text" placeholder="Entrer nom enseignant...format(nom-prenom)" id="inputEns" className="Input-Enseignant" value={inputValue} onChange={handleInputChange} />

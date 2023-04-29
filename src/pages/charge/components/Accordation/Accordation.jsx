@@ -24,22 +24,18 @@ function AccordationCharge() {
     return (
         <div className="Accordions">
             {voeux.map((v, i) => {
-                console.log(v)
                 return (
                     <Accordion className="Accordion" type="single" collapsible key={i}>
                         <AccordionItem value="item-1">
-                            <AccordionTrigger
-                                onClick={(evt) => {
-                                    evt.stopPropagation()
-                                }}
-                            >
-                                {" "}
-                                Voeux d'enseignant : {v.enseignant.nom}{" "}
-                            </AccordionTrigger>
+                            <AccordionTrigger> Voeux d'enseignant : {v.enseignant.nom} </AccordionTrigger>
                             <AccordionContent>
                                 <p>
                                     <span className="bold">Matiere : </span>
                                     {v.matiere.name}
+                                </p>
+                                <p>
+                                    <span className="bold">Type : </span>
+                                    {v.type}
                                 </p>
                                 <br />
                                 <p>
