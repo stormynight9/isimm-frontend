@@ -60,13 +60,13 @@ const Sidebar = ({ isCollapsed, CollapseSidebar }: SidebarProps) => {
                     <RPSidebar width="256px" className="h-full bg-white" customBreakPoint="1024px" defaultCollapsed={isCollapsed}>
                         <div className="flex justify-center px-3 py-4 text-sm font-semibold text-slate-700 dark:text-slate-50">
                             {isCollapsed ? (
-                                <Button variant="subtle" className="invisible h-10 w-10 p-0 lg:visible" onClick={() => CollapseSidebar(false)}>
+                                <Button variant="secondary" className="invisible h-10 w-10 p-0 lg:visible" onClick={() => CollapseSidebar(false)}>
                                     <ArrowRightIcon size={24} />
                                 </Button>
                             ) : (
                                 <div className="flex w-full items-center justify-between transition-all duration-200">
                                     <span>Tableau de bord</span>
-                                    <Button variant="subtle" className="invisible h-10 w-10 p-0 lg:visible" onClick={() => CollapseSidebar(true)}>
+                                    <Button variant="secondary" className="invisible h-10 w-10 p-0 lg:visible" onClick={() => CollapseSidebar(true)}>
                                         <ArrowLeftIcon size={24} />
                                     </Button>
                                 </div>
