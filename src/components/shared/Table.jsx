@@ -5,7 +5,7 @@ const Table = ({ columns, data }) => {
 
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = tableInstance
     return (
-        <div className="p-4 ">
+        <div>
             <table {...getTableProps()} className="w-full rounded-md shadow-md [&>tbody>*:nth-child(even)]:bg-[#f7f7f7]">
                 <thead>
                     {headerGroups.map((headerGroup) => (
