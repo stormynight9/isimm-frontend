@@ -56,17 +56,24 @@ const TableChargeSec = ({ listData, code, setListData, idEnseignant, idMatiere, 
             Papa.parse(csvData, {
                 header: true,
                 complete: (results, file) => {
-                    const tableDataN = results.data.map((row) =>
-                        row["CIN"]
-                            ? {
-                                  cinEtudiant: row["CIN"].replace(/\t/g, ''),
-                                  nomEtudiant: row["Nom"],
-                                  prenomEtudiant: row["Prenom"],
-                                  noteDs: row[`DS_${code}`] || null,
-                                  noteExam: row[`EX_${code}`] || null,
-                              }
-                            : null
-                    )
+                    const tableDataN = results.data.map((row) => {
+                        if (row["CIN"]) {
+                            const index = updatedData.findIndex((obj) => obj.cinEtudiant === row["CIN"].replace(/\t/g, ""))
+                            const updatedObj = updatedData[index]
+                            return {
+                                cinEtudiant: row["CIN"].replace(/\t/g, ""),
+                                nomEtudiant: row["Nom"],
+                                prenomEtudiant: row["Prenom"],
+                                noteDs: row[`DS_${code}`] || null,
+                                noteExam: row[`EX_${code}`] || null,
+                                idNoteDs: updatedObj ? updatedObj.idNoteDs : null,
+                                idNoteExam: updatedObj ? updatedObj.idNoteExam : null,
+                                idEtudiant: updatedObj ? updatedObj.idEtudiant : null,
+                            }
+                        }
+                        return null
+                    })
+
                     const tableData = tableDataN.filter((et) => et != null)
 
                     const existingCinValues = tableData.map((row) => row.cinEtudiant)
@@ -107,6 +114,7 @@ const TableChargeSec = ({ listData, code, setListData, idEnseignant, idMatiere, 
     }
     const valider = async () => {
         const final = []
+        console.log(updatedData)
         for (let i = 0; i < updatedData.length; i++) {
             final[i] = {
                 noteDs: updatedData.at(i).noteDs,
