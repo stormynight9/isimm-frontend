@@ -34,13 +34,14 @@ const ChargeNote = () => {
     const handleDownloadCsv = () => {
         let csvData, csvString
         if (groupType === "0") {
-            csvData = responseJson.map((row) => [`"${row.cinEtudiant}"`, row.nomEtudiant, row.prenomEtudiant, row.noteDs, row.noteExam].join(","))
+            console.log(responseJson)
+            csvData = responseJson.map((row) => [`\t${row.cinEtudiant}`, row.nomEtudiant, row.prenomEtudiant, row.noteDs, row.noteExam].join(","))
             csvString = [`CIN,Nom,Prenom,DS_${codeMatiere},EX_${codeMatiere}`, ...csvData].join("\n")
         } else if (groupType === "1") {
-            csvData = responseJson.map((row) => [`"${row.cinEtudiant}"`, row.nomEtudiant, row.prenomEtudiant, row.noteOral].join(","))
+            csvData = responseJson.map((row) => [`\t${row.cinEtudiant}`, row.nomEtudiant, row.prenomEtudiant, row.noteOral].join(","))
             csvString = [`CIN,Nom,Prenom,OR_${codeMatiere}`, ...csvData].join("\n")
         } else if (groupType === "2") {
-            csvData = responseJson.map((row) => [`"${row.cinEtudiant}"`, row.nomEtudiant, row.prenomEtudiant, row.noteTp].join(","))
+            csvData = responseJson.map((row) => [`\t${row.cinEtudiant}`, row.nomEtudiant, row.prenomEtudiant, row.noteTp].join(","))
             csvString = [`CIN,Nom,Prenom,TP_${codeMatiere}`, ...csvData].join("\n")
         }
         const blob = new Blob([csvString], { type: "text/csv;charset=utf-8" })

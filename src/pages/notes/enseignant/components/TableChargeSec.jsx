@@ -56,20 +56,24 @@ const TableChargeSec = ({ listData, code, setListData, idEnseignant, idMatiere, 
             Papa.parse(csvData, {
                 header: true,
                 complete: (results, file) => {
-                    const tableData = results.data.map((row) => ({
-                        cinEtudiant: row["CIN"],
-                        nomEtudiant: row["Nom"],
-                        prenomEtudiant: row["Prenom"],
-                        noteDs: row[`DS_${code}`] || null,
-                        noteExam: row[`EX_${code}`] || null,
-                    }))
+                    const tableDataN = results.data.map((row) =>
+                        row["CIN"]
+                            ? {
+                                  cinEtudiant: row["CIN"].replace(/\t/g, ''),
+                                  nomEtudiant: row["Nom"],
+                                  prenomEtudiant: row["Prenom"],
+                                  noteDs: row[`DS_${code}`] || null,
+                                  noteExam: row[`EX_${code}`] || null,
+                              }
+                            : null
+                    )
+                    const tableData = tableDataN.filter((et) => et != null)
 
                     const existingCinValues = tableData.map((row) => row.cinEtudiant)
                     const uniqueCinValues = [...new Set(existingCinValues)]
 
                     const headers = Object.keys(results.data[0])
                     const expectedHeaders = ["CIN", "Nom", "Prenom", `DS_${code}`, `EX_${code}`]
-
                     // Check if all expected headers are present in the file
                     const allHeadersExist = expectedHeaders.every((header) => headers.includes(header))
                     if (!allHeadersExist) {

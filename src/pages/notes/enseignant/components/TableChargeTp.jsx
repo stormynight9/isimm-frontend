@@ -55,12 +55,17 @@ const TableChargeTp = ({ listData, code, setListData, idEnseignant, idMatiere, i
             Papa.parse(csvData, {
                 header: true,
                 complete: (results, file) => {
-                    const tableData = results.data.map((row) => ({
-                        cinEtudiant: row["CIN"],
-                        nomEtudiant: row["Nom"],
-                        prenomEtudiant: row["Prenom"],
-                        noteTp: row[`TP_${code}`] || null,
-                    }))
+                    const tableDataN = results.data.map((row) =>
+                        row["CIN"]
+                            ? {
+                                  cinEtudiant: row["CIN"].replace(/\t/g, ""),
+                                  nomEtudiant: row["Nom"],
+                                  prenomEtudiant: row["Prenom"],
+                                  noteTp: row[`TP_${code}`] || null,
+                              }
+                            : null
+                    )
+                    const tableData = tableDataN.filter((et) => et != null)
 
                     const existingCinValues = tableData.map((row) => row.cinEtudiant)
                     const uniqueCinValues = [...new Set(existingCinValues)]
