@@ -10,7 +10,7 @@ function Record({onRemove, children}) {
     </div>
 }
 
-export default function Records({componentParams, defaultRecordValues, RenderItem, records, onChange, verify}) {
+export default function Records({componentParams, name, defaultRecordValues, RenderItem, records, onChange, verify}) {
     function handleRecordsChange(id) {
         return (record) => {
             onChange(records => {
@@ -39,7 +39,7 @@ export default function Records({componentParams, defaultRecordValues, RenderIte
 
     return (
     <div className="my-5">
-        {records.map(r => {console.log(r); return <Record key={r.id} button="remove" onRemove={handleRemoveRecord(r.id)}><RenderItem {...componentParams} initialValues={r} onChange={handleRecordsChange(r.id)} id={r.id}/></Record>})}
+        {records.map(r => <Record key={r.id} button="remove" onRemove={handleRemoveRecord(r.id)}><RenderItem {...componentParams} initialValues={r} onChange={handleRecordsChange(r.id)} id={r.id}/></Record>)}
         <Button className="mx-3" onClick={handleAddRecord}>Ajouter</Button>
     </div>)
 } 

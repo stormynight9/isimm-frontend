@@ -1,15 +1,17 @@
 import { SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue, Select as ChadSelect, SelectSeparator } from "@/components/ui/Select"
 import { Button } from "../ui/Button"
 
-function SelectBody({items}) {
+function SelectBody({items, newButton}) {
     return <SelectContent>
         <SelectGroup>
             {items.map((item, index) => {
                 return <SelectItem key={index} value={item.id}>{item.text}</SelectItem>
             })}
         </SelectGroup>
-        <SelectSeparator/>
-        <Button>nouveau</Button>
+        {newButton && <>
+            <SelectSeparator/>
+            <Button>nouveau</Button>
+        </>}
     </SelectContent>
 }
 
@@ -22,11 +24,7 @@ export default function Select({name, className, label, items, placeholder, valu
             <SelectTrigger>
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>
-            <SelectBody items={items}/>
-            {newButton && <>
-                <SelectSeparator/>
-                <Button>nouveau</Button>
-            </>}
+            <SelectBody items={items} newButton={newButton}/>
         </ChadSelect>
     </div>
 }
