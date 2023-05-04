@@ -38,59 +38,61 @@ export const savedCalendars = [
 ]
 
 // object example
-export const object = {
+export const CalendarExample = {
     title: "Examen Semestre 2 - 2022/2023",
-    startDate: "21 avril 2023",
-    endDate: "29 avril 2023",
+    date: {
+        from: "21 avril 2023",
+        to: "29 avril 2023",
+    },
     numberOfSessions: 4,
-    sessions: [
+    sections: [
         {
             id: 1,
             name: "L1-MATH",
-            section: [
+            subjects: [
                 {
                     id: 1,
                     name: "Conception et analyse d’algorithmes",
                     date: "21 avril 2023",
-                    section: 1,
-                    state: true,
+                    sessionNumber: 1,
+                    isIncluded: true,
                 },
                 {
                     id: 2,
                     name: "Algèbre linéaire",
                     date: "22 avril 2023",
-                    section: 2,
-                    state: true,
+                    sessionNumber: 2,
+                    isIncluded: true,
                 },
                 {
                     id: 3,
                     name: "Algèbre linéaire",
-                    state: false,
+                    isIncluded: false,
                 },
             ],
         },
         {
             id: 2,
             name: "ING1-INFO",
-            section: [
+            subjects: [
                 {
                     id: 1,
                     name: "Frama-C et la preuve de programmes",
                     date: "21 avril 2023",
-                    section: 3,
-                    state: true,
+                    sessionNumber: 3,
+                    isIncluded: true,
                 },
                 {
                     id: 2,
                     name: "Optimisation combinatoire",
                     date: "22 avril 2023",
-                    section: 2,
-                    state: true,
+                    sessionNumber: 2,
+                    isIncluded: true,
                 },
                 {
                     id: 3,
                     name: "Algorithmes d’apprentissage automatique",
-                    state: false,
+                    isIncluded: false,
                 },
             ],
         },
