@@ -14,18 +14,32 @@ const CreateCalendar = () => {
     const [subjects, setSubjects] = useState([])
     const [showSections, setShowSections] = useState({ isShowing: false })
 
+    const [object, setObject] = useState({
+        title: "",
+        numberOfSessions: 0,
+        startDate: "",
+        endDate: "",
+        section: "",
+        sessions: [],
+    })
+
     useEffect(() => {
         if (selectedSection) setSubjects(sectionList.find((section) => section.id === selectedSection).subjects)
     }, [selectedSection])
 
     const handleSelectChange = (value) => {
         setSelectedSection(() => value)
+        setObject({ ...object, section: value, sessions: [] })
     }
 
+    useEffect(() => {
+        console.log(object)
+    }, [object])
+
     return (
-        <div className="mb-20 lg:pt-4 lg:pl-4">
+        <div className="mb-20 lg:pl-4 lg:pt-4">
             <Header title="Créer un calendrier">Ici, vous pouvez générer un calendrier pour chaque enseignant en respectant toutes les contraintes.</Header>
-            <CreateCalendarForm setShowSections={setShowSections} />
+            <CreateCalendarForm setObject={setObject} setShowSections={setShowSections} />
             {showSections.isShowing && (
                 <div>
                     <div className="mt-8">
@@ -48,7 +62,7 @@ const CreateCalendar = () => {
                     <div className="mt-5 flex w-full flex-col gap-5 md:max-w-3xl">
                         {subjects.map((subject) => (
                             <React.Fragment key={subject.id}>
-                                <Subject label={subject.name} numberOfSessions={showSections.numberOfSessions} />
+                                <Subject label={subject.name} numberOfSessions={object.numberOfSessions} setObject={setObject} objectData={object} />
                                 <Separator />
                             </React.Fragment>
                         ))}
