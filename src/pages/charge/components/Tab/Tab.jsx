@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/Input"
 import "./Tab.css"
 import { Button } from "@/components/ui/Button"
 import EditIcon from "../EditIcon/EditIcon"
-import React, { useState,useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { ToastAction } from "@/components/ui/Toast"
 import { useToast } from "@/hooks/useToast"
 
@@ -12,6 +12,8 @@ const Tab = () => {
     const [prenom, setPrenom] = useState({ value: "", disabled: true })
     const [email, setEmail] = useState({ value: "", disabled: true })
     const [enseignantId, setenseignantId] = useState({ value: "1", disabled: true })
+    const [Password, setPassword] = useState("")
+    const [NPassword, setNPassword] = useState("")
     const { toast } = useToast()
     function showToast(message) {
         showCustomToast(toast, message)
@@ -25,23 +27,42 @@ const Tab = () => {
                 },
             })
             const responseJson = await response.json()
-            console.log(responseJson)
-
+            setNom({ value: responseJson.nom, disabled: true })
+            setPrenom({ value: responseJson.prenom, disabled: true })
+            setEmail({ value: responseJson.email, disabled: true })
         }
         getEnseignant()
     }, [])
     const handleClickEdit = async () => {
-        console.log('helllo1')
         const responseAdd = await fetch(`http://localhost:8090/api/isimm/distributionCharge/enseignant/updateEnseignant?enseignantId=${enseignantId.value}&nom=${nom.value}&prenom=${prenom.value}&email=${email.value}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
         })
-        console.log('helllo2')
+        console.log("helllo2")
 
         if (responseAdd.ok) {
             showToast(" Edited")
+            setNom({ value: nom.value, disabled: true })
+            setPrenom({ value: prenom.value, disabled: true })
+            setEmail({ value: email.value, disabled: true })
+        }
+    }
+    const handleClickEditPassword = async () => {
+        const responseUpdate = await fetch(`http://localhost:8090/api/isimm/distributionCharge/enseignant/updateEnseignantpassword`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ enseignantId: enseignantId.value, oldPass: Password, newPass: NPassword }),
+        })
+        console.log("helllo2")
+
+        if (responseUpdate.ok) {
+            showToast(" Edited")
+            setPassword("")
+            setNPassword("")
         }
     }
     return (
@@ -114,7 +135,6 @@ const Tab = () => {
                         <div
                             className="icon"
                             onClick={() => {
-                                console.log("ajfnlakfn")
                                 setEmail({ value: email.value, disabled: false })
                             }}
                         >
@@ -122,7 +142,9 @@ const Tab = () => {
                         </div>
                     </div>
                     <div className="pen button">
-                        <Button className="BoutonEdit" onClick={handleClickEdit} >Edit</Button>
+                        <Button className="BoutonEdit" onClick={handleClickEdit}>
+                            Edit
+                        </Button>
                     </div>
                 </div>
             </TabsContent>
@@ -135,13 +157,10 @@ const Tab = () => {
                             type="String"
                             placeholder="Ancien mot de passe"
                             onChange={(evt) => {
-                                setPassword({ value: evt.target.value, disabled: Password.disabled })
+                                setPassword(evt.target.value)
                             }}
-                            value={Password.value}
-                            disabled={Password.disabled}
+                            value={Password}
                         />
-
-                        <EditIcon />
                     </div>
 
                     <h1>New Password</h1>
@@ -150,16 +169,16 @@ const Tab = () => {
                             type="String"
                             placeholder="Nouveau mot de passe"
                             onChange={(evt) => {
-                                setNPassword({ value: evt.target.value, disabled: NPassword.disabled })
+                                setNPassword(evt.target.value)
                             }}
-                            value={NPassword.value}
-                            disabled={NPassword.disabled}
+                            value={NPassword}
                         />
-                        <EditIcon />
                     </div>
 
                     <div className="pen button">
-                        <Button className="BoutonEdit"  >Edit</Button>
+                        <Button className="BoutonEdit" onClick={handleClickEditPassword}>
+                            Edit
+                        </Button>
                     </div>
                 </div>
             </TabsContent>

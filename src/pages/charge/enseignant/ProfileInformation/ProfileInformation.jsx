@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
 import Tab from "../../components/Tab/Tab"
 import "./ProfileInformation.css"
@@ -6,6 +6,22 @@ import { useMemo } from "react"
 import Table from "@/components/shared/Table"
 
 const ProfileInformation = () => {
+    const [enseignantMatieres, setEnseignantMatieres] = useState([])
+    useEffect(() => {
+        const getMatieres = async () => {
+            const response = await fetch(`http://localhost:8090/api/isimm/distributionCharge/enseignantMatiere/getEnseignantMatieresByEnseignantId?enseignantId=${1}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            const responseJson = await response.json()
+            console.log(responseJson)
+            //calculate nombreHeures
+            setEnseignantMatieres(responseJson)
+        }
+        getMatieres()
+    }, [])
     const columns = useMemo(
         () => [
             {
@@ -72,8 +88,18 @@ const ProfileInformation = () => {
                     <Tab />
                 </div>
                 <div className="row">
-                    <Table columns={columns} data={data} />
-        
+                    <Table
+                        columns={columns}
+                        data={enseignantMatieres.map((ensMat) => {
+                            return {
+                                Matter: ensMat.matiere.name,
+                                TP: ensMat.matiere.nbHTp,
+                                TD: ensMat.matiere.nbHTd,
+                                Cours: ensMat.matiere.nbHCr,
+                                HourlyLoad: ensMat.matiere.nbHTp + ensMat.matiere.nbHTd + ensMat.matiere.nbHCr,
+                            }
+                        })}
+                    />
                 </div>
             </div>
         </div>
