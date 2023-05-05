@@ -93,12 +93,12 @@ const SoumettreVoeux = (props) => {
                     return {
                         ue: unite.codeUnite,
                         unite: unite.name,
-                        modules: unite.matieres.map((matiere) => ({
+                        modules: unite.matieres.map((matiere, index) => ({
                             ec: matiere.code,
                             module: matiere.name,
                             tot: matiere.nbHCr + matiere.nbHTd + matiere.nbHTp + matiere.nbHCri + matiere.nbHNp,
                             cr: matiere.nbHCr,
-                            enseignant_cr: <ButtonVoeux matiere={matiere} matiereType="CR" />,
+                            enseignant_cr: <ButtonVoeux matiere={matiere} matiereType="CR" joy={index == 0} />,
                             td: matiere.nbHTd,
                             enseignant_td: <ButtonVoeux matiere={matiere} matiereType="TD" />,
                             tp: matiere.nbHTp,

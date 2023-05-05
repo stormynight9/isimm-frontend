@@ -90,12 +90,12 @@ const ConsultationDiplome = (props) => {
                         return {
                             ue: unite.codeUnite,
                             unite: unite.name,
-                            modules: unite.matieres.map((matiere) => ({
+                            modules: unite.matieres.map((matiere,index) => ({
                                 ec: matiere.code,
                                 module: matiere.name,
                                 tot: matiere.nbHCr + matiere.nbHTd + matiere.nbHTp + matiere.nbHCri + matiere.nbHNp,
                                 cr: matiere.nbHCr,
-                                enseignant_cr: <SelectEnseignant matiereId={matiere.matiereId} type="CR" />,
+                                enseignant_cr: <SelectEnseignant matiereId={matiere.matiereId} type="CR" joy={(index==0)}/>,
                                 td: matiere.nbHTd,
                                 enseignant_td: <SelectEnseignant matiereId={matiere.matiereId} type="TD" />,
                                 tp: matiere.nbHTp,

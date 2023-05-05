@@ -1,10 +1,10 @@
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit"
-import { MatiereApi } from "./features/charge/MatiereApiSlice"
+import { ChargeApi } from "./features/charge/ChargeApiSlice"
 import ConsultingEnseignantReducer from "./features/charge/ConsultingEnseignantSlice"
 export const store = configureStore({
     reducer: {
         ConsultingEnseignant: ConsultingEnseignantReducer,
-        [MatiereApi.reducerPath]: MatiereApi.reducer,
+        [ChargeApi.reducerPath]: ChargeApi.reducer,
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([MatiereApi.middleware]),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([ChargeApi.middleware]),
 })

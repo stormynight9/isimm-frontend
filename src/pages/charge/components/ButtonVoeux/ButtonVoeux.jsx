@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Fragment, useEffect } from "react"
 import { Button } from "@/components/ui/Button"
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/Dialog"
 import { Label } from "@/components/ui/Label"
@@ -7,15 +7,33 @@ import { useState } from "react"
 import { ToastAction } from "@/components/ui/Toast"
 import { useToast } from "@/hooks/useToast"
 import { useNavigate } from "react-router-dom"
+import JoyRide from "react-joyride"
+
 import "./ButtonVoeux.css"
 const ButtonVoeux = (props) => {
+    const { matiere, matiereType, joy } = props
+
     const [isVoeuxDialogVisible, setVoeuxDialogVisible] = useState(false)
     const [voeuxMsg, setVoeuxMsg] = useState("")
     const [disabled, setDisabled] = useState(false)
-    const { matiere, matiereType } = props
+    const [numberVoeux, setNumberVoeux] = useState(0)
     const navigate = useNavigate()
     const { toast } = useToast()
-
+    useEffect(() => {
+        const getVoeux = async () => {
+            const response = await fetch(`http://localhost:8090/api/isimm/distributionCharge/enseignantVoeux/getEnseignantVoeuxByEnseignantId?enseignantId=${1}&matiereId=${matiere.matiereId}&matiereType=${matiereType}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            const responseJson = await response.json()
+            console.log(responseJson)
+            //calculate nombreHeures
+            setNumberVoeux(responseJson.length)
+        }
+        getVoeux()
+    }, [])
     function showToast(message) {
         showCustomToast(toast, message)
     }
@@ -47,7 +65,7 @@ const ButtonVoeux = (props) => {
                         voeuxId: responseVoeuxJson.voeuxId,
                     },
                     enseignant: {
-                        enseignantId: 52,
+                        enseignantId: 2,
                     },
                     matiere: {
                         matiereId: matiere.matiereId,
@@ -55,20 +73,37 @@ const ButtonVoeux = (props) => {
                 }),
             })
             if (response.ok) {
-                setVoeuxDialogVisible(!isVoeuxDialogVisible)
+                setVoeuxDialogVisible(false)
                 showToast("Voeux Sent Successfully")
                 setDisabled(true)
                 // navigate(0)
             }
         }
     }
+    const steps = [
+        {
+            title: "Number of submitted voeux",
+            content: "An indicator for the number of submitted voeux for this subject",
+            target: "#targetJoy",
+            placement: "right-end",
+            isFixed: true,
+            event: "hover",
+        },
+    ]
     return (
         <Dialog className="z-[101]">
             <DialogTrigger asChild>
-                <Button disabled={disabled} {...props} variant="default" onClick={handleClick}>
-                    Voeux
-                </Button>
+                <div className="mb-5 flex flex-col flex-nowrap items-center justify-start">
+                    <div id="targetJoy" className="flex h-[25px] w-[25px]  items-center justify-center self-end rounded-full bg-[#94a3b8] p-[5px]">
+                        {numberVoeux}
+                    </div>
+                    <Button disabled={disabled} {...props} variant="default" onClick={handleClick}>
+                        Voeux
+                    </Button>
+                    {joy && <JoyRide continuous disableOverlay showSkipButton steps={steps} />}
+                </div>
             </DialogTrigger>
+
             <DialogContent className="sm:max-w-[425px] ">
                 <DialogHeader>
                     <DialogTitle>Demande Voeux :</DialogTitle>

@@ -1,17 +1,20 @@
 import React, { Fragment, useState, useEffect } from "react"
 import CreatableSelect from "react-select/creatable"
-import { useGetMatiereQuery } from "@/redux/features/charge/MatiereApiSlice"
+import Select from "react-select"
+import { useGetMatiereQuery } from "@/redux/features/charge/ChargeApiSlice"
 import { ToastAction } from "@/components/ui/Toast"
 import { Button } from "@/components/ui/Button"
+import { Edit2Icon } from "lucide-react"
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/Dialog"
 import { useToast } from "@/hooks/useToast"
 import "./SelectEnseignant.css"
-const SelectEnseignant = ({ matiereId, type }) => {
+import JoyRide from "react-joyride"
+const SelectEnseignant = ({ matiereId, type, joy }) => {
     const { data, isLoading } = useGetMatiereQuery(matiereId)
     const [matiereData, setMatiereData] = useState(null)
     const [disabled, setDisabled] = useState(false)
     const [value, setValue] = useState({ label: "", value: "" })
-    const [nbGrpvalue, setNbGrpvalue] = useState({ label: "", value: "" })
+    const [nbGrpvalue, setNbGrpvalue] = useState({ label: "1", value: "1" })
     const { toast } = useToast()
     const [isAssignEnseignantVisible, setIsAssignEnseignantVisible] = useState(false)
     const handleClick = () => {
@@ -35,10 +38,12 @@ const SelectEnseignant = ({ matiereId, type }) => {
 
             console.log(newOptions)
             setMatiereData(newOptions)
-            const enseignantMat = data.enseignantMatieres.find((enseignantMat) => enseignantMat.type === type)
-            if (enseignantMat) {
-                setValue({ label: enseignantMat.enseignant.nom + "-" + enseignantMat.enseignant.prenom, value: enseignantMat.enseignant.nom + "-" + enseignantMat.enseignant.prenom })
-                setDisabled(true)
+            if (newOptions.length > 0) {
+                const enseignantMat = data.enseignantMatieres.find((enseignantMat) => enseignantMat.type === type)
+                if (enseignantMat) {
+                    setValue({ label: enseignantMat.enseignant.nom + "-" + enseignantMat.enseignant.prenom, value: enseignantMat.enseignant.nom + "-" + enseignantMat.enseignant.prenom })
+                    setDisabled(true)
+                }
             }
         }
     }, [data])
@@ -101,16 +106,39 @@ const SelectEnseignant = ({ matiereId, type }) => {
             }
         } else showToast("Enseignant Doesn't Exist")
     }
+    const handleEdit = () => {
+        setDisabled(false)
+    }
+    const steps = [
+        {
+            title: "Selected Enseignant",
+            content: "This is the selected Enseignant for this subject",
+            target: "#targetJoy1",
+            placement: "left-start",
+        },
+        {
+            title: "Update Enseignant",
+            content: "By Clicking on the Edit you cant modify the selected Enseignant for the subject",
+            target: "#targetJoy2",
+            placement: "bottom-end",
+        },
+    ]
     return (
         <Fragment>
             {isLoading ? (
                 <h1>...Loading</h1>
             ) : disabled ? (
-                <p>{value.value}</p>
+                <div className="mb-5 flex flex-col flex-nowrap items-center justify-start">
+                    <div id="targetJoy2" className="flex h-[25px] w-[25px] cursor-pointer items-center justify-center self-end rounded-full p-[5px] hover:bg-[#94a3b8]" onClick={handleEdit}>
+                        <Edit2Icon />
+                    </div>
+                    <p id="targetJoy1">{value.value}</p>
+                    {joy && <JoyRide continuous scrollToFirstStep showSkipButton steps={steps} />}
+                </div>
             ) : (
                 <Dialog className="z-[101]">
                     <DialogTrigger asChild>
-                        <Button className="p-[25px]" disabled={disabled} variant="default" onClick={handleClick}>
+                        <Button className="m-3 p-[25px]" disabled={disabled} variant="default" onClick={handleClick}>
                             Assign Enseignant
                         </Button>
                     </DialogTrigger>
@@ -124,7 +152,7 @@ const SelectEnseignant = ({ matiereId, type }) => {
                             </div>
                             <div className="flex flex-row  items-center justify-between  gap-5">
                                 Nombre Groupes :{" "}
-                                <CreatableSelect
+                                <Select
                                     className="SelectEnseignant"
                                     onChange={handleChangeNbGrp}
                                     value={nbGrpvalue}
@@ -134,7 +162,6 @@ const SelectEnseignant = ({ matiereId, type }) => {
                                         { label: "3", value: "3" },
                                         { label: "4", value: "4" },
                                     ]}
-                                    onCreateOption={handleCreate}
                                 />
                             </div>
                         </div>

@@ -5,7 +5,7 @@ const Table = ({ columns, data }) => {
 
     const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } = tableInstance
     return (
-        <div className="p-4 ">
+        <div className="p-[5px]">
             <table {...getTableProps()} className="w-full rounded-md shadow-md [&>tbody>*:nth-child(even)]:bg-[#f7f7f7]">
                 <thead>
                     {headerGroups.map((headerGroup) => (
@@ -30,17 +30,17 @@ const Table = ({ columns, data }) => {
                                             {index === 0 && <td rowSpan={row.original.modules.length}>{row.original.unite}</td>}
                                             {Object.values(module).map((cell, cellIndex) => {
                                                 return cellIndex !== 11 && cellIndex !== 12 ? (
-                                                    <td className="p-4" key={cellIndex}>
+                                                    <td className="p-[8px]" key={cellIndex}>
                                                         {cell}
                                                     </td>
                                                 ) : cellIndex === 11 && cell ? (
-                                                    <td className="p-4" key={cellIndex}>
+                                                    <td className="p-[8px]" key={cellIndex}>
                                                         <Badge status="green">CC</Badge>
                                                     </td>
                                                 ) : (
                                                     cellIndex === 12 &&
                                                     cell && (
-                                                        <td className="p-4" key={cellIndex}>
+                                                        <td className="p-[8px]" key={cellIndex}>
                                                             <Badge status="green">RM</Badge>
                                                         </td>
                                                     )
