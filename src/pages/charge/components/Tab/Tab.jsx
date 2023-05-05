@@ -131,13 +131,30 @@ const Tab = () => {
                     <p className="text-sm text-slate-500 dark:text-slate-400">Make changes to your account here. Click save when you&apos;re done.</p>
                     <h1>Password</h1>
                     <div className="pen">
-                        <Input type="String" placeholder="Ancien mot de passe" />
+                        <Input
+                            type="String"
+                            placeholder="Ancien mot de passe"
+                            onChange={(evt) => {
+                                setPassword({ value: evt.target.value, disabled: Password.disabled })
+                            }}
+                            value={Password.value}
+                            disabled={Password.disabled}
+                        />
+
                         <EditIcon />
                     </div>
 
                     <h1>New Password</h1>
                     <div className="pen">
-                        <Input type="String" placeholder="Nouveau mot de passe" />
+                        <Input
+                            type="String"
+                            placeholder="Nouveau mot de passe"
+                            onChange={(evt) => {
+                                setNPassword({ value: evt.target.value, disabled: NPassword.disabled })
+                            }}
+                            value={NPassword.value}
+                            disabled={NPassword.disabled}
+                        />
                         <EditIcon />
                     </div>
 
