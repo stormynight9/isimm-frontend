@@ -3,15 +3,47 @@ import { Input } from "@/components/ui/Input"
 import "./Tab.css"
 import { Button } from "@/components/ui/Button"
 import EditIcon from "../EditIcon/EditIcon"
-import React, { useState } from "react"
+import React, { useState,useEffect } from "react"
+import { ToastAction } from "@/components/ui/Toast"
+import { useToast } from "@/hooks/useToast"
 
 const Tab = () => {
-    const [nom, setNom] = useState({ value: "hfhf", disabled: true })
-    const [prenom, setPrenom] = useState({ value: "hfjyfj", disabled: true })
-    const [email, setEmail] = useState({ value: "jfjyfjyf", disabled: true })
-    const [Password, setPassword] = useState({ value: "123456", disabled: true })
-    const [NPassword, setNPassword] = useState({ value: "", disabled: true })
+    const [nom, setNom] = useState({ value: "", disabled: true })
+    const [prenom, setPrenom] = useState({ value: "", disabled: true })
+    const [email, setEmail] = useState({ value: "", disabled: true })
+    const [enseignantId, setenseignantId] = useState({ value: "1", disabled: true })
+    const { toast } = useToast()
+    function showToast(message) {
+        showCustomToast(toast, message)
+    }
+    useEffect(() => {
+        const getEnseignant = async () => {
+            const response = await fetch("http://localhost:8090/api/isimm/distributionCharge/enseignant/1", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            })
+            const responseJson = await response.json()
+            console.log(responseJson)
 
+        }
+        getEnseignant()
+    }, [])
+    const handleClickEdit = async () => {
+        console.log('helllo1')
+        const responseAdd = await fetch(`http://localhost:8090/api/isimm/distributionCharge/enseignant/updateEnseignant?enseignantId=${enseignantId.value}&nom=${nom.value}&prenom=${prenom.value}&email=${email.value}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        console.log('helllo2')
+
+        if (responseAdd.ok) {
+            showToast(" Edited")
+        }
+    }
     return (
         <Tabs defaultValue="account" className="w-[400px]">
             <TabsList>
@@ -90,7 +122,7 @@ const Tab = () => {
                         </div>
                     </div>
                     <div className="pen button">
-                        <Button className="BoutonEdit">Edit</Button>
+                        <Button className="BoutonEdit" onClick={handleClickEdit} >Edit</Button>
                     </div>
                 </div>
             </TabsContent>
@@ -141,7 +173,7 @@ const Tab = () => {
                     </div>
 
                     <div className="pen button">
-                        <Button className="BoutonEdit">Edit</Button>
+                        <Button className="BoutonEdit"  >Edit</Button>
                     </div>
                 </div>
             </TabsContent>
@@ -149,3 +181,9 @@ const Tab = () => {
     )
 }
 export default Tab
+export function showCustomToast(toast, message) {
+    toast({
+        title: message,
+        action: <ToastAction altText="Dismiss">D'accord</ToastAction>,
+    })
+}

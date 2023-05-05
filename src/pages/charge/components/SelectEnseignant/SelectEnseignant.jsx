@@ -14,7 +14,7 @@ const SelectEnseignant = ({ matiereId, type, joy }) => {
     const [matiereData, setMatiereData] = useState(null)
     const [disabled, setDisabled] = useState(false)
     const [value, setValue] = useState({ label: "", value: "" })
-    const [nbGrp,setNbGrp]=useState(0)
+    const [nbGrp, setNbGrp] = useState(0)
     const [nbGrpvalue, setNbGrpvalue] = useState({ label: "1", value: "1" })
     const { toast } = useToast()
     const [isAssignEnseignantVisible, setIsAssignEnseignantVisible] = useState(false)
@@ -61,16 +61,16 @@ const SelectEnseignant = ({ matiereId, type, joy }) => {
         console.log("Enseignant", responseJson)
         if (responseJson !== null) {
             setMatiereData((prev) => [...prev, { label: input, value: input }])
-            const responseAdd = await fetch("http://localhost:8090/api/isimm/distributionCharge/enseignantMatiere", {
-                method: "POST",
+            const responseUpdate = await fetch(`http://localhost:8090/api/isimm/distributionCharge/enseignantMatiere/updateEnseignantMatiere?matiereId=${matiereId}&enseignantId=${responseJson.enseignantId}&type=${type}&nombreGroupes=${nbGrpvalue.value}`, {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ enseignant: { enseignantId: responseJson.enseignantId }, matiere: { matiereId: matiereId }, type: type }),
             })
-            if (responseAdd.ok) {
-                showToast("Enseignant Added")
+            if (responseUpdate.ok) {
+                showToast("Enseignant Added/Updated")
                 setValue({ label: input, value: input })
+                setDisabled(true)
             }
         } else showToast("Enseignant Doesn't Exist")
     }
@@ -134,7 +134,7 @@ const SelectEnseignant = ({ matiereId, type, joy }) => {
                     <div id="targetJoy2" className="flex h-[25px] w-[25px] cursor-pointer items-center justify-center self-end rounded-full p-[5px] hover:bg-[#94a3b8]" onClick={handleEdit}>
                         <Edit2Icon />
                     </div>
-                    <p id="targetJoy1">{value.value+`(${nbGrp})`}</p>
+                    <p id="targetJoy1">{value.value + `(${nbGrp})`}</p>
                     {joy && <JoyRide continuous scrollToFirstStep showSkipButton steps={steps} />}
                 </div>
             ) : (

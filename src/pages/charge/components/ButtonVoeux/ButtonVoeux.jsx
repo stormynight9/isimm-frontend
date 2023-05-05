@@ -70,7 +70,7 @@ const ButtonVoeux = (props) => {
                         voeuxId: responseVoeuxJson.voeuxId,
                     },
                     enseignant: {
-                        enseignantId: 2,
+                        enseignantId: 1,
                     },
                     matiere: {
                         matiereId: matiere.matiereId,
