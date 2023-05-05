@@ -108,8 +108,14 @@ const Tab = () => {
                             value={Password.value}
                             disabled={Password.disabled}
                         />
-
-                        <EditIcon />
+                        <div
+                        onClick={() => {
+                                console.log("ajfnlakfn")
+                                setPassword({ value: Password.value, disabled: false })
+                            }}>
+                            <EditIcon />
+                        </div>
+                        
                     </div>
 
                     <h1>New Password</h1>
@@ -123,7 +129,15 @@ const Tab = () => {
                             value={NPassword.value}
                             disabled={NPassword.disabled}
                         />
+                        <div
+                        onClick={() => {
+                                console.log("ajfnlakfn")
+                                setNPassword({ value: NPassword.value, disabled: false })
+                            }}
+                            >
                         <EditIcon />
+                        </div>
+                       
                     </div>
 
                     <div className="pen button">
