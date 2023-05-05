@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/Input"
 import "./Tab.css"
 import { Button } from "@/components/ui/Button"
 import EditIcon from "../EditIcon/EditIcon"
-import React, { useState,useEffect } from "react"
+import React, { useState, useEffect } from "react"
 import { ToastAction } from "@/components/ui/Toast"
 import { useToast } from "@/hooks/useToast"
 
@@ -12,6 +12,8 @@ const Tab = () => {
     const [prenom, setPrenom] = useState({ value: "", disabled: true })
     const [email, setEmail] = useState({ value: "", disabled: true })
     const [enseignantId, setenseignantId] = useState({ value: "1", disabled: true })
+    const [Password, setPassword] = useState({ value: "", disabled: true })
+    const [NPassword, setNPassword] = useState({ value: "", disabled: true })
     const { toast } = useToast()
     function showToast(message) {
         showCustomToast(toast, message)
@@ -26,19 +28,18 @@ const Tab = () => {
             })
             const responseJson = await response.json()
             console.log(responseJson)
-
         }
         getEnseignant()
     }, [])
     const handleClickEdit = async () => {
-        console.log('helllo1')
+        console.log("helllo1")
         const responseAdd = await fetch(`http://localhost:8090/api/isimm/distributionCharge/enseignant/updateEnseignant?enseignantId=${enseignantId.value}&nom=${nom.value}&prenom=${prenom.value}&email=${email.value}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
         })
-        console.log('helllo2')
+        console.log("helllo2")
 
         if (responseAdd.ok) {
             showToast(" Edited")
@@ -122,7 +123,9 @@ const Tab = () => {
                         </div>
                     </div>
                     <div className="pen button">
-                        <Button className="BoutonEdit" onClick={handleClickEdit} >Edit</Button>
+                        <Button className="BoutonEdit" onClick={handleClickEdit}>
+                            Edit
+                        </Button>
                     </div>
                 </div>
             </TabsContent>
@@ -141,13 +144,13 @@ const Tab = () => {
                             disabled={Password.disabled}
                         />
                         <div
-                        onClick={() => {
+                            onClick={() => {
                                 console.log("ajfnlakfn")
                                 setPassword({ value: Password.value, disabled: false })
-                            }}>
+                            }}
+                        >
                             <EditIcon />
                         </div>
-                        
                     </div>
 
                     <h1>New Password</h1>
@@ -162,18 +165,17 @@ const Tab = () => {
                             disabled={NPassword.disabled}
                         />
                         <div
-                        onClick={() => {
+                            onClick={() => {
                                 console.log("ajfnlakfn")
                                 setNPassword({ value: NPassword.value, disabled: false })
                             }}
-                            >
-                        <EditIcon />
+                        >
+                            <EditIcon />
                         </div>
-                       
                     </div>
 
                     <div className="pen button">
-                        <Button className="BoutonEdit"  >Edit</Button>
+                        <Button className="BoutonEdit">Edit</Button>
                     </div>
                 </div>
             </TabsContent>
