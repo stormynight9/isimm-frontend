@@ -7,7 +7,7 @@
 .ButtonVoeuxContainner {
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
+    padding-right: 5px;
 }
 .Accordions {
     display: flex;

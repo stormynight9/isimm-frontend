@@ -71,9 +71,9 @@ const ProfileInformation = () => {
 
                     <Tab />
                 </div>
-
                 <div className="row">
                     <Table columns={columns} data={data} />
+        
                 </div>
             </div>
         </div>
