@@ -14,6 +14,7 @@ const SelectEnseignant = ({ matiereId, type, joy }) => {
     const [matiereData, setMatiereData] = useState(null)
     const [disabled, setDisabled] = useState(false)
     const [value, setValue] = useState({ label: "", value: "" })
+    const [nbGrp,setNbGrp]=useState(0)
     const [nbGrpvalue, setNbGrpvalue] = useState({ label: "1", value: "1" })
     const { toast } = useToast()
     const [isAssignEnseignantVisible, setIsAssignEnseignantVisible] = useState(false)
@@ -42,6 +43,7 @@ const SelectEnseignant = ({ matiereId, type, joy }) => {
                 const enseignantMat = data.enseignantMatieres.find((enseignantMat) => enseignantMat.type === type)
                 if (enseignantMat) {
                     setValue({ label: enseignantMat.enseignant.nom + "-" + enseignantMat.enseignant.prenom, value: enseignantMat.enseignant.nom + "-" + enseignantMat.enseignant.prenom })
+                    setNbGrp(enseignantMat.nombreGroupes)
                     setDisabled(true)
                 }
             }
@@ -132,7 +134,7 @@ const SelectEnseignant = ({ matiereId, type, joy }) => {
                     <div id="targetJoy2" className="flex h-[25px] w-[25px] cursor-pointer items-center justify-center self-end rounded-full p-[5px] hover:bg-[#94a3b8]" onClick={handleEdit}>
                         <Edit2Icon />
                     </div>
-                    <p id="targetJoy1">{value.value}</p>
+                    <p id="targetJoy1">{value.value+`(${nbGrp})`}</p>
                     {joy && <JoyRide continuous scrollToFirstStep showSkipButton steps={steps} />}
                 </div>
             ) : (

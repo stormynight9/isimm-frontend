@@ -41,6 +41,10 @@ const ButtonVoeux = (props) => {
         setVoeuxDialogVisible(!isVoeuxDialogVisible)
     }
     const handleSendVoeux = async () => {
+        if (voeuxMsg.length == 0) {
+            showToast("You must Provide a Message")
+            return
+        }
         const responseVoeux = await fetch("http://localhost:8090/api/isimm/distributionCharge/voeux", {
             method: "POST",
             headers: {
@@ -53,6 +57,7 @@ const ButtonVoeux = (props) => {
         })
         const responseVoeuxJson = await responseVoeux.json()
         console.log(responseVoeuxJson)
+
         if (responseVoeux.ok) {
             const response = await fetch("http://localhost:8090/api/isimm/distributionCharge/enseignantVoeux", {
                 method: "POST",
