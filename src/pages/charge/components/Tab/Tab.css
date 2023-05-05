@@ -15,7 +15,7 @@
 .icon {
     cursor: pointer;
     border-radius: 50%;
-    border-color: red;
+    border-color: #94a3b8;
     border: 1px solid;
     width: 35px;
     height: 35px;
@@ -23,6 +23,6 @@
     justify-content: center;
     align-items: center;
 }
-.icon:hover{
-    background-color: red;
+.icon:hover {
+    background-color: #94a3b8;
 }
