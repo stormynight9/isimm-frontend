@@ -10,7 +10,6 @@ function AccordationCharge() {
     function showToast(message) {
         showCustomToast(toast, message)
     }
-
     /*Consommation API */
     useEffect(() => {
         const getVoeux = async () => {
@@ -29,9 +28,15 @@ function AccordationCharge() {
 
     return (
         <div className="Accordions">
-            {voeux.map((v, i) => {
-                return <AccordionVoeux key={i} v={v} />
-            })}
+            {voeux.length == 0 ? (
+                <div>
+                    <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">No Voeux is available</h3>
+                </div>
+            ) : (
+                voeux.map((v, i) => {
+                    return <AccordionVoeux key={i} v={v} />
+                })
+            )}
         </div>
     )
 }

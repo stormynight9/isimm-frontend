@@ -11,9 +11,11 @@ const ConsultationVoeux = () => {
                     Received Voeux 
                 </h3>
             </div>
+
             <div className="AccordationChargeContainner"> 
                 <AccordationCharge/>
             </div>
+
         </div>
 
         
