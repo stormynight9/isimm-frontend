@@ -93,7 +93,7 @@ const Subject = ({ subject, data, setFormData, sectionId }) => {
                             >
                                 <CalendarIcon className="mr-2 h-4 w-4" />
                                 {subject.date ? (
-                                    format(subject.date, "PPP")
+                                    format(new Date(subject.date), "PPP")
                                 ) : (
                                     <span>Choisir une date</span>
                                 )}
