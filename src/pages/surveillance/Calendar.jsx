@@ -6,8 +6,16 @@ import { Button } from "@/components/ui/Button"
 import { scheduleData } from "./data/schedule-data"
 import { useEffect, useState } from "react"
 import { PDFDownloadLink } from "@react-pdf/renderer"
-
+import { savedCalendars } from "./data/saved-calendars"
 import TimetablePDF from "./components/TimetablePDF"
+import { Label } from "@/components/ui/Label"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/Select"
 
 const Calendar = () => {
     const [timeTable, setTimeTable] = useState([])
@@ -40,7 +48,27 @@ const Calendar = () => {
     }, [])
     return (
         <div className="lg:pl-4 lg:pt-4">
-            <Header title="Calendrier">Voici votre calendrier. Si vous souhaitez envoyer une réclamation, saisissez-la ci-dessous et envoyez-la.</Header>
+            <Header title="Calendrier">
+                Voici votre calendrier. Si vous souhaitez envoyer une réclamation, saisissez-la
+                ci-dessous et envoyez-la.
+            </Header>
+            <div className="grid w-full items-center gap-1.5 md:max-w-sm">
+                <Label htmlFor="calendrier" className="mt-9">
+                    Calendrier
+                </Label>
+                <Select id="calendrier">
+                    <SelectTrigger>
+                        <SelectValue placeholder="Choisir une calendrier" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        {savedCalendars.map((calendar) => (
+                            <SelectItem key={calendar.id} value={calendar.id}>
+                                {calendar.title}
+                            </SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
+            </div>
             <h1 className="my-4 text-xl font-bold">Examen Semestre 2 - 2022/2023</h1>
             <div className="flex w-full   flex-col xl:flex-row ">
                 {scheduleData.map((item, index) => (
@@ -49,7 +77,12 @@ const Calendar = () => {
                         <div className="flex items-center xl:flex-col xl:items-center">
                             <div className="flex w-full flex-wrap justify-center xl:flex-col">
                                 {item.sessions.map((element, index) => (
-                                    <CalendarCell key={index} value={element.value} variant={element.state ? "green" : "white"} className="m-2" />
+                                    <CalendarCell
+                                        key={index}
+                                        value={element.value}
+                                        variant={element.state ? "green" : "white"}
+                                        className="m-2"
+                                    />
                                 ))}
                             </div>
                         </div>
@@ -60,13 +93,23 @@ const Calendar = () => {
                 <div>
                     <Button variant={"outline"} className="flex gap-2">
                         <DownloadIcon className="mr-2 h-4 w-4" />{" "}
-                        <PDFDownloadLink document={<TimetablePDF timetable={timeTable} />} fileName="timetable.pdf" onRender={setPdfBlob}>
-                            {({ blob, url, loading, error }) => (loading ? "Loading document..." : "Télécharger pdf")}
+                        <PDFDownloadLink
+                            document={<TimetablePDF timetable={timeTable} />}
+                            fileName="timetable.pdf"
+                            onRender={setPdfBlob}
+                        >
+                            {({ blob, url, loading, error }) =>
+                                loading ? "Loading document..." : "Télécharger pdf"
+                            }
                         </PDFDownloadLink>
                     </Button>
 
                     {pdfBlob && (
-                        <Button variant={"outline"} className="flex gap-2" onClick={handleDownloadClick}>
+                        <Button
+                            variant={"outline"}
+                            className="flex gap-2"
+                            onClick={handleDownloadClick}
+                        >
                             <DownloadIcon className="mr-2 h-4 w-4" /> Télécharger pdf
                         </Button>
                     )}
