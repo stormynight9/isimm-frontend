@@ -87,7 +87,7 @@ const ProfileInformation = () => {
 
                     <Tab />
                 </div>
-                <div className="row">
+                
                     <Table
                         columns={columns}
                         data={enseignantMatieres.map((ensMat) => {
@@ -100,7 +100,7 @@ const ProfileInformation = () => {
                             }
                         })}
                     />
-                </div>
+                
             </div>
         </div>
     )

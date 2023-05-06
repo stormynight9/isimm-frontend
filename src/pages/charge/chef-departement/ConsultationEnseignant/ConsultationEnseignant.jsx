@@ -101,18 +101,20 @@ const ConsultationEnseignant = () => {
                     <p>{nombreHeures}</p>
                 </div>
             </div>
-            <Table
-                columns={columns}
-                data={enseignantMatieres.map((ensMat) => {
-                    return {
-                        Matter: ensMat.matiere.name,
-                        TP: ensMat.matiere.nbHTp,
-                        TD: ensMat.matiere.nbHTd,
-                        Cours: ensMat.matiere.nbHCr,
-                        HourlyLoad: ensMat.matiere.nbHTp + ensMat.matiere.nbHTd + ensMat.matiere.nbHCr,
-                    }
-                })}
-            />
+            
+                <Table
+                    columns={columns}
+                    data={enseignantMatieres.map((ensMat) => {
+                        return {
+                            Matter: ensMat.matiere.name,
+                            TP: ensMat.matiere.nbHTp,
+                            TD: ensMat.matiere.nbHTd,
+                            Cours: ensMat.matiere.nbHCr,
+                            HourlyLoad: ensMat.matiere.nbHTp + ensMat.matiere.nbHTd + ensMat.matiere.nbHCr,
+                        }
+                    })}
+                />
+            
         </div>
     )
 }
