@@ -22,6 +22,7 @@ import DemandeProduit from "./pages/magasin/ensignant/DemandeProduit"
 import ConsulterDemandes from "./pages/magasin/ensignant/ConsulterDemandes"
 import AjouterProduit from "./pages/magasin/service/AjouterProduit"
 import ConsulterProduits from "./pages/magasin/service/ConsulterProduits"
+import GenerateCalendars from "./pages/surveillance/GenerateCalendars"
 
 const router = createBrowserRouter(
     [
@@ -51,6 +52,10 @@ const router = createBrowserRouter(
                                 {
                                     path: "calendriers-sauvegardes",
                                     element: <SavedCalendars />,
+                                },
+                                {
+                                    path: "calendriers-sauvegardes/:id",
+                                    element: <GenerateCalendars />,
                                 },
                                 {
                                     path: "reclamations",
