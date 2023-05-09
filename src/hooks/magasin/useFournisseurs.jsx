@@ -1,11 +1,9 @@
-import { useState } from "react";
+import { transpileGetFournisseursBody } from "@/lib/magasin/responseBodyTranspiler";
 import useFetch from "./useFetch";
-import useList from "./useList";
 
 export default function useFournisseurs() {
-    // const products
-    const [fournisseurs, setFournisseurs] = useState([{id: 1, ref: 'F-0001', name: 'Ste Plus'}]);
-    // useFetch({ url: 'localhost:3000/magasin/produit', method: 'GET', onSuccess: setProducts });
-    // return useList({prefix: 'magasin', name: 'produit'});
-    return fournisseurs;
+    const {isLoading, apiData} = useFetch('GET', 'http://localhost:8090/api/isimm/gestionMagasin/magasin/Fournisseur')
+    console.log(transpileGetFournisseursBody(apiData));
+    if(isLoading || apiData.Body === undefined) return {fournisseurs: [], isLoading};
+    return {fournisseurs: transpileGetFournisseursBody(apiData), isLoading};
 }

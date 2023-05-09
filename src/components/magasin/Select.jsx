@@ -1,11 +1,13 @@
 import { SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue, Select as ChadSelect, SelectSeparator } from "@/components/ui/Select"
 import { Button } from "../ui/Button"
 
-function SelectBody({items, newButton}) {
+function SelectBody({items, newButton, accessor}) {
     return <SelectContent>
         <SelectGroup>
-            {items.map((item, index) => {
-                return <SelectItem key={index} value={item.id}>{item.text}</SelectItem>
+            {items?.map((item, index) => {
+                // console.log(item)
+                // console.log(item[accessor])
+                return <SelectItem key={index} value={item[accessor]}>{item.text}</SelectItem>
             })}
         </SelectGroup>
         {newButton && <>
@@ -15,16 +17,18 @@ function SelectBody({items, newButton}) {
     </SelectContent>
 }
 
-export default function Select({name, className, label, items, placeholder, value, onChange, newButton}) {
+export default function Select({name, className, label, items, accessor, placeholder, value, onChange, newButton, disabled}) {
+    // console.log(items)
+    // console.log(value)
     return <div className={className}>
         <div className="text-sm font-medium leading-none">
         {label}
         </div>
-        <ChadSelect name={name} value={value} onValueChange={onChange}>
+        <ChadSelect name={name} value={value} onValueChange={onChange} disabled={disabled}>
             <SelectTrigger>
                 <SelectValue placeholder={placeholder} />
             </SelectTrigger>
-            <SelectBody items={items} newButton={newButton}/>
+            <SelectBody items={items} newButton={newButton} accessor={accessor}/>
         </ChadSelect>
     </div>
 }

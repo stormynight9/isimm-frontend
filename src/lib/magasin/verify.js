@@ -7,5 +7,5 @@ export function verifyProductRecord(record) {
 }
 
 export function verifyDemandeRecord(record) {
-    return (record && record.product && record.quantite);
+    return (record && record.product && record.quantity);
 }

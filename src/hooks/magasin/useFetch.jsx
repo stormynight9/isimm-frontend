@@ -1,15 +1,39 @@
-import fetchData from "@/lib/magasin/fetchData";
 import { useEffect, useState } from "react";
 
-export default async function useFetch({url, method, body, headers, onError, onSuccess}) {
-    const [data, setData] = useState();
-    useEffect(() => {
-        fetchData({url, method, body, headers, onSuccess, onError});
-    }, [url, method, body, headers, onError, onSuccess]);
+const useFetch = (method, url, body) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [apiData, setApiData] = useState([]);
+  const [apiError, setApiError] = useState('');
 
-    useEffect(() => {
-        console.log(data);
-    }, [data]);
+  useEffect(() => {
+    setIsLoading(true);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(url, {
+            method,
+            body: JSON.stringify(body),
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
 
-    return data;
-}   
+            }
+        });
+        const data = await response.json();
+
+        setApiData(data);
+        setIsLoading(false);
+      } catch (error) {
+        console.log(error)
+        setApiError(error);
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [url, method, body]);
+
+  return { isLoading, apiData, apiError };
+};
+
+export default useFetch;

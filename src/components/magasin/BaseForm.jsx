@@ -1,16 +1,17 @@
 import { Button } from "../ui/Button";
 import BasePage from "./BasePage";
 
-export default function BaseForm({children, title, onSave, handleSubmit}) {
+export default function BaseForm({children, title, onSave, type}) {
     function handleSubmitInner(e) {
         e.preventDefault();
-        handleSubmit(e);
+        onSave(e);
     }
 
     return <BasePage title={title}>
-        <form onSubmit={handleSubmitInner}>
+        <form className="flex items-stretch flex-col" onSubmit={handleSubmitInner}>
             {children}
-            <Button className="self-end" onClick={onSave}>Enregistrer</Button>
+            {/* <Button type="submit" className="self-end" onClick={onSave}>Enregistrer</Button> */}
+            {(type === 'add' || type === 'edit') && <Button type="submit" className="self-end">Enregistrer</Button>}
         </form>
     </BasePage>
 }

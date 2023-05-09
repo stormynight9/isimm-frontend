@@ -26,6 +26,11 @@ import ReclamationNote from "./pages/notes/reclamation/Reclamation"
 import DemandeProduit from "./pages/magasin/ensignant/DemandeProduit"
 import ConsulterDemandes from "./pages/magasin/ensignant/ConsulterDemandes"
 import ConsulterProduits from "./pages/magasin/service/ConsulterProduits"
+import ListeProduit from "./pages/magasin/admin/produit/ListeProduit"
+import ListeFournisseur from "./pages/magasin/admin/fournisseur/ListeFournisseur"
+import ModifierProduit from "./pages/magasin/admin/produit/ModifierProduit"
+import ListeFacture from "./pages/magasin/admin/facture/ListeFacture"
+import AccepterDemande from "./pages/magasin/admin/demande/AccepterDemande"
 
 const router = createBrowserRouter(
     [
@@ -95,6 +100,7 @@ const router = createBrowserRouter(
                                     children: [
                                         {
                                             path: "facture",
+                                            // element: <ListeFacture />,
                                             children: [
                                                 {
                                                     path: "ajouter",
@@ -103,10 +109,15 @@ const router = createBrowserRouter(
                                                 {
                                                     path: "modifier/:id",
                                                     element: <ModifierFacture />
+                                                },
+                                                {
+                                                    path: "list",
+                                                    element: <ListeFacture />   
                                                 }
                                             ],
                                         },
                                         {
+                                            // element: <ListeProduit />,
                                             path: "produit",
                                             children: [
                                                 {
@@ -115,8 +126,26 @@ const router = createBrowserRouter(
                                                 },
                                                 {
                                                     path: "modifier/:id",
-                                                    element: <ModifierFacture />
+                                                    element: <ModifierProduit />
+                                                },
+                                                {
+                                                    path: 'list',
+                                                    element: <ListeProduit />,
                                                 }
+                                            ],
+                                        },
+                                        {
+                                            element: <ListeFournisseur />,
+                                            path: "fournisseur",
+                                            children: [
+                                                {
+                                                    path: "ajouter",
+                                                    element: <AjouterProduit />
+                                                },
+                                                {
+                                                    path: "modifier/:id",
+                                                    element: <ModifierFacture />
+                                                },
                                             ],
                                         },
                                         {
@@ -126,6 +155,10 @@ const router = createBrowserRouter(
                                                 {
                                                     path: "ajouter",
                                                     element: <AjouterDemande />
+                                                },
+                                                {
+                                                    path: 'accepter/:id',
+                                                    element: <AccepterDemande />,
                                                 },
                                                 {
                                                     path: 'list',
