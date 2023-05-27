@@ -135,7 +135,7 @@ const SelectEnseignant = ({ matiereId, type, joy }) => {
                         <Edit2Icon />
                     </div>
                     <p id="targetJoy1">{value.value + `(${nbGrp})`}</p>
-                    {joy && <JoyRide continuous scrollToFirstStep showSkipButton steps={steps} />}
+                    {/*joy && <JoyRide continuous scrollToFirstStep showSkipButton steps={steps} />*/}
                 </div>
             ) : (
                 <Dialog className="z-[101]">

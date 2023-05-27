@@ -105,7 +105,7 @@ const ButtonVoeux = (props) => {
                     <Button disabled={disabled} {...props} variant="default" onClick={handleClick}>
                         Voeux
                     </Button>
-                    {joy && <JoyRide continuous disableOverlay showSkipButton steps={steps} />}
+                    {/*joy && <JoyRide continuous disableOverlay showSkipButton steps={steps} />*/}
                 </div>
             </DialogTrigger>
 
