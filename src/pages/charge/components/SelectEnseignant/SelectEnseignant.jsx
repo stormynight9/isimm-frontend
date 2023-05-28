@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from "react"
+import { Fragment, useState, useEffect } from "react"
 import CreatableSelect from "react-select/creatable"
 import Select from "react-select"
 import { useGetMatiereQuery } from "@/redux/features/charge/ChargeApiSlice"
@@ -8,8 +8,7 @@ import { Edit2Icon } from "lucide-react"
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/Dialog"
 import { useToast } from "@/hooks/useToast"
 import "./SelectEnseignant.css"
-import JoyRide from "react-joyride"
-const SelectEnseignant = ({ matiereId, type, joy }) => {
+const SelectEnseignant = ({ matiereId, type }) => {
     const { data, isLoading } = useGetMatiereQuery(matiereId)
     const [matiereData, setMatiereData] = useState(null)
     const [disabled, setDisabled] = useState(false)
@@ -111,20 +110,7 @@ const SelectEnseignant = ({ matiereId, type, joy }) => {
     const handleEdit = () => {
         setDisabled(false)
     }
-    const steps = [
-        {
-            title: "Selected Enseignant",
-            content: "This is the selected Enseignant for this subject",
-            target: "#targetJoy1",
-            placement: "left-start",
-        },
-        {
-            title: "Update Enseignant",
-            content: "By Clicking on the Edit you cant modify the selected Enseignant for the subject",
-            target: "#targetJoy2",
-            placement: "bottom-end",
-        },
-    ]
+
     return (
         <Fragment>
             {isLoading ? (
@@ -135,7 +121,6 @@ const SelectEnseignant = ({ matiereId, type, joy }) => {
                         <Edit2Icon />
                     </div>
                     <p id="targetJoy1">{value.value + `(${nbGrp})`}</p>
-                    {/*joy && <JoyRide continuous scrollToFirstStep showSkipButton steps={steps} />*/}
                 </div>
             ) : (
                 <Dialog className="z-[101]">
