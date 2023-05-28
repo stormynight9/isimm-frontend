@@ -1,5 +1,5 @@
 import Table from "@/components/shared/Table"
-import React, { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { useMemo } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
 import { useSelector } from "react-redux"
@@ -34,36 +34,9 @@ const ConsultationEnseignant = () => {
         []
     )
 
-    const data = useMemo(
-        () => [
-            {
-                Matter: "UML/OCL",
-                TP: "-",
-                TD: "29",
-                Cours: "-",
-                HourlyLoad: "29",
-            },
-            {
-                Matter: "Projet Web/Mobile",
-                TP: "-",
-                TD: "30",
-                Cours: "-",
-                HourlyLoad: 30,
-            },
-            {
-                Matter: "Total:",
-                TP: "-",
-                TD: "-",
-                Cours: "-",
-                HourlyLoad: "Application de la formule de charge",
-            },
-        ],
-        []
-    )
-
     useEffect(() => {
         const getMatieres = async () => {
-            const response = await fetch(`http://localhost:8090/api/isimm/distributionCharge/enseignantMatiere/getEnseignantMatieresByEnseignantId?enseignantId=${enseignantId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignantMatiere/getEnseignantMatieresByEnseignantId?enseignantId=${enseignantId}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -101,20 +74,19 @@ const ConsultationEnseignant = () => {
                     <p>{nombreHeures}</p>
                 </div>
             </div>
-            
-                <Table
-                    columns={columns}
-                    data={enseignantMatieres.map((ensMat) => {
-                        return {
-                            Matter: ensMat.matiere.name,
-                            TP: ensMat.matiere.nbHTp,
-                            TD: ensMat.matiere.nbHTd,
-                            Cours: ensMat.matiere.nbHCr,
-                            HourlyLoad: ensMat.matiere.nbHTp + ensMat.matiere.nbHTd + ensMat.matiere.nbHCr,
-                        }
-                    })}
-                />
-            
+
+            <Table
+                columns={columns}
+                data={enseignantMatieres.map((ensMat) => {
+                    return {
+                        Matter: ensMat.matiere.name,
+                        TP: ensMat.matiere.nbHTp,
+                        TD: ensMat.matiere.nbHTd,
+                        Cours: ensMat.matiere.nbHCr,
+                        HourlyLoad: ensMat.matiere.nbHTp + ensMat.matiere.nbHTd + ensMat.matiere.nbHCr,
+                    }
+                })}
+            />
         </div>
     )
 }

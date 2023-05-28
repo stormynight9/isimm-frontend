@@ -13,7 +13,7 @@ function AccordationCharge() {
     /*Consommation API */
     useEffect(() => {
         const getVoeux = async () => {
-            const response = await fetch("http://localhost:8090/api/isimm/distributionCharge/enseignantVoeux", {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignantVoeux`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

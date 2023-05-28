@@ -20,7 +20,7 @@ const Tab = () => {
     }
     useEffect(() => {
         const getEnseignant = async () => {
-            const response = await fetch("http://localhost:8090/api/isimm/distributionCharge/enseignant/1", {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignant/1`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -34,7 +34,7 @@ const Tab = () => {
         getEnseignant()
     }, [])
     const handleClickEdit = async () => {
-        const responseAdd = await fetch(`http://localhost:8090/api/isimm/distributionCharge/enseignant/updateEnseignant?enseignantId=${enseignantId.value}&nom=${nom.value}&prenom=${prenom.value}&email=${email.value}`, {
+        const responseAdd = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignant/updateEnseignant?enseignantId=${enseignantId.value}&nom=${nom.value}&prenom=${prenom.value}&email=${email.value}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -50,7 +50,7 @@ const Tab = () => {
         }
     }
     const handleClickEditPassword = async () => {
-        const responseUpdate = await fetch(`http://localhost:8090/api/isimm/distributionCharge/enseignant/updateEnseignantpassword`, {
+        const responseUpdate = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignant/updateEnseignantpassword`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

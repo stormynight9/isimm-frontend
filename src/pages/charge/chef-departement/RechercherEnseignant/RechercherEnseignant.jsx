@@ -25,7 +25,7 @@ const RechercherEnseignant = () => {
 
     const onClickButton = () => {
         axios
-            .get(`http://localhost:8090/api/isimm/distributionCharge/enseignant/getEnseignantByName?nom=${inputValue.split("-")[0]}&prenom=${inputValue.split("-")[1]}`)
+            .get(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignant/getEnseignantByName?nom=${inputValue.split("-")[0]}&prenom=${inputValue.split("-")[1]}`)
             .then((res) => {
                 if (res && res.data) {
                     console.log(res.data)

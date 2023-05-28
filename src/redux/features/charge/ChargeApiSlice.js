@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react"
 
 export const ChargeApi = createApi({
     reducerPath: "MatiereApi",
-    baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:8090/api/isimm/distributionCharge" }),
+    baseQuery: fetchBaseQuery({ baseUrl: `${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge` }),
     endpoints: (builder) => ({
         getMatiere: builder.query({
             query: (id) => ({

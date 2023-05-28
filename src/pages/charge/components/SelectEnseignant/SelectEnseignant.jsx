@@ -51,7 +51,7 @@ const SelectEnseignant = ({ matiereId, type, joy }) => {
     }, [data])
     const handleCreate = async (input) => {
         console.log(input)
-        const response = await fetch(`http://localhost:8090/api/isimm/distributionCharge/enseignant/getEnseignantByName?nom=${input.split("-")[0]}&prenom=${input.split("-")[1]}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignant/getEnseignantByName?nom=${input.split("-")[0]}&prenom=${input.split("-")[1]}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -61,7 +61,7 @@ const SelectEnseignant = ({ matiereId, type, joy }) => {
         console.log("Enseignant", responseJson)
         if (responseJson !== null) {
             setMatiereData((prev) => [...prev, { label: input, value: input }])
-            const responseUpdate = await fetch(`http://localhost:8090/api/isimm/distributionCharge/enseignantMatiere/updateEnseignantMatiere?matiereId=${matiereId}&enseignantId=${responseJson.enseignantId}&type=${type}&nombreGroupes=${nbGrpvalue.value}`, {
+            const responseUpdate = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignantMatiere/updateEnseignantMatiere?matiereId=${matiereId}&enseignantId=${responseJson.enseignantId}&type=${type}&nombreGroupes=${nbGrpvalue.value}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -86,7 +86,7 @@ const SelectEnseignant = ({ matiereId, type, joy }) => {
         //Update the enseignant for the matiere
         const input = value
         console.log(input)
-        const response = await fetch(`http://localhost:8090/api/isimm/distributionCharge/enseignant/getEnseignantByName?nom=${input.label.split("-")[0]}&prenom=${input.label.split("-")[1]}`, {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignant/getEnseignantByName?nom=${input.label.split("-")[0]}&prenom=${input.label.split("-")[1]}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -95,7 +95,7 @@ const SelectEnseignant = ({ matiereId, type, joy }) => {
         const responseJson = await response.json()
         console.log("Found", responseJson)
         if (responseJson !== null) {
-            const responseUpdate = await fetch(`http://localhost:8090/api/isimm/distributionCharge/enseignantMatiere/updateEnseignantMatiere?matiereId=${matiereId}&enseignantId=${responseJson.enseignantId}&type=${type}&nombreGroupes=${nbGrpvalue.value}`, {
+            const responseUpdate = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignantMatiere/updateEnseignantMatiere?matiereId=${matiereId}&enseignantId=${responseJson.enseignantId}&type=${type}&nombreGroupes=${nbGrpvalue.value}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

@@ -20,7 +20,7 @@ const AccordionVoeux = ({ v }) => {
     const handleClick = async (enseignantId, matiereId, type) => {
         console.log(enseignantId)
         console.log(matiereId)
-        const responseAdd = await fetch(`http://localhost:8090/api/isimm/distributionCharge/enseignantMatiere/updateEnseignantMatiere?matiereId=${matiereId}&enseignantId=${enseignantId}&type=${type}&nombreGroupes=${nbGrpvalue.value}`, {
+        const responseAdd = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignantMatiere/updateEnseignantMatiere?matiereId=${matiereId}&enseignantId=${enseignantId}&type=${type}&nombreGroupes=${nbGrpvalue.value}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",

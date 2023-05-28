@@ -21,7 +21,7 @@ const ButtonVoeux = (props) => {
     const { toast } = useToast()
     useEffect(() => {
         const getVoeux = async () => {
-            const response = await fetch(`http://localhost:8090/api/isimm/distributionCharge/enseignantVoeux/getEnseignantVoeuxByEnseignantId?enseignantId=${1}&matiereId=${matiere.matiereId}&matiereType=${matiereType}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignantVoeux/getEnseignantVoeuxByEnseignantId?enseignantId=${1}&matiereId=${matiere.matiereId}&matiereType=${matiereType}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -45,7 +45,7 @@ const ButtonVoeux = (props) => {
             showToast("You must Provide a Message")
             return
         }
-        const responseVoeux = await fetch("http://localhost:8090/api/isimm/distributionCharge/voeux", {
+        const responseVoeux = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/voeux`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -59,7 +59,7 @@ const ButtonVoeux = (props) => {
         console.log(responseVoeuxJson)
 
         if (responseVoeux.ok) {
-            const response = await fetch("http://localhost:8090/api/isimm/distributionCharge/enseignantVoeux", {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignantVoeux`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

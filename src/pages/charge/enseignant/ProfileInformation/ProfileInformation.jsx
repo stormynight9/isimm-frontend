@@ -9,7 +9,7 @@ const ProfileInformation = () => {
     const [enseignantMatieres, setEnseignantMatieres] = useState([])
     useEffect(() => {
         const getMatieres = async () => {
-            const response = await fetch(`http://localhost:8090/api/isimm/distributionCharge/enseignantMatiere/getEnseignantMatieresByEnseignantId?enseignantId=${1}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignantMatiere/getEnseignantMatieresByEnseignantId?enseignantId=${1}`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",

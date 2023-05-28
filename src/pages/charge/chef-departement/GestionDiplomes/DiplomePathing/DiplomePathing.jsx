@@ -15,7 +15,7 @@ const DiplomePathing = () => {
     const location = useLocation()
     useEffect(() => {
         const getDiplomes = async () => {
-            const response = await fetch("http://localhost:8090/api/isimm/distributionCharge/diplome", {
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/diplome`, {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
