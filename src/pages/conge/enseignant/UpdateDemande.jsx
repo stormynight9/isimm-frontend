@@ -3,14 +3,22 @@ import { Label } from "@/components/ui/Label"
 import { Input } from "@/components/ui/Input"
 import { Button } from "@/components/ui/Button"
 import { useNavigate } from "react-router-dom"
-
-const DemandeConge = () => {
+import axios from "axios"
+const UpdateDemande = () => {
     const navigateTo = useNavigate()
 
     const [formValid, setFormValid] = useState(false)
     const [type, setType] = useState("ANNUEL")
     const [file, setFile] = useState(null)
     const [Justification, setJustification] = useState("")
+    const [idDemandeConger] = useState("")
+
+    const [employe] = useState("")
+    const [DateDebut] = useState("")
+    const [DateFin] = useState("")
+    const [etatDemande] = useState("ATTENTE")
+    //const [demandes, setDemandes] = useState([])
+    const demande = { type, Justification, DateDebut, DateFin, etatDemande, employe, file }
 
     const handleTypeChange = (event) => {
         setType(event.target.value)
@@ -20,74 +28,20 @@ const DemandeConge = () => {
         setFile(event.target.files[0])
     }
 
-    const handleSubmit = async (event) => {
-        event.preventDefault()
-        if (event.target.checkValidity()) {
-            try {
-                const DateDebut = event.target.DateDebut.value || null
-                const DateFin = event.target.DateFin.value || null
-                const employer = parseInt(event.target.employer.value) || null
-                if (DateDebut && DateFin && new Date(DateDebut) > new Date(DateFin)) {
-                    alert("La date de début doit être inférieure à la date de fin.")
-                    return
-                }
-
-                const requestBody = {
-                    type,
-                    Justification,
-                    DateDebut,
-                    DateFin,
-                    employe: employer,
-                    id_file: null, // Ajout de id_file avec la valeur null par défaut
-                }
-
-                if (type === "MALADIE") {
-                    const formData = new FormData()
-                    formData.append("file", file)
-                    formData.append("type", type)
-                    formData.append("Justification", Justification)
-                    formData.append("DateDebut", DateDebut)
-                    formData.append("DateFin", DateFin)
-                    formData.append("employe", employer)
-
-                    const response = await fetch("http://localhost:8090/uploadFile", {
-                        method: "POST",
-                        body: formData,
-                        mode: "cors",
-                    })
-
-                    if (response.ok) {
-                        const { fileId } = await response.json()
-                        requestBody.id_file = fileId // Met à jour id_file avec la valeur du fileId reçu
-                    } else {
-                        const errorResponse = await response.json()
-                        alert(errorResponse.message)
-                        return
-                    }
-                }
-
-                const addCongeResponse = await fetch(
-                    //api/isimm/gestionConge/exempleEntity/add
-                    "http://localhost:8090/api/isimm/gestionConge/exempleEntity/add",
-                    {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify(requestBody),
-                        mode: "cors",
-                    }
-                )
-
-                if (addCongeResponse.ok) {
-                    navigateTo("/conge/enseignant/mes-demandes")
-                } else {
-                    const errorResponse = await addCongeResponse.json()
-                    alert(errorResponse.message)
-                }
-            } catch (error) {
-                alert("Une erreur s'est produite lors de la soumission de la demande.")
+    const update = async (e, idDemandeConger) => {
+        e.preventDefault()
+        try {
+            const response = await axios.post(
+                `http://localhost:8090/api/isimm/gestionConge/exempleEntity/${idDemandeConger}`,
+                demande
+            )
+            if (response.status === 200) {
+                navigateTo("/conge/enseignant/mes-demandes")
+            } else {
+                alert(response.data.message)
             }
+        } catch (error) {
+            alert("Une erreur s'est produite lors de la soumission de la demande.")
         }
     }
 
@@ -106,7 +60,7 @@ const DemandeConge = () => {
 
     return (
         <div style={{ display: "flex", justifyContent: "center" }}>
-            <form onSubmit={handleSubmit} style={{ width: "50%" }}>
+            <form onSubmit={(e) => update(e, idDemandeConger)} style={{ width: "50%" }}>
                 <h1
                     style={{
                         textAlign: "center",
@@ -115,7 +69,7 @@ const DemandeConge = () => {
                         margin: "20px 0",
                     }}
                 >
-                    Demande Congé
+                    Modifier la Demande Congé
                 </h1>
 
                 <div>
@@ -235,5 +189,5 @@ const DemandeConge = () => {
     )
 }
 
-export default DemandeConge
+export default UpdateDemande
 
