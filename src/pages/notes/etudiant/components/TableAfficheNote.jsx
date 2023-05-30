@@ -12,6 +12,7 @@ const TableAfficheNote = (props) => {
 
     useEffect(() => {
         chargeSections()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [sem])
     const chargeSections = async () => {
         try {

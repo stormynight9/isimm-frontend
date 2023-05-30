@@ -2,7 +2,6 @@ import { useMemo } from "react"
 import TablePagination from "./TablePaginationReclamation"
 import { Button } from "@/components/ui/Button"
 import Badge from "@/components/ui/Badge"
-import PropTypes from "prop-types"
 
 const ReclamationTable = ({ responseJson, changeDialogVisibility, setDetailsJson }) => {
     const getReclamationDetails = async (id) => {
@@ -87,15 +86,12 @@ const ReclamationTable = ({ responseJson, changeDialogVisibility, setDetailsJson
                 ),
             },
         ],
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [setDetailsJson, changeDialogVisibility]
     )
 
     return <TablePagination columns={columns} data={responseJson} />
 }
 
-ReclamationTable.propTypes = {
-    responseJson: PropTypes.isRequired,
-    changeDialogVisibility: PropTypes.func.isRequired,
-}
 
 export default ReclamationTable

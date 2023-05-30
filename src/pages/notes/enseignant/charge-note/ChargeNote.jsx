@@ -12,6 +12,7 @@ const ChargeNote = () => {
     const [responseJson, setResponseJson] = useState([])
     useEffect(() => {
         chargeList()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     const chargeList = async () => {
         try {

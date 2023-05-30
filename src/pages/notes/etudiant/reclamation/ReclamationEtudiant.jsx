@@ -111,7 +111,7 @@ const ReclamationNote = () => {
             <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">Notes {`>`} Reclamation</h3>
             <br></br>
             <Dialog open={isReclamationDialogVisible}>
-                <DialogTrigger>
+                <DialogTrigger asChild>
                     <Button onClick={handleClick} className="mb-6 bg-[#334155]">
                         Créer une Réclamation
                     </Button>

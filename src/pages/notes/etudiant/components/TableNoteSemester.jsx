@@ -57,7 +57,7 @@ const TablePagination = ({ columns, data }) => {
                 description: "You will no longer see any color changes",
                 status: "success",
                 duration: 1500,
-                isClosable: true,
+                isclosable: "true",
             })
         } else {
             toast({
@@ -65,7 +65,7 @@ const TablePagination = ({ columns, data }) => {
                 description: "You will now see color changes",
                 status: "success",
                 duration: 1500,
-                isClosable: true,
+                isclosable: "true",
             })
         }
     }
@@ -75,7 +75,7 @@ const TablePagination = ({ columns, data }) => {
             <div className="mb-2 flex justify-end">
                 <TooltipProvider>
                     <Tooltip>
-                        <TooltipTrigger>
+                        <TooltipTrigger asChild>
                             <Switch
                                 onClick={() => {
                                     handleToggleColor()

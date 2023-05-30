@@ -64,7 +64,7 @@ const ReclamationEnseignant = () => {
             <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">Notes {`>`} Reclamation</h3>
             {responseJson.length === 0 ? (
                 <div className="w-full text-center">
-                    <img src={nothing} alt="" srcset="" className="mx-auto mb-4 mt-44 h-20 w-20" />
+                    <img src={nothing} alt="" srcSet="" className="mx-auto mb-4 mt-44 h-20 w-20" />
                     <span className="mx-auto">Oups</span>
                     <br></br>
                     <span className="mx-auto">Vous n'avez pas du reclamations</span>
