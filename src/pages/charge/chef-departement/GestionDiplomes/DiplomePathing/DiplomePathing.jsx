@@ -5,7 +5,7 @@ import { ChevronRight } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select"
 import { useLocation } from "react-router-dom"
 import JoyRide from "react-joyride"
-import "./DiplomePathing.css"
+import DiplomePathingStyles from "./DiplomePathing.module.css"
 const DiplomePathing = () => {
     const [diplomes, setDiplomes] = useState([])
     const [selectedDiplome, setSelectedDiplome] = useState(null)
@@ -89,9 +89,9 @@ const DiplomePathing = () => {
         },
     ]
     return (
-        <div className="DiplomePathing">
-            <div className="SelectRow">
-                <div className="SelectRow" id="SelectDiplome">
+        <div className={DiplomePathingStyles.DiplomePathing}>
+            <div className={DiplomePathingStyles.SelectRow}>
+                <div className={DiplomePathingStyles.SelectRow} id="SelectDiplome">
                     <Select
                         onValueChange={(selectedOption) => {
                             handleDiplomeSelect(selectedOption.valueOf())
@@ -113,7 +113,7 @@ const DiplomePathing = () => {
                 </div>
 
                 {selectedDiplome && (
-                    <div className="SelectRow" id="SelectSection">
+                    <div className={DiplomePathingStyles.SelectRow} id="SelectSection">
                         <Select
                             onValueChange={(selectedOption) => {
                                 handleSectionSelect(selectedOption.valueOf())
@@ -132,7 +132,7 @@ const DiplomePathing = () => {
                         </Select>
                         <ChevronRight size={48} />
                         {selectedSection && (
-                            <div className="SelectRow" id="SelectNiveau">
+                            <div className={DiplomePathingStyles.SelectRow} id="SelectNiveau">
                                 <Select
                                     onValueChange={(selectedOption) => {
                                         handleNiveauSelect(selectedOption.valueOf())
@@ -151,7 +151,7 @@ const DiplomePathing = () => {
                                 </Select>
                                 <ChevronRight size={48} />
                                 {selectedNiveau && (
-                                    <div className="SelectRow" id="SelectSemestre">
+                                    <div className={DiplomePathingStyles.SelectRow} id="SelectSemestre">
                                         <Select
                                             onValueChange={(selectedOption) => {
                                                 handleSemestreSelect(selectedOption.valueOf())

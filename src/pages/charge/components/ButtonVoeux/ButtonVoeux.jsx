@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from "react"
+import { useEffect } from "react"
 import { Button } from "@/components/ui/Button"
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/Dialog"
 import { Label } from "@/components/ui/Label"
@@ -7,9 +7,8 @@ import { useState } from "react"
 import { ToastAction } from "@/components/ui/Toast"
 import { useToast } from "@/hooks/useToast"
 import { useNavigate } from "react-router-dom"
-import JoyRide from "react-joyride"
 
-import "./ButtonVoeux.css"
+import ButtonVoeuxStyles from "./ButtonVoeux.module.css"
 const ButtonVoeux = (props) => {
     const { matiere, matiereType, joy } = props
 
@@ -113,26 +112,26 @@ const ButtonVoeux = (props) => {
                 <DialogHeader>
                     <DialogTitle>Demande Voeux :</DialogTitle>
                 </DialogHeader>
-                <div className="FormulaireContainer">
-                    <div className="row">
-                        <Label className="ens1">Enseignat : </Label>
-                        <Label className="ens">Monsieur X </Label>
+                <div className={ButtonVoeuxStyles.FormulaireContainer}>
+                    <div className={ButtonVoeuxStyles.row}>
+                        <Label className={ButtonVoeuxStyles.ens1}>Enseignat : </Label>
+                        <Label className={ButtonVoeuxStyles.ens}>Monsieur X </Label>
                     </div>
 
-                    <div className="row">
-                        <Label className="mat1">Matiére : </Label>
-                        <Label className="mat">{matiere.name}</Label>
+                    <div className={ButtonVoeuxStyles.row}>
+                        <Label className={ButtonVoeuxStyles.mat1}>Matiére : </Label>
+                        <Label className={ButtonVoeuxStyles.mat}>{matiere.name}</Label>
                     </div>
 
-                    <div className="row">
-                        <Label className="type1">Type : </Label>
-                        <Label className="type">{matiereType}</Label>
+                    <div className={ButtonVoeuxStyles.row}>
+                        <Label className={ButtonVoeuxStyles.type1}>Type : </Label>
+                        <Label className={ButtonVoeuxStyles.type}>{matiereType}</Label>
                     </div>
 
-                    <div className="row">
-                        <Label className="mess">Message : </Label>
+                    <div className={ButtonVoeuxStyles.row}>
+                        <Label className={ButtonVoeuxStyles.mess}>Message : </Label>
                     </div>
-                    <div className="row">
+                    <div className={ButtonVoeuxStyles.row}>
                         <Textarea
                             type="text"
                             style={{ resize: "none" }}

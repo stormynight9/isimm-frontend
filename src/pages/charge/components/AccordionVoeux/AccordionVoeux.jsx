@@ -1,10 +1,11 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import { Button } from "@/components/ui/Button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/Accordion"
 import Select from "react-select"
 import { ToastAction } from "@/components/ui/Toast"
 import { useToast } from "@/hooks/useToast"
-
+import AccordationStyles from "../Accordation/Accordation.module.css"
+import SelectEnseignantStyles from "../SelectEnseignant/SelectEnseignant.module.css"
 const AccordionVoeux = ({ v }) => {
     console.log(v)
     const { toast } = useToast()
@@ -31,14 +32,14 @@ const AccordionVoeux = ({ v }) => {
         }
     }
     return (
-        <Accordion className="Accordion" type="single" collapsible>
+        <Accordion className={AccordationStyles.Accordion} type="single" collapsible>
             <AccordionItem value="item-1">
                 <AccordionTrigger> Voeux d'enseignant : {v.enseignant.nom + "-" + v.enseignant.prenom} </AccordionTrigger>
                 <AccordionContent>
                     <div className="flex flex-row  items-center justify-start  gap-5">
                         Nombre Groupes :{" "}
                         <Select
-                            className="SelectEnseignant"
+                            className={SelectEnseignantStyles.SelectEnseignant}
                             onChange={handleChangeNbGrp}
                             value={nbGrpvalue}
                             options={[
@@ -50,22 +51,22 @@ const AccordionVoeux = ({ v }) => {
                         />
                     </div>
                     <p>
-                        <span className="bold">Matiere : </span>
+                        <span className={AccordationStyles.bold}>Matiere : </span>
                         {v.matiere.name}
                     </p>
                     <p>
-                        <span className="bold">Type : </span>
+                        <span className={AccordationStyles.bold}>Type : </span>
                         {v.type}
                     </p>
                     <br />
                     <p>
-                        <span className="bold">Description : </span>
+                        <span className={AccordationStyles.bold}>Description : </span>
                         {v.voeux.message}
                     </p>
                     <br />
 
-                    <div className="ButtonVoeuxContainner">
-                        <Button variant="default" className="ButtonValidVoeux" onClick={(event) => handleClick(v.enseignant.enseignantId, v.matiere.matiereId, v.type)}>
+                    <div className={AccordationStyles.ButtonVoeuxContainner}>
+                        <Button variant="default" className={AccordationStyles.ButtonValidVoeux} onClick={(event) => handleClick(v.enseignant.enseignantId, v.matiere.matiereId, v.type)}>
                             Valider
                         </Button>
                     </div>

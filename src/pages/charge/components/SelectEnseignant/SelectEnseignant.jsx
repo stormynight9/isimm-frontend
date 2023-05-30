@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/Button"
 import { Edit2Icon } from "lucide-react"
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/Dialog"
 import { useToast } from "@/hooks/useToast"
-import "./SelectEnseignant.css"
+import SelectEnseignantStyles from "./SelectEnseignant.module.css"
 const SelectEnseignant = ({ matiereId, type }) => {
     const { data, isLoading } = useGetMatiereQuery(matiereId)
     const [matiereData, setMatiereData] = useState(null)
@@ -135,12 +135,12 @@ const SelectEnseignant = ({ matiereId, type }) => {
                         </DialogHeader>
                         <div className="DlgContent flex flex-col gap-5">
                             <div className="flex flex-row  items-center justify-between  gap-5">
-                                Enseignant : <CreatableSelect isDisabled={disabled} className="SelectEnseignant" onChange={handleChange} value={value} options={matiereData} onCreateOption={handleCreate} />
+                                Enseignant : <CreatableSelect isDisabled={disabled} className={SelectEnseignantStyles.SelectEnseignant} onChange={handleChange} value={value} options={matiereData} onCreateOption={handleCreate} />
                             </div>
                             <div className="flex flex-row  items-center justify-between  gap-5">
                                 Nombre Groupes :{" "}
                                 <Select
-                                    className="SelectEnseignant"
+                                    className={SelectEnseignantStyles.SelectEnseignant}
                                     onChange={handleChangeNbGrp}
                                     value={nbGrpvalue}
                                     options={[

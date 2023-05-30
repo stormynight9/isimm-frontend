@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { useMemo } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
 import { useSelector } from "react-redux"
-import "./ConsultationEnseignant.css"
+import ConsultationEnseignantStyles from "./ConsultationEnseignant.module.css"
 
 const ConsultationEnseignant = () => {
     const { enseignantId, cin, nom, prenom, nombreHeures } = useSelector((state) => state.ConsultingEnseignant)
@@ -51,19 +51,19 @@ const ConsultationEnseignant = () => {
     }, [])
 
     return (
-        <div className="Consultation_Enseignant_Container">
-            <div className="Consultation_Enseignant_Tiltle">
-                <h4 className="h4-Enseignant">Enseignant X</h4>
+        <div className={ConsultationEnseignantStyles.Consultation_Enseignant_Container}>
+            <div className={ConsultationEnseignantStyles.Consultation_Enseignant_Tiltle}>
+                <h4>Enseignant X</h4>
             </div>
-            <div className="Enseignant_Avatar">
-                <Avatar className="AvatarConsulterEnseignant">
+            <div className={ConsultationEnseignantStyles.Enseignant_Avatar}>
+                <Avatar className={ConsultationEnseignantStyles.AvatarConsulterEnseignant}>
                     <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
                     <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
-                <h5 className="Enseignant_Account">Account</h5>
+                <h5 className={ConsultationEnseignantStyles.Enseignant_Account}>Account</h5>
             </div>
-            <div className="Enseignant_CoordonneesContainer">
-                <div className="Enseignant_Coordonnees">
+            <div className={ConsultationEnseignantStyles.Enseignant_CoordonneesContainer}>
+                <div className={ConsultationEnseignantStyles.Enseignant_Coordonnees}>
                     <h6>Name</h6>
                     <p>
                         {nom} {prenom}

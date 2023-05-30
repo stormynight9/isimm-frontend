@@ -1,6 +1,6 @@
 import { useMemo } from "react"
 import Table from "@/pages/charge/components/DiplomeTable"
-import "./ConsultationDiplome.css"
+import ConsultationDiplomeStyles from "./ConsultationDiplome.module.css"
 
 import SelectEnseignant from "../../../components/SelectEnseignant/SelectEnseignant"
 const ConsultationDiplome = (props) => {
@@ -82,8 +82,8 @@ const ConsultationDiplome = (props) => {
     )
     const { semestre } = props
     return (
-        <div className="Diplome_Table" id="TableCnt">
-            <div className="Table">
+        <div className={ConsultationDiplomeStyles.Diplome_Table} id="TableCnt">
+            <div className={ConsultationDiplomeStyles.Table}>
                 <Table
                     columns={columns}
                     data={semestre.unites.map((unite) => {

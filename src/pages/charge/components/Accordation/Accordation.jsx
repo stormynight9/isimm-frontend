@@ -1,4 +1,4 @@
-import "./Accordation.css"
+import AccordationStyles from "./Accordation.module.css"
 import { useState, useEffect } from "react"
 import AccordionVoeux from "../AccordionVoeux/AccordionVoeux"
 import { ToastAction } from "@/components/ui/Toast"
@@ -27,7 +27,7 @@ function AccordationCharge() {
     }, [])
 
     return (
-        <div className="Accordions">
+        <div className={AccordationStyles.Accordions}>
             {voeux.length == 0 ? (
                 <div>
                     <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">No Voeux is available</h3>

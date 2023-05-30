@@ -1,10 +1,10 @@
-.Rechercher-Enseignant-Container {
+.RechercherEnseignantContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
-.Rechercher-Enseignant {
+.RechercherEnseignant {
     display: flex;
     flex-direction: column;
     min-width: 35vw;
@@ -14,7 +14,7 @@
     align-items: center;
     gap: 40px;
 }
-.Rechercher-Enseignant .Label-Enseignant {
+.RechercherEnseignant .LabelEnseignant {
     font-weight: bold;
     font-size: 18px;
 }

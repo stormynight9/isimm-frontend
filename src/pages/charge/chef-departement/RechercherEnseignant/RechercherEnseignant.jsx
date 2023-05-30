@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import axios from "axios"
-import "./RechercherEnseignant.css"
+import RechercherEnseignantStyles from "./RechercherEnseignant.module.css"
 import { Button } from "@/components/ui/Button"
 import { Label } from "@/components/ui/Label"
 import { Input } from "@/components/ui/Input"
@@ -48,12 +48,12 @@ const RechercherEnseignant = () => {
         },
     ]
     return (
-        <div className="Rechercher-Enseignant-Container">
+        <div className={RechercherEnseignantStyles.RechercherEnseignantContainer}>
             <JoyRide continuous scrollToFirstStep showSkipButton steps={steps} />
-            <div className="Rechercher-Enseignant">
-                <Label className="Label-Enseignant">Nom Enseignant :</Label>
-                <Input type="text" placeholder="Entrer nom enseignant...format(nom-prenom)" id="inputEns" className="Input-Enseignant" value={inputValue} onChange={handleInputChange} />
-                <Button className="Button-Enseignant" onClick={onClickButton}>
+            <div className={RechercherEnseignantStyles.RechercherEnseignant}>
+                <Label className={RechercherEnseignantStyles.LabelEnseignant}>Nom Enseignant :</Label>
+                <Input type="text" placeholder="Entrer nom enseignant...format(nom-prenom)" id="inputEns" className={RechercherEnseignantStyles.InputEnseignant} value={inputValue} onChange={handleInputChange} />
+                <Button className={RechercherEnseignantStyles.ButtonEnseignant} onClick={onClickButton}>
                     Rechercher
                 </Button>
             </div>

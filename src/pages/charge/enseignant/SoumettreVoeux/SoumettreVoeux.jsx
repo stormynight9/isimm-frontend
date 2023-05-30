@@ -1,6 +1,6 @@
 import React, { useMemo, Fragment } from "react"
 import Table from "@/pages/charge/components/DiplomeTable"
-import "./SoumettreVoeux.css"
+import SoumettreVoeuxStyles from "./SoumettreVoeux.module.css"
 import { ChevronRight } from "lucide-react"
 import ButtonVoeux from "@/pages/charge/components/ButtonVoeux/ButtonVoeux.jsx"
 const SoumettreVoeux = (props) => {
@@ -82,8 +82,8 @@ const SoumettreVoeux = (props) => {
     )
     const { semestre } = props
     return (
-        <div className="Diplome_Table" id="TableCnt">
-            <div className="DiplomeTitle">
+        <div className={SoumettreVoeuxStyles.Diplome_Table} id="TableCnt">
+            <div className={SoumettreVoeuxStyles.DiplomeTitle}>
                 <p>Diplome ING_INF </p> <ChevronRight /> <p>Semestre 5</p>
             </div>
 

@@ -1,9 +1,9 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tabs"
 import { Input } from "@/components/ui/Input"
-import "./Tab.css"
+import TabStyles from "./Tab.module.css"
 import { Button } from "@/components/ui/Button"
 import EditIcon from "../EditIcon/EditIcon"
-import React, { useState, useEffect } from "react"
+import  { useState, useEffect } from "react"
 import { ToastAction } from "@/components/ui/Toast"
 import { useToast } from "@/hooks/useToast"
 
@@ -73,12 +73,12 @@ const Tab = () => {
             </TabsList>
 
             <TabsContent value="account">
-                <div className="TabsContent">
+                <div className={TabStyles.TabsContent}>
                     <p className="text-sm text-slate-500 dark:text-slate-400">Make changes to your account here. Click save when you&apos;re done.</p>
 
                     <h1>Nom</h1>
 
-                    <div className="pen">
+                    <div className={TabStyles.pen}>
                         <Input
                             type="String"
                             placeholder="Nom"
@@ -89,7 +89,7 @@ const Tab = () => {
                             disabled={nom.disabled}
                         />
                         <div
-                            className="icon"
+                            className={TabStyles.icon}
                             onClick={() => {
                                 console.log("ajfnlakfn")
                                 setNom({ value: nom.value, disabled: false })
@@ -100,7 +100,7 @@ const Tab = () => {
                     </div>
 
                     <h1>Prenom</h1>
-                    <div className="pen">
+                    <div className={TabStyles.pen}>
                         <Input
                             type="String"
                             placeholder="Prenom"
@@ -111,7 +111,7 @@ const Tab = () => {
                             disabled={prenom.disabled}
                         />
                         <div
-                            className="icon"
+                            className={TabStyles.icon}
                             onClick={() => {
                                 console.log("ajfnlakfn")
                                 setPrenom({ value: prenom.value, disabled: false })
@@ -122,7 +122,7 @@ const Tab = () => {
                     </div>
 
                     <h1>Email</h1>
-                    <div className="pen">
+                    <div className={TabStyles.pen}>
                         <Input
                             type="email"
                             placeholder="Email"
@@ -133,7 +133,7 @@ const Tab = () => {
                             disabled={email.disabled}
                         />
                         <div
-                            className="icon"
+                            className={TabStyles.icon}
                             onClick={() => {
                                 setEmail({ value: email.value, disabled: false })
                             }}
@@ -141,18 +141,18 @@ const Tab = () => {
                             <EditIcon />
                         </div>
                     </div>
-                    <div className="pen button">
-                        <Button className="BoutonEdit" onClick={handleClickEdit}>
+                    <div className={TabStyles.pen}>
+                        <Button className={TabStyles.BoutonEdit}  onClick={handleClickEdit}>
                             Edit
                         </Button>
                     </div>
                 </div>
             </TabsContent>
             <TabsContent value="security">
-                <div className="TabsContent">
+                <div className={TabStyles.TabsContent}>
                     <p className="text-sm text-slate-500 dark:text-slate-400">Make changes to your account here. Click save when you&apos;re done.</p>
                     <h1>Password</h1>
-                    <div className="pen">
+                    <div className={TabStyles.pen}>
                         <Input
                             type="String"
                             placeholder="Ancien mot de passe"
@@ -164,7 +164,7 @@ const Tab = () => {
                     </div>
 
                     <h1>New Password</h1>
-                    <div className="pen">
+                    <div className={TabStyles.pen}>
                         <Input
                             type="String"
                             placeholder="Nouveau mot de passe"
@@ -175,8 +175,8 @@ const Tab = () => {
                         />
                     </div>
 
-                    <div className="pen button">
-                        <Button className="BoutonEdit" onClick={handleClickEditPassword}>
+                    <div className={TabStyles.pen}>
+                        <Button className={TabStyles.BoutonEdit} onClick={handleClickEditPassword}>
                             Edit
                         </Button>
                     </div>
