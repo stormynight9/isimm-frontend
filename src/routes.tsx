@@ -23,6 +23,7 @@ import ConsulterDemandes from "./pages/magasin/ensignant/ConsulterDemandes"
 import AjouterProduit from "./pages/magasin/service/AjouterProduit"
 import ConsulterProduits from "./pages/magasin/service/ConsulterProduits"
 import GenerateCalendars from "./pages/surveillance/GenerateCalendars"
+import UpdateDemande from "./pages/conge/enseignant/UpdateDemande"
 
 const router = createBrowserRouter(
     [
@@ -175,6 +176,10 @@ const router = createBrowserRouter(
                                         {
                                             path: "mes-demandes",
                                             element: <MesDemandes />,
+                                        },
+                                        {
+                                            path: ":idDemandeConger",
+                                            element: <UpdateDemande />,
                                         },
                                     ],
                                 },
