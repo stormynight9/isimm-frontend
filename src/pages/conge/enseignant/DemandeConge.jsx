@@ -50,7 +50,7 @@ const DemandeConge = () => {
                     formData.append("DateFin", DateFin)
                     formData.append("employe", employer)
 
-                    const response = await fetch("http://localhost:8090/uploadFile", {
+                    const response = await fetch(import.meta.env.VITE_API_URL + "uploadFile", {
                         method: "POST",
                         body: formData,
                         mode: "cors",
@@ -68,7 +68,7 @@ const DemandeConge = () => {
 
                 const addCongeResponse = await fetch(
                     //api/isimm/gestionConge/exempleEntity/add
-                    "http://localhost:8090/api/isimm/gestionConge/exempleEntity/add",
+                    import.meta.env.VITE_API_URL + "api/isimm/gestionConge/exempleEntity/add",
                     {
                         method: "POST",
                         headers: {

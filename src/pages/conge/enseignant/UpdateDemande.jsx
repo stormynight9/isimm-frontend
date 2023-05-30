@@ -32,7 +32,8 @@ const UpdateDemande = () => {
         e.preventDefault()
         try {
             const response = await axios.post(
-                `http://localhost:8090/api/isimm/gestionConge/exempleEntity/${idDemandeConger}`,
+                import.meta.env.VITE_API_URL +
+                    `api/isimm/gestionConge/exempleEntity/${idDemandeConger}`,
                 demande
             )
             if (response.status === 200) {

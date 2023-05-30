@@ -22,7 +22,8 @@ const MesDemandes = () => {
     const loadDemandes = async (employe = 1) => {
         try {
             const result = await axios.get(
-                `http://localhost:8090/api/isimm/gestionConge/exempleEntity/Demandes/${employe}`
+                import.meta.env.VITE_API_URL +
+                    `api/isimm/gestionConge/exempleEntity/Demandes/${employe}`
             )
 
             setDemandes(result.data)
@@ -33,7 +34,8 @@ const MesDemandes = () => {
     const deleteDemande = async (idDemandeConger) => {
         try {
             const response = await axios.delete(
-                `http://localhost:8090/api/isimm/gestionConge/exempleEntity/${idDemandeConger}`
+                import.meta.env.VITE_API_URL +
+                    `api/isimm/gestionConge/exempleEntity/${idDemandeConger}`
             )
 
             console.log(response.data)
