@@ -26,6 +26,7 @@ import ReclamationNote from "./pages/notes/reclamation/Reclamation"
 import DemandeProduit from "./pages/magasin/ensignant/DemandeProduit"
 import ConsulterDemandes from "./pages/magasin/ensignant/ConsulterDemandes"
 import ConsulterProduits from "./pages/magasin/service/ConsulterProduits"
+import GenerateCalendars from "./pages/surveillance/GenerateCalendars"
 
 const router = createBrowserRouter(
     [
@@ -55,6 +56,10 @@ const router = createBrowserRouter(
                                 {
                                     path: "calendriers-sauvegardes",
                                     element: <SavedCalendars />,
+                                },
+                                {
+                                    path: "calendriers-sauvegardes/:id",
+                                    element: <GenerateCalendars />,
                                 },
                                 {
                                     path: "reclamations",
