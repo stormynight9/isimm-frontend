@@ -6,6 +6,12 @@ import Lesdemandes from "./pages/conge/admin/Lesdemandes"
 import Statistiques from "./pages/conge/admin/Statistiques"
 import ErrorPage from "./pages/ErrorPage"
 import Home from "./pages/Home"
+import AjouterDemande from "./pages/magasin/admin/demande/AjouterDemande"
+import ListeDemandeService from "./pages/magasin/admin/demande/ListeDemandeService"
+import AjouterFacture from "./pages/magasin/admin/facture/AjouterFacture"
+import ModifierFacture from "./pages/magasin/admin/facture/ModifierFacture"
+import AjouterProduit from "./pages/magasin/admin/produit/AjouterProduit"
+import Section from "./pages/notes/section/Section"
 import Section from "./pages/notes/enseignant/section/Section"
 import Calendar from "./pages/surveillance/Calendar"
 import Complaints from "./pages/surveillance/Complaints"
@@ -15,8 +21,23 @@ import Semester from "./pages/notes/etudiant/semester/Semester"
 import ReclamationEnseignant from "./pages/notes/enseignant/reclamation/ReclamationEnseignant"
 import DemandeProduit from "./pages/magasin/ensignant/DemandeProduit"
 import ConsulterDemandes from "./pages/magasin/ensignant/ConsulterDemandes"
-import AjouterProduit from "./pages/magasin/service/AjouterProduit"
 import ConsulterProduits from "./pages/magasin/service/ConsulterProduits"
+import ListeProduit from "./pages/magasin/admin/produit/ListeProduit"
+import ListeFournisseur from "./pages/magasin/admin/fournisseur/ListeFournisseur"
+import ModifierProduit from "./pages/magasin/admin/produit/ModifierProduit"
+import ListeFacture from "./pages/magasin/admin/facture/ListeFacture"
+import AccepterDemande from "./pages/magasin/admin/demande/AccepterDemande"
+import AjouterDemandeEmployer from "./pages/magasin/admin/demande/AjouterDemandeEmployer"
+import AccepterDemandeMagasin from "./pages/magasin/admin/demande/AccepterDemandeMagasin"
+import ListeDemandeStaff from "./pages/magasin/admin/demande/ListeDemandeStaff"
+import AjouterDemandeService from "./pages/magasin/admin/demande/AjouterDemandeService"
+import ListeDemandeServiceSelf from "./pages/magasin/admin/demande/ListeDemandeServceSelf"
+import AjouterFournisseur from "./pages/magasin/admin/fournisseur/AjouterFournisseur"
+import EditFournisseur from "./pages/magasin/admin/fournisseur/EditFournisseur"
+import AccepterDemandeService from "./pages/magasin/admin/demande/AccepterDemandeService"
+import AccepterDemandeServiceSelf from "./pages/magasin/admin/demande/AccepterDemandeServiceSelf"
+import ListeDemandeMagasin from "./pages/magasin/admin/demande/ListeDemandeMagasin"
+import AccepterDemandeEmployer from "./pages/magasin/admin/demande/AccepterDemandeEmployer"
 import GenerateCalendars from "./pages/surveillance/GenerateCalendars"
 import UpdateDemande from "./pages/conge/enseignant/UpdateDemande"
 import ChargeNote from "./pages/notes/enseignant/charge-note/ChargeNote"
@@ -101,18 +122,99 @@ const router = createBrowserRouter(
                             children: [
                                 {
                                     path: "magasinier",
-                                    children: [],
-                                },
-                                {
-                                    path: "enseignant",
                                     children: [
                                         {
-                                            path: "Demande-Produit",
-                                            element: <DemandeProduit />,
+                                            path: "facture",
+                                            // element: <ListeFacture />,
+                                            children: [
+                                                {
+                                                    path: "ajouter",
+                                                    element: <AjouterFacture />,
+                                                },
+                                                {
+                                                    path: "visit/:id",
+                                                    element: <ModifierFacture />,
+                                                },
+                                                {
+                                                    path: "list",
+                                                    element: <ListeFacture />,
+                                                },
+                                            ],
                                         },
                                         {
-                                            path: "Consulter-demandes",
-                                            element: <ConsulterDemandes />,
+                                            // element: <ListeProduit />,
+                                            path: "produit",
+                                            children: [
+                                                {
+                                                    path: "ajouter",
+                                                    element: <AjouterProduit />,
+                                                },
+                                                {
+                                                    path: "modifier/:id",
+                                                    element: <ModifierProduit />,
+                                                },
+                                                {
+                                                    path: "list",
+                                                    element: <ListeProduit />,
+                                                },
+                                            ],
+                                        },
+                                        {
+                                            // element: <ListeFournisseur />,
+                                            path: "fournisseur",
+                                            children: [
+                                                {
+                                                    path: "ajouter",
+                                                    element: <AjouterFournisseur />,
+                                                },
+                                                {
+                                                    path: "modifier/:id",
+                                                    element: <EditFournisseur />,
+                                                },
+                                                {
+                                                    path: "list",
+                                                    element: <ListeFournisseur />,
+                                                },
+                                            ],
+                                        },
+                                        {
+                                            // TODO: should have other location
+                                            path: "demande",
+                                            children: [
+                                                {
+                                                    path: "accepter/:id",
+                                                    element: <AccepterDemandeMagasin />,
+                                                },
+                                                {
+                                                    path: "list",
+                                                    element: <ListeDemandeMagasin />,
+                                                },
+                                            ],
+
+                                            // indexElement: <ListeDemandeService />,
+                                        },
+                                    ],
+                                },
+                                {
+                                    path: "employer",
+                                    children: [
+                                        {
+                                            path: "demande",
+                                            // element: <AjouterDemandeEmployer />,
+                                            children: [
+                                                {
+                                                    path: "list",
+                                                    element: <ListeDemandeStaff />,
+                                                },
+                                                {
+                                                    path: "ajouter",
+                                                    element: <AjouterDemandeEmployer />,
+                                                },
+                                                {
+                                                    path: "accepter/:id",
+                                                    element: <AccepterDemandeEmployer />,
+                                                },
+                                            ],
                                         },
                                     ],
                                 },
@@ -120,12 +222,29 @@ const router = createBrowserRouter(
                                     path: "service",
                                     children: [
                                         {
-                                            path: "Ajouter-produit",
-                                            element: <AjouterProduit />,
-                                        },
-                                        {
-                                            path: "Consulter-produits",
-                                            element: <ConsulterProduits />,
+                                            path: "demande",
+                                            children: [
+                                                {
+                                                    path: "list",
+                                                    element: <ListeDemandeService />,
+                                                },
+                                                {
+                                                    path: "notre-list",
+                                                    element: <ListeDemandeServiceSelf />,
+                                                },
+                                                {
+                                                    path: "accepter/:id",
+                                                    element: <AccepterDemandeService />,
+                                                },
+                                                {
+                                                    path: "accepter-notre/:id",
+                                                    element: <AccepterDemandeServiceSelf />,
+                                                },
+                                                {
+                                                    path: "ajouter",
+                                                    element: <AjouterDemandeService />,
+                                                },
+                                            ],
                                         },
                                     ],
                                 },
