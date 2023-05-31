@@ -28,7 +28,7 @@ const MesDemandes = () => {
 
             setDemandes(result.data)
         } catch (error) {
-            console.log(error)
+            alert(error)
         }
     }
     const deleteDemande = async (idDemandeConger) => {
@@ -42,7 +42,7 @@ const MesDemandes = () => {
             // Reload the demandes after deletion
             loadDemandes()
         } catch (error) {
-            console.log(error)
+            alert(error)
         }
     }
 
