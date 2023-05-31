@@ -7,10 +7,10 @@ interface BadgeProps {
 
 const Badge = ({ status, children }: BadgeProps) => {
     const BadgeClassName = cn({
-        "inline-block px-4 rounded-full font-medium capitalize": true,
-        "bg-[#fae9c2] text-[#542b14]": status === "yellow",
-        "bg-[#e6f4ea] text-[#1f5d3d]": status === "green",
-        "bg-[#f4d7d7] text-[#5d1f1f]": status === "red",
+        "inline-block px-4 rounded-full font-medium": true,
+        "bg-amber-100 text-amber-900": status === "yellow",
+        "bg-emerald-100 text-emerald-900": status === "green",
+        "bg-red-100 text-red-900": status === "red",
     })
 
     return <div className={BadgeClassName}>{children}</div>

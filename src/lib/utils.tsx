@@ -1,4 +1,6 @@
 import { ClassValue, clsx } from "clsx"
+import { format } from "date-fns"
+import { fr } from "date-fns/locale"
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
@@ -13,4 +15,8 @@ export function getInitials(string: string) {
         initials += names[1].substring(0, 1).toUpperCase()
     }
     return initials
+}
+
+export function formatDate(date: Date) {
+    return format(date, "LLL dd, y", { locale: fr })
 }
