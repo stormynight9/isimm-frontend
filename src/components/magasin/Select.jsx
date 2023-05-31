@@ -6,8 +6,6 @@ function SelectBody({items, newButton, accessor}) {
     return <SelectContent>
         <SelectGroup>
             {items?.map((item, index) => {
-                // console.log(item)
-                // console.log(item[accessor])
                 return <SelectItem key={index} value={item[accessor]}>{item.text}</SelectItem>
             })}
         </SelectGroup>
@@ -20,8 +18,6 @@ function SelectBody({items, newButton, accessor}) {
 
 // le select
 export default function Select({name, className, label, items, accessor, placeholder, value, onChange, newButton, disabled}) {
-    // console.log(items)
-    // console.log(value)
     return <div className={className}>
         <div className="text-sm font-medium leading-none">
         {label}

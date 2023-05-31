@@ -36,7 +36,6 @@ const MesDemandes = () => {
                     `api/isimm/gestionConge/exempleEntity/${idDemandeConger}`
             )
 
-            console.log(response.data)
             // Reload the demandes after deletion
             loadDemandes()
         } catch (error) {

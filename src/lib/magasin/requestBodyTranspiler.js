@@ -3,7 +3,6 @@ import { verifyDemandeRecord } from "./verify";
 // convertir les donnees de l'application en donnees compris par le serveur
 
 export function transpilePostDemandeBody(demande) {
-    console.log(demande)
     const data = {
         description: demande.description,
         etat: demande.status,
@@ -19,7 +18,6 @@ export function transpilePostDemandeBody(demande) {
         },
         demandeUnStockables: demande.records.filter(p => verifyDemandeRecord(p))?.map(p => ({stockable: {idStockable: p.product}, quantite: p.quantity})),
     }
-    console.log(data);
     return data;
 }
 
@@ -36,7 +34,6 @@ export function transpileProduct(product) {
 }
 
 export function transpileFacture(facture) {
-    console.log(facture);
     const data = {
         idFacture: facture.id,
         addressFacturation: facture.address,
@@ -53,7 +50,6 @@ export function transpileFacture(facture) {
             prix: unit_price,
         })),
     }
-    console.log(data);
     return data
 }
 

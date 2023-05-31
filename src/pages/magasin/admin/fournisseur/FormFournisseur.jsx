@@ -6,7 +6,6 @@ import { useState } from "react";
 
 export default function FormFournisseur({title, initialValues, type, id}) {
     const [values, setValues] = useState(initialValues || {name: '', ref: '', address: '', phone: ''});
-    console.log(values)
 
     function handleChange(e) {
         setValues(values => ({...values, [e.target.name]: e.target.value}));
@@ -17,13 +16,16 @@ export default function FormFournisseur({title, initialValues, type, id}) {
     }
 
     function handleSave() {
-        console.log(values);
         if(type==="add") {
-            fetchData('POST', 'http://localhost:8090/api/isimm/gestionMagasin/magasin/Fournisseur', transpileFournisseur(values));
+            fetchData('POST', `${
+                import.meta.env.VITE_API_URL
+            }/api/isimm/gestionMagasin/magasin/Fournisseur`, transpileFournisseur(values));
             init();
 
         } else if(type==="edit") {
-            fetchData('PUT', 'http://localhost:8090/api/isimm/gestionMagasin/magasin/Fournisseur/' + values.id, transpileFournisseur(values));
+            fetchData('PUT', `${
+                import.meta.env.VITE_API_URL
+            }/api/isimm/gestionMagasin/magasin/Fournisseur/${values.id}`, transpileFournisseur(values));
         }
     }
 

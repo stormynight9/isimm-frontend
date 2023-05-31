@@ -25,7 +25,6 @@ const useFetch = (method, url, body) => {
         setApiData(data);
         setIsLoading(false);
       } catch (error) {
-        console.log(error)
         setApiError(error);
         setIsLoading(false);
       }

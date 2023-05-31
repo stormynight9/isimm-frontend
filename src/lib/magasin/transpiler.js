@@ -5,7 +5,6 @@ export function transpileProducts(products) {
 }
 
 export function transpileFournisseurs(fournisseurs) {
-    console.log(fournisseurs)
     return fournisseurs?.map(f => ({...f, text: `${f.label}`}))
 }
 

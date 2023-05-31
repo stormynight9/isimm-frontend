@@ -16,8 +16,7 @@ function InvoiceRecord({products, initialValues, onChange, id, type}) {
         if(e?.target?.name) {
             setValues(values => transformInvoiceRecord({...values, [e.target.name]: e.target.value}));
             onChange(transformInvoiceRecord({...values, [e.target.name]: e.target.value}));
-        } else
-            console.log(e)
+        } else {}
     }
 
     function handleProductChange(id) {
@@ -34,7 +33,6 @@ function InvoiceRecord({products, initialValues, onChange, id, type}) {
     const totalht = roundTo3(values.unit_price * values.quantity);
     const totaltva = roundTo3(totalht * values.vat / 100);
     const total = roundTo3(totalht + totaltva);
-    console.log(values)
     return <>
         <Select className="flex-1 grow w-full mx-3" items={transpileProducts(products)} disabled={type === 'add' ? undefined : true} name="product" accessor='id' label="Produit" value={values.product} onChange={handleProductChange} newButton />
         <InputLabel className="w-28 mx-3" name="quantity" label="Quantité" type="number" disabled={type === 'add' ? undefined : true} value={values.quantity} onChange={handleChange} />

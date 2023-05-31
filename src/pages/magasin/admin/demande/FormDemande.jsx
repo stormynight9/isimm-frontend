@@ -42,8 +42,6 @@ export default function FormDemande({title, type, employer, service, magasin, so
         setValues({...values, ...propes})
     }, [])
 
-    console.log(values)
-
     function init() {
         setValues({description: '', records: [{id: 1, quantity: 1, product: 1}]});
     }
@@ -54,16 +52,10 @@ export default function FormDemande({title, type, employer, service, magasin, so
                 const product = products.find(product => product.id === record.product);
                 return {...record, availableQuantity: product?.quantity}
             });
-            console.log(records)
             setValues(values => ({...values, records}));
             setRecords(records);
         }
-        console.log(records)
     }, [isLoading])
-
-    useEffect(() => {
-        console.log(values);
-    }, [values]);
 
     function handleChange(e) {
         setValues(values => ({...values, [e.target.name]: e.target.value}));
@@ -75,12 +67,11 @@ export default function FormDemande({title, type, employer, service, magasin, so
     }
 
     function handleSave() {
-        console.log(employer)
-        console.log(service)
-        console.log(transpilePostDemandeBody({typeDemande : employer ? 'employer' : 'service', ...values}));
         fetchData(
             'POST',
-            'http://localhost:8090/api/isimm/gestionMagasin/magasin/DemandeStockable',
+            `${
+                import.meta.env.VITE_API_URL
+            }/api/isimm/gestionMagasin/magasin/DemandeStockable`,
             transpilePostDemandeBody({typeDemande: employer ? 'employer' : 'service', status: 'pending', employer, service, ...values}),
         );
         init();
@@ -89,7 +80,9 @@ export default function FormDemande({title, type, employer, service, magasin, so
     function handleAccepter() {
         fetchData(
             'PUT',
-            `http://localhost:8090/api/isimm/gestionMagasin/magasin/DemandeStockable/${values.id}`,
+            `${
+                import.meta.env.VITE_API_URL
+            }/api/isimm/gestionMagasin/magasin/DemandeStockable/${values.id}`,
             transpilePostDemandeBody({...values, status: nextStatus()})
         );
     }
@@ -97,7 +90,9 @@ export default function FormDemande({title, type, employer, service, magasin, so
     function handleRefuser() {
         fetchData(
             'PUT',
-            `http://localhost:8090/api/isimm/gestionMagasin/magasin/DemandeStockable/${values.id}`,
+            `${
+                import.meta.env.VITE_API_URL
+            }/api/isimm/gestionMagasin/magasin/DemandeStockable/${values.id}`,
             transpilePostDemandeBody({...values, status: 'rejected'})
         );
     }
