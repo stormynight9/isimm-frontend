@@ -1,13 +1,18 @@
 import { useState } from "react"
 import { useTable, usePagination } from "react-table"
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/Dialog"
 import { ChevronRightIcon, ChevronLeftIcon } from "lucide-react"
-const TablePagination = ({ columns, data }) => {
+import { Button } from "@/components/ui/Button"
+
+const TablePagination = ({ columns, data, dialogVisible }) => {
     const [pageIndex, setPageIndex] = useState(0) // initialize pageIndex state
+    const [isdialogVisible, setDialogVisible] = useState(false)
+
     const { getTableProps, getTableBodyProps, headerGroups, page, nextPage, previousPage, canPreviousPage, canNextPage, pageCount, gotoPage, pageSize, setPageSize, prepareRow } = useTable(
         {
             columns,
             data,
-            initialState: { pageIndex: 0, pageSize: 10 },
+            initialState: { pageIndex: pageIndex, pageSize: 10 },
         },
         usePagination
     )
@@ -33,7 +38,7 @@ const TablePagination = ({ columns, data }) => {
                             <tr {...row.getRowProps()}>
                                 {row.cells.map((cell) => {
                                     return (
-                                        <td {...cell.getCellProps()} className="whitespace-nowrap pl-7 pr-7 pt-4 pb-4 text-center text-sm">
+                                        <td {...cell.getCellProps()} className="whitespace-nowrap pl-2 pr-2 pt-4 pb-4 text-center text-sm">
                                             {cell.render("Cell")}
                                         </td>
                                     )
@@ -90,6 +95,28 @@ const TablePagination = ({ columns, data }) => {
                     </button>
                 </div>
             </div>
+
+            {/* details Dialog */}
+            <Dialog open={isdialogVisible}>
+                <DialogTrigger></DialogTrigger>
+                <DialogContent className="sm:max-w-[425px] ">
+                    <DialogHeader>
+                        <DialogTitle>Créer Réclamation</DialogTitle>
+                        <DialogDescription className="text-gray-500">(*) Champ Obligatoire !</DialogDescription>
+                    </DialogHeader>
+                    <DialogFooter>
+                        <Button
+                            type="reset"
+                            onClick={() => {
+                                setDialogVisible(false)
+                            }}
+                            className="mt-2 inline-flex h-10 items-center justify-center rounded-md border border-slate-200 bg-transparent py-2 px-4 text-sm font-semibold text-slate-900 transition-colors hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-100 dark:hover:bg-slate-700 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900 sm:mt-0"
+                        >
+                            Annuler
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </div>
     )
 }
