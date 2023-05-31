@@ -178,7 +178,7 @@ const MesDemandes = () => {
                 Date_demande: demande.Date_demande,
                 dateDebut: demande.dateDebut,
                 dateFin: demande.dateFin,
-                etat_demande: "ATTENTE",
+                etat_demande: demande.etat_demande,
             })),
         ],
         [demandes, deleteDemande]
