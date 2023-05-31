@@ -2,7 +2,13 @@ import React, { useState, useEffect } from "react"
 import ConsultationDiplome from "./../ConsultationDiplome/ConsultationDiplome"
 import SoumettreVoeux from "@/pages/charge/enseignant/SoumettreVoeux/SoumettreVoeux"
 import { ChevronRight } from "lucide-react"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/Select"
+import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+} from "@/components/ui/Select"
 import { useLocation } from "react-router-dom"
 import JoyRide from "react-joyride"
 import DiplomePathingStyles from "./DiplomePathing.module.css"
@@ -15,12 +21,15 @@ const DiplomePathing = () => {
     const location = useLocation()
     useEffect(() => {
         const getDiplomes = async () => {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/diplome`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            })
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/diplome`,
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
             const responseJson = await response.json()
             setDiplomes(responseJson)
         }
@@ -29,7 +38,7 @@ const DiplomePathing = () => {
 
     const handleDiplomeSelect = (eventValue) => {
         const selectedDiplomeId = eventValue
-        const selectedDiplome = diplomes.find((diplome) => diplome.diplomeId == selectedDiplomeId)
+        const selectedDiplome = diplomes.find((diplome) => diplome.diplomeId === selectedDiplomeId)
         setSelectedDiplome(selectedDiplome)
         setSelectedSection(null)
         setSelectedNiveau(null)
@@ -38,7 +47,9 @@ const DiplomePathing = () => {
 
     const handleSectionSelect = (eventValue) => {
         const selectedSectionId = eventValue
-        const selectedSection = selectedDiplome.sections.find((section) => section.sectionId == selectedSectionId)
+        const selectedSection = selectedDiplome.sections.find(
+            (section) => section.sectionId === selectedSectionId
+        )
         setSelectedSection(selectedSection)
         setSelectedNiveau(null)
         setSelectedSemestre(null)
@@ -46,14 +57,18 @@ const DiplomePathing = () => {
 
     const handleNiveauSelect = (eventValue) => {
         const selectedNiveauId = eventValue
-        const selectedNiveau = selectedSection.niveaux.find((niveau) => niveau.niveauId == selectedNiveauId)
+        const selectedNiveau = selectedSection.niveaux.find(
+            (niveau) => niveau.niveauId === selectedNiveauId
+        )
         setSelectedNiveau(selectedNiveau)
         setSelectedSemestre(null)
     }
 
     const handleSemestreSelect = (eventValue) => {
         const selectedSemestreId = eventValue
-        const selectedSemestre = selectedNiveau.semestres.find((semestre) => semestre.semestreId == selectedSemestreId)
+        const selectedSemestre = selectedNiveau.semestres.find(
+            (semestre) => semestre.semestreId === selectedSemestreId
+        )
         setSelectedSemestre(selectedSemestre)
     }
     const steps = [
@@ -83,7 +98,10 @@ const DiplomePathing = () => {
         },
         {
             title: "Plan d'etude",
-            content: location.pathname.split("/")[2] === "soumettre-voeux" ? "Now you can consult the chosen plan d'etude and submit a voeux for the subject you want to teach" : "Now you can consult the chosen plan d'etude and modify/assign professors to each subject",
+            content:
+                location.pathname.split("/")[2] === "soumettre-voeux"
+                    ? "Now you can consult the chosen plan d'etude and submit a voeux for the subject you want to teach"
+                    : "Now you can consult the chosen plan d'etude and modify/assign professors to each subject",
             target: "#TableCnt",
             placement: "top-start",
         },
@@ -143,7 +161,10 @@ const DiplomePathing = () => {
                                     </SelectTrigger>
                                     <SelectContent>
                                         {selectedSection.niveaux.map((niveau) => (
-                                            <SelectItem key={niveau.niveauId} value={niveau.niveauId}>
+                                            <SelectItem
+                                                key={niveau.niveauId}
+                                                value={niveau.niveauId}
+                                            >
                                                 {niveau.name}
                                             </SelectItem>
                                         ))}
@@ -151,7 +172,10 @@ const DiplomePathing = () => {
                                 </Select>
                                 <ChevronRight size={48} />
                                 {selectedNiveau && (
-                                    <div className={DiplomePathingStyles.SelectRow} id="SelectSemestre">
+                                    <div
+                                        className={DiplomePathingStyles.SelectRow}
+                                        id="SelectSemestre"
+                                    >
                                         <Select
                                             onValueChange={(selectedOption) => {
                                                 handleSemestreSelect(selectedOption.valueOf())
@@ -162,7 +186,10 @@ const DiplomePathing = () => {
                                             </SelectTrigger>
                                             <SelectContent>
                                                 {selectedNiveau.semestres.map((semestre) => (
-                                                    <SelectItem key={semestre.semestreId} value={semestre.semestreId}>
+                                                    <SelectItem
+                                                        key={semestre.semestreId}
+                                                        value={semestre.semestreId}
+                                                    >
                                                         {semestre.name}
                                                     </SelectItem>
                                                 ))}
@@ -177,8 +204,19 @@ const DiplomePathing = () => {
             </div>
             {selectedSemestre && (
                 <div>
-                    <JoyRide continuous hideCloseButton scrollToFirstStep showProgress showSkipButton steps={steps} />
-                    {location.pathname.split("/")[2] === "soumettre-voeux" ? <SoumettreVoeux semestre={selectedSemestre} /> : <ConsultationDiplome semestre={selectedSemestre} />}
+                    <JoyRide
+                        continuous
+                        hideCloseButton
+                        scrollToFirstStep
+                        showProgress
+                        showSkipButton
+                        steps={steps}
+                    />
+                    {location.pathname.split("/")[2] === "soumettre-voeux" ? (
+                        <SoumettreVoeux semestre={selectedSemestre} />
+                    ) : (
+                        <ConsultationDiplome semestre={selectedSemestre} />
+                    )}
                 </div>
             )}
         </div>

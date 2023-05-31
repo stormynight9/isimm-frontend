@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
 import Tab from "../../components/Tab/Tab"
 import ProfileInformationStyles from "./ProfileInformation.module.css"
@@ -9,14 +9,19 @@ const ProfileInformation = () => {
     const [enseignantMatieres, setEnseignantMatieres] = useState([])
     useEffect(() => {
         const getMatieres = async () => {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignantMatiere/getEnseignantMatieresByEnseignantId?enseignantId=${1}`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            })
+            const response = await fetch(
+                `${
+                    import.meta.env.VITE_API_URL
+                }/api/isimm/distributionCharge/enseignantMatiere/getEnseignantMatieresByEnseignantId?enseignantId=${1}`,
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
             const responseJson = await response.json()
-            
+
             //calculate nombreHeures
             setEnseignantMatieres(responseJson)
         }
@@ -48,36 +53,12 @@ const ProfileInformation = () => {
         []
     )
 
-    const data = useMemo(
-        () => [
-            {
-                Matter: "UML/OCL",
-                TP: "-",
-                TD: "29",
-                Cours: "-",
-                HourlyLoad: "29",
-            },
-            {
-                Matter: "Projet Web/Mobile",
-                TP: "-",
-                TD: "30",
-                Cours: "-",
-                HourlyLoad: 30,
-            },
-            {
-                Matter: "Total:",
-                TP: "-",
-                TD: "-",
-                Cours: "-",
-                HourlyLoad: "Application de la formule de charge",
-            },
-        ],
-        []
-    )
     return (
         <div className={ProfileInformationStyles.form}>
             <div className={ProfileInformationStyles.col}>
-                <h1 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">Profile enseignant</h1>
+                <h1 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
+                    Profile enseignant
+                </h1>
 
                 <div className={ProfileInformationStyles.row}>
                     <Avatar className={ProfileInformationStyles.Avatar}>
@@ -96,7 +77,8 @@ const ProfileInformation = () => {
                             TP: ensMat.matiere.nbHTp,
                             TD: ensMat.matiere.nbHTd,
                             Cours: ensMat.matiere.nbHCr,
-                            HourlyLoad: ensMat.matiere.nbHTp + ensMat.matiere.nbHTd + ensMat.matiere.nbHCr,
+                            HourlyLoad:
+                                ensMat.matiere.nbHTp + ensMat.matiere.nbHTd + ensMat.matiere.nbHCr,
                         }
                     })}
                 />

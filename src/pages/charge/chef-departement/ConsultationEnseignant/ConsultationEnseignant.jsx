@@ -6,7 +6,9 @@ import { useSelector } from "react-redux"
 import ConsultationEnseignantStyles from "./ConsultationEnseignant.module.css"
 
 const ConsultationEnseignant = () => {
-    const { enseignantId, cin, nom, prenom, nombreHeures } = useSelector((state) => state.ConsultingEnseignant)
+    const { enseignantId, cin, nom, prenom, nombreHeures } = useSelector(
+        (state) => state.ConsultingEnseignant
+    )
     const [enseignantMatieres, setEnseignantMatieres] = useState([])
     const columns = useMemo(
         () => [
@@ -36,18 +38,23 @@ const ConsultationEnseignant = () => {
 
     useEffect(() => {
         const getMatieres = async () => {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignantMatiere/getEnseignantMatieresByEnseignantId?enseignantId=${enseignantId}`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            })
+            const response = await fetch(
+                `${
+                    import.meta.env.VITE_API_URL
+                }/api/isimm/distributionCharge/enseignantMatiere/getEnseignantMatieresByEnseignantId?enseignantId=${enseignantId}`,
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
             const responseJson = await response.json()
             //calculate nombreHeures
             setEnseignantMatieres(responseJson)
         }
         getMatieres()
-    }, [])
+    }, [enseignantId])
 
     return (
         <div className={ConsultationEnseignantStyles.Consultation_Enseignant_Container}>
@@ -82,7 +89,8 @@ const ConsultationEnseignant = () => {
                         TP: ensMat.matiere.nbHTp,
                         TD: ensMat.matiere.nbHTd,
                         Cours: ensMat.matiere.nbHCr,
-                        HourlyLoad: ensMat.matiere.nbHTp + ensMat.matiere.nbHTd + ensMat.matiere.nbHCr,
+                        HourlyLoad:
+                            ensMat.matiere.nbHTp + ensMat.matiere.nbHTd + ensMat.matiere.nbHCr,
                     }
                 })}
             />

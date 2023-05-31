@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/Input"
 import TabStyles from "./Tab.module.css"
 import { Button } from "@/components/ui/Button"
 import EditIcon from "../EditIcon/EditIcon"
-import  { useState, useEffect } from "react"
+import { useState, useEffect } from "react"
 import { ToastAction } from "@/components/ui/Toast"
 import { useToast } from "@/hooks/useToast"
 
@@ -11,7 +11,7 @@ const Tab = () => {
     const [nom, setNom] = useState({ value: "", disabled: true })
     const [prenom, setPrenom] = useState({ value: "", disabled: true })
     const [email, setEmail] = useState({ value: "", disabled: true })
-    const [enseignantId, setenseignantId] = useState({ value: "1", disabled: true })
+    const enseignantId = { value: "1", disabled: true }
     const [Password, setPassword] = useState("")
     const [NPassword, setNPassword] = useState("")
     const { toast } = useToast()
@@ -20,12 +20,15 @@ const Tab = () => {
     }
     useEffect(() => {
         const getEnseignant = async () => {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignant/1`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            })
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignant/1`,
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
             const responseJson = await response.json()
             setNom({ value: responseJson.nom, disabled: true })
             setPrenom({ value: responseJson.prenom, disabled: true })
@@ -34,13 +37,19 @@ const Tab = () => {
         getEnseignant()
     }, [])
     const handleClickEdit = async () => {
-        const responseAdd = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignant/updateEnseignant?enseignantId=${enseignantId.value}&nom=${nom.value}&prenom=${prenom.value}&email=${email.value}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-        
+        const responseAdd = await fetch(
+            `${
+                import.meta.env.VITE_API_URL
+            }/api/isimm/distributionCharge/enseignant/updateEnseignant?enseignantId=${
+                enseignantId.value
+            }&nom=${nom.value}&prenom=${prenom.value}&email=${email.value}`,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            }
+        )
 
         if (responseAdd.ok) {
             showToast(" Edited")
@@ -50,14 +59,22 @@ const Tab = () => {
         }
     }
     const handleClickEditPassword = async () => {
-        const responseUpdate = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignant/updateEnseignantpassword`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ enseignantId: enseignantId.value, oldPass: Password, newPass: NPassword }),
-        })
-        
+        const responseUpdate = await fetch(
+            `${
+                import.meta.env.VITE_API_URL
+            }/api/isimm/distributionCharge/enseignant/updateEnseignantpassword`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    enseignantId: enseignantId.value,
+                    oldPass: Password,
+                    newPass: NPassword,
+                }),
+            }
+        )
 
         if (responseUpdate.ok) {
             showToast(" Edited")
@@ -74,7 +91,9 @@ const Tab = () => {
 
             <TabsContent value="account">
                 <div className={TabStyles.TabsContent}>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">Make changes to your account here. Click save when you&apos;re done.</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">
+                        Make changes to your account here. Click save when you&apos;re done.
+                    </p>
 
                     <h1>Nom</h1>
 
@@ -91,7 +110,6 @@ const Tab = () => {
                         <div
                             className={TabStyles.icon}
                             onClick={() => {
-                            
                                 setNom({ value: nom.value, disabled: false })
                             }}
                         >
@@ -113,7 +131,6 @@ const Tab = () => {
                         <div
                             className={TabStyles.icon}
                             onClick={() => {
-                                
                                 setPrenom({ value: prenom.value, disabled: false })
                             }}
                         >
@@ -142,7 +159,7 @@ const Tab = () => {
                         </div>
                     </div>
                     <div className={TabStyles.pen}>
-                        <Button className={TabStyles.BoutonEdit}  onClick={handleClickEdit}>
+                        <Button className={TabStyles.BoutonEdit} onClick={handleClickEdit}>
                             Edit
                         </Button>
                     </div>
@@ -150,7 +167,9 @@ const Tab = () => {
             </TabsContent>
             <TabsContent value="security">
                 <div className={TabStyles.TabsContent}>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">Make changes to your account here. Click save when you&apos;re done.</p>
+                    <p className="text-sm text-slate-500 dark:text-slate-400">
+                        Make changes to your account here. Click save when you&apos;re done.
+                    </p>
                     <h1>Password</h1>
                     <div className={TabStyles.pen}>
                         <Input
