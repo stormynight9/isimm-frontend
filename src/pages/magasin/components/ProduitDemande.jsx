@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-const Produit = ({ demandeProduit, deleteDemandeProduit, isAdmin }) => {
+const Produit = ({ demandeProduit, deleteDemandeProduit }) => {
   const navigate = useNavigate();
 
   const editDemandeProduit = (e, id) => {
@@ -55,7 +55,8 @@ const Produit = ({ demandeProduit, deleteDemandeProduit, isAdmin }) => {
         <a
           onClick={(e, id) => editDemandeProduit(e, demandeProduit.id)}
           className="text-indigo-600 hover:text-indigo-800 px-4 hover:cursor-pointer"
-          style={{display: isAdmin? 'none' : ''}}>
+          //style={{display: isAdmin? 'none' : ''}}
+          >
           <span className="material-symbols-outlined ">
             edit_note
           </span>
@@ -63,14 +64,16 @@ const Produit = ({ demandeProduit, deleteDemandeProduit, isAdmin }) => {
         <a
           onClick={(e, id) => handleDeleteDemandeProduit(e, demandeProduit.id)}
           className="text-indigo-600 hover:text-indigo-800 px-4 hover:cursor-pointer"
-          style={{display: isAdmin? 'none' : ''}}>
+          //style={{display: isAdmin? 'none' : ''}}
+          >
           <span className="material-symbols-outlined text-red-400 hover:text-red-500">
             delete
           </span>
         </a>
         <a onClick={(e, id) => reviewDemandeProduit(e, demandeProduit.id)}
           className="text-indigo-600 hover:text-indigo-800 hover:cursor-pointer"
-          style={{display: isAdmin? '' : 'none'}}>
+          //style={{display: isAdmin? '' : 'none'}}
+          >
           <span className="material-symbols-outlined text-green-400 hover:text-green-500">
             edit_square
           </span>

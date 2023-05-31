@@ -39,9 +39,8 @@ import {
     ShoppingCartIcon,
     UserIcon,
     ClipboardCheckIcon,
-    PlusCircleIcon,
-}
- from "lucide-react"
+    PlusCircleIcon
+} from "lucide-react"
 import { useEffect } from "react"
 import { createPortal } from "react-dom"
 import { Menu, MenuItem, Sidebar as RPSidebar, SubMenu, useProSidebar } from "react-pro-sidebar"

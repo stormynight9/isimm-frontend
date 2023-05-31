@@ -89,3 +89,39 @@
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
+
+.select {
+  width: 100%;
+  min-width: 15ch;
+  max-width: 30ch;
+  border: 1px solid var(--select-border);
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1.1;
+  background-color: #fff;
+  background-image: linear-gradient(to top, #f9f9f9, #fff 33%);
+  margin-bottom: 10px;
+}
+
+.review {
+  color: #fff;
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.errorText {
+  color: #FFA1A1;
+}
+
+.errorText::after {
+  content: "\a";
+  white-space: pre;
+}
+
+.sp::before {
+  content: "\a";
+  white-space: pre;
+}

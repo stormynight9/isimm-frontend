@@ -14,13 +14,8 @@ import MesDemandes from "./pages/conge/enseignant/MesDemandes"
 import UpdateDemande from "./pages/conge/enseignant/UpdateDemande"
 import AccepterDemandeEmployer from "./pages/magasin/admin/demande/AccepterDemandeEmployer"
 import AccepterDemandeMagasin from "./pages/magasin/admin/demande/AccepterDemandeMagasin"
-import AccepterDemandeService from "./pages/magasin/admin/demande/AccepterDemandeService"
-import AccepterDemandeServiceSelf from "./pages/magasin/admin/demande/AccepterDemandeServiceSelf"
 import AjouterDemandeEmployer from "./pages/magasin/admin/demande/AjouterDemandeEmployer"
-import AjouterDemandeService from "./pages/magasin/admin/demande/AjouterDemandeService"
 import ListeDemandeMagasin from "./pages/magasin/admin/demande/ListeDemandeMagasin"
-import ListeDemandeServiceSelf from "./pages/magasin/admin/demande/ListeDemandeServceSelf"
-import ListeDemandeService from "./pages/magasin/admin/demande/ListeDemandeService"
 import ListeDemandeStaff from "./pages/magasin/admin/demande/ListeDemandeStaff"
 import AjouterFacture from "./pages/magasin/admin/facture/AjouterFacture"
 import ListeFacture from "./pages/magasin/admin/facture/ListeFacture"
@@ -41,10 +36,13 @@ import Complaints from "./pages/surveillance/Complaints"
 import CreateCalendar from "./pages/surveillance/CreateCalendar"
 import GenerateCalendars from "./pages/surveillance/GenerateCalendars"
 import SavedCalendars from "./pages/surveillance/SavedCalendars"
-import ConsulterProduits from "./pages/magasin/ensignant/ConsulterDemandes"
-import ReviewDemandeProduit from "./pages/magasin/components/ReviewDemandeProduit.jsx"
-import UpdateDemandeProduit from "./pages/magasin/components/ReviewDemandeProduit"
+import DemandeProduitService from "./pages/magasin/ensignant/demandeProduitDeService"
+import ConsulterDemandes from "./pages/magasin/ensignant/ConsulterDemandes"
+import AjouterProduitService from "./pages/magasin/service/AjouterProduitService"
+import ConsulterProduits from "./pages/magasin/service/ConsulterProduits"
 import UpdateProduit from "./pages/magasin/components/UpdateProduit"
+import UpdateDemandeProduit from "./pages/magasin/components/UpdateDemandeProduit"
+import ReviewDemandeProduit from "./pages/magasin/components/ReviewDemandeProduit"
 
 const router = createBrowserRouter(
     [
@@ -190,7 +188,47 @@ const router = createBrowserRouter(
                                             ],
 
                                             // indexElement: <ListeDemandeService />,
+                                        }
+                                    ],
+                                },
+                                {
+                                    path: "enseignant",
+                                    children: [
+                                        {
+                                            path: "Demande-Produit",
+                                            element: <DemandeProduitService />,
                                         },
+                                        {
+                                            path: "Consulter-demandes",
+                                            element: <ConsulterDemandes />,
+                                        },
+                                    ],
+                                },
+                                {
+                                    path: "service",
+                                    children: [
+                                        {
+                                            path: "Ajouter-produit",
+                                            element: <AjouterProduitService />,
+                                        },
+                                        {
+                                            path: "Consulter-produits",
+                                            element: <ConsulterProduits />,
+                                        },
+                                        {
+                                            path: "Update-produits/:id",
+                                            element: <UpdateProduit />,
+                                        }
+                                        ,
+                                        {
+                                            path: "Update-demandeProduits/:id",
+                                            element: <UpdateDemandeProduit />,
+                                        }
+                                        ,
+                                        {
+                                            path: "Review-demandeProduits/:id",
+                                            element: <ReviewDemandeProduit />,
+                                        }
                                     ],
                                 },
                                 {
@@ -216,35 +254,6 @@ const router = createBrowserRouter(
                                         },
                                     ],
                                 },
-                                {
-                                  path: "service",
-                                  children: [
-                                      {
-                                          path: "Ajouter-produit",
-                                          element: <AjouterProduit />,
-                                      },
-                                      {
-                                          path: "Consulter-produits",
-                                          element: <ConsulterProduits />,
-                                      },
-                                      {
-                                          path: "Update-produits/:id",
-                                          element: <UpdateDemandeProduit />,
-                                      }
-                                      ,
-                                      {
-                                          path: "Update-demandeProduits/:id",
-                                          element: <UpdateDemandeProduit />,
-                                      }
-                                      ,
-                                      {
-                                          path: "Review-demandeProduits/:id",
-                                          element: <ReviewDemandeProduit />,
-                                      }
-                                  ],
-                              },
-                          ],
-                      },
                             ],
                         },
                         {
@@ -315,6 +324,8 @@ const router = createBrowserRouter(
                     ],
                 },
             ],
+        },
+    ],
     {
         // Todo: remove this when ready to deploy to production
         basename: "/isimm-frontend",

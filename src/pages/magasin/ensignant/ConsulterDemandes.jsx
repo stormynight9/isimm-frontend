@@ -6,7 +6,7 @@ const ConsulterProduits = () => {
 
   const [loading, setLoading] = useState(true);
   const [demandeProduits, setDemandeProduits] = useState(null);
-  const [isAdmin, setIsAdmin] = useState(false);
+  //const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -75,7 +75,7 @@ const ConsulterProduits = () => {
                       <ProduitDemande 
                       demandeProduit={demandeProduit}
                       deleteDemandeProduit={deleteDemandeProduit} 
-                      isAdmin={isAdmin} 
+                      //isAdmin={isAdmin} 
                       key={demandeProduit.id}></ProduitDemande>
                   ))}
               </tbody>
