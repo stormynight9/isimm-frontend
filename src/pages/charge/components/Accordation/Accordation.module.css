@@ -1,0 +1,25 @@
+.ButtonValidVoeux {
+    background-color: #16a34a;
+}
+.ButtonRejectVoeux {
+    background-color: #dc2626;
+}
+.ButtonVoeuxContainner {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 5px;
+}
+.Accordions {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.Accordions .Accordion {
+    min-width: 500px;
+    background-color: #e2e8f0;
+    padding: 0px 10px;
+    border-radius: 10px;
+}
+.Accordions .Accordion .bold {
+    font-weight: bold;
+}
