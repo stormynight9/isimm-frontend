@@ -34,11 +34,14 @@ export default function FormProduit({title, initialValues, type, id}) {
     }
 
     function handleSave() {
-        console.log(values);
         if(type === 'edit') {
-            fetchData('PUT', `http://localhost:8090/api/isimm/gestionMagasin/magasin/Produit/${values.id}`, transpileProduct(values))
+            fetchData('PUT', `${
+                import.meta.env.VITE_API_URL
+            }/api/isimm/gestionMagasin/magasin/Produit/${values.id}`, transpileProduct(values))
         } else if (type === 'add') {
-            fetchData('POST', 'http://localhost:8090/api/isimm/gestionMagasin/magasin/Produit', transpileProduct(values))
+            fetchData('POST', `${
+                import.meta.env.VITE_API_URL
+            }/api/isimm/gestionMagasin/magasin/Produit`, transpileProduct(values))
             init();
         }
     }

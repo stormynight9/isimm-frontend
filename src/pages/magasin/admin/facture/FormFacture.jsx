@@ -14,33 +14,7 @@ import { useEffect, useState } from "react";
 export default function FormFacture({title, initialValues, type, id}) {
     const {isLoading: isLoadingProducts, products} = useProducts();
     const {isLoading: isLoadingFournisseurs, fournisseurs} = useFournisseurs();
-
-    // const isLoadingProducts = false;
-    // const products= [
-    //     {
-    //         id: 1,
-    //         label: 'Produit 1',
-    //         ref: 'dfaslf',
-    //         quantity: 100,
-    //     },
-    //     {
-    //         id: 2,
-    //         label: 'Produit 2',
-    //         ref: 'adfal',
-    //         quantity: 200,
-    //     },
-    // ];
-
-    useEffect(() => {
-        console.log(fournisseurs);
-    }, [fournisseurs]);
-
-    // const [dateFacturation, setDateFacturation] = useState(initialValues?.dateFacturation || null);
-    // const [fournisseur, setFournisseur] = useState(initialValues?.fournisseur || null);
-    // const [records, setRecords] = useState([{id: 0, quantite: 1, prix_unitaire: 10, product: 1}]);
-
     const [values, setValues] = useState(initialValues || {date: '', fournisseur: '', records: [{product:1, quantity: 10, unit_price: 5, vat: 7}]});
-    console.log(initialValues)
 
     function handleChange(e) {
         setValues(values => ({...values, [e.target.name]: e.target.value}));
@@ -65,20 +39,16 @@ export default function FormFacture({title, initialValues, type, id}) {
         });
     }
 
-    useEffect(() => {
-        console.log(values);
-    }, [values]);
-
     function handleSave() {
         // useFetch({});
         if(type==="add") {
-            fetchData('POST', 'http://localhost:8090/api/isimm/gestionMagasin/magasin/Facture', transpileFacture({...values, fournisseur: 1}));
+            fetchData('POST', `${
+                import.meta.env.VITE_API_URL
+            }/api/isimm/gestionMagasin/magasin/Facture`, transpileFacture({...values, fournisseur: 1}));
         }
     }
 
     if(isLoadingProducts || isLoadingFournisseurs) return <div>Loading...</div>;
-
-    // console.log(fournisseurs)
 
     return <BaseForm title={title} onSave={handleSave} type={type}>
         <div className="flex flex-row my-2">

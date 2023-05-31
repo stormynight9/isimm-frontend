@@ -10,9 +10,7 @@ function Record({onRemove, children, remove}) {
 
 // les enregistrements
 export default function Records({componentParams, name, defaultRecordValues, RenderItem, records, onChange, verify, type}) {
-    console.log(records)
     const localRecords = records?.map?.((r, index) => ({...r, rid: index}));
-    console.log(localRecords)
 
     function handleRecordsChange(rid) {
         return (record) => {
@@ -28,12 +26,7 @@ export default function Records({componentParams, name, defaultRecordValues, Ren
 
     function handleRemoveRecord(rid) {
         return () => {
-            console.log(records.filter((r, index) => {
-                console.log(index, rid)
-                return index !== rid
-            }))
             onChange(records.filter((r, index) => {
-                console.log(index, rid)
                 return index !== rid
             }));
         }

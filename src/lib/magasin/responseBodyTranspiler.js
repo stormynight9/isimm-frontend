@@ -22,7 +22,6 @@ export function transpileProduct({idStockable, refStockable, magasin, name, quan
 }
 
 export function transpileFournisseur({idFournisseur, name, adresse, phoneNum, adresseMail}) {
-    // console.log(fournissuer)
     return {
         id: idFournisseur,
         label: name,
@@ -33,8 +32,6 @@ export function transpileFournisseur({idFournisseur, name, adresse, phoneNum, ad
 }
 
 export function transpileDemande({idDemandeStockable, description, etat, employer, service, magasin, dateCreation, demandeUnStockables}, source) {
-    console.log(description)
-    console.log(demandeUnStockables)
     const data = {
         id: idDemandeStockable,
         description,
@@ -51,12 +48,10 @@ export function transpileDemande({idDemandeStockable, description, etat, employe
             
         }))
     }
-    console.log(data);
     return data;
 }
 
 export function transpileFacture({idFacture, addressFacturation, dateFacturation, fournisseur, factureStockables}) {
-    console.log(factureStockables)
     return {
         id: idFacture,
         address: addressFacturation,
@@ -89,6 +84,5 @@ export function transpileGetDemandesBody(response, source) {
 }
 
 export function transpileGetFactures(response) {
-    console.log(response?.Body?.map(transpileFacture))
     return response?.Body?.map(transpileFacture);
 }
