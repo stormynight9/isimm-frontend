@@ -42,6 +42,7 @@ import AccepterDemandeService from "./pages/magasin/admin/demande/AccepterDemand
 import AccepterDemandeServiceSelf from "./pages/magasin/admin/demande/AccepterDemandeServiceSelf"
 import ListeDemandeMagasin from "./pages/magasin/admin/demande/ListeDemandeMagasin"
 import AccepterDemandeEmployer from "./pages/magasin/admin/demande/AccepterDemandeEmployer"
+import GenerateCalendars from "./pages/surveillance/GenerateCalendars"
 
 const router = createBrowserRouter(
     [
@@ -71,6 +72,10 @@ const router = createBrowserRouter(
                                 {
                                     path: "calendriers-sauvegardes",
                                     element: <SavedCalendars />,
+                                },
+                                {
+                                    path: "calendriers-sauvegardes/:id",
+                                    element: <GenerateCalendars />,
                                 },
                                 {
                                     path: "reclamations",
@@ -115,16 +120,16 @@ const router = createBrowserRouter(
                                             children: [
                                                 {
                                                     path: "ajouter",
-                                                    element: <AjouterFacture />
+                                                    element: <AjouterFacture />,
                                                 },
                                                 {
                                                     path: "visit/:id",
-                                                    element: <ModifierFacture />
+                                                    element: <ModifierFacture />,
                                                 },
                                                 {
                                                     path: "list",
-                                                    element: <ListeFacture />   
-                                                }
+                                                    element: <ListeFacture />,
+                                                },
                                             ],
                                         },
                                         {
@@ -133,16 +138,16 @@ const router = createBrowserRouter(
                                             children: [
                                                 {
                                                     path: "ajouter",
-                                                    element: <AjouterProduit />
+                                                    element: <AjouterProduit />,
                                                 },
                                                 {
                                                     path: "modifier/:id",
-                                                    element: <ModifierProduit />
+                                                    element: <ModifierProduit />,
                                                 },
                                                 {
-                                                    path: 'list',
+                                                    path: "list",
                                                     element: <ListeProduit />,
-                                                }
+                                                },
                                             ],
                                         },
                                         {
@@ -151,16 +156,16 @@ const router = createBrowserRouter(
                                             children: [
                                                 {
                                                     path: "ajouter",
-                                                    element: <AjouterFournisseur />
+                                                    element: <AjouterFournisseur />,
                                                 },
                                                 {
                                                     path: "modifier/:id",
-                                                    element: <EditFournisseur />
+                                                    element: <EditFournisseur />,
                                                 },
                                                 {
-                                                    path: 'list',
+                                                    path: "list",
                                                     element: <ListeFournisseur />,
-                                                }
+                                                },
                                             ],
                                         },
                                         {
@@ -168,15 +173,15 @@ const router = createBrowserRouter(
                                             path: "demande",
                                             children: [
                                                 {
-                                                    path: 'accepter/:id',
+                                                    path: "accepter/:id",
                                                     element: <AccepterDemandeMagasin />,
                                                 },
                                                 {
-                                                    path: 'list',
+                                                    path: "list",
                                                     element: <ListeDemandeMagasin />,
-                                                }
+                                                },
                                             ],
-                                        
+
                                             // indexElement: <ListeDemandeService />,
                                         },
                                     ],
@@ -189,19 +194,19 @@ const router = createBrowserRouter(
                                             // element: <AjouterDemandeEmployer />,
                                             children: [
                                                 {
-                                                    path: 'list',
+                                                    path: "list",
                                                     element: <ListeDemandeStaff />,
                                                 },
                                                 {
-                                                    path: 'ajouter',
+                                                    path: "ajouter",
                                                     element: <AjouterDemandeEmployer />,
                                                 },
                                                 {
-                                                    path: 'accepter/:id',
+                                                    path: "accepter/:id",
                                                     element: <AccepterDemandeEmployer />,
                                                 },
-                                            ]
-                                        }
+                                            ],
+                                        },
                                     ],
                                 },
                                 {
@@ -211,27 +216,27 @@ const router = createBrowserRouter(
                                             path: "demande",
                                             children: [
                                                 {
-                                                    path: 'list',
+                                                    path: "list",
                                                     element: <ListeDemandeService />,
                                                 },
                                                 {
-                                                    path: 'notre-list',
+                                                    path: "notre-list",
                                                     element: <ListeDemandeServiceSelf />,
                                                 },
                                                 {
-                                                    path: 'accepter/:id',
+                                                    path: "accepter/:id",
                                                     element: <AccepterDemandeService />,
                                                 },
                                                 {
-                                                    path: 'accepter-notre/:id',
+                                                    path: "accepter-notre/:id",
                                                     element: <AccepterDemandeServiceSelf />,
                                                 },
                                                 {
-                                                    path: 'ajouter',
+                                                    path: "ajouter",
                                                     element: <AjouterDemandeService />,
-                                                }
-                                            ]
-                                        }
+                                                },
+                                            ],
+                                        },
                                     ],
                                 },
                             ],
