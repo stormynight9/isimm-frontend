@@ -163,7 +163,7 @@ const Sidebar = ({ isCollapsed, CollapseSidebar }: SidebarProps) => {
                                     <MenuItem icon={<FileSpreadsheetIcon size={20} strokeWidth={2.4} />} component={<Link to={"/charge/consultation-voeux/"} />}>
                                         Consultation voeux
                                     </MenuItem>
-                                    <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />} component={<Link to={"/charge/consultation-enseignant/"} />}>
+                                    <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />} component={<Link to={"/charge/rechercher-enseignant/"} />}>
                                         Consultation enseignant
                                     </MenuItem>
                                     <MenuItem icon={<UserIcon size={20} strokeWidth={2.4} />} component={<Link to={"/charge/profile-information/"} />}>

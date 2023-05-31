@@ -1,0 +1,28 @@
+.pen {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+.button {
+    flex-direction: row-reverse;
+}
+.TabsContent {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.icon {
+    cursor: pointer;
+    border-radius: 50%;
+    border-color: #94a3b8;
+    border: 1px solid;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon:hover {
+    background-color: #94a3b8;
+}
