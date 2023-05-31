@@ -1,0 +1,10 @@
+.DiplomePathing {
+    display: flex;
+    flex-direction: column;
+}
+
+.SelectRow {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}

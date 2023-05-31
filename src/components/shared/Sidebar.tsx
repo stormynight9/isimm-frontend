@@ -94,14 +94,17 @@ const Sidebar = ({ isCollapsed, CollapseSidebar }: SidebarProps) => {
                                 <Separator />
                                 {/* Notes => /notes/esm-route */}
                                 <SubMenu label="Notes" icon={<BinaryIcon size={20} strokeWidth={2.4} />} className="rounded-full text-sm font-semibold text-slate-700">
-                                    <MenuItem icon={<CalendarCheckIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                                    <MenuItem icon={<CalendarCheckIcon size={20} strokeWidth={2.4} />} component={<Link to={"/notes/semester1"} />}>
                                         Semestre 1
                                     </MenuItem>
-                                    <MenuItem icon={<CalendarCheckIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                                    <MenuItem icon={<CalendarCheckIcon size={20} strokeWidth={2.4} />} component={<Link to={"/notes/semester2"} />}>
                                         Semestre 2
                                     </MenuItem>
                                     <MenuItem icon={<SettingsIcon size={20} strokeWidth={2.4} />} component={<Link to={"/notes/reclamation"} />}>
                                         Réclamation
+                                    </MenuItem>
+                                    <MenuItem icon={<SettingsIcon size={20} strokeWidth={2.4} />} component={<Link to={"/notes/reclamationEnseignant"} />}>
+                                        Réclamation Enseignant
                                     </MenuItem>
                                     <MenuItem icon={<MessageSquareIcon size={20} strokeWidth={2.4} />} component={<Link to={"/notes/section"} />}>
                                         Section
@@ -112,16 +115,16 @@ const Sidebar = ({ isCollapsed, CollapseSidebar }: SidebarProps) => {
                                 {/* Magasin */}
                                 <SubMenu label="Magasin" icon={<ShoppingCartIcon size={20} strokeWidth={2.4} />} className="rounded-full text-sm font-semibold text-slate-700">
                                     {/* magasinier => /magasin/magasinier/esm-route */}
-                                    <MenuItem icon={<CalendarSearchIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                                    <MenuItem icon={<CalendarSearchIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/magasinier/demande/list"} />}>
                                         Demandes
                                     </MenuItem>
-                                    <MenuItem icon={<ClipboardListIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                                    <MenuItem icon={<ClipboardListIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/magasinier/facture/list"} />}>
                                         Factures
                                     </MenuItem>
-                                    <MenuItem icon={<BoxIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                                    <MenuItem icon={<BoxIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/magasinier/produit/list"} />}>
                                         Produits
                                     </MenuItem>
-                                    <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
+                                    <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/magasinier/fournisseur/list"} />}>
                                         Fournisseurs
                                     </MenuItem>
                                     {/* magasinier */}
@@ -131,18 +134,25 @@ const Sidebar = ({ isCollapsed, CollapseSidebar }: SidebarProps) => {
                                 {/* Service */}
                                 <SubMenu label="Service" icon={<PackageSearchIcon size={20} strokeWidth={2.4} />} className="rounded-full text-sm font-semibold text-slate-700">
                                     {/* Enseigant & Service => /enseigant/esm-route & /service/esm-route */}
-                                    <MenuItem icon={<CalendarSearchIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/enseignant/Consulter-demandes"} />}>
-                                        Consulter demandes
+                                    <MenuItem icon={<CalendarSearchIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/service/demande/list"} />}>
+                                        Demandes des Employers
                                     </MenuItem>
-                                    <MenuItem icon={<ClipboardCheckIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/service/Ajouter-produit"} />}>
-                                        Ajouter produit
+                                    <MenuItem icon={<CalendarSearchIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/service/demande/notre-list"} />}>
+                                        Nos Demandes
                                     </MenuItem>
-                                    <MenuItem icon={<PlusCircleIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/enseignant/Demande-Produit"} />}>
-                                        Demande produit
+                                    {/* Enseigant & Service */}
+                                    {/* Service */}
+                                </SubMenu>
+                                {/* Magasin */}
+                                <Separator />
+                                <SubMenu label="Employer" icon={<PackageSearchIcon size={20} strokeWidth={2.4} />} className="rounded-full text-sm font-semibold text-slate-700">
+                                    {/* Enseigant & Service => /enseigant/esm-route & /service/esm-route */}
+                                    <MenuItem icon={<CalendarSearchIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/employer/demande/list"} />}>
+                                        Demandes
                                     </MenuItem>
-                                    <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/service/Consulter-produits"} />}>
-                                        Consulter produits
-                                    </MenuItem>
+                                    {/* <MenuItem icon={<ClipboardCheckIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/service/demande/ajouter"} />}>
+                                        Demander
+                                    </MenuItem> */}
                                     {/* Enseigant & Service */}
                                     {/* Service */}
                                 </SubMenu>
@@ -156,7 +166,7 @@ const Sidebar = ({ isCollapsed, CollapseSidebar }: SidebarProps) => {
                                     <MenuItem icon={<FileSpreadsheetIcon size={20} strokeWidth={2.4} />} component={<Link to={"/charge/consultation-voeux/"} />}>
                                         Consultation voeux
                                     </MenuItem>
-                                    <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />} component={<Link to={"/charge/consultation-enseignant/"} />}>
+                                    <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />} component={<Link to={"/charge/rechercher-enseignant/"} />}>
                                         Consultation enseignant
                                     </MenuItem>
                                     <MenuItem icon={<UserIcon size={20} strokeWidth={2.4} />} component={<Link to={"/charge/profile-information/"} />}>

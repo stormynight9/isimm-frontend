@@ -6,22 +6,47 @@ import Lesdemandes from "./pages/conge/admin/Lesdemandes"
 import Statistiques from "./pages/conge/admin/Statistiques"
 import ErrorPage from "./pages/ErrorPage"
 import Home from "./pages/Home"
+import AjouterDemande from "./pages/magasin/admin/demande/AjouterDemande"
+import ListeDemandeService from "./pages/magasin/admin/demande/ListeDemandeService"
+import AjouterFacture from "./pages/magasin/admin/facture/AjouterFacture"
+import ModifierFacture from "./pages/magasin/admin/facture/ModifierFacture"
+import AjouterProduit from "./pages/magasin/admin/produit/AjouterProduit"
 import Section from "./pages/notes/section/Section"
+import Section from "./pages/notes/enseignant/section/Section"
 import Calendar from "./pages/surveillance/Calendar"
 import Complaints from "./pages/surveillance/Complaints"
 import CreateCalendar from "./pages/surveillance/CreateCalendar"
 import SavedCalendars from "./pages/surveillance/SavedCalendars"
-import GestionDiplomes from "./pages/charge/chef-departement/GestionDiplomes"
-import ConsultationVoeux from "./pages/charge/chef-departement/ConsultationVoeux"
-import ConsultationEnseignant from "./pages/charge/chef-departement/ConsultationEnseignant"
-import SoumettreVoeux from "./pages/charge/enseignant/SoumettreVoeux"
-import ProfileInformation from "./pages/charge/enseignant/ProfileInformation"
-import ChargeNote from "./pages/notes/charge-note/ChargeNote"
-import ReclamationNote from "./pages/notes/reclamation/Reclamation"
+import Semester from "./pages/notes/etudiant/semester/Semester"
+import ReclamationEnseignant from "./pages/notes/enseignant/reclamation/ReclamationEnseignant"
 import DemandeProduit from "./pages/magasin/ensignant/DemandeProduit"
 import ConsulterDemandes from "./pages/magasin/ensignant/ConsulterDemandes"
-import AjouterProduit from "./pages/magasin/service/AjouterProduit"
 import ConsulterProduits from "./pages/magasin/service/ConsulterProduits"
+import ListeProduit from "./pages/magasin/admin/produit/ListeProduit"
+import ListeFournisseur from "./pages/magasin/admin/fournisseur/ListeFournisseur"
+import ModifierProduit from "./pages/magasin/admin/produit/ModifierProduit"
+import ListeFacture from "./pages/magasin/admin/facture/ListeFacture"
+import AccepterDemande from "./pages/magasin/admin/demande/AccepterDemande"
+import AjouterDemandeEmployer from "./pages/magasin/admin/demande/AjouterDemandeEmployer"
+import AccepterDemandeMagasin from "./pages/magasin/admin/demande/AccepterDemandeMagasin"
+import ListeDemandeStaff from "./pages/magasin/admin/demande/ListeDemandeStaff"
+import AjouterDemandeService from "./pages/magasin/admin/demande/AjouterDemandeService"
+import ListeDemandeServiceSelf from "./pages/magasin/admin/demande/ListeDemandeServceSelf"
+import AjouterFournisseur from "./pages/magasin/admin/fournisseur/AjouterFournisseur"
+import EditFournisseur from "./pages/magasin/admin/fournisseur/EditFournisseur"
+import AccepterDemandeService from "./pages/magasin/admin/demande/AccepterDemandeService"
+import AccepterDemandeServiceSelf from "./pages/magasin/admin/demande/AccepterDemandeServiceSelf"
+import ListeDemandeMagasin from "./pages/magasin/admin/demande/ListeDemandeMagasin"
+import AccepterDemandeEmployer from "./pages/magasin/admin/demande/AccepterDemandeEmployer"
+import GenerateCalendars from "./pages/surveillance/GenerateCalendars"
+import UpdateDemande from "./pages/conge/enseignant/UpdateDemande"
+import ChargeNote from "./pages/notes/enseignant/charge-note/ChargeNote"
+import ReclamationNote from "./pages/notes/etudiant/reclamation/ReclamationEtudiant"
+import DiplomePathing from "./pages/charge/chef-departement/GestionDiplomes/DiplomePathing/DiplomePathing"
+import ConsultationVoeux from "./pages/charge/chef-departement/GestionVoeux/ConsultationVoeux"
+import RechercherEnseignant from "./pages/charge/chef-departement/RechercherEnseignant/RechercherEnseignant"
+import ConsultationEnseignant from "./pages/charge/chef-departement/ConsultationEnseignant/ConsultationEnseignant"
+import ProfileInformation from "./pages/charge/enseignant/ProfileInformation/ProfileInformation"
 
 const router = createBrowserRouter(
     [
@@ -53,6 +78,10 @@ const router = createBrowserRouter(
                                     element: <SavedCalendars />,
                                 },
                                 {
+                                    path: "calendriers-sauvegardes/:id",
+                                    element: <GenerateCalendars />,
+                                },
+                                {
                                     path: "reclamations",
                                     element: <Complaints />,
                                 },
@@ -66,20 +95,25 @@ const router = createBrowserRouter(
                                     element: <Section />,
                                 },
                                 {
-                                    path: ":section/:td/:tp/:idMatiere",
-                                    element: <ChargeNote />,
-                                },
-                                {
-                                    path: ":section/:td/:idMatiere",
-                                    element: <ChargeNote />,
-                                },
-                                {
-                                    path: ":section/:idMatiere",
+                                    path: "chargeNote",
                                     element: <ChargeNote />,
                                 },
                                 {
                                     path: "reclamation",
-                                    element: <ReclamationNote />,
+                                    element: <ReclamationNote />, //Changer <ReclamationEnseignant /> pour l'interface de l'enseignant
+                                },
+                                {
+                                    path: "reclamationEnseignant",
+                                    element: <ReclamationEnseignant />, //Changer <ReclamationEnseignant /> pour l'interface de l'enseignant
+                                },
+
+                                {
+                                    path: "semester1",
+                                    element: <Semester sem="1" idEtd="15" />,
+                                },
+                                {
+                                    path: "semester2",
+                                    element: <Semester sem="2" idEtd="15" />,
                                 },
                             ],
                         },
@@ -88,18 +122,99 @@ const router = createBrowserRouter(
                             children: [
                                 {
                                     path: "magasinier",
-                                    children: [],
-                                },
-                                {
-                                    path: "enseignant",
                                     children: [
                                         {
-                                            path: "Demande-Produit",
-                                            element: <DemandeProduit />,
+                                            path: "facture",
+                                            // element: <ListeFacture />,
+                                            children: [
+                                                {
+                                                    path: "ajouter",
+                                                    element: <AjouterFacture />,
+                                                },
+                                                {
+                                                    path: "visit/:id",
+                                                    element: <ModifierFacture />,
+                                                },
+                                                {
+                                                    path: "list",
+                                                    element: <ListeFacture />,
+                                                },
+                                            ],
                                         },
                                         {
-                                            path: "Consulter-demandes",
-                                            element: <ConsulterDemandes />,
+                                            // element: <ListeProduit />,
+                                            path: "produit",
+                                            children: [
+                                                {
+                                                    path: "ajouter",
+                                                    element: <AjouterProduit />,
+                                                },
+                                                {
+                                                    path: "modifier/:id",
+                                                    element: <ModifierProduit />,
+                                                },
+                                                {
+                                                    path: "list",
+                                                    element: <ListeProduit />,
+                                                },
+                                            ],
+                                        },
+                                        {
+                                            // element: <ListeFournisseur />,
+                                            path: "fournisseur",
+                                            children: [
+                                                {
+                                                    path: "ajouter",
+                                                    element: <AjouterFournisseur />,
+                                                },
+                                                {
+                                                    path: "modifier/:id",
+                                                    element: <EditFournisseur />,
+                                                },
+                                                {
+                                                    path: "list",
+                                                    element: <ListeFournisseur />,
+                                                },
+                                            ],
+                                        },
+                                        {
+                                            // TODO: should have other location
+                                            path: "demande",
+                                            children: [
+                                                {
+                                                    path: "accepter/:id",
+                                                    element: <AccepterDemandeMagasin />,
+                                                },
+                                                {
+                                                    path: "list",
+                                                    element: <ListeDemandeMagasin />,
+                                                },
+                                            ],
+
+                                            // indexElement: <ListeDemandeService />,
+                                        },
+                                    ],
+                                },
+                                {
+                                    path: "employer",
+                                    children: [
+                                        {
+                                            path: "demande",
+                                            // element: <AjouterDemandeEmployer />,
+                                            children: [
+                                                {
+                                                    path: "list",
+                                                    element: <ListeDemandeStaff />,
+                                                },
+                                                {
+                                                    path: "ajouter",
+                                                    element: <AjouterDemandeEmployer />,
+                                                },
+                                                {
+                                                    path: "accepter/:id",
+                                                    element: <AccepterDemandeEmployer />,
+                                                },
+                                            ],
                                         },
                                     ],
                                 },
@@ -107,12 +222,29 @@ const router = createBrowserRouter(
                                     path: "service",
                                     children: [
                                         {
-                                            path: "Ajouter-produit",
-                                            element: <AjouterProduit />,
-                                        },
-                                        {
-                                            path: "Consulter-produits",
-                                            element: <ConsulterProduits />,
+                                            path: "demande",
+                                            children: [
+                                                {
+                                                    path: "list",
+                                                    element: <ListeDemandeService />,
+                                                },
+                                                {
+                                                    path: "notre-list",
+                                                    element: <ListeDemandeServiceSelf />,
+                                                },
+                                                {
+                                                    path: "accepter/:id",
+                                                    element: <AccepterDemandeService />,
+                                                },
+                                                {
+                                                    path: "accepter-notre/:id",
+                                                    element: <AccepterDemandeServiceSelf />,
+                                                },
+                                                {
+                                                    path: "ajouter",
+                                                    element: <AjouterDemandeService />,
+                                                },
+                                            ],
                                         },
                                     ],
                                 },
@@ -123,11 +255,15 @@ const router = createBrowserRouter(
                             children: [
                                 {
                                     path: "gestion-diplomes",
-                                    element: <GestionDiplomes />,
+                                    element: <DiplomePathing />,
                                 },
                                 {
                                     path: "consultation-voeux",
                                     element: <ConsultationVoeux />,
+                                },
+                                {
+                                    path: "rechercher-enseignant",
+                                    element: <RechercherEnseignant />,
                                 },
                                 {
                                     path: "consultation-enseignant",
@@ -139,7 +275,7 @@ const router = createBrowserRouter(
                                 },
                                 {
                                     path: "soumettre-voeux",
-                                    element: <SoumettreVoeux />,
+                                    element: <DiplomePathing />,
                                 },
                             ],
                         },
@@ -170,6 +306,10 @@ const router = createBrowserRouter(
                                         {
                                             path: "mes-demandes",
                                             element: <MesDemandes />,
+                                        },
+                                        {
+                                            path: ":idDemandeConger",
+                                            element: <UpdateDemande />,
                                         },
                                     ],
                                 },
