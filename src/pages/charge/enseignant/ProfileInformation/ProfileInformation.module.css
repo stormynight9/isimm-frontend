@@ -1,0 +1,28 @@
+.form {
+    display: flex;
+    justify-content: center;
+}
+.col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.Consultation_Enseignant {
+    position: absolute;
+    width: 1000px;
+    height: 700px;
+    left: 300px;
+}
+
+.Avatar {
+    width: 70px;
+    height: 70px;
+}

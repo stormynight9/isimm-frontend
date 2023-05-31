@@ -1,0 +1,73 @@
+.Consultation_Enseignant_Container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.Enseignant_Avatar {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    padding-left: 20%;
+}
+.AvatarConsulterEnseignant {
+    width: 50px;
+    height: 50px;
+}
+.Enseignant_Account {
+    border: 20px solid #f1f5f9;
+    padding: 0px 10px;
+    border-radius: 10px;
+}
+.Consultation_Enseignant_Tiltle {
+    display: flex;
+    font-weight: bold;
+}
+
+.Enseignant_Coordonnees {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.Enseignant_Coordonnees p {
+    border: 1.5px solid #f1f5f9;
+    border-radius: 5px;
+    background-color: #d3dadd;
+    padding: 5px 5px 5px 10px;
+}
+.Enseignant_Coordonnees h6 {
+    font-weight: bold;
+    font-size: small;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 5px 5px 5px 5px;
+}
+.Enseignant_Coordonnees {
+    justify-content: center;
+    border: 3px solid #e9eef4;
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 100%;
+}
+.Enseignant_CoordonneesContainer {
+    display: flex;
+    padding-left: 25%;
+}
+
+.Enseignant_CoordonneesContainer table {
+    border-spacing: 0;
+    border: 1px solid black;
+}
+.Enseignant_CoordonneesContainer table tr td {
+    border-bottom: 0;
+    border-bottom: 1px solid black;
+}
+
+.Enseignant_CoordonneesContainer table th,
+.Enseignant_CoordonneesContainer td {
+    margin: 0;
+    padding: 0.3rem;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    text-align: center;
+}
