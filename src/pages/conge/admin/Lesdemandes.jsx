@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react"
 import Container from "@material-ui/core/Container"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"

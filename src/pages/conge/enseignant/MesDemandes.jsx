@@ -31,6 +31,7 @@ const MesDemandes = () => {
     }
     const deleteDemande = async (idDemandeConger) => {
         try {
+            // eslint-disable-next-line no-unused-vars
             const response = await axios.delete(
                 import.meta.env.VITE_API_URL +
                     `api/isimm/gestionConge/exempleEntity/${idDemandeConger}`
