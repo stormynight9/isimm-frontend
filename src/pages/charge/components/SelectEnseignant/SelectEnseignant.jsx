@@ -5,7 +5,14 @@ import { useGetMatiereQuery } from "@/redux/features/charge/ChargeApiSlice"
 import { ToastAction } from "@/components/ui/Toast"
 import { Button } from "@/components/ui/Button"
 import { Edit2Icon } from "lucide-react"
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/Dialog"
+import {
+    Dialog,
+    DialogContent,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/Dialog"
 import { useToast } from "@/hooks/useToast"
 import SelectEnseignantStyles from "./SelectEnseignant.module.css"
 const SelectEnseignant = ({ matiereId, type }) => {
@@ -36,35 +43,52 @@ const SelectEnseignant = ({ matiereId, type }) => {
                 }
             }
 
-            
             setMatiereData(newOptions)
             if (newOptions.length > 0) {
-                const enseignantMat = data.enseignantMatieres.find((enseignantMat) => enseignantMat.type === type)
+                const enseignantMat = data.enseignantMatieres.find(
+                    (enseignantMat) => enseignantMat.type === type
+                )
                 if (enseignantMat) {
-                    setValue({ label: enseignantMat.enseignant.nom + "-" + enseignantMat.enseignant.prenom, value: enseignantMat.enseignant.nom + "-" + enseignantMat.enseignant.prenom })
+                    setValue({
+                        label: enseignantMat.enseignant.nom + "-" + enseignantMat.enseignant.prenom,
+                        value: enseignantMat.enseignant.nom + "-" + enseignantMat.enseignant.prenom,
+                    })
                     setNbGrp(enseignantMat.nombreGroupes)
                     setDisabled(true)
                 }
             }
         }
-    }, [data])
+    }, [data, type])
     const handleCreate = async (input) => {
-        
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignant/getEnseignantByName?nom=${input.split("-")[0]}&prenom=${input.split("-")[1]}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-        const responseJson = await response.json()
-        if (responseJson !== null) {
-            setMatiereData((prev) => [...prev, { label: input, value: input }])
-            const responseUpdate = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignantMatiere/updateEnseignantMatiere?matiereId=${matiereId}&enseignantId=${responseJson.enseignantId}&type=${type}&nombreGroupes=${nbGrpvalue.value}`, {
-                method: "PUT",
+        const response = await fetch(
+            `${
+                import.meta.env.VITE_API_URL
+            }/api/isimm/distributionCharge/enseignant/getEnseignantByName?nom=${
+                input.split("-")[0]
+            }&prenom=${input.split("-")[1]}`,
+            {
+                method: "GET",
                 headers: {
                     "Content-Type": "application/json",
                 },
-            })
+            }
+        )
+        const responseJson = await response.json()
+        if (responseJson !== null) {
+            setMatiereData((prev) => [...prev, { label: input, value: input }])
+            const responseUpdate = await fetch(
+                `${
+                    import.meta.env.VITE_API_URL
+                }/api/isimm/distributionCharge/enseignantMatiere/updateEnseignantMatiere?matiereId=${matiereId}&enseignantId=${
+                    responseJson.enseignantId
+                }&type=${type}&nombreGroupes=${nbGrpvalue.value}`,
+                {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
             if (responseUpdate.ok) {
                 showToast("Enseignant Added/Updated")
                 setValue({ label: input, value: input })
@@ -73,8 +97,6 @@ const SelectEnseignant = ({ matiereId, type }) => {
         } else showToast("Enseignant Doesn't Exist")
     }
     const handleChange = async (input) => {
-        
-       
         setValue(input)
     }
     const handleChangeNbGrp = async (input) => {
@@ -83,22 +105,36 @@ const SelectEnseignant = ({ matiereId, type }) => {
     const handleAssignEnseignant = async () => {
         //Update the enseignant for the matiere
         const input = value
-        
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignant/getEnseignantByName?nom=${input.label.split("-")[0]}&prenom=${input.label.split("-")[1]}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-        const responseJson = await response.json()
-        
-        if (responseJson !== null) {
-            const responseUpdate = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignantMatiere/updateEnseignantMatiere?matiereId=${matiereId}&enseignantId=${responseJson.enseignantId}&type=${type}&nombreGroupes=${nbGrpvalue.value}`, {
-                method: "PUT",
+
+        const response = await fetch(
+            `${
+                import.meta.env.VITE_API_URL
+            }/api/isimm/distributionCharge/enseignant/getEnseignantByName?nom=${
+                input.label.split("-")[0]
+            }&prenom=${input.label.split("-")[1]}`,
+            {
+                method: "GET",
                 headers: {
                     "Content-Type": "application/json",
                 },
-            })
+            }
+        )
+        const responseJson = await response.json()
+
+        if (responseJson !== null) {
+            const responseUpdate = await fetch(
+                `${
+                    import.meta.env.VITE_API_URL
+                }/api/isimm/distributionCharge/enseignantMatiere/updateEnseignantMatiere?matiereId=${matiereId}&enseignantId=${
+                    responseJson.enseignantId
+                }&type=${type}&nombreGroupes=${nbGrpvalue.value}`,
+                {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
             if (responseUpdate.ok) {
                 showToast("Enseignant Added/Updated")
                 setValue({ label: input.label, value: input.value })
@@ -116,7 +152,11 @@ const SelectEnseignant = ({ matiereId, type }) => {
                 <h1>...Loading</h1>
             ) : disabled ? (
                 <div className="mb-5 flex flex-col flex-nowrap items-center justify-start">
-                    <div id="targetJoy2" className="flex h-[25px] w-[25px] cursor-pointer items-center justify-center self-end rounded-full p-[5px] hover:bg-[#94a3b8]" onClick={handleEdit}>
+                    <div
+                        id="targetJoy2"
+                        className="flex h-[25px] w-[25px] cursor-pointer items-center justify-center self-end rounded-full p-[5px] hover:bg-[#94a3b8]"
+                        onClick={handleEdit}
+                    >
                         <Edit2Icon />
                     </div>
                     <p id="targetJoy1">{value.value + `(${nbGrp})`}</p>
@@ -124,7 +164,12 @@ const SelectEnseignant = ({ matiereId, type }) => {
             ) : (
                 <Dialog className="z-[101]">
                     <DialogTrigger asChild>
-                        <Button className="m-3 p-[25px]" disabled={disabled} variant="default" onClick={handleClick}>
+                        <Button
+                            className="m-3 p-[25px]"
+                            disabled={disabled}
+                            variant="default"
+                            onClick={handleClick}
+                        >
                             Assign Enseignant
                         </Button>
                     </DialogTrigger>
@@ -134,7 +179,15 @@ const SelectEnseignant = ({ matiereId, type }) => {
                         </DialogHeader>
                         <div className="DlgContent flex flex-col gap-5">
                             <div className="flex flex-row  items-center justify-between  gap-5">
-                                Enseignant : <CreatableSelect isDisabled={disabled} className={SelectEnseignantStyles.SelectEnseignant} onChange={handleChange} value={value} options={matiereData} onCreateOption={handleCreate} />
+                                Enseignant :{" "}
+                                <CreatableSelect
+                                    isDisabled={disabled}
+                                    className={SelectEnseignantStyles.SelectEnseignant}
+                                    onChange={handleChange}
+                                    value={value}
+                                    options={matiereData}
+                                    onCreateOption={handleCreate}
+                                />
                             </div>
                             <div className="flex flex-row  items-center justify-between  gap-5">
                                 Nombre Groupes :{" "}

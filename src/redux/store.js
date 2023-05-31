@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit"
+import { configureStore } from "@reduxjs/toolkit"
 import { apiSlice } from "./features/surveillance/api/apiSlice"
 import authReducer from "./features/surveillance/slicers/AuthSlice"
 import { ChargeApi } from "./features/charge/ChargeApiSlice"
@@ -11,6 +11,7 @@ export const store = configureStore({
         ConsultingEnseignant: ConsultingEnseignantReducer,
         [ChargeApi.reducerPath]: ChargeApi.reducer,
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat([apiSlice.middleware,ChargeApi.middleware]),
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware().concat([apiSlice.middleware, ChargeApi.middleware]),
     devTools: true,
 })

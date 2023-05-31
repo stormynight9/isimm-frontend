@@ -18,23 +18,25 @@ export const ConsultingEnseignantSlice = createSlice({
     },
     reducers: {
         updateCredentials: (state, action) => {
-            state.enseignantId = action.payload.enseignantId?action.payload.enseignantId:null
-            state.gradeEnseignant = action.payload.gradeEnseignant?action.payload.gradeEnseignant:null
-            state.cin = action.payload.cin?action.payload.cin:null
-            state.nom = action.payload.nom?action.payload.nom:null
-            state.prenom = action.payload.prenom? action.payload.prenom : null
-            state.naissance = action.payload.naissance? action.payload.naissance : null
-            state.sexe = action.payload. sexe? action.payload.sexe : null
-            state.adresse = action.payload. adresse? action.payload.adresse : null
-            state.email = action.payload. email? action.payload.email : null
-            state.telephone = action.payload. telephone? action.payload.telephone : null
-            state.age = action.payload. age? action.payload.age : null
-            state.nombreHeures = action.payload.nombreHeures? action.payload.nombreHeures: null
+            state.enseignantId = action.payload.enseignantId ? action.payload.enseignantId : null
+            state.gradeEnseignant = action.payload.gradeEnseignant
+                ? action.payload.gradeEnseignant
+                : null
+            state.cin = action.payload.cin ? action.payload.cin : null
+            state.nom = action.payload.nom ? action.payload.nom : null
+            state.prenom = action.payload.prenom ? action.payload.prenom : null
+            state.naissance = action.payload.naissance ? action.payload.naissance : null
+            state.sexe = action.payload.sexe ? action.payload.sexe : null
+            state.adresse = action.payload.adresse ? action.payload.adresse : null
+            state.email = action.payload.email ? action.payload.email : null
+            state.telephone = action.payload.telephone ? action.payload.telephone : null
+            state.age = action.payload.age ? action.payload.age : null
+            state.nombreHeures = action.payload.nombreHeures ? action.payload.nombreHeures : null
         },
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { updateCredentials, } = ConsultingEnseignantSlice.actions
+export const { updateCredentials } = ConsultingEnseignantSlice.actions
 
 export default ConsultingEnseignantSlice.reducer

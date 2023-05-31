@@ -2,23 +2,21 @@ import AccordationStyles from "./Accordation.module.css"
 import { useState, useEffect } from "react"
 import AccordionVoeux from "../AccordionVoeux/AccordionVoeux"
 import { ToastAction } from "@/components/ui/Toast"
-import { useToast } from "@/hooks/useToast"
 
 function AccordationCharge() {
     const [voeux, setVoeux] = useState([])
-    const { toast } = useToast()
-    function showToast(message) {
-        showCustomToast(toast, message)
-    }
     /*Consommation API */
     useEffect(() => {
         const getVoeux = async () => {
-            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignantVoeux`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-            })
+            const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignantVoeux`,
+                {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            )
             const responseJson = await response.json()
             setVoeux(responseJson)
         }
@@ -27,9 +25,11 @@ function AccordationCharge() {
 
     return (
         <div className={AccordationStyles.Accordions}>
-            {voeux.length == 0 ? (
+            {voeux.length === 0 ? (
                 <div>
-                    <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">No Voeux is available</h3>
+                    <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
+                        No Voeux is available
+                    </h3>
                 </div>
             ) : (
                 voeux.map((v, i) => {

@@ -93,15 +93,32 @@ const ConsultationDiplome = (props) => {
                             modules: unite.matieres.map((matiere, index) => ({
                                 ec: matiere.code,
                                 module: matiere.name,
-                                tot: matiere.nbHCr + matiere.nbHTd + matiere.nbHTp + matiere.nbHCri + matiere.nbHNp,
+                                tot:
+                                    matiere.nbHCr +
+                                    matiere.nbHTd +
+                                    matiere.nbHTp +
+                                    matiere.nbHCri +
+                                    matiere.nbHNp,
                                 cr: matiere.nbHCr,
-                                enseignant_cr: <SelectEnseignant matiereId={matiere.matiereId} type="CR" joy={index == 0} />,
+                                enseignant_cr: (
+                                    <SelectEnseignant
+                                        matiereId={matiere.matiereId}
+                                        type="CR"
+                                        joy={index === 0}
+                                    />
+                                ),
                                 td: matiere.nbHTd,
-                                enseignant_td: <SelectEnseignant matiereId={matiere.matiereId} type="TD" />,
+                                enseignant_td: (
+                                    <SelectEnseignant matiereId={matiere.matiereId} type="TD" />
+                                ),
                                 tp: matiere.nbHTp,
-                                enseignant_tp: <SelectEnseignant matiereId={matiere.matiereId} type="TP" />,
+                                enseignant_tp: (
+                                    <SelectEnseignant matiereId={matiere.matiereId} type="TP" />
+                                ),
                                 ci: matiere.nbHCri,
-                                enseignant_ci: <SelectEnseignant matiereId={matiere.matiereId} type="CI" />,
+                                enseignant_ci: (
+                                    <SelectEnseignant matiereId={matiere.matiereId} type="CI" />
+                                ),
                                 cc: matiere.regime.name === "RM" ? false : true,
                                 rm: matiere.regime.name === "RM" ? true : false,
                             })),
