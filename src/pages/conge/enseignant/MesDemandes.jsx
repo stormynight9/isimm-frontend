@@ -8,13 +8,11 @@ import {
 } from "@/components/ui/DropdownMenu"
 import Badge from "@/components/ui/Badge"
 import Table from "@/components/shared/Table"
-import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/Button"
 import { MoreHorizontalIcon } from "lucide-react"
 
 const MesDemandes = () => {
     const [demandes, setDemandes] = useState([])
-    const navigate = useNavigate()
 
     useEffect(() => {
         loadDemandes()
@@ -147,6 +145,7 @@ const MesDemandes = () => {
                 },
             },
         ],
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         []
     )
 
@@ -181,6 +180,7 @@ const MesDemandes = () => {
                 etat_demande: demande.etat_demande,
             })),
         ],
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [demandes, deleteDemande]
     )
 
@@ -195,4 +195,3 @@ const MesDemandes = () => {
 }
 
 export default MesDemandes
-
