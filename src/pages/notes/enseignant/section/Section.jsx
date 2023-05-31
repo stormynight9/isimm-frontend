@@ -3,12 +3,17 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/Tabs"
 import ListItem from "../components/ListItem"
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import { useDispatch } from "react-redux"
+
+import { setDataUrl } from "@/redux/features/notes/noteSlice"
 
 const Section = () => {
     const [responseJson, setResponseJson] = useState([])
     const [sections, setSections] = useState([])
     const [selectedSection, setSelectedSection] = useState(null)
     const [selectedSemestre, setSelectedSemestre] = useState("")
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
         chargeSections()
@@ -37,7 +42,6 @@ const Section = () => {
     const filterResults = () => {
         if (selectedSection && selectedSemestre) {
             const filteredData = responseJson.filter((item) => item.nameSection === selectedSection && item.nameSemestre === selectedSemestre)
-            console.log(filteredData)
             return filteredData
         } else {
             return responseJson
@@ -45,13 +49,26 @@ const Section = () => {
     }
 
     const handleSectionSelect = (section) => {
-        console.log(section)
         setSelectedSection(section)
     }
 
     const handleSemestreSelect = (semestre) => {
-        console.log(semestre)
         setSelectedSemestre(semestre)
+    }
+
+    const handleClick = (item) => {
+        const payload = {
+            section: item.nameSection,
+            name: item.groupType === "SECTION" ? "SEC" : item.groupType === "TD" ? item.nameTD : item.nameTP,
+            groupType: item.groupType === "SECTION" ? "0" : item.groupType === "TD" ? "1" : "2",
+            idEnseignant: "1",
+            idGroup: item.groupId,
+            idSemestre: item.idSemestre,
+            idMatiere: item.idMatiere,
+            codeMatiere: item.codeMatiere,
+            nameMatiere: item.nameMatiere,
+        }
+        dispatch(setDataUrl(payload))
     }
 
     return (
@@ -74,18 +91,17 @@ const Section = () => {
                         </SelectContent>
                     </Select>
                 </div>
-                <div className="sections">
-                    <Tabs defaultValue="" className="w-[400px]">
+                <div className="sections ">
+                    <Tabs className="rounded-2xl bg-slate-100 ">
                         {sections.map((section, index) => (
-                            <TabsList key={index}>
+                            <TabsList key={index} className="rounded-2xl bg-slate-100">
                                 <TabsTrigger
-                                    className="hover:bg-slate-300"
+                                    className={selectedSection === section ? "rounded-2xl bg-white" : "rounded-2xl hover:bg-slate-300"}
                                     onClick={() => {
                                         handleSectionSelect(section)
-                                        console.log(section)
                                     }}
                                 >
-                                    {section}
+                                    {section.replace(/_/g, " ")}
                                 </TabsTrigger>
                             </TabsList>
                         ))}
@@ -96,8 +112,8 @@ const Section = () => {
             <div className="classgroup mt-5">
                 <ul className="grid w-[400px] gap-7 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
                     {filterResults().map((item, index) => (
-                        <Link key={index} to={"/notes/" + item.nameSection + "/" + item.groupType + "/" + item.idMatiere}>
-                            <ListItem title={item.nameSection + " - " + item.groupType + item.groupId} href={item.href}>
+                        <Link key={index} to={"/notes/chargeNote"}>
+                            <ListItem onClick={() => handleClick(item)} title={item.nameSection.replace(/_/g, " ") + (item.groupType === "SECTION" ? "" : item.groupType === "TD" ? " - " + item.nameTD : " - " + item.nameTP) + " (" + item.session + ")"}>
                                 {item.nameMatiere}
                             </ListItem>
                         </Link>
@@ -107,5 +123,6 @@ const Section = () => {
         </div>
     )
 }
+// /note/:section/:name/:idEnseignant/:idGroup/:idSemestre/:idMatiere
 
 export default Section
