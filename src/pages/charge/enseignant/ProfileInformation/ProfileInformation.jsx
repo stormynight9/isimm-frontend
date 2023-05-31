@@ -54,7 +54,7 @@ const ProfileInformation = () => {
     )
 
     return (
-        <div className={ProfileInformationStyles.form}>
+        <div className={ProfileInformationStyles.form} data-style="styles">
             <div className={ProfileInformationStyles.col}>
                 <h1 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
                     Profile enseignant

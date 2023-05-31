@@ -64,7 +64,7 @@
 }
 
 .Enseignant_CoordonneesContainer table th,
-td {
+.Enseignant_CoordonneesContainer td {
     margin: 0;
     padding: 0.3rem;
     border-bottom: 1px solid black;
