@@ -2,9 +2,9 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar"
 import { Button } from "@/components/ui/Button"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/DropdownMenu"
 import { Separator } from "@/components/ui/Separator"
-import { useWindowSize, Size } from "@/hooks/useWindowSize"
+import { Size, useWindowSize } from "@/hooks/useWindowSize"
 import { cn } from "@/lib/utils"
-import { ArrowLeftIcon, ArrowRightIcon, BarChart3Icon, BinaryIcon, BoxIcon, CalendarCheckIcon, CalendarDaysIcon, CalendarIcon, CalendarSearchIcon, ChevronDownIcon, ClipboardCheckIcon, ClipboardIcon, ClipboardListIcon, FilePlus2Icon, FileSpreadsheetIcon, LogOutIcon, MailQuestionIcon, MenuIcon, MessageCircleIcon, MessageSquareIcon, PalmtreeIcon, PlusCircleIcon, SaveIcon, SearchIcon, SettingsIcon, SheetIcon, ShoppingCartIcon, UserIcon } from "lucide-react"
+import { ArrowLeftIcon, ArrowRightIcon, BarChart3Icon, BinaryIcon, BoxIcon, CalendarCheckIcon, CalendarDaysIcon, CalendarIcon, CalendarSearchIcon, ChevronDownIcon, ClipboardCheckIcon, ClipboardIcon, ClipboardListIcon, FilePlus2Icon, FileSpreadsheetIcon, LogOutIcon, MailQuestionIcon, MenuIcon, MessageCircleIcon, MessageSquareIcon, PackageSearchIcon, PalmtreeIcon, PlusCircleIcon, SaveIcon, SearchIcon, SettingsIcon, SheetIcon, ShoppingCartIcon, UserIcon } from "lucide-react"
 import { useEffect } from "react"
 import { createPortal } from "react-dom"
 import { Menu, MenuItem, Sidebar as RPSidebar, SubMenu, useProSidebar } from "react-pro-sidebar"
@@ -60,13 +60,13 @@ const Sidebar = ({ isCollapsed, CollapseSidebar }: SidebarProps) => {
                     <RPSidebar width="256px" className="h-full bg-white" customBreakPoint="1024px" defaultCollapsed={isCollapsed}>
                         <div className="flex justify-center px-3 py-4 text-sm font-semibold text-slate-700 dark:text-slate-50">
                             {isCollapsed ? (
-                                <Button variant="subtle" className="invisible h-10 w-10 p-0 lg:visible" onClick={() => CollapseSidebar(false)}>
+                                <Button variant="secondary" className="invisible h-10 w-10 p-0 lg:visible" onClick={() => CollapseSidebar(false)}>
                                     <ArrowRightIcon size={24} />
                                 </Button>
                             ) : (
                                 <div className="flex w-full items-center justify-between transition-all duration-200">
                                     <span>Tableau de bord</span>
-                                    <Button variant="subtle" className="invisible h-10 w-10 p-0 lg:visible" onClick={() => CollapseSidebar(true)}>
+                                    <Button variant="secondary" className="invisible h-10 w-10 p-0 lg:visible" onClick={() => CollapseSidebar(true)}>
                                         <ArrowLeftIcon size={24} />
                                     </Button>
                                 </div>
@@ -111,21 +111,6 @@ const Sidebar = ({ isCollapsed, CollapseSidebar }: SidebarProps) => {
                                 <Separator />
                                 {/* Magasin */}
                                 <SubMenu label="Magasin" icon={<ShoppingCartIcon size={20} strokeWidth={2.4} />} className="rounded-full text-sm font-semibold text-slate-700">
-                                    {/* Enseigant & Service => /enseigant/esm-route & /service/esm-route */}
-                                    <MenuItem icon={<CalendarSearchIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
-                                        Consulter demandes
-                                    </MenuItem>
-                                    <MenuItem icon={<ClipboardCheckIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
-                                        Ajouter produit (service)
-                                    </MenuItem>
-                                    <MenuItem icon={<PlusCircleIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
-                                        Demande produit
-                                    </MenuItem>
-                                    <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
-                                        Consulter produit
-                                    </MenuItem>
-                                    {/* Enseigant & Service */}
-                                    <Separator />
                                     {/* magasinier => /magasin/magasinier/esm-route */}
                                     <MenuItem icon={<CalendarSearchIcon size={20} strokeWidth={2.4} />} component={<Link to={""} />}>
                                         Demandes
@@ -140,6 +125,26 @@ const Sidebar = ({ isCollapsed, CollapseSidebar }: SidebarProps) => {
                                         Fournisseurs
                                     </MenuItem>
                                     {/* magasinier */}
+                                </SubMenu>
+                                {/* Magasin */}
+                                <Separator />
+                                {/* Service */}
+                                <SubMenu label="Service" icon={<PackageSearchIcon size={20} strokeWidth={2.4} />} className="rounded-full text-sm font-semibold text-slate-700">
+                                    {/* Enseigant & Service => /enseigant/esm-route & /service/esm-route */}
+                                    <MenuItem icon={<CalendarSearchIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/enseignant/Consulter-demandes"} />}>
+                                        Consulter demandes
+                                    </MenuItem>
+                                    <MenuItem icon={<ClipboardCheckIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/service/Ajouter-produit"} />}>
+                                        Ajouter produit
+                                    </MenuItem>
+                                    <MenuItem icon={<PlusCircleIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/enseignant/Demande-Produit"} />}>
+                                        Demande produit
+                                    </MenuItem>
+                                    <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/service/Consulter-produits"} />}>
+                                        Consulter produits
+                                    </MenuItem>
+                                    {/* Enseigant & Service */}
+                                    {/* Service */}
                                 </SubMenu>
                                 {/* Magasin */}
                                 <Separator />

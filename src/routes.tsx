@@ -11,13 +11,22 @@ import Calendar from "./pages/surveillance/Calendar"
 import Complaints from "./pages/surveillance/Complaints"
 import CreateCalendar from "./pages/surveillance/CreateCalendar"
 import SavedCalendars from "./pages/surveillance/SavedCalendars"
+
+import DiplomePathing from "./pages/charge/chef-departement/GestionDiplomes/DiplomePathing/DiplomePathing"
 import ConsultationVoeux from "./pages/charge/chef-departement/GestionVoeux/ConsultationVoeux"
 import RechercherEnseignant from "./pages/charge/chef-departement/RechercherEnseignant/RechercherEnseignant"
 import ConsultationEnseignant from "./pages/charge/chef-departement/ConsultationEnseignant/ConsultationEnseignant"
 import ProfileInformation from "./pages/charge/enseignant/ProfileInformation/ProfileInformation"
+
 import ChargeNote from "./pages/notes/charge-note/ChargeNote"
 import ReclamationNote from "./pages/notes/reclamation/Reclamation"
-import DiplomePathing from "./pages/charge/chef-departement/GestionDiplomes/DiplomePathing/DiplomePathing"
+
+import DemandeProduit from "./pages/magasin/ensignant/DemandeProduit"
+import ConsulterDemandes from "./pages/magasin/ensignant/ConsulterDemandes"
+import AjouterProduit from "./pages/magasin/service/AjouterProduit"
+import ConsulterProduits from "./pages/magasin/service/ConsulterProduits"
+import GenerateCalendars from "./pages/surveillance/GenerateCalendars"
+
 
 const router = createBrowserRouter(
     [
@@ -47,6 +56,10 @@ const router = createBrowserRouter(
                                 {
                                     path: "calendriers-sauvegardes",
                                     element: <SavedCalendars />,
+                                },
+                                {
+                                    path: "calendriers-sauvegardes/:id",
+                                    element: <GenerateCalendars />,
                                 },
                                 {
                                     path: "reclamations",
@@ -88,11 +101,29 @@ const router = createBrowserRouter(
                                 },
                                 {
                                     path: "enseignant",
-                                    children: [],
+                                    children: [
+                                        {
+                                            path: "Demande-Produit",
+                                            element: <DemandeProduit />,
+                                        },
+                                        {
+                                            path: "Consulter-demandes",
+                                            element: <ConsulterDemandes />,
+                                        },
+                                    ],
                                 },
                                 {
                                     path: "service",
-                                    children: [],
+                                    children: [
+                                        {
+                                            path: "Ajouter-produit",
+                                            element: <AjouterProduit />,
+                                        },
+                                        {
+                                            path: "Consulter-produits",
+                                            element: <ConsulterProduits />,
+                                        },
+                                    ],
                                 },
                             ],
                         },
