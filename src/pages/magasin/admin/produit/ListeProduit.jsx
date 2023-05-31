@@ -26,7 +26,7 @@ export default function ListeProduit() {
             },
             {
                 Header: "Date de création",
-                accessor: "createdAt",
+                accessor: "date",
             },
             {
                 Header: "Action",

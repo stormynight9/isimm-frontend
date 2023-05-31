@@ -7,7 +7,7 @@ export default function ModifierProduit() {
     const { product, isLoading } = useProduct(id);
     console.log(product)
     // const { products, isLoading } = useProducts(id);
-    // console.log(products)
-    if(isLoading) return <h1>Loading...</h1>
+    console.log(product)
+    if(isLoading || product === undefined) return <h1>Loading...</h1>
     return <FormProduit title="Modifier Produit" initialValues={product} type="edit"/>
 }

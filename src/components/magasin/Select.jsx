@@ -1,6 +1,7 @@
 import { SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue, Select as ChadSelect, SelectSeparator } from "@/components/ui/Select"
 import { Button } from "../ui/Button"
 
+// le corps du select
 function SelectBody({items, newButton, accessor}) {
     return <SelectContent>
         <SelectGroup>
@@ -17,6 +18,7 @@ function SelectBody({items, newButton, accessor}) {
     </SelectContent>
 }
 
+// le select
 export default function Select({name, className, label, items, accessor, placeholder, value, onChange, newButton, disabled}) {
     // console.log(items)
     // console.log(value)

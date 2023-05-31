@@ -1,6 +1,6 @@
-export const fetchData = async (method, url, body, setApiData, setIsLoading, setApiError) => {
+// une utilite pour les requetes fetch
+export const fetchData = async (method, url, body) => {
     try {
-        setIsLoading(true);
         const response = await fetch(url, {
             method,
             body: JSON.stringify(body),
@@ -10,12 +10,8 @@ export const fetchData = async (method, url, body, setApiData, setIsLoading, set
                 'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
             }
         });
-        const data = await response.json();
-
-        setApiData(data);
-        setIsLoading(false);
+        return await response.json();
     } catch (error) {
-        setApiError(error);
-        setIsLoading(false);
+        console.error(error);
     }
   };

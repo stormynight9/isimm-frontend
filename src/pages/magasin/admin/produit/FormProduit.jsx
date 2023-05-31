@@ -21,6 +21,10 @@ export default function FormProduit({title, initialValues, type, id}) {
         setValues(values => ({...values, [e.target.name]: e.target.value}));
     }
 
+    function init() {
+        setValues({label: '', ref: '', vat: '', keyValues: [{id: 0, key: '', value: ''}]});
+    }
+
     // function handleVatChange(vat) {
     //     setValues(values => ({...values, vat}));
     // }
@@ -32,9 +36,10 @@ export default function FormProduit({title, initialValues, type, id}) {
     function handleSave() {
         console.log(values);
         if(type === 'edit') {
-            fetchData('PUT', `/api/isimm/gestionMagasin/magasin/Produit/${values.id}`, transpileProduct(values))
+            fetchData('PUT', `http://localhost:8090/api/isimm/gestionMagasin/magasin/Produit/${values.id}`, transpileProduct(values))
         } else if (type === 'add') {
-            fetchData('POST', '/api/isimm/gestionMagasin/magasin/Produit', transpileProduct(values))
+            fetchData('POST', 'http://localhost:8090/api/isimm/gestionMagasin/magasin/Produit', transpileProduct(values))
+            init();
         }
     }
 

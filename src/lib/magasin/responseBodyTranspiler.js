@@ -1,65 +1,78 @@
-export function transpileProduct({idStockable, refStockable, magasin, name, proprites}) {
+import { roundTo3 } from "./math"
+
+// convertir les donnees de du serveur en donnees compris par l'application
+
+export function transpileProduct({idStockable, refStockable, magasin, name, quantite, dateCreation, proprites}) {
 // export function transpileProduct({ refStockable, magasin, name, tva, proprites }) {
-    return {
+
+    const data = {
         id: idStockable,
         ref: refStockable,
         label: name,
+        quantity: quantite,
+        date: dateCreation?.substring(0, 10),
         magasin: magasin?.idMagasin,
-        properties: proprites?.map(({idProprite, cle, valeur}) => ({
+        keyValues: proprites?.map(({idProprite, cle, valeur}) => ({
             id: idProprite,
             key: cle,
             value: valeur,
         }))
     }
+    return data;
 }
 
 export function transpileFournisseur({idFournisseur, name, adresse, phoneNum, adresseMail}) {
+    // console.log(fournissuer)
     return {
         id: idFournisseur,
         label: name,
         address: adresse,
-        telephone: phoneNum,
+        phone: phoneNum,
         email: adresseMail,
     }
 }
 
-export function transpileDemande({idDemande, employer, service, magasin, dateCreation, demandeUnStockables}) {
-    return {
-        id: idDemande,
+export function transpileDemande({idDemandeStockable, description, etat, employer, service, magasin, dateCreation, demandeUnStockables}, source) {
+    console.log(description)
+    console.log(demandeUnStockables)
+    const data = {
+        id: idDemandeStockable,
+        description,
+        status: etat,
+        source,
         employer: employer?.idEmployer,
         service: service?.idService,
         magasin: magasin?.idMagasin,
         typeDemande: employer ? employer : 'service',
-        date: dateCreation,
-        products: demandeUnStockables?.map(({stockable, quantite}) => ({
-            product: {
-                id: stockable?.idStockable,
-                ref: stockable?.refStockable
-            },
+        date: dateCreation?.substring(0, 10),
+        records: demandeUnStockables?.map(({stockable, quantite}) => ({
+            product: stockable?.idStockable,
             quantity: quantite,
+            
         }))
     }
+    console.log(data);
+    return data;
 }
 
-export function transpileFacture({addressFacturation, dateFacturation, fournisseur, factureStockables}) {
+export function transpileFacture({idFacture, addressFacturation, dateFacturation, fournisseur, factureStockables}) {
+    console.log(factureStockables)
     return {
+        id: idFacture,
         address: addressFacturation,
-        date: dateFacturation,
+        date: dateFacturation?.substring(0, 10),
         fournisseur: fournisseur?.idFournisseur,
-        products: factureStockables?.map(({stockable, quantite, tva, prix}) => ({
-            product: {
-                id: stockable?.idStockable,
-                ref: stockable?.refStockable
-            },
+        records: factureStockables?.map(({stockable, quantite, tva, prix}) => ({
+            product: stockable?.idStockable,
             quantity: quantite,
-            tav: tva,
+            vat: tva,
             unit_price: prix,
         })),
         nproducts: factureStockables?.length,
         nitems: factureStockables?.reduce((acc, {quantite}) => acc + quantite, 0),
-        totalht: factureStockables?.reduce((acc, {prix, quantite}) => acc + (prix * quantite), 0),
-        totaltva: factureStockables?.reduce((acc, {prix, quantite, tva}) => acc + ((prix * quantite) * (tva / 100)), 0),
-        total: factureStockables?.reduce((acc, {prix, quantite, tva}) => acc + ((prix * quantite) * (1 + (tva / 100))), 0),
+        totalht: roundTo3(factureStockables?.reduce((acc, {prix, quantite}) => acc + (prix * quantite), 0)),
+        totaltva: roundTo3(factureStockables?.reduce((acc, {prix, quantite, tva}) => acc + ((prix * quantite) * (tva / 100)), 0)),
+        total: roundTo3(factureStockables?.reduce((acc, {prix, quantite, tva}) => acc + ((prix * quantite) * (1 + (tva / 100))), 0)),
     }
 }
 
@@ -71,24 +84,11 @@ export function transpileGetFournisseursBody(response) {
     return response?.Body?.map(transpileFournisseur);
 }
 
-export function transpileGetDemandesBody(response) {
-    return response?.Body?.map(({idDemande, employer, service, magasin, dateCreation, demandeUnStockables}) => ({
-        id: idDemande,
-        employer: employer?.idEmployer,
-        service: service?.idService,
-        magasin: magasin?.idMagasin,
-        typeDemande: employer ? employer : 'service',
-        date: dateCreation,
-        products: demandeUnStockables?.map(({stockable, quantite}) => ({
-            product: {
-                id: stockable?.idStockable,
-                ref: stockable?.refStockable
-            },
-            quantity: quantite,
-        }))
-    }));
+export function transpileGetDemandesBody(response, source) {
+    return response?.Body?.map((v) => transpileDemande(v, source));
 }
 
 export function transpileGetFactures(response) {
+    console.log(response?.Body?.map(transpileFacture))
     return response?.Body?.map(transpileFacture);
 }

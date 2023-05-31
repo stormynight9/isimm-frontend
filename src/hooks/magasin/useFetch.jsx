@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+// custom hook for fetching data
 const useFetch = (method, url, body) => {
   const [isLoading, setIsLoading] = useState(false);
   const [apiData, setApiData] = useState([]);

@@ -1,11 +1,12 @@
 import Badge from "../ui/Badge";
 
-export default function DemandeBadge({status}) {
+// badge de demande
+export default function DemandeBadge({status, className}) {
     const badge = {
-        pending: <Badge status="yellow">En attente</Badge>,
-        verified: <Badge status="green">Vérifié</Badge>,
-        refused: <Badge status="red">Réfusé</Badge>,
-        fulfilled: <Badge status="green">Fulfilled</Badge>,
+        pending: <Badge className={className} status="yellow">En attente</Badge>,
+        approved: <Badge className={className} status="green">Vérifié</Badge>,
+        rejected: <Badge className={className} status="red">Réfusé</Badge>,
+        fullfield: <Badge className={className} status="green">Fulfilled</Badge>,
     }
 
     return badge[status];

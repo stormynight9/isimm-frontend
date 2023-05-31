@@ -1,12 +1,11 @@
-export function transformInvoiceRecord({id, product, quantity, price, vat}) {
+// assurer que les donnees sont bien formate
+
+export function transformInvoiceRecord({id, product, quantity, unit_price, vat}) {
     return {
-        id, product: parseInt(product), quantity: parseInt(quantity), price: parseFloat(price), vat: parseFloat(vat),
-        ht: parseFloat(price) * parseInt(quantity),
-        tva: parseFloat(price) * parseInt(quantity) * (parseFloat(vat) / 100),
-        ttc: parseFloat(price) * parseInt(quantity) * (1 + (parseFloat(vat) / 100)),
+        id, product: parseInt(product), quantity: parseInt(quantity), unit_price: parseFloat(unit_price), vat: parseFloat(vat),
     }
 }
 
-export function transformDemandeRecord({id, product, quantity}) {
-    return {id, product: parseInt(product), quantity: parseInt(quantity)}
+export function transformDemandeRecord({id, product, quantity, ...demande}) {
+    return {...demande, id, product: parseInt(product), quantity: parseInt(quantity)}
 }

@@ -1,18 +1,26 @@
 import { verifyDemandeRecord } from "./verify";
 
+// convertir les donnees de l'application en donnees compris par le serveur
+
 export function transpilePostDemandeBody(demande) {
-    return {
+    console.log(demande)
+    const data = {
         description: demande.description,
-        etat: "pending",
+        etat: demande.status,
         source: demande.typeDemande,
         employer: {
-            idEmployer: demande.employer,
+            id: demande.employer,
         },
         service: {
             idService: demande.service,
         },
-        demandeUnStockables: demande.records.filter(p => verifyDemandeRecord(p))?.map(p => ({produit: {refStockable: p.product}, quantite: p.quantity})),
+        magasin: {
+            idMagasin: demande.magasin,
+        },
+        demandeUnStockables: demande.records.filter(p => verifyDemandeRecord(p))?.map(p => ({stockable: {idStockable: p.product}, quantite: p.quantity})),
     }
+    console.log(data);
+    return data;
 }
 
 export function transpileProduct(product) {
@@ -28,5 +36,33 @@ export function transpileProduct(product) {
 }
 
 export function transpileFacture(facture) {
-    return
+    console.log(facture);
+    const data = {
+        idFacture: facture.id,
+        addressFacturation: facture.address,
+        dateFacturation: facture.date,
+        fournisseur: {
+            idFournisseur: facture.fournisseur
+        },
+        factureStockables: facture.records?.map(({product, quantity, vat, unit_price}) => ({
+            stockable: {
+                idStockable: product,
+            },
+            quantite: quantity,
+            tva: vat,
+            prix: unit_price,
+        })),
+    }
+    console.log(data);
+    return data
+}
+
+export function transpileFournisseur(fournisseur) {
+    return {
+        idFournisseur: fournisseur.id,
+        name: fournisseur.label,
+        adresse: fournisseur.address,
+        phoneNum: fournisseur.phone,
+        adresseMail: fournisseur.email,
+    }
 }

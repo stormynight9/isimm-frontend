@@ -1,6 +1,7 @@
 import { Button } from "../ui/Button";
 import BasePage from "./BasePage";
 
+// template de base pour les formulaires avec un titre et un bouton d'enregistrement
 export default function BaseForm({children, title, onSave, type}) {
     function handleSubmitInner(e) {
         e.preventDefault();

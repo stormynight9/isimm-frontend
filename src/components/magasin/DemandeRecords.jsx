@@ -1,28 +1,3 @@
-// import { transpileProducts } from "@/lib/magasin/transpiler";
-// import { verifyDemandeRecord } from "@/lib/magasin/verify";
-// import { useEffect, useState } from "react";
-// import InputLabel from "./InputLabel";
-// import Records from "./Records";
-// import Select from "./Select";
-
-// function DemandeRecord({products, initialValues, onChange}) {
-//     const [product, setProduct] = useState(initialValues?.product || null);
-//     const [quantite, setQuantite] = useState(initialValues?.quantite || 1);
-
-//     useEffect(() => {
-//         onChange({product, quantite: parseInt(quantite)});
-//     }, [product, quantite]);
-
-//     return <>
-//         <Select className="flex-1 m-3" items={transpileProducts(products)} name="produit" label="Produit" value={product} onChange={setProduct}/>
-//         <InputLabel name="quantite m-3" label="Quantité" value={quantite} onChange={setQuantite} />
-//     </>
-// }
-
-// export default function DemandeRecords({products, records, onChange}) {
-//     return <Records records={records} onChange={onChange} componentParams={{products}} RenderItem={DemandeRecord} defaultRecordValues={{quantite: 1, prix_unitaire: 10}} verify={verifyDemandeRecord} />
-// }
-
 import { transpileProducts } from "@/lib/magasin/transpiler";
 import { verifyDemandeRecord } from "@/lib/magasin/verify";
 import { useState } from "react";
@@ -31,12 +6,9 @@ import Records from "./Records";
 import Select from "./Select";
 import { transformDemandeRecord } from "@/lib/magasin/transform";
 
-function DemandeRecord({products, initialValues, onChange, id, type}) {
+// les enregistrements de demande
+function DemandeRecord({products, initialValues, onChange, id, type, editQte}) {
     const [values, setValues] = useState(initialValues || {id, quantity: 1, product: 1});
-
-    // useEffect(() => {
-    //     console.log(values);
-    // }, [values]);
 
     function handleChange(e) {
         setValues(values => transformDemandeRecord({...values, [e.target.name]: e.target.value}));
@@ -50,10 +22,14 @@ function DemandeRecord({products, initialValues, onChange, id, type}) {
 
     return <>
         <Select className="flex-1 grow w-full mx-3" items={transpileProducts(products)} disabled={type === 'add' ? undefined : true} name="product" label="Produit" value={values.product} accessor='id' onChange={handleProductChange}/>
-        <InputLabel className="w-28 mx-3" name="quantity" label="Quantité" type="number" value={values.quantity} onChange={handleChange} />    
+        <InputLabel disabled={(editQte || type === "add") ? undefined : true} className="w-28 mx-3" name="quantity" label="Quantité" type="number" value={values.quantity} onChange={handleChange} />    
+        {(values.availableQuantity || values.availableQuantity !== undefined) && <>
+            <InputLabel disabled className="text-red-500 text-sm" label='Quantité disponible' value={values.availableQuantity} onChange={() => {}} />
+            <InputLabel disabled className="text-red-500 text-sm" label='Quantité restante' value={values.availableQuantity - values.quantity} onChange={() => {}} />
+        </>}
     </>
 }
 
-export default function DemandeRecords({products, records, onChange, type}) {
-    return <Records records={records} onChange={onChange} componentParams={{products}} RenderItem={DemandeRecord} defaultRecordValues={{product: 1, quantity: 1}} verify={verifyDemandeRecord} type={type} />
+export default function DemandeRecords({products, records, onChange, type, editQte}) {
+    return <Records records={records} onChange={onChange} componentParams={{products, editQte}} RenderItem={DemandeRecord} defaultRecordValues={{product: 1, quantity: 1}} verify={verifyDemandeRecord} type={type} />
 }

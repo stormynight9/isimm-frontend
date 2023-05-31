@@ -1,5 +1,6 @@
 import FormDemande from "./FormDemande";
 
-export default function AjouterDemande() {
-    return <FormDemande title="Ajouter une Demande" type="add" />
+// ajouter une demande
+export default function AjouterDemande({type, service, employer, magasin}) {
+    return <FormDemande title={`Demander du ${type}`} type="add" service={service} employer={employer} magasin={magasin} />
 }

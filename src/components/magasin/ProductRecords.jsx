@@ -3,6 +3,7 @@ import { useState } from 'react';
 import InputLabel from './InputLabel';
 import Records from './Records';
 
+// les enregistrements de produit (attributs)
 function ProductRecord({initialValues, onChange, id, type}) {
     const [values, setValues] = useState(initialValues || {id, key: '', value: ''});
 

@@ -1,6 +1,7 @@
 import useFetch from "./useFetch";
 import { transpileProduct } from "@/lib/magasin/responseBodyTranspiler";
 
+// hook pour récupérer un produit
 export default function useProduct(id) {
     // const {isLoading, apiData} = useFetch('GET', `http://localhost:8090/api/isimm/gestionMagasin/magasin/Produit/${id}`)
     console.log(id)
