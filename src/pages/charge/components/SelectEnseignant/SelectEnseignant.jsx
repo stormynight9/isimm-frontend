@@ -36,7 +36,7 @@ const SelectEnseignant = ({ matiereId, type }) => {
                 }
             }
 
-            console.log(newOptions)
+            
             setMatiereData(newOptions)
             if (newOptions.length > 0) {
                 const enseignantMat = data.enseignantMatieres.find((enseignantMat) => enseignantMat.type === type)
@@ -49,7 +49,7 @@ const SelectEnseignant = ({ matiereId, type }) => {
         }
     }, [data])
     const handleCreate = async (input) => {
-        console.log(input)
+        
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignant/getEnseignantByName?nom=${input.split("-")[0]}&prenom=${input.split("-")[1]}`, {
             method: "GET",
             headers: {
@@ -57,7 +57,6 @@ const SelectEnseignant = ({ matiereId, type }) => {
             },
         })
         const responseJson = await response.json()
-        console.log("Enseignant", responseJson)
         if (responseJson !== null) {
             setMatiereData((prev) => [...prev, { label: input, value: input }])
             const responseUpdate = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignantMatiere/updateEnseignantMatiere?matiereId=${matiereId}&enseignantId=${responseJson.enseignantId}&type=${type}&nombreGroupes=${nbGrpvalue.value}`, {
@@ -74,8 +73,8 @@ const SelectEnseignant = ({ matiereId, type }) => {
         } else showToast("Enseignant Doesn't Exist")
     }
     const handleChange = async (input) => {
-        console.log(matiereData)
-        console.log("changed", input)
+        
+       
         setValue(input)
     }
     const handleChangeNbGrp = async (input) => {
@@ -84,7 +83,7 @@ const SelectEnseignant = ({ matiereId, type }) => {
     const handleAssignEnseignant = async () => {
         //Update the enseignant for the matiere
         const input = value
-        console.log(input)
+        
         const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignant/getEnseignantByName?nom=${input.label.split("-")[0]}&prenom=${input.label.split("-")[1]}`, {
             method: "GET",
             headers: {
@@ -92,7 +91,7 @@ const SelectEnseignant = ({ matiereId, type }) => {
             },
         })
         const responseJson = await response.json()
-        console.log("Found", responseJson)
+        
         if (responseJson !== null) {
             const responseUpdate = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignantMatiere/updateEnseignantMatiere?matiereId=${matiereId}&enseignantId=${responseJson.enseignantId}&type=${type}&nombreGroupes=${nbGrpvalue.value}`, {
                 method: "PUT",

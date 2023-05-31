@@ -7,7 +7,7 @@ import { useToast } from "@/hooks/useToast"
 import AccordationStyles from "../Accordation/Accordation.module.css"
 import SelectEnseignantStyles from "../SelectEnseignant/SelectEnseignant.module.css"
 const AccordionVoeux = ({ v }) => {
-    console.log(v)
+    
     const { toast } = useToast()
     const [nbGrpvalue, setNbGrpvalue] = useState({ label: "1", value: "1" })
 
@@ -19,8 +19,8 @@ const AccordionVoeux = ({ v }) => {
     }
     /* Handle click */
     const handleClick = async (enseignantId, matiereId, type) => {
-        console.log(enseignantId)
-        console.log(matiereId)
+        
+        
         const responseAdd = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignantMatiere/updateEnseignantMatiere?matiereId=${matiereId}&enseignantId=${enseignantId}&type=${type}&nombreGroupes=${nbGrpvalue.value}`, {
             method: "PUT",
             headers: {

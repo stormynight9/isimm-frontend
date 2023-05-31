@@ -20,7 +20,6 @@ function AccordationCharge() {
                 },
             })
             const responseJson = await response.json()
-            console.log(responseJson)
             setVoeux(responseJson)
         }
         getVoeux()

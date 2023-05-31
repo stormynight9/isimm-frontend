@@ -40,7 +40,7 @@ const Tab = () => {
                 "Content-Type": "application/json",
             },
         })
-        console.log("helllo2")
+        
 
         if (responseAdd.ok) {
             showToast(" Edited")
@@ -57,7 +57,7 @@ const Tab = () => {
             },
             body: JSON.stringify({ enseignantId: enseignantId.value, oldPass: Password, newPass: NPassword }),
         })
-        console.log("helllo2")
+        
 
         if (responseUpdate.ok) {
             showToast(" Edited")
@@ -91,7 +91,7 @@ const Tab = () => {
                         <div
                             className={TabStyles.icon}
                             onClick={() => {
-                                console.log("ajfnlakfn")
+                            
                                 setNom({ value: nom.value, disabled: false })
                             }}
                         >
@@ -113,7 +113,7 @@ const Tab = () => {
                         <div
                             className={TabStyles.icon}
                             onClick={() => {
-                                console.log("ajfnlakfn")
+                                
                                 setPrenom({ value: prenom.value, disabled: false })
                             }}
                         >

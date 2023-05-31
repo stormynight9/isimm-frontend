@@ -16,7 +16,7 @@ const ProfileInformation = () => {
                 },
             })
             const responseJson = await response.json()
-            console.log(responseJson)
+            
             //calculate nombreHeures
             setEnseignantMatieres(responseJson)
         }

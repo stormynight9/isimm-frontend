@@ -27,7 +27,7 @@ const ButtonVoeux = (props) => {
                 },
             })
             const responseJson = await response.json()
-            console.log(responseJson)
+            
             //calculate nombreHeures
             setNumberVoeux(responseJson.length)
         }
@@ -55,7 +55,7 @@ const ButtonVoeux = (props) => {
             }),
         })
         const responseVoeuxJson = await responseVoeux.json()
-        console.log(responseVoeuxJson)
+        
 
         if (responseVoeux.ok) {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignantVoeux`, {

@@ -28,15 +28,11 @@ const RechercherEnseignant = () => {
             .get(`${import.meta.env.VITE_API_URL}/api/isimm/distributionCharge/enseignant/getEnseignantByName?nom=${inputValue.split("-")[0]}&prenom=${inputValue.split("-")[1]}`)
             .then((res) => {
                 if (res && res.data) {
-                    console.log(res.data)
                     dispatch(updateCredentials(res.data))
                     navigate("/charge/consultation-enseignant")
                 } else {
                     showToast("Enseignant Doesn't Exist")
                 }
-            })
-            .catch((error) => {
-                console.log(error.response.data.message)
             })
     }
     const steps = [
