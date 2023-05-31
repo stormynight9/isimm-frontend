@@ -41,6 +41,10 @@ import Complaints from "./pages/surveillance/Complaints"
 import CreateCalendar from "./pages/surveillance/CreateCalendar"
 import GenerateCalendars from "./pages/surveillance/GenerateCalendars"
 import SavedCalendars from "./pages/surveillance/SavedCalendars"
+import ConsulterProduits from "./pages/magasin/ensignant/ConsulterDemandes"
+import ReviewDemandeProduit from "./pages/magasin/components/ReviewDemandeProduit.jsx"
+import UpdateDemandeProduit from "./pages/magasin/components/ReviewDemandeProduit"
+import UpdateProduit from "./pages/magasin/components/UpdateProduit"
 
 const router = createBrowserRouter(
     [
@@ -213,35 +217,34 @@ const router = createBrowserRouter(
                                     ],
                                 },
                                 {
-                                    path: "service",
-                                    children: [
-                                        {
-                                            path: "demande",
-                                            children: [
-                                                {
-                                                    path: "list",
-                                                    element: <ListeDemandeService />,
-                                                },
-                                                {
-                                                    path: "notre-list",
-                                                    element: <ListeDemandeServiceSelf />,
-                                                },
-                                                {
-                                                    path: "accepter/:id",
-                                                    element: <AccepterDemandeService />,
-                                                },
-                                                {
-                                                    path: "accepter-notre/:id",
-                                                    element: <AccepterDemandeServiceSelf />,
-                                                },
-                                                {
-                                                    path: "ajouter",
-                                                    element: <AjouterDemandeService />,
-                                                },
-                                            ],
-                                        },
-                                    ],
-                                },
+                                  path: "service",
+                                  children: [
+                                      {
+                                          path: "Ajouter-produit",
+                                          element: <AjouterProduit />,
+                                      },
+                                      {
+                                          path: "Consulter-produits",
+                                          element: <ConsulterProduits />,
+                                      },
+                                      {
+                                          path: "Update-produits/:id",
+                                          element: <UpdateDemandeProduit />,
+                                      }
+                                      ,
+                                      {
+                                          path: "Update-demandeProduits/:id",
+                                          element: <UpdateDemandeProduit />,
+                                      }
+                                      ,
+                                      {
+                                          path: "Review-demandeProduits/:id",
+                                          element: <ReviewDemandeProduit />,
+                                      }
+                                  ],
+                              },
+                          ],
+                      },
                             ],
                         },
                         {
@@ -312,8 +315,6 @@ const router = createBrowserRouter(
                     ],
                 },
             ],
-        },
-    ],
     {
         // Todo: remove this when ready to deploy to production
         basename: "/isimm-frontend",
