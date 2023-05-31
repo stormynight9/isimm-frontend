@@ -112,6 +112,8 @@ const DemandeConge = () => {
                     Demande Congé
                 </h1>
 
+                <br></br>
+
                 <div>
                     <div>
                         <Label htmlFor="DateDebut" style={{ fontSize: "20px", fontWeight: "bold" }}>
@@ -119,22 +121,30 @@ const DemandeConge = () => {
                         </Label>
                         <Input type="date" id="DateDebut" required onChange={handleInputChange} />
                     </div>
+
+                    <br></br>
+
                     <div>
                         <Label htmlFor="DateFin" style={{ fontSize: "20px", fontWeight: "bold" }}>
                             Date de retour
                         </Label>
                         <Input type="date" id="DateFin" required onChange={handleInputChange} />
                     </div>
+
+                    <br></br>
+
                     <Label style={{ fontSize: "20px", fontWeight: "bold" }}>Type de congé</Label>
                     <RadioGroup defaultValue={type} onChange={handleTypeChange}>
                         <div className="flex items-center space-x-2">
                             <RadioGroupItem value="ANNUEL" id="option-one" />
                             <Label htmlFor="option-one">Annuel</Label>
                         </div>
+
                         <div className="flex items-center space-x-2">
                             <RadioGroupItem value="MALADIE" id="option-two" />
                             <Label htmlFor="option-two">Maladie</Label>
                         </div>
+
                         {type === "MALADIE" && (
                             <div>
                                 <Label
@@ -151,10 +161,12 @@ const DemandeConge = () => {
                                 />
                             </div>
                         )}
+
                         <div className="flex items-center space-x-2">
                             <RadioGroupItem value="AUTRE" id="option-three" />
                             <Label htmlFor="option-three">Autre</Label>
                         </div>
+
                         {type === "AUTRE" && (
                             <div>
                                 <Label
@@ -179,6 +191,9 @@ const DemandeConge = () => {
                             </div>
                         )}
                     </RadioGroup>
+
+                    <br></br>
+
                     <div style={{ display: "flex", justifyContent: "center" }}>
                         <Button type="submit" id="submit-btn" disabled={!formValid}>
                             Demander
