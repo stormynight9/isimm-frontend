@@ -8,7 +8,7 @@ import Percent2 from "./Percent2"
 import Departements from "./Departements"
 
 const Statistiques = () => {
-    console.log("Rendering Donut component")
+    //console.log("Rendering Donut component")
 
     return (
         <div class="bg-white">

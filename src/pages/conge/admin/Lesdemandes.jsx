@@ -101,11 +101,11 @@ TabPanel.propTypes = {
 
 const handleRefuse = (row) => {
     // Perform logic to refuse the request for the row
-    console.log(`Refusing request for row with id ${row.id}`)
+    //console.log(`Refusing request for row with id ${row.id}`)
 }
 const handleAccept = (row) => {
     // Perform logic to accept the request for the row
-    console.log(`Accepting request for row with id ${row.id}`)
+    //console.log(`Accepting request for row with id ${row.id}`)
 }
 
 const getIconForType = (type) => {
