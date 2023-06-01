@@ -1,80 +1,89 @@
-import Table from "@/components/shared/Table"
-import { useMemo } from "react"
-import Badge from "@/components/ui/Badge"
-const ConsulterDemandes = () => {
-    const columns = useMemo(
-        () => [
-            {
-                Header: "Nom de l'enseignant",
-                accessor: "NomEnseignant",
-            },
-            {
-                Header: "Date de la demande",
-                accessor: "Date",
-            },
-            {
-                Header: "Nom de produit",
-                accessor: "NomProduit",
-            },
-            {
-                Header: "Quantité",
-                accessor: "qte",
-            },
-            {
-                Header: "Commentaires",
-                accessor: "Commentaires",
-            },
-            {
-                Header: "Etat",
-                accessor: "Etat",
-                Cell: ({ value }) => (value ? <Badge status="green">approuvée</Badge> : <Badge status="red">rejetée</Badge>),
-            },
-        ],
-        []
-    )
-    const data = useMemo(
-        () => [
-            {
-                NomEnseignant: "Hamel Lazher",
-                Date: "20/10/2022",
-                NomProduit: "câble VGA",
-                qte: "01",
-                Commentaires: "",
-                Etat: true,
-            },
-            {
-                NomEnseignant: "Graiet Mohammed",
-                Date: "23/10/2022",
-                NomProduit: "câble HDMI",
-                qte: "01",
-                Commentaires: "",
-                Etat: true,
-            },
-            {
-                NomEnseignant: "Abassi Imed",
-                Date: "01/11/2022",
-                NomProduit: "ramme de papiers",
-                qte: "01",
-                Commentaires: "",
-                Etat: false,
-            },
-            {
-                NomEnseignant: "Gzara Mariem",
-                Date: "05/01/2023",
-                NomProduit: "marquers",
-                qte: "02",
-                Commentaires: "je préfére que..",
-                Etat: false,
-            },
-        ],
-        []
-    )
-    return (
-        <div style={{ margin: "120px" }}>
-            <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">Consulter demandes</h1>
-            <h2 className="mt-10 scroll-m-20 border-b border-b-slate-200 pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0 dark:border-b-slate-700">Ici, vous pouvez consulter a liste de toutes les demandes.</h2>
-            <Table columns={columns} data={data} />
-        </div>
-    )
+import React, { useEffect, useState } from "react";
+import DemandeProduitService from "../utilities/DemandeProduitService";
+import ProduitDemande from "../components/ProduitDemande";
+
+const ConsulterProduits = () => {
+
+  const [loading, setLoading] = useState(true);
+  const [demandeProduits, setDemandeProduits] = useState(null);
+  //const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        const response = await DemandeProduitService.getDemandeProduits();
+        console.log(response)
+        setDemandeProduits(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+      setLoading(false);
+    };
+    fetchData();
+  }, []);
+
+  const deleteDemandeProduit = (e, id) => {
+      e.preventDefault();
+      DemandeProduitService.deleteDemandeProduit(id).then((res) => {
+          if(demandeProduits) {
+              setDemandeProduits((prevElement) => {
+                  return prevElement.filter((demandeProduit) => demandeProduit.id !== id);
+              })
+          }
+      });
+  }
+
+  return (
+    <div className="container mx-auto my-8" style={{ marginTop: "120px" }}>
+            <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">
+                Consulter demandes
+            </h1>
+            <h2 className="mt-10 scroll-m-20 border-b border-b-slate-200 pb-2 text-2xl font-semibold tracking-tight transition-colors first:mt-0 dark:border-b-slate-700">
+                Ici, vous pouvez consulter a liste de toutes les demandes.
+            </h2>
+      <div className="flex shadow border-b mt-6">
+        <table className="min-w-full">
+          <thead className="bg-gray-50">
+            <tr>
+              <th className="text-left font-medium text-gray-500 uppercase tracking-wider py-3 px-6">
+              Nom de l'enseignant
+              </th>
+              <th className="text-left font-medium text-gray-500 uppercase tracking-wider py-3 px-6">
+              Date de la demande
+              </th>
+              <th className="text-left font-medium text-gray-500 uppercase tracking-wider py-3 px-6">
+              Type de produit
+              </th>
+              <th className="text-left font-medium text-gray-500 uppercase tracking-wider py-3 px-6">
+              Quantité
+              </th>
+              <th className="text-left font-medium text-gray-500 uppercase tracking-wider py-3 px-6">
+              Commentaire
+              </th>
+              <th className="text-right font-medium text-gray-500 uppercase tracking-wider py-3 px-6">
+                Etat
+              </th>
+              <th className="text-right font-medium text-gray-500 uppercase tracking-wider py-3 px-6">
+                Action
+              </th>
+            </tr>
+          </thead>
+          {!loading && (
+              <tbody className="bg-white">
+                  {demandeProduits.map((demandeProduit) => (
+                      <ProduitDemande 
+                      demandeProduit={demandeProduit}
+                      deleteDemandeProduit={deleteDemandeProduit} 
+                      //isAdmin={isAdmin} 
+                      key={demandeProduit.id}></ProduitDemande>
+                  ))}
+              </tbody>
+          )}
+        </table>
+      </div>
+    </div>
+    
+  );
 }
-export default ConsulterDemandes
+export default ConsulterProduits

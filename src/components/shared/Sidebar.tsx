@@ -38,6 +38,8 @@ import {
     SheetIcon,
     ShoppingCartIcon,
     UserIcon,
+    ClipboardCheckIcon,
+    PlusCircleIcon
 } from "lucide-react"
 import { useEffect } from "react"
 import { createPortal } from "react-dom"
@@ -236,25 +238,19 @@ const Sidebar = ({ isCollapsed, CollapseSidebar }: SidebarProps) => {
                                 {/* Magasin */}
                                 <Separator />
                                 {/* Service */}
-                                <SubMenu
-                                    label="Service"
-                                    icon={<PackageSearchIcon size={20} strokeWidth={2.4} />}
-                                    className="rounded-full text-sm font-semibold text-slate-700"
-                                >
+                                <SubMenu label="Service" icon={<PackageSearchIcon size={20} strokeWidth={2.4} />} className="rounded-full text-sm font-semibold text-slate-700">
                                     {/* Enseigant & Service => /enseigant/esm-route & /service/esm-route */}
-                                    <MenuItem
-                                        icon={<CalendarSearchIcon size={20} strokeWidth={2.4} />}
-                                        component={<Link to={"/magasin/service/demande/list"} />}
-                                    >
-                                        Demandes des Employers
+                                    <MenuItem icon={<ClipboardCheckIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/service/Ajouter-produit"} />}>
+                                        Ajouter produit
                                     </MenuItem>
-                                    <MenuItem
-                                        icon={<CalendarSearchIcon size={20} strokeWidth={2.4} />}
-                                        component={
-                                            <Link to={"/magasin/service/demande/notre-list"} />
-                                        }
-                                    >
-                                        Nos Demandes
+                                    <MenuItem icon={<SearchIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/service/Consulter-produits"} />}>
+                                        Consulter produits
+                                    </MenuItem>
+                                    <MenuItem icon={<PlusCircleIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/enseignant/Demande-Produit"} />}>
+                                        Demande produit
+                                    </MenuItem>
+                                    <MenuItem icon={<CalendarSearchIcon size={20} strokeWidth={2.4} />} component={<Link to={"/magasin/enseignant/Consulter-demandes"} />}>
+                                        Consulter demandes
                                     </MenuItem>
                                     {/* Enseigant & Service */}
                                     {/* Service */}
